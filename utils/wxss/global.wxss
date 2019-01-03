@@ -7,9 +7,7 @@
   font-size: 40rpx;
     color: #666;
 }
-
 /*顶层样式*/
-
 .page_module {
   position: relative;
   font-family: "Microsoft YaHei";
