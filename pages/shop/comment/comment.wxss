@@ -1,0 +1,144 @@
+.comment-top {
+  justify-content: space-between;
+  line-height: 80rpx;
+}
+
+.comment-btn {
+  color: #fff;
+  line-height: 50rpx;
+  width: 90rpx;
+  text-align: center;
+  border-radius: 10rpx;
+}
+
+.commodity-comment {
+  padding-top: 2%;
+  align-items: flex-start;
+}
+
+.shop-image {
+  width: 23%;
+  margin-right: 3%;
+}
+
+.shop-image image {
+  width: 100%;
+  display: block;
+}
+
+.shop-image+view {
+  width: 74%;
+}
+
+.commodity-title {
+  font-weight: bold;
+  line-height: 40rpx;
+}
+
+.commodity-title+view {
+  margin-top: 3%;
+}
+
+.icon-wujiaoxing-copy {
+
+  margin-right: 7%;
+}
+
+.comment-content {
+  margin-top: 5%;
+}
+
+.comment-content textarea {
+  background-color: #eee;
+  height: 200rpx;
+  padding: 3%;
+  width: 94%;
+  font-size: 28rpx;
+}
+
+.commit-prompt, .overall-title {
+  justify-content: space-between;
+  line-height: 70rpx;
+}
+
+.anonymous {
+  margin: -3% -4% 0% -2%;
+  vertical-align: middle;
+}
+
+.comment-upload {
+  padding: 2%;
+  height: 200rpx;
+}
+
+.cu-image {
+  width: 22%;
+  padding: 4rpx;
+  margin-right: 3%;
+  border: 1px solid #ddd;
+}
+
+.cu-image view {
+  position: relative;
+}
+
+.cu-image text {
+  position: absolute;
+  top: -15rpx;
+  right: -8px;
+  font-size: 22rpx;
+  color: #ffff;
+  width: 34rpx;
+  line-height: 36rpx;
+  border-radius: 17rpx;
+  text-align: center;
+}
+
+.cu-image:last-child {
+  margin-right: 0rpx;
+}
+
+.cu-image image {
+  width: 100%;
+  height: 180rpx;
+  display: block;
+}
+
+.upload-image {
+  width: 180rpx;
+  border: 1px dashed #ddd;
+  padding: 10rpx 0rpx;
+  height: 150rpx;
+  margin-left: 2%;
+  text-align: center;
+}
+
+.upload-image .iconfont {
+  font-size: 80rpx;
+}
+
+.upload-image view:last-child {
+  line-height: 48rpx;
+}
+
+.comment-overall {
+  padding-top: 5%;
+}
+
+.comment-overall>view {
+  justify-content: space-between;
+  line-height: 80rpx;
+  padding: 0% 4%;
+}
+
+.comment-overall>view>view:nth-child(1) {
+  width: 15%;
+}
+
+.comment-overall>view>view:nth-child(2) {
+  width: 75%;
+}
+
+.comment-overall>view>view:nth-child(3) {
+  width: 10%;
+}

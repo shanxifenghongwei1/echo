@@ -1,0 +1,320 @@
+@import '/utils/wxss/voucher.wxss';
+.header_top {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  left: 0px;
+  z-index: 3;
+  height: 80rpx;
+  line-height: 80rpx;
+  justify-content: flex-end;
+  background-color: #fff;
+}
+
+
+.bottom-border {
+  border-bottom: 1px solid #ddd;
+}
+
+.bg_top {
+  color: #fff;
+  background: none;
+}
+
+.top-nav {
+  width: 87%;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.top-nav>view {
+  flex-grow: 1;
+  position: relative;
+}
+
+.nav_active {
+  color: #ed4444;
+}
+
+.nav_active::before {
+  position: absolute;
+  bottom: -0px;
+  left: 22%;
+  content: "";
+  width: 50%;
+  border: 1px solid #ed4444;
+}
+
+.top-share {
+  width: 13%;
+  height: 100%;
+}
+
+.top-share button {
+  position: absolute;
+  width: 10%;
+  height: 100%;
+  background: none;
+}
+
+.top-share button::after {
+  border: none;
+}
+
+.top-share view:last-child {
+  font-size: 50rpx;
+  text-align: center;
+}
+
+.slide-image {
+  width: 100%;
+  display: block;
+}
+
+.detial_text {
+  width: 85%;
+  padding: 4% 0% 3%;
+}
+
+.detial_text>view:first-child {
+  color: #333;
+  padding-bottom: 2.5%;
+}
+
+.detail-collection {
+  width: 15%;
+  text-align: center;
+}
+
+.detail-collection text {
+  margin: 0rpx 0rpx 12rpx;
+  display: block;
+}
+
+.detail-address, .nearby {
+  line-height: 80rpx;
+  justify-content: space-between;
+}
+
+.detail-address>view:first-child {
+  width: 90%;
+}
+
+.da-address {
+  PADDING: 3% 0%;
+}
+
+.da-address view {
+  line-height: 40rpx;
+}
+
+.da-address view:last-child {
+  color: #999;
+  margin-top: 2%;
+}
+
+.detail-address>view:last-child {
+  width: 10%;
+  text-align: center;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-top: 8rpx;
+  color: #1ce969;
+  border-left: 1px solid #ddd;
+}
+
+.nearby>view:first-child {
+  color: #1ce969;
+}
+
+.business_detail_image {
+  padding-top: 30rpx;
+  background-color: #fff;
+}
+
+.business_detail_image image {
+  display: block;
+  width: 100%;
+}
+
+.nearby>view:last-child, .details-bar .iconfont {
+  font-size: 44rpx;
+  color: #999;
+  margin-left: 20%;
+}
+
+.details-bar {
+  justify-content: space-between;
+  line-height: 80rpx;
+  border-bottom: 1px solid #ddd;
+}
+
+.details-bar .global_small_font {
+  color: #999;
+}
+
+.details-bar view:first-child {
+  width: 11%;
+  color: #999;
+}
+
+.details-bar view:nth-child(2) {
+  text-align: left;
+  width: 79%;
+}
+
+.details-bar>view:last-child {
+  width: 10%;
+  text-align: center;
+}
+
+.business_operation {
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 
+}
+
+.bp_position {
+  position: fixed;
+  bottom: 0px;
+  left: 0%;
+  width: 96%;
+  padding: 0% 2%;
+  z-index: 10;
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+  justify-content: space-between;
+  color: #39d1c2;
+}
+
+.bp_position>view:last-child{
+  width: 160rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #fff;
+  border-radius: 10rpx;
+}
+
+.position_one {
+  z-index: 100;
+}
+
+.position_content {
+  position: absolute;
+  width: 96%;
+  background-color: #fff;
+  z-index: 101;
+  left: 0px;
+  bottom: -60%;
+  padding: 0% 2%;
+}
+
+.buy_fork {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 80rpx;
+  height: 80rpx;
+  justify-content: center;
+}
+
+.buy_info {
+  align-items: flex-start;
+}
+
+.buy_info>view:first-child {
+  width: 25%;
+  margin-top: -20rpx;
+}
+
+.buy_info>view:first-child image {
+  width: 100%;
+  display: block;
+  border-radius: 4rpx;
+}
+
+.buy_money_select {
+  width: 65%;
+  padding-left: 3%;
+}
+
+.buy_money_num view {
+  margin-right: 10%;
+  line-height: 80rpx;
+}
+
+.buy_specifications_title {
+  line-height: 86rpx;
+  margin-top: 3%;
+}
+
+.buy_specifications {
+  flex-wrap: wrap;
+}
+
+.buy_specifications view {
+  margin-right: 5%;
+  background-color: #f2f2f2;
+  padding: 1% 2%;
+  border-radius: 10rpx;
+  margin-bottom: 4%;
+}
+
+.buy_specifications .bs_active {
+  background-color: #ed4444;
+  color: #fff;
+}
+
+.buy_num_calculate {
+  justify-content: space-between;
+  margin-top: 3%;
+}
+
+.buy_calculate {
+  width: 30%;
+  justify-content: space-between;
+  height: 60rpx;
+}
+
+.buy_calculate input {
+  width: 40%;
+  height: 56rpx;
+  color: #999;
+  text-align: center;
+  border-top: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.buy_calculate view {
+  position: relative;
+  color: #999;
+  width: 30%;
+  height: 100%;
+  font-size: 46rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background-color: #ddd;
+}
+
+.buy_calculate .calculate_active {
+  background-color: #f5f5f5;
+}
+
+.buy_btn {
+  width: 100%;
+  margin: 5% 0%;
+  line-height: 80rpx;
+  color: #fff;
+  text-align: center;
+  border-radius: 10rpx;
+}
+
+.dv-title {
+  line-height: 80rpx;
+}
+
+.detail-voucher image {
+  width: 100%;
+  display: block;
+  margin-bottom: 2%;
+}

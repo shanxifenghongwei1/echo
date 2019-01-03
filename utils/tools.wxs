@@ -1,0 +1,8 @@
+function turnInt(e) {
+
+  return e.split(".")[0];
+}
+
+module.exports = {
+  turnInt: turnInt
+}

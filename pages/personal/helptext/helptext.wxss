@@ -1,0 +1,22 @@
+/* pages/personal/helptext/helptext.wxss */
+
+.help-width-away{
+  display: flex;
+}
+
+.help-width-one{
+  width: 90%;
+  height: 100%;
+}
+
+.help-width-two{
+  width: 9%;
+  height: 100%;
+  text-align: right;
+}
+
+.any{
+  width: 100%;
+  height: 100vh;
+  background: #eee;
+}

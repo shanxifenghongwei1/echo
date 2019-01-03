@@ -1,0 +1,74 @@
+<!-- 产品发布页面 -->
+<!-- 产品名称 -->
+<view class='one-module'>
+  <view class=' global_middle_font one-module-text'>产品名称：</view>
+  <input name='shop_name' class=' global_middle_font one-module-input' placeholder='{{hisc}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+</view>
+
+<!-- 产品单价 -->
+<view class='one-module'>
+  <view class=' global_middle_font one-module-text'>产品单价：</view>
+  <input name='shop_name' class=' global_middle_font one-module-input' placeholder='{{hisc}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+</view>
+
+<!-- 产品数量 -->
+<view class='one-module'>
+  <view class=' global_middle_font one-module-text'>产品数量：</view>
+  <input name='shop_name' class=' global_middle_font one-module-input' placeholder='{{hisc}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+</view>
+
+
+<!-- 产品标签 -->
+<view class='one-module'>
+  <view class=' global_middle_font one-module-text'>产品说明：</view>
+  <input name='shop_name' class=' global_middle_font one-module-input' placeholder='{{hisc}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+</view>
+
+
+<!-- 产品类型 -->
+<view class='module-three global_middle_font'>
+  <picker bindchange="bindPickerChange" value="{{type_index}}" range="{{type_array}}">
+    <view class="picker" name='picker'>
+      产品类型：{{type_array[type_index]}}
+    </view>
+  </picker>
+</view>
+
+<!-- 产品条件 -->
+<view class='one-module module-one-checkbox'>
+  <view class=' global_middle_font one-module-text module-one-checkbox-text'>产品条件：</view>
+  <checkbox-group bindchange="checkboxChange" class='global_middle_font one-module-input module-one-checkbox-true'>
+    <label class="checkbox" wx:for="{{items}}">
+      <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+    </label>
+  </checkbox-group>
+</view>
+
+
+<!-- 产品缩略图 -->
+<view class='onereques'>
+  <view class='onereques-list'>
+    <view class='onereques-list-name global_middle_font one-accretion'>产品缩略图:</view>
+    <view class='revamp global_middle_font' bindtap='user'>
+      <view class='image-logo'>
+        <image mode='aspectFit' class='user-logo' src='{{src}}' bindtap='user'></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<!-- banner图上传 -->
+<view class='onereques-1 addimage-one'>
+
+  <view class='onereques-list-name onereques-list'>
+    <view class='global_middle_font'>产品详情图:</view>
+  </view>
+
+  <view class='imang-border'>
+    <image bindtap='image_exchange' wx:for='{{banner}}' wx:key='index' data-id='{{item.id}}' mode='aspectFit' class='user-banner' src='{{item.img}}'></image>
+  </view>
+  <view class='addimage-two' bindtap='addimageones'>+</view>
+
+</view>

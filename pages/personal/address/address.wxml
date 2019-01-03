@@ -1,0 +1,9 @@
+
+<view class='any'>
+<!-- <view class='top'>
+  <view class='ico iconfont icon-fanhui'></view>
+  <view class='tex'>地址管理</view>
+</view> -->
+<view class='con'></view>
+<view class='newaddress'>+ 新增收货地址</view>
+</view>

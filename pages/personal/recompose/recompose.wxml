@@ -1,0 +1,66 @@
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <!-- 店铺名修改 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>店铺名称修改：</view>
+    <input name='shop_name' class=' global_middle_font one-module-input' placeholder='{{hisc}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+
+
+
+
+  <!-- 简介 -->
+  <view class='one-module two-module'>
+    <view class=' global_middle_font one-module-text'>店铺简介修改：</view>
+    <textarea name='shop_module' class='modeule-textarea global_middle_font one-module-input' placeholder='{{text_introduce}}' placeholder-style='color:#666;' style="height: 200rpx;" maxlength='{{text_nu}}'> </textarea>
+  </view>
+  <!-- 店铺类型 -->
+  <view class='module-three-three global_middle_font'>
+    <picker bindchange="bindPickerChange" value="{{type_index}}" range="{{type_array}}">
+      <view class="picker" name='picker'>
+        请选择店铺类型：{{type_array[type_index]}}
+      </view>
+    </picker>
+  </view>
+  <!-- 店铺地址 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>店铺地址修改：</view>
+    <input name='address' class=' global_middle_font one-module-input' placeholder='{{address}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+  <!-- 图片修改 -->
+  <view class='onereques'>
+
+
+    <view class='onereques-list'>
+
+
+      <view class='onereques-list-name global_middle_font'>logo图修改:</view>
+
+
+      <view class='revamp global_middle_font' bindtap='user'>
+        <view class='image-logo'>
+          <image mode='aspectFit' class='user-logo' src='{{src}}' bindtap='user'></image>
+        </view>
+      </view>
+
+
+    </view>
+
+  </view>
+  <!-- banner图修改 -->
+  <view class='onereques-1'>
+
+
+    <view class='onereques-list-name onereques-list'>
+      <view class='global_middle_font'>banner图修改:</view>
+    </view>
+
+
+    <view class='imang-border'>
+      <image bindtap='image_exchange' wx:for='{{banner}}' wx:key='index' data-id='{{index}}' mode='aspectFit' class='user-banner' src='{{item.imageurl}}'></image>
+    </view>
+
+
+  </view>
+
+  <button type='primary' class='submi' form-type="submit">确认修改</button>
+</form>

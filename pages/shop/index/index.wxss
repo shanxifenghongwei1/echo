@@ -1,0 +1,105 @@
+.header_module {
+  height: 90rpx;
+  background-color: #ed4444;
+}
+
+
+.back {
+  width: 40rpx;
+  color: #fff;
+  padding-left: 1%;
+  font-size: 36rpx;
+}
+
+.search_module {
+  width: 88%;
+  background-color: #fff;
+  border-radius: 30rpx;
+  margin-left: 3%;
+}
+
+.search_module input {
+  height: 60rpx;
+  width: 100%;
+  padding-left: 4%;
+  font-size: 24rpx;
+  border: 0;
+}
+
+.search_module view {
+  width: 90rpx;
+  font-size: 55rpx;
+  text-align: center;
+  color: #f05f5f;
+}
+.index_banner image{
+width: 100%;
+display: block;
+}
+.nav_module{
+  border-bottom:1px solid #f2f2f2;
+}
+.nav_item{
+  width:100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  overflow: hidden;
+  white-space: nowrap;
+background-color: #fff;
+}
+/*隐藏滚动条*/
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.nav_item view{
+    width: 25%;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+}
+
+.nav_item .nav_active::before{
+  position: absolute;
+  bottom:-1px;
+  left:22%;
+  content: "";
+  width:50%;
+border:2px solid #ed4444;
+
+}
+.guide{
+  font-size: 40rpx;
+width: 8%;
+line-height:80rpx;
+text-align: center;
+  background-color: #eee;
+}
+.list_module{
+ display: flex;
+    flex-wrap: wrap;
+    padding: 0px 2.5%;
+    padding-bottom:2.5%;
+}
+.di_item{
+  width: 47.2%;
+      margin-top:2.5%;
+      background: #fff;
+      padding: 1%;
+}
+.di_item:nth-child(2n){
+  margin-left:1.6%;
+}
+.di_item>image{
+  width: 100%;
+}
+.dl_title{
+max-height: 96rpx;
+}
+.dl_title,.dl_detailed{
+line-height: 48rpx;
+-webkit-line-clamp:2;
+
+}
+

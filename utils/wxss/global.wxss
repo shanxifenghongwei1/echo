@@ -1,0 +1,262 @@
+
+@import '/utils/wxss/font.wxss';
+@import '/utils/wxss/animation.wxss';
+ 
+/*字体图标默认*/
+.iconfont {
+  font-size: 40rpx;
+    color: #666;
+}
+
+/*顶层样式*/
+
+.page_module {
+  position: relative;
+  font-family: "Microsoft YaHei";
+  height: 100%；
+}
+
+/*全局字体样式*/
+
+/*大号*/
+
+.global_large_font {
+  font-size: 32rpx;
+  color: #666;
+}
+
+/*中号*/
+
+.global_middle_font {
+  font-size: 28rpx;
+  color: #666;
+}
+
+/*小号*/
+
+.global_small_font {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/*全局颜色1*/
+
+.global_color_red {
+  color: #ed4444;
+}
+.global_color_666 {
+color: #666;
+}
+
+.global_bg_color_red {
+  background-color: #ed4444;
+}
+
+/*全局背景颜色*/
+
+.global_bg_color {
+  background-color: #eee;
+}
+
+/*多行css样式  
+  几行省略号：-webkit-line-clamp: 行数;*/
+
+.global_multiLine_ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+}
+
+/*单行css省略号*/
+
+.global_single_ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/**
+*换行样式
+*/
+
+.newline {
+  height: 30rpx;
+  background-color: #eee;
+}
+
+/*所有图片高度自定义*/
+image {
+  height: auto;
+}
+
+
+/*弹性布局-左右*/
+
+.flex_about {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/*全局背景弹窗*/
+
+.global_postion_module {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.5);
+  
+}
+
+/* 行内块元素 */
+
+.line-inline {
+  display: inline-block;
+}
+
+/* 下边框 */
+
+.line-border-bottm {
+  border-bottom: 1rpx solid #eee;
+}
+.line-border-bottom {
+  border-bottom: 1rpx solid #eee;
+}
+
+/* 布局调试边框 */
+.every-bottom {
+  border: 1rpx solid black;
+}
+
+/* 全局左右边距 */
+.padding-all {
+  padding: 0 20rpx;
+}
+ radio,switch,checkbox {
+  transform: scale(0.7);
+ }
+
+
+
+
+/* ------- -------表单提交页面*/
+/* pages/personal/recompose/recompose.wxss */
+
+.user-logo {
+  width: 260rpx;
+  height: 260rpx;
+  /* border: 1rpx s6olid black; */
+}
+
+.user-banner {
+  width: 100%;
+  height: 200rpx;
+}
+
+.image-logo {
+  margin-top: 10rpx;
+  width: 300rpx;
+  height: 300rpx;
+}
+
+.imang-border {
+  width: 65%;
+}
+
+
+.onereques {
+  width: 96%;
+  padding: 2%;
+  height: 280rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+
+.onereques-1 {
+  width: 96%;
+  padding: 2%;
+  height: 600rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #eee;
+
+
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.onereques-list {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  /* border-bottom: 1rpx solid #eee; */
+
+   display: flex;
+  flex-wrap:nowrap;
+}
+
+.onereques-list-name{
+  width:30%;
+
+  /* height: 300rpx; */
+}
+
+.revamp {
+  /* margin-left: 200rpx; */
+  color: #ed4444;
+  height: 200rpx;
+  width: 200rpx;
+}
+
+.one-module {
+  padding: 3%;
+  width: 94%;
+  background: #fff;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.two-module {
+  height: 200rpx;
+}
+
+.one-module-text {
+  width: 30%;
+  height: 100%;
+  float: left;
+}
+
+.one-module-input {
+  margin-left: 10rpx;
+  width: 60%;
+  float: left;
+  height: 100%;
+}
+
+.modeule-textarea{
+  height: 200rpx;
+} 
+
+.module-three{
+  width: 94%;
+  padding: 3%;
+  height: 40rpx;
+  background: #fff;
+ border-top:1rpx solid #eee;
+ border-bottom: 1rpx solid #eee;
+
+}
+
+.submi{
+  margin-top:20rpx;
+  margin-bottom:100rpx;
+  width: 96%;
+}
+
+
+
+

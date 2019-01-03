@@ -1,0 +1,117 @@
+/* pages/join/join.wxss */
+
+.user {
+  padding: 2%;
+  background: #fff;
+}
+
+.user-head {
+  width: 200rpx;
+  margin: auto;
+  padding-top: 3%;
+}
+
+.user-head image {
+  width: 100%;
+  border-radius: 100rpx;
+}
+
+.user-name {
+  width: 100%;
+  text-align: center;
+}
+
+.user-iphon {
+  padding-left: 30rpx;
+  font-size: 25rpx;
+  width: 95%;
+  height: 90rpx;
+  border: 1rpx solid #eaeaea;
+  border-radius: 15rpx;
+}
+
+.user-choose {
+  margin: 8% 0% 2%;
+  text-align: center;
+}
+
+.user-onclick-son {
+  border-radius: 15rpx;
+  width: 30%;
+  line-height: 70rpx;
+  justify-content: center;
+  margin: 2%;
+  border: 1rpx solid #eaeaea;
+}
+
+.code_active {
+  background-color: black;
+}
+
+.active {
+  border: 1rpx dashed #2692ff;
+  color: #2692ff;
+  background: #f6faff;
+  border-radius: 15rpx;
+}
+
+.userFrom {
+  background: #fff;
+}
+
+.userFrom>view {
+  position: relative;
+  border-bottom: 1px solid #ddd;
+}
+
+.userFrom>view:last-child {
+  border: none;
+}
+
+.userFrom view  text {
+  width: 20%;
+  text-align: right;
+}
+
+
+.userFrom view input, .uf_area view {
+  height: 80rpx;
+  width: 76%;
+  padding-left: 4%;
+}
+
+.userFrom view .code_btn {
+  width: 23%;
+  padding: 0px;
+  height: 70%;
+  position: absolute;
+  z-index: 3;
+  right: 2%;
+  color: #fff;
+}
+
+.uf_input {
+  text-align: left;
+}
+
+.but button {
+  color: white;
+  margin: 4% auto;
+  width: 90%;
+}
+.uf_area {
+  line-height: 80rpx;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+.uf_area .nbsp{
+width: 0%;
+}
+.uf_area label {
+  width: 40%;
+}
+
+.uf_area radio {
+  transform: scale(0.7);
+  margin-left:-2.5%;
+}

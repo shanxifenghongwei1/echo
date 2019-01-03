@@ -1,0 +1,10 @@
+<!-- 帮助说明页面 -->
+<view class='any'>
+
+  <navigator wx:for='{{addtext}}' wx:key="index" url="/pages/personal/helptext/helptextdetail/helptextdetail?key={{item.key}}&name={{item.name}}" class='global_middle_font one-module help-width-away'>
+    <view class='help-width-one'>{{item.name}}</view>
+    <view class='help-width-two iconfont icon-arrow-right-copy'></view>
+  </navigator>
+
+
+</view>

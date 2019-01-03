@@ -1,0 +1,24 @@
+<!-- 我的收藏页面 -->
+
+<view class='about' wx:for='{{lovelist}}' wx:key='index' data-id='{{item.d_time}}'>
+  <view class='flex_about goods-detail  line-border-bottom'>
+    <view class="slide-image">
+      <image src='{{item.goods_thumb}}' mode='widthFix'></image>
+    </view>
+    <view class=' global_single_ellipsis goods-info'>
+      <view class='global_single_ellipsis global_middle_font'>{{item.goods_name}}</view>
+      <view class='global_small_font'>{{item.keywords}}</view>
+      <view class='flex_about'>
+        <view class="global_middle_font">{{item.d_time}}</view>
+        <view></view>
+        <view class='global_color_red'>
+           <text wx:if='{{lovelist.length>0}}'>￥</text>   {{item.goods_price}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if='{{lovelist.length==0}}'  class='global_middle_font bottom-border-1'>您当前还木有收藏商品</view>
+
+

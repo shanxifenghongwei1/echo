@@ -1,0 +1,23 @@
+
+<view class='any global_bg_color'>
+
+  <view class='record'>
+    <view class='my global_large_font'>我的积分 {{symbolw}}</view>
+    <view class='money global_middle_font'>{{more}}</view>
+  </view>
+
+  <view class='subsidiary'>
+    <view class='subsidiary-son global_middle_font'>积分明细</view>
+  </view>
+
+  <!-- 积分详情 -->
+  <view class='one-sloat-list' wx:for="{{money_list}}" wx:key='index'>
+    <view class='one-sloat-list-left'>
+      <view class='global_large_font one-sloat-list-left-top one-sloat-list-left-font'>{{item.type_name}} {{item.re_integral}}</view>
+      <view class='global_small_font one-sloat-list-left-top'>交易成功</view>
+      <view class='global_middle_font'>{{item.rdate}}</view>
+    </view>
+    <view class='one-sloat-list-right global_large_font one-sloat-list-left-font'><text wx:if='{{item.type==1}}'>+</text><text wx:if='{{item.type==2}}'>-</text> {{item.recharge_money}} 积分</view>
+  </view>
+
+</view>

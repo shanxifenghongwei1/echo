@@ -1,0 +1,33 @@
+<!-- 添加银行卡 -->
+<view class='anyone'>
+  <!-- 一张银行卡 -->
+  <view class='one-bancard'wx:for='{{mymoneycard}}'>
+    <view class='one-bancard-top'>
+      <view class='one-bancard-top-left'>
+        <image src='/images/test/pic5.jpg' class='one-bancard-top-left-image'></image>
+      </view>
+      <view class='one-bancard-top-right'>
+        <view class='one-bancard-top-right-title global_middle_font font-color line-inline'>{{item.type}}</view>
+        <view class='line-inline font-color global_middle_font one-bancard-top-right-title-close'>取消绑定</view>
+        <view class='one-bancard-top-right-name global_small_font font-color'>储蓄卡</view>
+        
+      </view>
+    </view>
+    <view class='one-bancard-button global_large_font'>
+      <view class='one-one-bancard-button font-color'>****</view>
+      <view class='one-one-bancard-button font-color'>****</view>
+      <view class='one-one-bancard-button font-color'>****</view>
+      <view class='one-one-bancard-button font-color'>{{item.number}}</view>
+    </view>
+  </view>
+  <!-- 添加银行卡 -->
+  <navigator url='/pages/personal/bandcard/bandcard' class='addmycard'>
+    <text class='iconfont icon-jia font-color'></text>
+    <text class='global_large_font font-color'>添加银行卡</text>
+  </navigator>
+
+
+</view>
+
+
+

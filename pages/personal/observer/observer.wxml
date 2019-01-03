@@ -1,0 +1,5 @@
+<scroll-view style='height:{{scrollHeight}}rpx;' scroll-top="0" bindscrolltolower="scrolltolower" scroll-with-animation scroll-y class='page_module'>
+  <view class='padding-all'>
+    <comment id="comment"></comment>
+  </view>
+</scroll-view>

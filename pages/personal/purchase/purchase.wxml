@@ -1,0 +1,10 @@
+<!-- 
+<view class='top'>
+  <view class='ico iconfont icon-fanhui'></view>
+  <view class='tex'>我的买单币</view>
+</view> -->
+
+<view class='record'>
+  <view class='my'>我的买单币</view>
+  <view class='money'>0.00</view>
+</view>

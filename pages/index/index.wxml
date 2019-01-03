@@ -1,0 +1,128 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
+<scroll-view style='height:{{scrollHeight}}rpx;' bindscroll="scrolltoupper" scroll-top="0" scroll-into-view="{{toView}}" bindscrolltolower="scrolltolower" scroll-with-animation scroll-y class='page_module '>
+  <view class='header_top'>
+    <view></view>
+    <button open-type="share"></button>
+    <view class='iconfont icon-fenxiang2'></view>
+  </view>
+  <swiper wx:if="{{shopObj!=null&&shopObj.shop_img.length>0}}" indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="height:{{swiperHeight}}rpx;">
+    <block wx:for-items="{{shopObj.shop_img}}" wx:key="imageUrl">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" mode='widthFix' bindload="imageLoad" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='store_module flex_about'>
+    <view class='store_info flex_about'>
+      <view class='info_img_icon'>
+        <image src='{{app.host.resources}}/grounding.png' mode='widthFix'></image>
+        <text class='global_small_font flex_about'>{{shopObj.cat_name}}</text>
+      </view>
+      <view class='info_img'>
+        <image src='{{shopObj.shop_logo}}' mode='widthFix'></image>
+      </view>
+      <view class='info_content'>
+        <view class="info_title global_middle_font global_multiLine_ellipsis">{{shopObj.shop_name}}</view>
+        <view class='ic_info'>
+          <text class="global_middle_font global_color_red"><text class='iconfont icon-huaduo'></text>热度:{{shopObj.hot}}</text>
+          <text class="global_middle_font">距离:{{juli}}</text>
+        </view>
+        <view class='ic_info flex_about'>
+          <text class="global_middle_font">总订单数:{{shopObj.order_form}}</text>
+          <view bindtap='addOrder' data-id="0" class='global_middle_font global_bg_color_red' url="/pages/scattered/pay/pay?typePay=1">去付款</view>
+        </view>
+      </view>
+    </view>
+    <view class='iconfont icon-dianhua store_phone' bindtap='makePhoneCall' data-phone="{{shopObj.iphone}}">
+    </view>
+  </view>
+  <view class="newline"></view>
+  <view class='flex_about business_Area'>
+    <view class=' global_middle_font  global_single_ellipsis '>
+      <view class='iconfont icon-tubiao201 global_color_red icon_ad'></view> 店铺地址：{{shopObj.address}}</view>
+    <view></view>
+    <view class='iconfont icon-arrow-right-copy'></view>
+  </view>
+  <view class="newline"></view>
+  <view class='business_synopsis flex_about'>
+    <view class='global_middle_font '>
+      <view class='iconfont icon-qiyerenzheng global_color_red'></view>店铺简介：</view>
+    <view class='global_middle_font '>{{shopObj.brief}}
+    </view>
+  </view>
+  <view class="newline"></view>
+  <view class='flex_about nav_module  global_large_font'>
+    <view wx:for-items="{{navArray}}" wx:key="navKey" bindtap='jumpTo' data-id="{{index}}" data-opt="{{item.id}}" class="nav_item {{index==navActive?'nav_active':''}}">{{item.name}}</view>
+  </view>
+  <view class='ticket_product_commit'>
+    <view wx:if="{{shopObj!=null&&shopObj.youhui.length==0}}" class='global_small_font'>暂无产品券</view>
+    <view wx:if="{{shopObj!=null&&shopObj.youhui.length>0}}" id="list0" class='ticket_module ' wx:for="{{shopObj.youhui}}" wx:key="youhuiKey">
+      <!--满减（支付优惠券）-->
+      <view wx:if="{{item.card_type==app.globalData.voucher.fullFeduction}}" bindtap='addOrder' data-id="={{item.card_id}}" class='ticket flex_about'>
+        <view class=' global_color_red ticket_money flex_about '>{{tools.turnInt(item.card_money)}}
+          <text class='global_small_font global_color_red'>元</text>
+        </view>
+        <view class="ticket_info">
+          <view class='global_middle_font'>{{item.card_name}}</view>
+        </view>
+        <view class="payment flex_about global_large_font">
+          <view class='iconfont icon-hongbaojuchi-copy'></view>
+          <view class='flex_about payment1'>去付款</view>
+        </view>
+      </view>
+      <!--满赠-->
+      <view wx:if="{{item.card_type==app.globalData.voucher.fullGift}}" bindtap='addOrder' data-id="{{item.card_id}}" class='global_middle_font padding-all voucher'>
+        <view class='flex_about'>
+          <view class=''>满200送100元</view>
+          <view class=''>赠</view>
+          <view class=''>送100积分</view>
+        </view>
+        <view class='flex_about global_bg_color_red padding-all voucher_payment'>
+          <view>去付款</view>
+          <view></view>
+          <view class='iconfont icon-arrow-right-copy'></view>
+        </view>
+      </view>
+    </view>
+    <!-- 热门商品模块 -->
+    <view class='global_large_font flex_about commit_title'>
+      <view class='iconfont icon-remenhuodong-copy-copy'></view>热门商品
+    </view>
+    <view wx:if="{{shopObj!=null&&shopObj.hot_goods.length==0}}" class='global_small_font'>暂无商品</view>
+    <view class='product_module' id="list1">
+      <navigator wx:if="{{shopObj!=null&&shopObj.hot_goods.length>0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.hot_goods}}" wx:key="dataListKey" class="di_item">
+        <image src="{{item.goods_thumb}}" mode='widthFix'></image>
+        <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
+        <view class='dl_detailed global_small_font flex_about'>
+          <text class='global_middle_font global_color_red'>￥{{item.shop_price}}</text>
+          <!--   <text class='global_middle_font global_color_red'>{{item.goumai}}</text>人购买-->
+        </view>
+      </navigator>
+    </view>
+<!-- 普通商品模块 -->
+    <view class='global_large_font flex_about commit_title'>
+      <view class=''></view>全部商品
+    </view>
+    <view wx:if="{{goods1.length==0}}" class='global_small_font'>暂无商品</view>
+    <view class='product_module' id="list1">
+      <navigator wx:if="{{goods1!=null&&goods1.length>0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for="{{goods1}}" wx:key="index" class="di_item">
+        <image src="{{item.goods_thumb}}" mode='widthFix'></image>
+        <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
+        <view class='dl_detailed global_small_font flex_about'>
+          <text class='global_middle_font global_color_red'>￥{{item.shop_price}}</text>
+          <!--   <text class='global_middle_font global_color_red'>{{item.goumai}}</text>人购买-->
+        </view>
+      </navigator>
+    </view>
+<!-- ------------ -->
+    <view class=' commit_module ' id="list2">
+      <view class='global_large_font flex_about commit_title'>
+        <view class='iconfont icon-pinglun2'></view>评论
+      </view>
+      <comment id="comment"></comment>
+    </view>
+  </view>
+  <!-- <view bindtap='top' class='newclool'>返回顶部</view> -->
+</scroll-view>
+

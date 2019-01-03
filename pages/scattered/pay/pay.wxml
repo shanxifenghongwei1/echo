@@ -1,0 +1,146 @@
+<view class='page_module global_middle_font global_bg_color'>
+  <view class='padding-all   pay-info'>
+
+  <!-- 订单类型 -->
+    <view class='flex_about  line-border-bottom shop-goods'>
+      <view>
+        订单类型
+      </view>
+      <view></view>
+      <view wx:if='{{abc.order_type==2}}'>商品订单</view>
+      <view wx:if='{{abc.order_type==1}}'>店铺订单</view>
+    </view>
+    <!-- 店铺订单 -->
+    <view class='flex_about shop-detail  line-border-bottom'>
+      <view class="slide-image">
+        <image src='{{abc.shop.shop_thumb}}' mode='widthFix'></image>
+      </view>
+      <view class=' global_single_ellipsis'>{{abc.shop.shop_name}}</view>
+    </view>
+
+    <!-- 支付金额输入框 -->
+    <view wx:if='{{abc.order_type==1}}' class='flex_about money'>
+      <text>支付金额</text>
+      <input type="number" focus="true" placeholder-class="money_input" maxlength="10" placeholder='请输入金额'></input>
+    </view>
+    <!-- 商品订单菜单 -->
+    <view wx:if='{{abc.order_type==2}}'>
+      <view class='flex_about goods-detail  line-border-bottom'>
+        <view class="slide-image">
+          <image src='{{abc.goods.goods_thumb}}' mode='widthFix'></image>
+        </view>
+        <view class=' global_single_ellipsis goods-info'>
+          <view class='global_single_ellipsis'>{{abc.goods.name}}</view>
+          <view class='global_small_font'>{{abc.goods.keywords}}</view>
+          <view class='flex_about'>
+            <view class="global_color_red">￥{{abc.goods.goods_price}}</view>
+            <view></view>
+            <view>数量：{{abc.goods.goods_number}}</view>
+          </view>
+        </view>
+
+      </view>
+
+      <!-- 优惠 +  ... -->
+      <view class=''>
+        <view class="flex_about global_small_font padding-all details-bar" data-buyStatus="1">
+          <view>优惠</view>
+          <view>{{ticket.card_name}}</view>
+          <view class='iconfont icon-sandian1 global_large_font' bindtap='buyherd'></view>
+        </view>
+      </view>
+
+      <!-- 支付金额 -->
+      <view class='integration line-border-bottom money'>
+        <view class='flex_about switch_module'>
+          <view>支付金额</view>
+          <view class="global_color_red">￥{{abc.goods.order_money}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 用户协议 -->
+  <view class='newline'></view>
+
+  <!-- <radio-group class="padding-all  radio-group" bindchange="radioChange">
+    <view class='flex_about line-border-bottom '>
+      <view class="flex_about global_middle_font play_icon ">
+        <view class='iconfont icon-weixinzhifu'>
+        </view>
+        微信支付</view>
+      <view>
+        <radio value="1" checked="true" />
+      </view>
+    </view>
+    <view class='flex_about line-border-bottom '>
+      <view class="flex_about global_middle_font play_icon ">
+        <view class=' iconfont icon-qian'>
+        </view>
+        买单币支付</view>
+      <view>
+        <text>可用买单币12.25  </text>
+        <radio value="2" />
+      </view>
+    </view>
+    <view class='flex_about line-border-bottom switch_module integration-money '>
+      <view class=''>使用积分抵扣</view>
+      <switch bindchange="switch1Change" />
+    </view>
+    
+    <view wx:if="{{boolIntegration}}" class=' line-border-bottom integration-info'>积分使用：万里通是中国平安集团成员之一，是中国首家通用积分平台，您共有
+      <text class='global_color_red'>25</text>积分</view>
+    <view wx:if="{{boolIntegration}}" class=' line-border-bottom flex_about  money  integration-money'>
+      <text>全场积分:</text>
+      <input type="number" placeholder-class="money_input" maxlength="10" placeholder='请输入积分'></input>
+    </view>
+    <view wx:if="{{boolIntegration}}" class='flex_about'>
+      <text class='im_integration'>积分抵扣:<text class='global_color_red'>25</text></text>实际需支付:
+      <text class='global_color_red'>￥120</text>
+    </view>
+  </radio-group>
+  <view class='newline'></view>-->
+
+  <!-- 阅读并同意 -->
+  <view class='padding-all integration  pay_btn'>
+
+    <checkbox-group class='flex_about' bindchange="checkboxChange">
+      <checkbox value="1" checked="{{item.checked}}" /> 阅读并同意
+      <navigator url="/pages/scattered/userAgreement/userAgreement">用户协议 </navigator>
+    </checkbox-group>
+
+<!-- 确认支付按钮 -->
+    <button class='global_bg_color_red global_middle_font' bindtap='payClick'>
+      确定支付
+    </button>
+  </view>
+</view>
+
+
+<!-- 优惠券 -->
+<!-- <view class='any global_bg_color  wx:if='{{myisclo==true}}'>
+  <view wx:for='{{my_coupon}}' wx:key='index' data-index="{{index}}"  data-card_id='{{item.card_id}}'>
+    <view class='ticket flex_about'>
+      <view class=' global_color_red ticket_money flex_about global_middle_font'>{{tools.turnInt(item.reduce_money)}}
+        <text class='global_small_font global_color_red'>元--{{item.card_id}}</text>
+      </view>
+      <view class="ticket_info">
+        <view class='global_middle_font'> 满{{tools.turnInt(item.card_money)}} 元
+          <text wx:if='{{item.id==18}}'>减</text>
+          <text wx:if='{{item.id==17}}'>得</text>
+          <text wx:if='{{item.id==19}}'>送</text>
+          <text wx:if='{{item.id==16}}'>打</text> {{tools.turnInt(item.reduce_money)}} 元
+          <text wx:if='{{item.id==16}}'>折</text>
+        </view>
+      </view>
+      <view class="payment flex_about global_large_font">
+        <view class='iconfont icon-hongbaojuchi-copy'></view>
+        <view class='flex_about payment1 '>去付款</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='prompt'>
+    <prompt id="prompt"></prompt>
+  </view>
+</view> -->

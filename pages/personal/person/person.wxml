@@ -1,0 +1,147 @@
+<!--pages/person/person.wxml-->
+<!-- 背景底色框 -->
+ <button wx:if="{{userInfoBtn}}" class='global_postion_module newbutto' open-type='getUserInfo' bindgetuserinfo='getCodeUserInfo'></button>
+
+<view class="content global_bg_color anywhere">
+  <!-- 用户信息 -->
+  <view class='user'>
+    <view style='margin:0 auto;height:150rpx;width:150rpx;border-radius:75rpx;'>
+      <image src='{{userInfo.avatarUrl}}' class='user-head'></image>
+    </view>
+    <view class='user-name'>{{userInfo.nickName}}
+      <!-- <view class='admin global_middle_font'>账号管理</view> -->
+    </view>
+    <view class='user-type global_small_font'>个人用户</view>
+  </view>
+  <!-- 我的余额 -->
+  <view class='balance'>
+
+    <view class='balance-left1 global_middle_font'>
+      <view class='balance-left1-1'>
+        <view class='line-inline balance-left-p'>
+          <view class='line-inline'>总资产</view>
+          <view class='line-inline colorrr'></view>
+        </view>
+        <view class='line-inline balance-left-p'>详情</view>
+        <navigator url='/pages/personal/person/payrecharge/payrecharge' class='line-inline balance-left-p'>充值</navigator>
+        <view class='line-inline balance-left-p'>账单</view>
+      </view>
+
+      <view class='balance-left1-1-1'>
+        <view class='line-inline balance-left-p2'>
+          <view class='line-inline global_middle_font'>余额: </view>
+          <view class='line-inline colorrr global_middle_font overfloow'> <text class='monettt'> {{user_money}}</text></view>
+        </view>
+        <!-- <view class='line-inline balance-left-p3'>
+          <view class='line-inline'>已提现:</view>
+          <view class='line-inline colorrr overfloow'>1000000</view>
+        </view> -->
+        <view class='line-inline balance-left-p4'>
+          <view class='line-inline'>提现</view>
+          <!-- <view class='line-inline colorrr'></view> -->
+        </view>
+      </view>
+    </view>
+
+    
+
+  </view>
+  <!-- 我的资产 -->
+  <view class='my-money'>
+    <!-- <view class='my-money-top global_middle_font'>我的资产</view> -->
+    <view class='matter ad'>
+      <!-- 等待奖励 -->
+      <navigator url="/pages/personal/activ/activ" class='whit'>
+        <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1  iconfont icon-huodong'></view>
+        <view class='whit2 global_middle_font'>我的活动</view>
+        <view class='whit3 global_small_font'>共0个</view>
+      </navigator>
+      <!-- 奖励列表 -->
+      <navigator url='/pages/personal/coupon/coupon' class='whit'>
+        <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-qiaquan'></view>
+        <view class='whit2 global_middle_font'>我的券包</view>
+        <view class='whit3 global_small_font'>共0个</view>
+      </navigator>
+
+      <!-- 我的积分 -->
+      <navigator url='/pages/personal/integral/integral' class='whit'>
+        <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-integral'></view>
+        <view class='whit2 global_middle_font'>我的积分</view>
+        <view class='whit3 global_small_font'>0.00</view>
+      </navigator>
+      <!-- 我的买单币 -->
+      <navigator url='/pages/personal/purchase/purchase' class='whit'>
+        <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-qianbi'></view>
+        <view class='whit2 global_middle_font'>我的买单币</view>
+        <view class='whit3 global_small_font'>0.00</view>
+      </navigator>  
+    </view>
+
+    <view class='matter'>
+      <!-- 等待奖励 -->
+      <navigator url="/pages/personal/observer/observer" class='whit'>
+        <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-pinglun'></view>
+        <view class='whit2 global_middle_font'>我的评论</view>
+        <!-- <view class='whit3 global_small_font'>共0单</view> -->
+      </navigator>
+      <!-- 奖励列表 -->
+      <navigator url='/pages/personal/favorite/favorite' class='whit'>
+        <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-shoucang'></view>
+        <view class='whit2 global_middle_font'>我的收藏</view>
+        <!-- <view class='whit3 global_small_font'>共0单</view> -->
+      </navigator>
+
+      <!-- 我的积分 -->
+      <navigator url='/pages/personal/integral/integral' class='whit'>
+        <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-shouhoutuikuan'></view>
+        <view class='whit2 global_middle_font'>退款</view>
+        <!-- <view class='whit3 global_small_font'>共0单</view> -->
+      </navigator>
+      <!-- 我的买单币 -->
+      <view url='/pages/personal/purchase/purchase' class='whit' bindtap='makePhoneCall'>
+        <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-dianhua'></view>
+        <view class='whit2 global_middle_font'>售后</view>
+      </view>
+    </view>
+
+
+  </view>
+  <!-- 我的银行卡 -->
+  <navigator url='/pages/personal/bandcard/addbandcard/addbandcard' class='site'>
+    <view class='site1 iconfont icon-yinhangqia' style='font-size:30rpx;'></view>
+    <view class='site2 global_middle_font'>我的银行卡</view>
+    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+  </navigator>
+  <!-- 收货地址  -->
+  <!-- <view class='site'>
+    <view class='site1 iconfont icon-tubiao201' style='font-size:30rpx;'></view>
+    <view class='site2 global_middle_font'>收货地址</view>
+    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+  </view> -->
+<!-- 商户中心 -->
+  <!-- <navigator url='/pages/personal/business/business' class='site'>
+    <view class='site1 iconfont icon-tubiao201' style='font-size:30rpx;'></view>
+    <view class='site2 global_middle_font'>商户中心</view>
+    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+  </navigator> -->
+  <!-- 意见反馈 -->
+  <navigator url="/pages/personal/feedback/feedback" class='site'>
+    <view class='site1 iconfont icon-yijianfankui' style='font-size:30rpx;'></view>
+    <view class='site2 global_middle_font'>意见反馈</view>
+    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+  </navigator>
+  <!-- 帮助说明 -->
+  <navigator url="/pages/personal/helptext/helptext" class='site'>
+    <view class='site1 iconfont icon-bangzhushuoming' style='font-size:30rpx;'></view>
+    <view class='site2 global_middle_font'>帮助说明</view>
+    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+  </navigator>
+  <!-- 更多优惠++++商务合作 -->
+  <view class='site'>
+    <view class='site1 site11 iconfont icon-gengduo' style='font-size:30rpx;'></view>
+    <view class='site2 site22 global_large_font'>更多优惠券快来拿抓
+      <text class='global_middle_font' style='color:#f03c45;'></text>
+    </view>
+    <navigator url='../join/join' class='site3 site33 global_small_font'>商务合作</navigator>
+  </view>
+</view>

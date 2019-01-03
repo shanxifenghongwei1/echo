@@ -1,0 +1,69 @@
+<!-- 大背景 -->
+<view class='page_module global_bg_color'>
+  <!-- 用户信息 -->
+  <view class='user'>
+    <view class='user-head'>
+      <image src='{{app.globalData.userInfo.avatarUrl}}' mode='widthFix'></image>
+    </view>
+    <view class='user-name global_middle_font'>{{app.globalData.userInfo.nickName}}</view>
+    <!-- 选择加盟意愿 -->
+    <br/>
+    <view class='user-choose global_middle_font'>选择合作意愿</view>
+    <view class='user-onclick flex_about'>
+      <view wx:for="{{message}}" wx:key='index' class='user-onclick-son flex_about global_middle_font {{userFrom.classification==index+1?"active":""}}' data-id='{{item.id}}' bindtap='addactive'>{{item.text}}</view>
+    </view>
+  </view>
+  <view class='newline'></view>
+  <form bindsubmit="userFrom">
+    <view class="userFrom">
+      <radio-group class="global_middle_font flex_about" bindchange="radioChange" wx:if="{{userFrom.classification>1}}">
+        <view class="flex_about global_middle_font uf_area">
+          <text>类型</text>
+          <view class='nbsp'></view>
+          <label class="radio" wx:if="{{userFrom.classification==2}}">
+            <radio value="1" checked="{{checked}}" />店铺
+          </label>
+          <label wx:if="{{userFrom.classification==3}}" class="radio">
+            <radio value="2" checked="{{checked}}" />公司
+          </label>
+          <label class="radio">
+            <radio value="3" checked="{{!checked}}" />个人
+          </label>
+        </view>
+      </radio-group>
+      <view class=" flex_about global_middle_font">
+        <text wx:if="{{userFrom.shop_personal==2&&userFrom.classification==2}}">执照名称</text>
+           <text wx:if="{{userFrom.shop_personal==1&&userFrom.classification==2}}">执照名称</text>
+        <text wx:if="{{userFrom.shop_personal==2&&userFrom.classification==3}}">公司名称</text>
+        <text wx:if="{{userFrom.shop_personal==3}}">个人姓名</text>
+
+        <input  name="name" placeholder='请输入姓名' placeholder-class="uf_input"></input>
+      </view>
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="flex_about global_middle_font uf_area">
+          <text>所在地区</text>
+          <view>{{region[0]}}，{{region[1]}}，{{region[2]}}</view>
+        </view>
+      </picker>
+
+      <view class=" flex_about global_middle_font ">
+        <text>详细地址</text>
+        <input name="address"  placeholder='请输入地址详细信息' placeholder-class="uf_input"></input>
+      </view>
+      <view class=" flex_about global_middle_font ">
+        <text>电话</text>
+        <input type='number' name="phone" bindinput='bindPhone'  placeholder='请输入电话号码' placeholder-class="uf_input"></input>
+      </view>
+      <view class=" flex_about global_middle_font ">
+        <text>验证码</text>
+        <input  name="code"  type='number' placeholder='请输入验证码' placeholder-class="uf_input"></input>
+        <button class="code_btn global_small_font global_bg_color_red {{codeStatus==1?'code_active':''}}" bindtap='codeBtn'>{{codeText}}</button>
+      </view>
+
+      <view class='but'>
+        <!-- 提交按钮 -->
+        <button form-type='submit' class='global_large_font global_bg_color_red'>提交</button>
+      </view>
+    </view>
+  </form>
+</view>

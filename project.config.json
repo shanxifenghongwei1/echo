@@ -1,0 +1,136 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"uglifyFileName": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.4.2",
+	"appid": "wx04816cefac2d5cf2",
+	"projectname": "integration",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 14,
+			"list": [
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/personal/person/person",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商户中心",
+					"pathName": "pages/personal/business/business",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "修改",
+					"pathName": "pages/personal/recompose/recompose",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "产品添加",
+					"pathName": "pages/personal/putaway/putaway",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "意见反馈",
+					"pathName": "pages/personal/feedback/feedback",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "帮助说明",
+					"pathName": "pages/personal/helptext/helptext",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "充值列表",
+					"pathName": "pages/personal/person/payrecharge/payrecharge",
+					"query": ""
+				},
+				{
+					"id": 7,
+					"name": "评论",
+					"pathName": "pages/personal/observer/observer",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "积分",
+					"pathName": "pages/personal/integral/integral",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的券",
+					"pathName": "pages/personal/coupon/coupon",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的收藏",
+					"pathName": "pages/personal/favorite/favorite",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的活动",
+					"pathName": "pages/personal/activ/activ",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页附页",
+					"pathName": "pages/index/oddments/oddments",
+					"query": ""
+				},
+				{
+					"id": 13,
+					"name": "支付",
+					"pathName": "pages/scattered/pay/pay",
+					"query": ""
+				},
+				{
+					"id": 14,
+					"name": "添加银行卡",
+					"pathName": "pages/personal/bandcard/addbandcard/addbandcard",
+					"query": ""
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,136 @@
+<!-- 商户中心  -->
+
+<!-- 总体样式 -->
+<view class='any'>
+
+  <!-- 店铺样式 -->
+  <view class='user'>
+    <view class='user-head'>
+      <view class='user-image-bor'>
+        <image class='user-image' src='{{src}}'></image>
+      </view>
+    </view>
+    <view class='user-name'>
+      <view class='user-name-one'>
+        <view class='line-inline global_large_font thiswidth global_single_ellipsis'>某家商店名字太长了</view>
+        <view class='line-inline global_small_font user-name-revamp'>切换账号</view>
+      </view>
+      <view class='user-name-one'>
+        <view class='line-inline global_middle_font thiswidth global_single_ellipsis'>13765433123</view>
+        <view class='line-inline global_small_font user-name-revamp'>修改</view>
+      </view>
+      <view class='user-name-one'>
+        <view class='line-inline global_middle_font'>店铺认证</view>
+        <view class='line-inline global_small_font user-name-revamp'>会员两年</view>
+      </view>
+    </view>
+    <view class='user-certificate global_middle_font'>
+      <text>证照\n协议 </text> </view>
+
+  </view>
+
+
+  <!-- 滚动banner广告 -->
+  <view class='banner'>
+    <swiper class='bigmos' autoplay='{{autoplay}}' interval='{{interval}}' vertical='{{vertical}}'>
+      <block wx:for="{{srcs}}" wx:key='index'>
+        <swiper-item clas='bigmos'>
+          <view class='global_middle_font line-inline'>
+            <view class='line-inline iconfont icon-xiaolaba horn global_color_red'></view> {{item}}
+            <view class='global_middle_font line-inline global_color_red'>现在就去抢</view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 总资产 -->
+  <view class='money-box'>
+    <view class='money-box-left'>
+      <view class='global_large_font moner-box-top'>总资产</view>
+      <view class='global_large_font moner-box-bottom global_color_red'>10000000</view>
+    </view>
+    <view class='money-box-right'>
+      <view class='global_large_font moner-box-top'>账单</view>
+      <view class='global_large_font moner-box-bottom'>提现</view>
+    </view>
+  </view>
+  <!-- 今日收入 -->
+  <view class='money-box'>
+    <view class='money-box-left'>
+      <view class='global_large_font moner-box-top'>今日收入</view>
+      <view class='global_large_font moner-box-bottom global_color_red'>10000000</view>
+    </view>
+    <view class='money-box-right'>
+      <view class='global_large_font management global_color_red'>订单管理</view>
+    </view>
+  </view>
+  <!-- 在外本店币 -->
+  <view class='outside'>
+    <view class='outside-one global_large_font'>在外本店币 :</view>
+    <view class='outside-two line-inline global_color_red global_middle_font'>
+      200000000.0
+      <view class='line-inline global_middle_font'>元</view>
+    </view>
+    <view class='outside-three global_middle_font'>详情</view>
+  </view>
+  <!-- 在外本店券 -->
+  <view class='outside'>
+    <view class='outside-one global_large_font'>在外本店券 :</view>
+    <view class='outside-two line-inline global_color_red global_middle_font'>
+      200000000.0
+      <view class='line-inline global_middle_font'>张</view>
+    </view>
+    <view class='outside-three global_middle_font'>详情</view>
+  </view>
+  <!-- 我的外店券 -->
+  <view class='outside'>
+    <view class='outside-one global_large_font'>我的外店卷 :</view>
+    <view class='outside-two line-inline global_color_red global_middle_font'>
+      <view class='line-inline global_middle_font'>领</view>
+      200000.0
+      <view class='line-inline global_middle_font'>张</view>
+    </view>
+    <view class='outside-three'>
+      <view class='outside-three1 line-inline global_middle_font'>送出:</view>
+      <view class='global_middle_font line-inline'>10000</view>
+    </view>
+  </view>
+
+  <!-- 店铺修改 -->
+  <navigator url='/pages/personal/recompose/recompose' class='module'>
+    <view class='module-one iconfont icon-xiugai global_middle_font'></view>
+    <view class='module-two global_middle_font'>店铺修改</view>
+    <view class='module-three-1-1 global_middle_font iconfont icon-arrow-right-copy'></view>
+  </navigator>
+  <!-- 发布产品券 -->
+  <view class='module'>
+    <view class='module-one iconfont icon-fabu global_middle_font'></view>
+    <view class='module-two global_middle_font'>发布产品券</view>
+    <view class='module-three-1-1 global_middle_font iconfont icon-arrow-right-copy'></view>
+  </view>
+
+
+   <!-- 发布产品 -->
+  <navigator url='/pages/personal/putaway/putaway' class='module'>
+    <view class='module-one iconfont icon-fabu global_middle_font'></view>
+    <view class='module-two global_middle_font'>发布产品</view>
+    <view class='module-three-1-1 global_middle_font iconfont icon-arrow-right-copy'></view>
+  </navigator>
+
+  <!-- 购买产品券 -->
+  <view class='module'>
+
+    <view class='module-one iconfont icon-navigoumai global_middle_font'></view>
+    <view class='module-two global_middle_font'>购买产品券</view>
+    <view class='module-three-1-1 global_middle_font iconfont icon-arrow-right-copy'></view>
+  </view>
+
+  <!-- 选择促销模式 -->
+  <view class='module'>
+    <view class='module-one iconfont icon-xuanze global_middle_font'></view>
+    <view class='module-two global_middle_font'>店铺修改</view>
+    <view class='module-three-1-1 global_middle_font iconfont icon-arrow-right-copy'></view>
+  </view>
+
+</view>

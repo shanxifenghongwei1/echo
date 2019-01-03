@@ -1,0 +1,44 @@
+<view class='flex_about commit' wx:for="{{commentArrar}}"  wx:key="ca_key">
+  <!-- 评论的用户头像图片 -->
+  <view class='commit_avatar'>
+    <image src='{{item.Head_portrait}}' mode='widthFix'></image>
+  </view>
+  <!-- 评论的用户名字 -->
+  <view>
+    <view class='commit_text'>
+      <view class='flex_about global_large_font commit_name_date'>
+        <view>{{item.nickname}}</view>
+        <view></view>
+        <!-- 评论时间 -->
+        <view class='global_small_font'>
+          {{item.msg_date}}
+        </view>
+      </view>
+      <!-- 评论内容 -->
+      <view class='global_small_font'>
+        {{item.msg_desc}}
+      </view>
+    </view>
+    <!-- 评论图片 -->
+    <view class='comment_min_image' data-array="{{item.msg_img}}" bindtap='showCommentImage'>
+      <image wx:for="{{item.msg_img}}" wx:key="cmi_Key" src="{{item}}" mode='widthFix'></image>
+    </view>
+  </view>
+</view>
+<!-- 等待加载的组件 -->
+    <view class='prompt'>
+      <prompt id="prompt"></prompt>
+    </view>
+
+<view wx:if="{{position_commit==2}}" class='global_postion_module flex_about'>
+  <view class='global_postion_module' bindtap='hideCommentImage'></view>
+  <view class='position_content'>
+    <swiper bindchange="bindchange" circular="{{circular}}" style="height:{{imgheights[current]}}rpx;">
+      <block wx:for="{{imageArray}}" wx:key="imgUrlsKey">
+        <swiper-item>
+          <image src="{{item}}" data-id='{{index}}' class="slide-image" mode='widthFix' bindload="imageLoad" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</view>

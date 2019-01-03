@@ -1,0 +1,146 @@
+const app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    imageArray: [],
+    score: {
+      "goods": 0,
+      "service": 0,
+      "environment": 0,
+    },
+    user_img: [],
+    commentText: "",
+    checked: 2 //1.真实发表  2.匿名发表
+  },
+
+  onLoad: function(options) {
+    let order_id = options.order_id
+    this.setData({
+      order_id: options.order_id
+    })
+    this.init(order_id)
+  },
+  onShow: function() {
+
+  },
+  // 请求页面数据
+  init(order_id) {
+    app.request.post({
+      url: "comment/getShop",
+      isLoading: true,
+      data: {
+        order_id: order_id
+      },
+      success: (e) => {
+        console.log(e)
+        this.setData({
+          shop_name: e.shop.shop_name,
+          goods:e.goods,
+          order_mode: e.order_mode
+        })
+      }
+    })
+  },
+  /*
+   * 是否匿名 
+   */
+  checkboxChange(e) {
+    this.data.checked = 1;
+    if (e.detail.value == 2) {
+      this.data.checked = 2;
+    }
+    console.log('checkbox发生change事件，携带value值为：', this.data.checked);
+  },
+
+  /*
+   *收藏按钮
+   */
+  commentScore(e) {
+    let key = "score." + e.target.dataset.key;
+    this.setData({
+      [key]: e.target.dataset.index + 1
+    })
+  },
+
+  /*
+   * 输入评论
+   */
+  bindinput(e) {
+    this.setData({
+      commentText: e.detail.value
+    })
+  },
+
+  /*
+   * 图片上传
+   */
+  uploadImage() {
+    wx.chooseImage({
+      count: 3,
+      sizeType: ['original'],
+      success: (res) => {
+        let imgArray = this.data.imageArray;
+        imgArray.push(res.tempFilePaths);
+        this.setData({
+          imageArray: imgArray
+        })
+      }
+    })
+  },
+
+  /*
+   * 删除图片
+   */
+  delCommentImage(e) {
+    let index = e.target.dataset.index;
+    let imgArray = this.data.imageArray;
+    imgArray.splice(index, 1);
+    this.setData({
+      imageArray: imgArray
+    })
+  },
+  /*提交评论 */
+  addComment() {
+    var that = this
+   
+    var user_img = this.data.imageArray
+
+    var ass = [];
+    for (var i = 0; i < this.data.imageArray.length; i++) {
+      wx.uploadFile({
+        url: 'https://www.sdhcnet.com/api/comment/upload',
+        filePath: this.data.imageArray[i][0],
+        name: 'file',
+        success: function(res) {
+          ass.push(res.data)
+        }
+      })
+    }
+
+    setTimeout(function() {
+      app.request.post({
+        url: "comment/index",
+        isLoading: true,
+        data: {
+          order_id: that.data.order_id,
+          content: that.data.commentText,
+          user_img: ass
+        },
+        success: (e) => {
+          console.log(e)
+          wx.showToast({
+            title: '评论成功',
+            icon: 'success',
+            mask: 'true'
+          })
+          
+        }
+      })
+    }, 3000)
+
+
+  }
+})

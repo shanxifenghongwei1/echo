@@ -1,0 +1,149 @@
+
+.pay-info,.radio-group {
+  background-color: #fff;
+}
+
+.shop-goods{
+  line-height: 80rpx;
+  justify-content: space-between;
+}
+
+.shop-detail{
+padding:3% 0%;
+
+}
+.shop-detail .slide-image{
+  width: 10%;
+}
+
+ .slide-image image{
+  width: 100%;
+  display: block;
+  border-radius: 10rpx;
+}
+.shop-detail .slide-image +view{
+  margin-left: 2%;
+  width: 88%;
+    color: #333;
+}
+.goods-detail{
+  padding:3% 0%;
+  align-items: flex-start;
+}
+.goods-detail .slide-image{
+  width:23%;
+}
+.goods-info{
+  margin-left: 2%;
+  width: 75%;
+}
+.goods-info>view:nth-child(2){
+  line-height: 60rpx;
+  margin-bottom: 2%;
+}
+.goods-info>view:nth-child(3){
+  margin-right: 2%;
+  justify-content: space-between;
+}
+.radio-group>view {
+  padding: 2% 0%;
+  justify-content: space-between;
+}
+
+.play_icon {
+  width: 40%;
+}
+
+.play_icon .iconfont {
+  font-size: 40rpx;
+  margin-right: 1%;
+  padding-right: 20rpx;
+}
+
+.play_icon .icon-weixinzhifu {
+  color: #49ac3e;
+}
+
+.play_icon .icon-qian {
+  color: #f6c620;
+}
+
+.money text {
+  width: 18%;
+}
+.money input{
+  width: 80%;
+  padding-left:2%;
+  height:80rpx;
+  color: black;
+
+}
+.radio-group>.integration-money{
+padding: 0%;
+
+
+}
+.money input, .money_input {
+  text-align: left;
+}
+
+.pay_module, .integration {
+
+  background-color: #fff;
+
+}
+.switch_module{
+  justify-content: space-between;
+  line-height: 80rpx;
+}
+.switch_module switch{
+  margin-right: -3%;
+}
+
+.im_integration{
+margin-right: 6%;
+
+}
+.pay_btn{
+padding-top:3%;
+}
+.pay_btn navigator{
+ color:#2196fd;
+  margin-left:1%;
+}
+.pay_btn button{
+  margin-top:4%;
+  color: #fff;
+}
+
+/* -------- */
+.details-bar .iconfont {
+  font-size: 44rpx;
+  color: #999;
+  margin-left: 20%;
+}
+
+.details-bar {
+  justify-content: space-between;
+  line-height: 80rpx;
+  border-bottom: 1px solid #ddd;
+}
+
+.details-bar .global_small_font {
+  color: #999;
+}
+
+.details-bar view:first-child {
+  width: 11%;
+  color: #999;
+}
+
+.details-bar view:nth-child(2) {
+  text-align: left;
+  width: 79%;
+}
+
+.details-bar>view:last-child {
+  width: 10%;
+  text-align: center;
+}

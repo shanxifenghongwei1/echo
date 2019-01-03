@@ -1,0 +1,127 @@
+<wxs src="../../../utils/tools.wxs" module="tools" />
+
+
+<scroll-view scroll-with-animation="true" style='height:{{scrollHeight}}rpx;' scroll-into-view="{{topNav}}" scroll-y="true" class='page_module' bindscrolltolower="scrolltolower" bindscroll="bindscroll">
+  <view class="header_top flex_about  {{scrollStatus==1?'bg_top':'bottom-border'}}">
+    <view wx:if="{{scrollStatus==2}}" class="flex_about global_middle_font top-nav ">
+      <view class="{{topNav=='goodsSlide'?'nav_active':''}}" bindtap='jumpTo' data-id="goodsSlide">商品</view>
+      <view class="{{topNav=='goodsBusiness'?'nav_active':''}}" bindtap='jumpTo' data-id="goodsBusiness">详情</view>
+      <view class="{{topNav=='goodsComment'?'nav_active':''}}" bindtap='jumpTo' data-id="goodsComment">评价</view>
+    </view>
+    <view class="top-share">
+      <button open-type="share"></button>
+      <view class="iconfont icon-fenxiang2  {{scrollStatus==1?'bg_top':''}}"></view>
+    </view>
+  </view>
+  <view class='slide-image' id="goodsSlide">
+    <image src="{{goodsObj.goods_thumb}}" class="slide-image" mode='widthFix' bindload="imageLoad" />
+  </view>
+  <view class=' padding-all '>
+    <view class=' flex_about detail-info'>
+      <view class=' detial_text '>
+        <view class='global_large_font global_single_ellipsis'>{{goodsObj.goods_name}}</view>
+        <view class='global_small_font global_single_ellipsis'>
+          <text wx:for="{{goodsObj.keywords}}" wx:key='index'>  {{item}} {{goodsObj.goods_brief}}</text>
+
+        </view>
+      </view>
+      <view class='detail-collection' bindtap='editCollection'>
+        <text wx:if="{{app.status.typeCollection.collection==typeCollection}}" class='iconfont icon-wujiaoxing-copy global_color_red'></text>
+        
+        <text wx:if="{{app.status.typeCollection.cancel==typeCollection}}" class='iconfont icon-wujiaoxing-copy'></text>
+        <view class='global_small_font'>收藏</view>
+      </view>
+    </view>
+  </view>
+  <view class="newline"></view>
+  <view class='padding-all detail-area'>
+    <view class='flex_about  line-border-bottom detail-address'>
+      <view class=' global_single_ellipsis da-address'>
+        <view class='global_large_font global_single_ellipsis'>{{goodsObj.shop_name}}</view>
+        <view class='global_middle_font global_single_ellipsis'>{{goodsObj.address}}</view>
+      </view>
+      <view></view>
+      <view class="iconfont icon-dianhua" bindtap='makePhoneCall' data-phone="{{goodsObj.iphone}}"></view>
+    </view>
+    <navigator hover-class="none" url="/pages/nearby/index/index" open-type="switchTab" class='flex_about nearby'>
+      <view class='global_middle_font'>查询附近店铺</view>
+      <view></view>
+      <view class='iconfont icon-arrow-right-copy global_large_font'></view>
+    </navigator>
+  </view>
+  <view wx:if="{{ticketArray.length>0}}" class="newline"></view>
+  <view wx:if="{{ticketArray.length>0}}" class="flex_about global_small_font padding-all details-bar" bindtap='buyDailog' data-buyStatus="1" >
+    <view>优惠</view>
+    <view>{{ticket.card_name}}</view>
+    <view class='iconfont icon-sandian1 global_large_font'></view>
+  </view>
+  <view wx:if="{{goodsObj!=null&&goodsObj.goods_image_detail.length>0}}" class='business_detail_image'>
+    <image wx:for="{{goodsObj.goods_image_detail}}" src="{{item}}" mode='widthFix'></image>
+  </view>
+  <view class="newline"></view>
+  <view class='padding-all' id="goodsComment">
+    <comment id="comment"></comment>
+  </view>
+  <view class="newline"></view>
+  <!-- 商品简介 -->
+  <view class='business_operation padding-all global_middle_font'>{{goodsObj.goods_desc}}</view>
+
+  <view class='flex_about business_operation  bp_position'>
+    <view>￥{{goodsObj.shop_price}}</view>
+    <view></view>
+    <view bindtap="buyClick" class='global_middle_font global_bg_color_red'>立即购买 </view>
+  </view>
+  <view style="display:{{buyStatus>0?'block':'none'}}" class='global_postion_module'>
+    <view class='position_one global_postion_module' bindtap='buyDailog' data-buyStatus="0">
+    </view>
+    <view class="position_content detail-voucher {{buyStatus==1?'position_animation':''}}">
+      <view class='global_large_font dv-title'>优惠券</view>
+      <view class='iconfont icon-fork flex_about buy_fork ' bindtap='buyDailog' data-buyStatus="0"></view>
+      <view  class='ticket_module'>
+        <view class='ticket flex_about' wx:for="{{ticketArray}}" wx:key="youhuiKey" data-item="{{item}}" bindtap='ticketClick'>
+          <view class=' global_color_red ticket_money flex_about '>{{tools.turnInt(item.card_money)}}
+            <text class='global_small_font global_color_red'>元</text>
+          </view>
+          <view class="ticket_info">
+            <view class='global_middle_font'>{{item.card_name}}</view>
+          </view>
+          <view class="payment flex_about global_large_font">
+            <view class='iconfont icon-hongbaojuchi-copy'></view>
+            <view class='flex_about payment1'>使用</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="position_content {{buyStatus==2?'position_animation':''}}">
+      <view class='iconfont icon-fork flex_about buy_fork ' bindtap='buyDailog' data-buyStatus="0"></view>
+      <view class='buy_info flex_about'>
+        <view>
+          <image src='{{buy.mode_img}}' mode='widthFix'></image>
+        </view>
+        <view class='buy_money_select'>
+          <view class='buy_money_num global_middle_font global_color_red flex_about'>
+            <view>￥{{buy.mode_price}}</view>
+            <view>存货:{{buy.mode_stock}}</view>
+          </view>
+          <view class='global_small_font'>已选:{{buy.mode_name}}</view>
+        </view>
+      </view>
+      <view class='buy_specifications_title global_small_font'>产品</view>
+      <view class=" flex_about buy_specifications ">
+        <view bindtap='specificationsClick' class="global_large_font {{buy.id==item.id?'bs_active':''}}" data-item="{{item}}" wx:for="{{goodsObj.goods_type}}" wx:key='index' data-item="{{item}}">
+          {{item.mode_name}}
+        </view>
+      </view>
+      <view class='flex_about buy_num_calculate'>
+        <view class="global_small_font">数量</view>
+        <view></view>
+        <view class=' flex_about buy_calculate'>
+          <view class="iconfont icon-jian global_small_font  {{buyNum==1?'calculate_active':''}}" bindtap='calculateClick' id="1"></view>
+          <input disabled="true" value="{{buyNum}}"></input>
+          <view class="iconfont icon-jia  lobal_small_font {{buyNum==buy.mode_stock?'calculate_active':''}}" bindtap='calculateClick' id="2"></view>
+        </view>
+      </view>
+      <view class='global_middle_font global_bg_color_red buy_btn'>确认</view>
+    </view>
+  </view>
+</scroll-view>

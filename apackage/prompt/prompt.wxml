@@ -1,0 +1,29 @@
+<view class='load-data-prompt'>
+  <view class='flex_about load-init-data' wx:if="{{type=='init'}}">
+    <view>
+      <view class=' iconfont icon-jishi-copy-copy '></view>
+      <view class='global_middle_font'>正在加载数据，客官请稍后</view>
+    </view>
+  </view>
+  
+  <view class='load-data-loading flex_about' wx:if="{{type=='dataLoading'}}">
+    <view class=' iconfont icon-jishi-copy-copy '></view>
+    <view class='global_large_font '>
+      <text> 正在加载数据</text>
+    </view>
+  </view>
+
+  <view class='global_large_font load-data-finish' wx:if="{{type=='dataFinish'}}">
+    <text></text>我是有底线的
+    <text></text>
+  </view>
+
+  <view class=' load-no-data flex_about' wx:if="{{type=='dataNo'}}">
+    <view>
+      <view class='iconfont icon-wushuju'>
+      </view>
+      <view class='global_middle_font'>无数据，请稍后再试</view>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,5 @@
+  <view class="flex_about global_small_font padding-all details-bar" bindtap='buyDailog' data-buyStatus="1" >
+    <view>优惠</view>
+    <view>{{ticket.card_name}}</view>
+    <view class='iconfont icon-sandian1 global_large_font'></view>
+  </view>

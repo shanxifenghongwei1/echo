@@ -1,0 +1,182 @@
+.any {
+  width: 100%;
+  height: 100vh;
+  background: #eee;
+}
+
+.user {
+  background: #fff;
+  width: 96%;
+  padding: 2%;
+  display: flex;
+  justify-content: space-between;
+  height: 200rpx;
+}
+
+.user-name-one {
+  height: 28%;
+  width: 100%;
+}
+
+.user-head {
+  width: 25%;
+  height: 100%;
+}
+
+.user-image-bor {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 15% auto;
+}
+
+.user-image {
+  border-radius: 75rpx;
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.user-name {
+  padding: 5% 0 5% 0;
+  /* width: 130rpx;
+  height: 130rpx; */
+  height: 80%;
+  width: 53%;
+}
+
+.user-certificate {
+  color: #ed4444;
+  text-align: center;
+
+
+  line-height: 80rpx;
+  padding: 3%;
+  height: 94%;
+  width: 18%;
+}
+
+.user-name-revamp {
+  margin-left: 20rpx;
+  color: #ed4444;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+}
+
+.bigmos {
+  width: 100%;
+  height: 100%;
+}
+
+.banner {
+  margin-top: 10rpx;
+  text-align: center;
+  line-height: 50rpx;
+  width: 96%;
+  height: 50rpx;
+  background: #fff;
+  padding: 2%;
+}
+
+.horn {
+  line-height: 50rpx;
+}
+
+.money-box {
+  margin-top: 10rpx;
+  width: 96%;
+  height: 110rpx;
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+}
+
+.money-box-left {
+  width: 45%;
+  height: 100%;
+}
+
+.money-box-right {
+  width: 45%;
+  height: 100%;
+}
+
+.moner-box-top {
+  text-align: center;
+  line-height: 50rpx;
+  height: 45%;
+  width: 100%;
+}
+
+.moner-box-bottom {
+  margin-top: 10rpx;
+  text-align: center;
+  line-height: 50rpx;
+  height: 45%;
+  width: 100%;
+}
+
+.management {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.outside {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 80rpx;
+  margin-top: 10rpx;
+  line-height: 80rpx;
+
+  margin-bottom:10rpx;
+
+}
+
+.outside-one {
+  text-align: center;
+  height: 100%;
+  width: 30%;
+}
+
+.outside-two {
+  width: 40%;
+  height: 100%;
+}
+
+.outside-three-1-1 {
+  text-align: center;
+  height: 100%;
+  width: 20%;
+}
+/* .outside-three1{
+  width: 40%;
+} */
+
+.thiswidth{
+  width: 250rpx;
+
+} 
+
+.module{
+  width: 94%;
+  height: 35rpx;
+  padding: 3%;
+  background: #fff;
+  /* margin-top:10rpx; */
+  line-height: 35rpx;
+  border-bottom: 1rpx solid #eee;
+ 
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.module-two{
+  width: 86%;
+}

@@ -1,0 +1,32 @@
+<view class='page_module global_bg_color'>
+  <view class='header_module flex_about'>
+    <view class='back iconfont icon-fanhui'></view>
+    <view class='search_module flex_about'>
+      <input placeholder='输入商品名，类别'>
+      </input>
+      <view class='iconfont icon-sousuo'></view>
+    </view>
+  </view>
+  <view class='index_banner'>
+    <image src='/images/test/banner.jpg' mode='widthFix'></image>
+  </view>
+  <view class='nav_module flex_about global_bg_color'>
+    <scroll-view scroll-x class='nav_item '>
+      <view bindtap='navClick' wx:for="{{navArray}}"  wx:key="navArrayKey" data-index="{{index}}" class="global_large_font {{navActive==index?'nav_active':''}}">
+        {{item}}
+      </view>
+    </scroll-view>
+    <view class=' iconfont icon-arrow-right-copy guide global_color_red'>
+    </view>
+  </view>
+  <view class='list_module'>
+    <view wx:for="{{dataList}}" wx:key="dataListKey"  class="di_item">
+      <image src='{{item.images}}' mode='widthFix'></image>
+      <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.title}}</view>
+      <view class='dl_detailed global_small_font flex_about'>
+        <text class='global_middle_font global_color_red'>{{item.jifen}}积分</text>
+        <text class='global_middle_font global_color_red'>{{item.goumai}}</text>人购买
+      </view>
+    </view>
+  </view>
+</view>

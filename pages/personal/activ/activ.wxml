@@ -1,0 +1,80 @@
+<!-- 全部背景 -->
+<view class='any'>
+  <!-- 排队返现 -->
+  <!-- <view class='queue'>
+    <view class='list line-border-bottm'>
+      <view class='user-list line-inline global_middle_font'>排队返现</view>
+      <view class='user-list1 line-inline global_middle_font'>萌萌商店 > </view>
+    </view>
+    <view class='list1 flex_about'>
+      <view class='list1-have global_small_font'>已领取奖励:
+        <view class='global_small_font line-inline'>50元</view>
+      </view>
+      <view class='list1-wit have global_small_font'>等待奖励:
+        <view class='global_small_font line-inline'>800元</view>
+      </view>
+      <view class='list-my have global_small_font'>我的排队位置:
+        <view class='global_small_font line-inline'>30位</view>
+      </view>
+    </view>
+
+  </view> -->
+  <!-- 会员充值 -->
+  <view class='member'>
+    <view class='member-top line-border-bottm'>
+      <view class='member-money line-inline global_middle_font'>会员充值</view>
+      <view bindtap='exchange' data-shopid='{{9}}' class='member-shop line-inline global_middle_font'>萌萌商店 > </view>
+    </view>
+    <view class='member-bottom'>
+      <view class='member-bottom-left-any'>
+
+        <!-- 充值金额1 -->
+        <view class='member-bottom-left'>
+          <view class='member-bottom-one global_small_font'>充值金额</view>
+          <view class='member-bottom-two global_small_font'>800</view>
+        </view>
+        <!-- 充值金额2 -->
+        <view class='member-bottom-left'>
+          <view class='member-bottom-one global_small_font'>会员金额</view>
+          <view class='member-bottom-two global_small_font'>800</view>
+        </view>
+        <!-- 余额 -->
+        <view class='member-bottom-left'>
+          <view class='member-bottom-one global_small_font'>余额</view>
+          <view class='member-bottom-two global_small_font'>500</view>
+        </view>
+      </view>
+      <!-- 去消费 -->
+      <!-- <view class='member-bottom-right'>
+        <view class='member-bottom-right1 global_small_font'>去消费</view>
+      </view> -->
+
+    </view>
+
+  </view>
+
+  <!-- 购物返现 -->
+  <view class='shopping'>
+    <view class='line-border-bottm list'>
+      <view class='user-list line-inline global_middle_font'>购物返现</view>
+      <view bindtap='exchange' data-shopid='{{9}}' class='user-list1 line-inline global_middle_font'>萌萌商店 > </view>
+    </view>
+
+
+    <view class='list3 padding-all line-border-bottm'>
+      <view class='global_middle_font line-inline'>购物满{{listM}}</view>
+      <view class='global_middle_font line-inline'>送{{listN}}元</view>
+      <view class='global_middle_font line-inline'>+</view>
+      <view class='global_middle_font line-inline'>{{listS}}</view>
+      <view class='global_middle_font line-inline'>+</view>
+      <view class='global_middle_font line-inline'>本店优惠券</view>
+    </view>
+
+    <!-- <view class='shopp padding-all disflex'>
+      <view wx:for='{{src}}' class='pic'>
+        <image class='imagess' src='{{item.src}}' mode='{{mode}}'></image>
+      </view>
+    </view> -->
+
+  </view>
+</view>

@@ -1,0 +1,50 @@
+/* pages/personal/putaway/putaway.wxss */
+.one-accretion{
+  height: 260rpx;
+  line-height: 260rpx;
+}
+
+.addimage-one{
+  display: block;
+}
+
+.addimage-two{
+  font-size: 80rpx;
+  color: #999;
+  text-align: center;
+  line-height: 240rpx;
+  width: 100%;
+  margin-bottom: 4%;
+   margin-top: 1%;
+  /* height: 90rpx; */
+  border: 1rpx dashed #999;
+}
+
+.module-one-checkbox{
+  width: 94%;
+  height: 190rpx;
+ 
+  /* border: 1rpx solid black; */
+}
+
+.module-one-checkbox-text{
+  float: none;
+  height: 60rpx;
+  width: 100%;
+  border-bottom: 1rpx solid #eee;
+}
+.module-one-checkbox-true{
+
+   padding: 20rpx;
+  width: 90%;
+  height: 140rpx;
+  /* line-height: 20rpx; */
+  /* border:1rpx solid black; */
+}
+
+.checkbox{
+  margin-left: 4%;
+  /* text-align: center; */
+  /* line-height: 10rpx; */
+  /* padding-top:150rpx; */
+}

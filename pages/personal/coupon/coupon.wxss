@@ -1,0 +1,145 @@
+/* pages/personal/coupon/coupon.wxss */
+
+.any {
+  width: 96%;
+  height: 100vh;
+  padding: 2%;
+}
+
+.ticket_commit {
+  padding: 0% 2%;
+  padding-bottom: 2%;
+}
+
+.ticket_module {
+  margin-top: 3%;
+}
+
+.ticket {
+  width: 100%;
+  background-color: #fff9e3;
+  border-radius: 10rpx;
+  height: 160rpx;
+  overflow: hidden;
+  border: 1px solid #d54036;
+  border-right: 0;
+  margin-bottom: 3%;
+}
+
+
+
+.expired {
+  right: 0rpx;
+  color: #fff;
+  background: rgba(126, 126, 129, 0.8);
+  text-align: center;
+  line-height: 150rpx;
+  position: absolute;
+  width: 730rpx;
+  height: 160rpx;
+  border: 1rpx solid #eee;
+  /* border-radius:80%; */
+}
+
+.ticket_money {
+  font-size: 60rpx;
+  width: 25%;
+  text-align: center;
+  position: relative;
+  height: 75%;
+  justify-content: center;
+}
+
+.ticket_money text {
+  padding-top: 10px;
+  margin-left: 2rpx;
+}
+
+.ticket_info {
+  margin-left: 2%;
+  width: 50%;
+}
+
+.ticket_info view {
+  line-height: 48rpx;
+}
+
+.payment {
+  position: relative;
+  width: 30%;
+  height: 100%;
+  border-bottom-right-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  color: #fff;
+}
+
+.payment1 {
+  width: 100%;
+  height: 100%;
+  margin-left: 90rpx;
+  background-color: #d54036;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.payment .icon-hongbaojuchi-copy {
+  height: 100%;
+  color: #d54036;
+  font-size: 210rpx;
+  width: 10%;
+  margin-left: -50rpx;
+}
+
+.coupon-poncou{
+  width: 80%;
+  height: 50%;
+  padding: 4%;
+  background: #fff;
+  left: 0;
+  top:0;
+  right: 0;
+  bottom: 0;
+  margin:20% auto;
+  border-radius: 10rpx;
+}
+
+.coupon-poncou-top{
+  /* margin-top:60rpx; */
+  height: 80rpx;
+  width: 100%;
+  text-align: center;
+  line-height: 80rpx;
+  /* border: 1rpx solid black; */
+}
+
+.coupon-poncou-top-1{
+  margin-top:90rpx;
+  text-align: left;
+  
+}
+.coupon-poncou-top-1-1{
+  margin-top:150rpx;
+  text-align: center;
+}
+.inpu-couponss{
+  border: 1rpx solid #eee;
+  border-radius: 20rpx;
+}
+
+.coupon-poncou-top-2{
+  border-bottom: 1rpx solid #eee;
+  margin-top:20rpx;
+}
+
+
+.colsess{
+  position: absolute;
+  right: 45rpx;
+  top:150rpx;
+  width: 80rpx;
+  height: 80rpx;
+  /* border: 1rpx solid black; */
+  text-align: center;
+  line-height: 80rpx;
+}

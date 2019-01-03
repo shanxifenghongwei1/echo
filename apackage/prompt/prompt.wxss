@@ -1,0 +1,52 @@
+@import '/utils/wxss/global.wxss';
+.load-data-prompt>view{
+  padding: 30rpx 0rpx;
+}
+.load-init-data {
+  justify-content: center;
+  height: 400rpx; 
+}
+
+.load-init-data>view>view:first-child {
+  font-size: 180rpx;
+  width: 180rpx;
+  line-height: 180rpx;
+  margin: 4% auto;
+  border-radius: 90rpx;
+  animation: rotate360 1s linear infinite;
+}
+.load-data-loading{
+
+  justify-content: center;
+
+}
+.load-data-loading view:first-child {
+  width: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  margin-right: 1%;
+  animation: rotate360 1s linear infinite;
+}
+
+.load-data-finish,.load-no-data {
+  text-align: center;
+  overflow: hidden;
+
+}
+
+.load-data-finish text {
+  border-top: 1px solid #ddd;
+  display: inline-block;
+  width: 140rpx;
+  margin: 0% 2%;
+  vertical-align: middle;
+
+}
+
+.load-no-data {
+height: 400rpx;
+justify-content: center;
+}
+.load-no-data .iconfont {
+  font-size: 80rpx;
+}

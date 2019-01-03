@@ -1,0 +1,62 @@
+<view class='any'>
+  <view class='order'>
+    <view wx:for="{{order}}" wx:key='orderKey' class='order-son {{cid==item.type_id?"active":""}}' data-id='{{item.type_id}}' bindtap='addorderid'>{{item.text}}</view>
+  </view>
+  <view class='newline'></view>
+
+
+  <!-- 订单模块 -->
+  <view wx:if='{{cid==2}}'>
+    <view class='my-order' wx:for="{{shop}}" wx:key='index'>
+      <!-- 店家名字+支付状态 -->
+      <view class='shop'>
+        <view class=' global_middle_font shop-name'>{{item.shop_name}}
+        </view>
+        <view class='state'>{{state}}</view>
+      </view>
+
+      <view class='flex_about padding-all commdity'>
+        <view class='commdity-pic'>
+          <image src='{{item.goods_img}}' mode="widthFix"></image>
+        </view>
+        <view class=' global_middle_font commdity-particulars'>
+          <view class='flex_about shop-money'>
+            <view class=''>{{item.goods_name}}</view>
+            <view></view>
+            <view class='global_color_red global_large_font'> ¥{{item.goods_price}}</view>
+          </view>
+          <view class='flex_about shop-money'>
+            <view class='global_small_font'>七天无理由退换</view>
+            <view></view>
+            <view> 共{{item.goods_number}}件</view>
+          </view>
+          <view class='flex_about shop-money'>
+            <view>总计</view>
+            <view></view>
+            <view class='global_color_red global_large_font'> ¥{{item.order_money}}</view>
+          </view>
+          <view class='shop-number'></view>
+        </view>
+      </view>
+
+      <view class=' flex_about padding-all time'>
+        <view class='global_small_font this-time'>时间:{{item.order_time}}</view>
+        <view></view>
+        <view class='flex_about'>
+          <!-- <navigator class='global_bg_color_red global_middle_font payfor ' url="/pages/shop/comment/comment">详情</navigator> -->
+          <navigator class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ----已完成模块 -->
+
+  <!-- 待使用模块 -->
+  
+  <!-- 已取消模块 -->
+
+ 
+  <!-- ---- -->
+
+</view>

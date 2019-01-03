@@ -1,0 +1,10 @@
+@import '/pages/scattered/pay/pay.wxss';
+
+.about{
+  width: 94%;
+  padding: 3%;
+}
+
+.bottom-border-1{
+  border-bottom: 1rpx solid #eee;
+}

@@ -1,0 +1,31 @@
+@import '/utils/wxss/global.wxss';
+.details-bar .iconfont {
+  font-size: 44rpx;
+  color: #999;
+  margin-left: 20%;
+}
+
+.details-bar {
+  justify-content: space-between;
+  line-height: 80rpx;
+  border-bottom: 1px solid #ddd;
+}
+
+.details-bar .global_small_font {
+  color: #999;
+}
+
+.details-bar view:first-child {
+  width: 11%;
+  color: #999;
+}
+
+.details-bar view:nth-child(2) {
+  text-align: left;
+  width: 79%;
+}
+
+.details-bar>view:last-child {
+  width: 10%;
+  text-align: center;
+}

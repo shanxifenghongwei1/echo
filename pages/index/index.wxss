@@ -1,0 +1,146 @@
+@import '/utils/wxss/store.wxss';
+@import '/utils/wxss/voucher.wxss';
+
+.header_top {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  left: 0px;
+  z-index: 3;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.newclool{
+  position: fixed;
+  right: 20rpx;
+  bottom:100rpx;
+}
+
+.header_top view {
+  width: 7%;
+  height: 100%;
+  color: #fff;
+  font-size: 50rpx;
+  text-align: center;
+}
+
+.header_top button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 10%;
+  height: 100%;
+  background: none;
+}
+
+.header_top button::after {
+  border: none;
+}
+
+.header_top view:last-child {
+  padding-right: 2%;
+}
+
+.slide-image {
+  width: 100%;
+  display: block;
+}
+
+.ic_info {
+  justify-content: space-between;
+  margin-bottom: 2%;
+}
+
+.ic_info view {
+  width: 120rpx;
+  color: #fff;
+  text-align: center;
+  border-radius: 10rpx;
+}
+
+.business_Area {
+  justify-content: space-between;
+  line-height: 80rpx;
+  height: 80rpx;
+}
+
+.business_Area>view:first-child {
+  width: 92%;
+}
+
+.icon_ad {
+  padding: 0% 0.5% 0% 2%;
+  display: inline-block;
+}
+
+.business_Area>view:last-child {
+  width: 7%;
+  text-align: center;
+  color: #666;
+}
+
+.business_synopsis {
+  align-items: flex-start;
+  padding: 2.5% 2%;
+}
+
+.business_synopsis >view:first-child {
+  width: 38%;
+}
+
+.business_synopsis >view:first-child view {
+  margin-right: 14rpx;
+  float: left;
+  margin-top: -3rpx;
+}
+
+.business_synopsis >view:last-child {
+  width: 100%;
+}
+
+.nav_module {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.nav_item {
+  width: 50%;
+  height: 80rpx;
+  line-height: 80rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  position: relative;
+}
+
+.nav_active {
+  color: #ed4444;
+}
+
+.nav_active::before {
+  position: absolute;
+  bottom: -2px;
+  left: 22%;
+  content: "";
+  width: 50%;
+  border: 2px solid #ed4444;
+}
+
+.ticket_product_commit {
+  padding: 0% 2% 0px;
+}
+
+.ticket_module {
+  margin-top: 3%;
+}
+
+.commit_title {
+  font-size: 36rpx;
+  color: #333;
+  padding-bottom: 2%;
+  margin-top: 5%;
+  border-bottom: 1px solid #ddd;
+}
