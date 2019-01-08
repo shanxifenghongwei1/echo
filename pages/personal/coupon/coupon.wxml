@@ -1,84 +1,10 @@
-<wxs src="../../../utils/tools.wxs" module="tools" />
 <!-- 我的优惠券 -->
-<!-- 一个优惠券 -->
-<view class='any global_bg_color'>
-  <view wx:for='{{my_coupon}}' wx:key='index' data-index="{{index}}" bindtap='present' data-card_id='{{item.card_id}}'>
-    <view class='ticket flex_about'>
-      <view class=' global_color_red ticket_money flex_about global_middle_font'>{{tools.turnInt(item.reduce_money)}}
-        <text class='global_small_font global_color_red'>元</text>
-      </view>
-      <view class="ticket_info">
-        <!-- <view class='global_middle_font'>满20000减8000元</view> -->
-        <view class='global_middle_font'> 满{{tools.turnInt(item.card_money)}} 元
-          <text wx:if='{{item.id==18}}'>减</text>
-          <text wx:if='{{item.id==17}}'>得</text>
-          <text wx:if='{{item.id==19}}'>送</text>
-          <text wx:if='{{item.id==16}}'>打</text> {{tools.turnInt(item.reduce_money)}} 元
-          <text wx:if='{{item.id==16}}'>折</text>
-        </view>
-        <!-- <view class='global_middle_font'>限平台:支付宝、微信</view> -->
-      </view>
-      <view class="payment flex_about global_large_font">
-        <view class='iconfont icon-hongbaojuchi-copy'></view>
-        <view class='flex_about payment1 '>去付款</view>
-      </view>
+<view class='any'>
+  <view class='one-coupon flex_about'>
+    <view class='one-coupon-left global_large_font'>满赠卷</view>
+    <view class='one-coupon-right'>
+      <view class='one-coupon-right-top global_large_font'>香天下传承</view>
+      <view class='one-coupon-right-bottom global_large_font'>满200减20代金券</view>
     </view>
-  </view>
-
-  <view class='prompt'>
-    <prompt id="prompt"></prompt>
   </view>
 </view>
-
-
-
-
-
-
-
-
-<form bindsubmit="formSubmit" bindreset="formReset" wx:if='{{taxtalgin==true}}'>
-<view class='global_postion_module'>
-  <view class='coupon-poncou'>
-    <view class='global_middle_font coupon-poncou-top coupon-poncou-top-2'>赠送给朋友</view>
-    <view class='global_middle_font coupon-poncou-top coupon-poncou-top-1'>拿抓昵称:</view>
-    <view>
-      <input class='global_middle_font coupon-poncou-top inpu-couponss' name="pinput" placeholder='请输入拿抓昵称'></input>
-    </view>
-    <button form-type="submit" type='primary' class='coupon-poncou-top-1-1'>赠送</button>
-    <view class='colsess iconfont icon-fork' bindtap='colsess'></view>
-  </view>
-</view>
-</form>
-<!-- <view class='ticket flex_about'>
-    <view class=' global_color_red ticket_money flex_about '>80
-      <text class='global_small_font global_color_red'>元</text>
-    </view>
-    <view class="ticket_info">
-      <view class='global_middle_font'>满200减80元</view>
-      <view class='global_middle_font'>限品类:水果</view>
-      <view class='global_middle_font'>限平台:支付宝</view>
-    </view>
-    <view class="payment flex_about global_large_font">
-      <view class='iconfont icon-hongbaojuchi-copy'></view>
-      <view class='flex_about payment1 '>去付款</view>
-    </view>
-  </view>
-  <view class='ticket flex_about'>
-    <view class=' global_color_red ticket_money flex_about '>80
-      <text class='global_small_font global_color_red'>元</text>
-    </view>
-    <view class="ticket_info">
-      <view class='global_middle_font'>满200减80元</view>
-      <view class='global_middle_font'>限品类:水果</view>
-      <view class='global_middle_font'>限平台:支付宝</view>
-    </view>
-
-    
-    <view class="payment flex_about global_large_font">
-      <view class='iconfont  icon-hongbaojuchi-copy'></view>
-      <view class='flex_about payment1'>去付款</view>
-      <view class='expired global_large_font'>已过期</view>
-    </view>
-    
-  </view> -->

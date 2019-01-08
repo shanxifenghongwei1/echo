@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    juli:'20km',
+    juli: '20km',
     app: app,
     swiperHeight: 0, //滑动高度
     buyStatus: 0, //显示购买   0.隐藏   1.显示
@@ -23,7 +23,9 @@ Page({
     ticketArray: [],
     toView: '',
     shopObj: {},
-    scrollHeight: 0
+    scrollHeight: 0,
+    scene:56
+  
   },
 
   /**
@@ -31,32 +33,54 @@ Page({
    */
   onLoad: function(options) {
     app.setNavigationBarTitle("商家首页");
-    
-    //通过分享方式进入，店铺Id一直不变
-    // if (options.shopId != undefined) {
-    //   app.globalData.shopId = options.shopId;
-    //   app.globalData.shopType = app.status.shopType.shop_share_Type;
-    // }
 
-    // app.globalData.yeson = 10
+    const scene = decodeURIComponent(options.scene)
+    console.log(scene)
+    if (scene == 'undefined'){
+      console.log('啥也没穿')
+    } else if (scene.length > 1){
+  
+      this.setData({
+        scene: scene
+      })
+      app.globalData.shopId = scene
+      app.globalData.shopType = app.status.shopType.shop_share_Type;
+      console.log('传了东西')
+    }
+// 二维码
+   
+    // 通过分享方式进入，店铺Id一直不变
+    if (options.shopId != undefined) {
+      console.log('分享进来的啊')
+ 
+      app.globalData.shopId = options.shopId;
+      app.globalData.shopType = app.status.shopType.shop_share_Type;
+      
+    }
+    
+// --------  
+
+    // 请求整个页面的数据
+    this.init(options.shopId);
+   
   },
 
   onShow() {
+    app.dengluzt()
     let a = wx.getStorageSync('diliweizhi')
     this.comment = this.selectComponent("#comment");
     this.comment.setData({
       position_commit: 1, //评论图片不显示
     });
-    this.init(app.globalData.shopId);
     this.scrolltolower();
-  this.setData({
-   juli: a
-  })
-   
-  
-   
+    this.setData({
+      juli: a
+    })
+
+
+
   },
-  onPageScroll: function (e) {
+  onPageScroll: function(e) {
     console.log(e)
 
     if (e.detail.scrollTop > 100) {
@@ -71,26 +95,27 @@ Page({
 
   },
 
-// 返回顶部
-// top:function(){
-//   wx.pageScrollTo({
-//     scrollTop: 0,
-//   })
-// },
+  // 返回顶部
+  top:function(){
+    wx.pageScrollTo({
+      scrollTop: 0,
+    })
+  },
 
-  init(shopId) {
+  init() {
+    
     app.request.post({
       url: "merchant/bygoods",
       isLoading: true,
       data: {
-        shangjiaid: 56 ////数据
+        shangjiaid: app.globalData.shopId ////数据
       },
       success: (e) => {
         app.setNavigationBarTitle(e.shop_name);
         this.setData({
           shopObj: e,
           ticketArray: e.youhui,
-          goods1:e.goods
+          goods1: e.goods
         })
       }
     });
@@ -102,7 +127,7 @@ Page({
     })
   },
   /*店铺id */
-  addOrder(e){
+  addOrder(e) {
 
     app.request.post({
       url: "order/index",
@@ -110,7 +135,7 @@ Page({
       data: {
         virtual_id: e.currentTarget.dataset.id,
         shop_id: app.globalData.shopId,
-        order_type :app.status.orderType.shop 
+        order_type: app.status.orderType.shop
       },
       success: (e) => {
         wx.redirectTo({
@@ -119,8 +144,8 @@ Page({
       }
     })
   },
-  scrolltolower(){
-    this.comment.getComment({
+  scrolltolower() {
+    this.comment.getComment({ 
       shop_id: app.globalData.shopId
     })
   },
@@ -145,10 +170,12 @@ Page({
   },
   /*分享 */
   onShareAppMessage: function() {
+    
     return {
       title: this.data.shopObj.shop_name,
       path: '/pages/index/index?shopId=' + app.globalData.shopId,
       imageUrl: this.data.shopObj.shop_logo
     }
+    console.log('分享成功了呀')
   }
 })

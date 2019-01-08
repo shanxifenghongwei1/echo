@@ -8,7 +8,7 @@ Page({
    */
   data: {
     cid: 2,
-    order: [{ text: '已完成', type_id: 1 }, { text: '待支付', type_id: 2 }, { text: '待使用', type_id: 4 }, { text: '已取消', type_id: 3} ],
+    order: [{ text: '已完成', type_id: 1 }, { text: '待支付', type_id: 2 }, { text: '待评论', type_id: 4 }, { text: '已取消', type_id: 3} ],
     shop: [{
       id: 0,
       text: '舞东风-水云阁店',
@@ -38,6 +38,56 @@ Page({
    */
   onLoad: function(options) {
     app.setNavigationBarTitle("我的订单");
+   
+    if (app.status.pay_order==1){
+      this.setData({
+        cid: app.status.pay_order
+      })
+    }
+   
+    
+  },
+  storygoodslist(e){
+    this.setData({
+      order_id: e.currentTarget.dataset.order_id
+    })
+    
+    var that = this
+    function zhifu() {
+      app.request.post({
+        url: "pay/payShop",
+        isLoading: true,
+        data: {
+          order_id: that.data.order_id,         //"订单Id",
+        },
+        success: (e) => {
+          wx.requestPayment({
+            timeStamp: e.timeStamp,
+            nonceStr: e.nonceStr,
+            package: e.package,
+            signType: e.signType,
+            paySign: e.paySign,
+            success: (res) => {
+              app.request.post({
+                url: "pay/editOrderStatus",
+                isLoading: true,
+                data: {
+                  order_id: that.data.order_id,         //"订单Id",
+                },
+                success: (e) => {
+                  app.status.pay_order = 1
+                  that.onLoad();
+                }
+              })
+            }
+          })
+        }
+      })
+    }
+    zhifu();
+
+
+
   },
 
   /**
@@ -51,11 +101,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    app.dengluzt()
     this.init();
     
   },
 
-  init(){
+  init(cid){
     app.request.post({
       url: "order/orderList",
       isLoading: true,
@@ -65,7 +116,8 @@ Page({
       },
       success: (e) => {
        this.setData({
-         shop:e.order
+         shop:e.order,
+         page:0
        })
       }
     })
@@ -78,7 +130,7 @@ Page({
     app.request.post({
       url: "order/orderList",
       data: {
-        page: ++this.page,
+        page: ++this.data.page,
         order_type: this.data.cid
       },
       success: (e) => {

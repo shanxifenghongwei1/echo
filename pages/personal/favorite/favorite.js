@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+   
     app: app,
     lovelist:[],
     page:0
@@ -19,23 +20,25 @@ Page({
     app.request.post({
       url: "collection/collectList",
       isLoading: true,
-     
       success: (e) => {
-        console.log(e)
         this.setData({
           lovelist:e
         })
+       
       }
       
     });
+    
   },
-
+ 
   onLoad: function(options) {
-
+    this.init();
+   
   },
 
   onShow: function() {
-    this.init();
+    
+   
   },
 
   /**

@@ -1,0 +1,7 @@
+<button style='background:#fff;' class='global_postion_module newbutto' open-type='getUserInfo' bindgetuserinfo='getCodeUserInfo'>
+  <image class='plase-image' style='' src='/images/production/nazhuatubiao.jpg'></image>
+  <view class='global_large_font plases'>请您使用微信登陆</view>
+  <button class='onclic' open-type='getUserInfo' bindgetuserinfo='getCodeUserInfo'>
+    <text style='color:#fff;' class='global_middle_font iconfont icon-weixin'>微信登陆</text>
+  </button>
+</button>

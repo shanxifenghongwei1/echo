@@ -52,21 +52,53 @@ Page({
     //     return;
     //   }
     // }
-
+    var that = this
+    function zhifu() {
     app.request.post({
       url: "pay/Wx_pay",
       isLoading: true,
       data: {
-        order_id:this.data.abc.order_id,         //"订单Id",
-        order_number:this.data.abc.goods.goods_number,           //"订单数量",
-        order_money: this.data.abc.goods.order_money,      //"支付的金额",
+        order_id:that.data.abc.order_id,         //"订单Id",
+        order_number:that.data.abc.goods.goods_number,           //"订单数量",
+        order_money: that.data.abc.goods.order_money,      //"支付的金额",
         virtual_id: 0,         //"优惠券Id",
-        order_type:this.data.abc.order_type
+        order_type:that.data.abc.order_type
       },
       success: (e) => {
-          console.log(e)
+       
+        wx.requestPayment({
+          timeStamp: e.timeStamp,
+          nonceStr: e.nonceStr,
+          package: e.package,
+          signType: e.signType,
+          paySign: e.paySign,
+          success:(res)=>{
+              console.log('成功了！')
+            app.request.post({
+              url: "pay/editOrderStatus",
+              isLoading: true,
+              data: {
+                order_id: that.data.abc.order_id,         //"订单Id",
+              },
+              success: (e) => {
+                  wx.switchTab({
+                    url: '/pages/personal/order/order',
+                    success:()=>{
+                      app.status.pay_order=1
+                    }
+                    
+                  })
+              }
+            })
+
+          }
+        })
       }
     })
+
+}
+zhifu();
+
   },
 
   buyherd:function(){

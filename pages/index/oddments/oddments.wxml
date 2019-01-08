@@ -11,7 +11,7 @@
   <swiper wx:if="{{shopObj!=null&&shopObj.shop_img.length>0}}" indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="height:{{swiperHeight}}rpx;">
     <block wx:for-items="{{shopObj.shop_img}}" wx:key="imageUrl">
       <swiper-item>
-        <image src="{{item}}" class="slide-image" mode='widthFix' bindload="imageLoad" />
+        <image style='width:850rpx;height:350rpx;' src="{{item}}" class="slide-image" mode='widthFix' bindload="imageLoad" />
       </swiper-item>
     </block>
   </swiper>
@@ -32,7 +32,9 @@
         </view>
         <view class='ic_info flex_about'>
           <text class="global_middle_font">总订单数:{{shopObj.order_form}}</text>
-          <view bindtap='addOrder' data-id="0" class='global_middle_font global_bg_color_red' url="/pages/scattered/pay/pay?typePay=1">去付款</view>
+          <view bindtap='addmoney' data-id="{{shop_id}}" data-ac='0' class='global_middle_font global_bg_color_red'>充值</view>
+          <view bindtap='addOrder' data-id="0" class='global_middle_font global_bg_color_red'>去付款</view>
+          
         </view>
       </view>
     </view>
@@ -40,12 +42,14 @@
     </view>
   </view>
   <view class="newline"></view>
-  <view class='flex_about business_Area'>
+
+  <navigator url='' class='flex_about business_Area'>
     <view class=' global_middle_font  global_single_ellipsis '>
       <view class='iconfont icon-tubiao201 global_color_red icon_ad'></view> 店铺地址：{{shopObj.address}}</view>
     <view></view>
     <view class='iconfont icon-arrow-right-copy'></view>
-  </view>
+  </navigator>
+
   <view class="newline"></view>
   <view class='business_synopsis flex_about'>
     <view class='global_middle_font '>
@@ -59,6 +63,7 @@
   </view>
   <view class='ticket_product_commit'>
     <view wx:if="{{shopObj!=null&&shopObj.youhui.length==0}}" class='global_small_font'>暂无产品券</view>
+
     <view wx:if="{{shopObj!=null&&shopObj.youhui.length>0}}" id="list0" class='ticket_module ' wx:for="{{shopObj.youhui}}" wx:key="youhuiKey">
       <!--满减（支付优惠券）-->
       <view wx:if="{{item.card_type==app.globalData.voucher.fullFeduction}}" bindtap='addOrder' data-id="={{item.card_id}}" class='ticket flex_about'>
@@ -72,6 +77,7 @@
           <view class='iconfont icon-hongbaojuchi-copy'></view>
           <view class='flex_about payment1'>去付款</view>
         </view>
+        
       </view>
       <!--满赠-->
       <view wx:if="{{item.card_type==app.globalData.voucher.fullGift}}" bindtap='addOrder' data-id="{{item.card_id}}" class='global_middle_font padding-all voucher'>
@@ -87,6 +93,29 @@
         </view>
       </view>
     </view>
+<!-- 充值活动模块 -->
+<view class='global_large_font flex_about commit_title'>
+      <view class='global_middle_font'></view>充值活动
+    </view>
+    <view wx:if="{{shopObj!=null&&shopObj.shop_ac.length==0}}" class='global_small_font'>暂无活动</view>
+      <view wx:for='{{shopObj.shop_ac}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.shop_ac.length > 0}}" bindtap='givemoneytome' data-id="{{item.ac_tontent}}" data-ac='{{item.ac_id}}' data-shop='{{item.shop_id}}' class='ticket flex_about'>
+        <view class=' global_color_red ticket_money flex_about '>{{item.give_money}}
+          <text class='global_small_font global_color_red'>元</text>
+        </view>
+        <view class="ticket_info">
+        <text class='global_middle_font line-inline'>充值满</text>
+          <view class='global_middle_font line-inline global_color_red'>{{item.money}}</view>
+          <text class='global_middle_font line-inline'>赠</text>
+          <view class='global_middle_font line-inline global_color_red'>{{item.give_money}}</view>
+        </view>
+        <view class="payment flex_about global_large_font">
+          <view class='iconfont icon-hongbaojuchi-copy'></view>
+          <view class='flex_about payment1'>去充值</view>
+        </view>
+        
+      </view>
+
+
 
     <!-- 热门商品模块 -->
     <view class='global_large_font flex_about commit_title'>
@@ -106,7 +135,7 @@
 
     <!-- 普通商品模块 -->
     <view class='global_large_font flex_about commit_title'>
-      <view class='iconfont icon-remenhuodong-copy-copy'></view>全部商品
+      <view class=''></view>全部商品
     </view>
     <view wx:if="{{shopObj!=null&&shopObj.goods.length==0}}" class='global_small_font'>暂无商品</view>
     <view class='product_module' id="list1">

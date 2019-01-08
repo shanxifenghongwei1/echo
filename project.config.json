@@ -38,7 +38,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 20,
 			"list": [
 				{
 					"id": -1,
@@ -128,6 +128,43 @@
 					"id": 14,
 					"name": "添加银行卡",
 					"pathName": "pages/personal/bandcard/addbandcard/addbandcard",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的买单币",
+					"pathName": "pages/personal/purchase/purchase",
+					"query": "",
+					"scene": "1025"
+				},
+				{
+					"id": -1,
+					"name": "我的总资产",
+					"pathName": "pages/personal/person/myassets/myassets",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "充值页面",
+					"pathName": "pages/personal/person/payrecharge/payrecharge",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "充值",
+					"pathName": "pages/personal/person/payrecharge/payrecharge",
+					"query": ""
+				},
+				{
+					"id": 19,
+					"name": "微信充值",
+					"pathName": "pages/personal/person/recharges/recharge",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
 					"query": ""
 				}
 			]

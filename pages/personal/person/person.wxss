@@ -1,5 +1,22 @@
 /* pages/person/person.wxss */
 
+.onclic{
+  width: 100%;
+  height: 80rpx;
+  background: #3bb134;
+  line-height: 80rpx;
+}
+
+.plase-image{
+  width:100%;
+  height:500rpx;
+  margin-top:70rpx;
+}
+
+.plases{
+  margin-bottom: 50rpx;
+}
+
 .newbutto {
   background: none;
 }

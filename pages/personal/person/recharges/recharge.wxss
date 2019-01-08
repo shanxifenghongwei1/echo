@@ -1,0 +1,127 @@
+/* pages/recharge/recharge.wxss */
+@import "/utils/wxss/global.wxss";
+
+/* .body{
+    width: 650rpx;
+    height: 700rpx;
+    margin:150rpx auto;
+    background-color: #eee;
+} */
+.top{
+    width: 100%;
+    height: 250rpx;
+    background-color: rgb(236, 233, 233);
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+}
+.topL{
+    width: 120rpx;
+    height: 70rpx;
+    /* background-color: azure; */
+    margin-top: 50rpx;
+    
+}
+.topL text{
+    font-weight: bold;
+    font-size: 30rpx;
+}
+.topR{
+    margin-top: 50rpx;
+    width: 400rpx;
+    height: 150rpx;
+    /* background-color: cadetblue; */
+    font-weight: bold;
+    font-size: 30rpx;
+    color: rgb(107, 105, 105);
+}
+.topRT {
+    margin:0 0 20rpx 0;
+}
+.topRT text{
+   color: rgb(27, 93, 124);
+   font-weight: bold;
+   font-size: 30rpx;
+}
+.buttom{
+    width: 700rpx;
+    height: 170rpx;
+    /* background-color: aquamarine; */
+    margin:10rpx auto;
+    border-bottom:1rpx solid #eee;
+}
+.buttomT{
+    width: 100%;
+    height: 80rpx;
+    /* background-color: cornflowerblue; */
+}
+.buttomT text{
+   font-weight: bold;
+   /* font-size: 30rpx; */
+}
+.buttomB{
+    width: 100%;
+    /* height: 120rpx; */
+    /* background-color: khaki; */
+}
+
+.moneytttt{
+  font-size: 60rpx;
+}
+
+.buttomBL{
+    width: 80rpx;
+    height: 80rpx;
+    /* background-color: cornflowerblue; */
+    float: left;
+}
+.buttomBL text{
+   font-size: 70rpx;
+}
+.buttomB input{
+    width: 500rpx;
+    margin-top:30rpx;
+    height: 60rpx;
+    /* background-color: blueviolet; */
+}
+.footer{
+    width: 500rpx;
+    height: 100rpx;
+    margin: 20rpx auto;
+    background-color: green;
+    border-radius: 10rpx;
+    text-align: center;
+}
+.footer text{
+    line-height: 100rpx;
+    color: gainsboro;
+}
+
+.top_body{
+  text-align: center;
+  line-height: 70rpx;
+  width: 92%;
+  padding-left:4%;
+  padding-right:4%;
+  height: 70rpx;
+  /* border-bottom: 20rpx solid #eee; */
+}
+
+.recharge{
+  margin-top:30rpx;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.any{
+  height: 100vh;
+  width: 92%;
+  padding: 4%;
+  /* background: #eee; */
+}
+
+.body{
+  width: 100%;
+  height: 600rpx;
+  background: #fff;
+}

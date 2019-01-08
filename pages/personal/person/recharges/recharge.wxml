@@ -1,0 +1,34 @@
+<view class='any'>
+
+  <view class="body">
+    <view wx:if='{{payforid==3}}' class='global_large_font top_body'>买单币充值</view>
+    <view wx:if='{{payforid==2}}' class='global_large_font top_body'>余额充值</view>
+    <view wx:if='{{payforid==1}}' class='global_large_font top_body'>买单币活动充值</view>
+    <view wx:if='{{payforid==4}}' class='global_large_font top_body'>余额提现</view>
+
+    <view class='global_large_font'>{{conten}}</view>
+
+    <view  wx:if='{{payforid==4}}' class='global_large_font'>总余额 {{zongyue}}</view>
+
+    <view class="buttom">
+
+   
+      <view class="buttomT">
+        <text wx:if='{{payforid != 4}}' class='global_middle_font'>充值金额:</text>
+         <text  wx:if='{{payforid==4}}' class='global_middle_font'>提现金额:</text>
+      </view>
+      <view class="buttomB flex_about">
+
+        <text class='global_large_font moneytttt'>￥</text>
+        <input type="text" bindinput='moneyinthis'></input>
+      </view>
+    </view>
+    <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==1}}' bindtap='mdbhdcz'>提交</button>
+
+    <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==3}}' bindtap='mdbcz'>提交</button>
+
+    <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==2}}' bindtap='xjcz'>提交</button>
+
+    <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==4}}' bindtap='yetx'>提现</button>
+  </view>
+</view>

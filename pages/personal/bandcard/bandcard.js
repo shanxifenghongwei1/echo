@@ -12,7 +12,7 @@ Page({
     bankName: '',
     bankNumber: ''
   },
- 
+
   //手机号
   getUserIdCardPhoneNumber: function (e) {
     this.setData({

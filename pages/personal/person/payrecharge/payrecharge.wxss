@@ -1,3 +1,9 @@
+@import '/pages/personal/order/order.wxss';
+
+.order-pay{
+  margin-bottom: 10rpx;
+}
+
 .one-sloat-list{
   width: 98%;
   height: 120rpx;

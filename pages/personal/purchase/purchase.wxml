@@ -4,7 +4,13 @@
   <view class='tex'>我的买单币</view>
 </view> -->
 
+
 <view class='record'>
   <view class='my'>我的买单币</view>
-  <view class='money'>0.00</view>
+  <view class='money'>{{mymonet}}</view>
+</view>
+
+<view class='bill' wx:for='{{list}}'>
+  <view class='global_middle_font'>商家：{{item.shop_name}}</view>
+  <view class='global_middle_font'>余额：{{item.card_money}}</view>
 </view>

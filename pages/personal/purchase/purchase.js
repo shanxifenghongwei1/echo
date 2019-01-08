@@ -1,18 +1,19 @@
 // pages/purchase/purchase.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    page:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.init();
   },
 
   /**
@@ -21,7 +22,22 @@ Page({
   onReady: function () {
 
   },
-
+  init(){
+    app.request.post({
+      url: "activity/mynoblecardlist",
+      data: {
+        page: this.data.page
+      },
+      success: (e) => {
+        console.log(e)
+        this.setData({
+          mymonet:e.money,
+          list:e.list
+        })
+        
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

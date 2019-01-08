@@ -37,7 +37,12 @@ Page({
       juli: options.juli
     })
   },
-
+  givemoneytome(e){
+    console.log(e.currentTarget.dataset.id)
+    wx.navigateTo({
+      url: '/pages/personal/person/recharges/recharge?payforid=1&conten=' + e.currentTarget.dataset.id + '&shop_id=' + e.currentTarget.dataset.shop + '&ac_id=' + e.currentTarget.dataset.ac,
+    })
+  },
   onShow() {
     // 引用组件
     // this.comment = this.selectComponent("#comment");
@@ -46,6 +51,7 @@ Page({
     // });
     this.init(app.globalData.shopId);
     this.scrolltolower();
+    app.dengluzt()
   },
 
   getpinglun:function(){
@@ -68,7 +74,6 @@ Page({
 
 
   init(shopId) {
-    
     app.request.post({
       url: "merchant/bygoods",
       isLoading: true,
@@ -94,20 +99,17 @@ Page({
   },
   /*店铺id */
   addOrder(e) {
-    app.request.post({
-      url: "order/index",
-      isLoading: true,
-      data: {
-        virtual_id: e.currentTarget.dataset.id,
-        shop_id: app.globalData.shopId,
-        order_type: app.status.orderType.shop
-      },
-      success: (e) => {
-        wx.redirectTo({
-          url: '/pages/scattered/pay/pay?orderType=' + app.status.orderType.shop + '&order_id=' + e.order_id + "&orderObj=" + this.data.shopObj
-        });
-      }
-    })
+ 
+    // app.request.post({
+    //   url: "order/index",
+    //   isLoading: true,
+    //   data: {
+      
+    //   },
+    //   success: (e) => {
+     
+    //   }
+    // })
   },
 
   // 组件中拿到shop_id并发送出去
@@ -117,6 +119,13 @@ Page({
     //   shop_id: app.globalData.shopId
     // })
     // this.comment.setCommentData()
+  },
+
+  // 充值
+  addmoney(e){
+    wx.navigateTo({
+      url: '/pages/personal/person/recharges/recharge?payforid=3&shop_id='+this.data.shop_id
+         })
   },
   /*
    * 拨打电话
@@ -139,10 +148,12 @@ Page({
   },
   /*分享 */
   onShareAppMessage: function () {
+    console.log(this.data.shop_id)
     return {
       title: this.data.shopObj.shop_name,
-      path: '/pages/index/index?shopId=' + app.globalData.shopId,
+      path: '/pages/index/index?shopId=' + this.data.shop_id,
       imageUrl: this.data.shopObj.shop_logo
     }
+
   }
 })

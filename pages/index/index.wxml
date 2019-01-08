@@ -1,5 +1,6 @@
-<wxs src="../../utils/tools.wxs" module="tools" />
 
+
+<wxs src="../../utils/tools.wxs" module="tools" />
 <scroll-view style='height:{{scrollHeight}}rpx;' bindscroll="scrolltoupper" scroll-top="0" scroll-into-view="{{toView}}" bindscrolltolower="scrolltolower" scroll-with-animation scroll-y class='page_module '>
   <view class='header_top'>
     <view></view>
@@ -100,7 +101,7 @@
         </view>
       </navigator>
     </view>
-<!-- 普通商品模块 -->
+    <!-- 普通商品模块 -->
     <view class='global_large_font flex_about commit_title'>
       <view class=''></view>全部商品
     </view>
@@ -115,7 +116,7 @@
         </view>
       </navigator>
     </view>
-<!-- ------------ -->
+    <!-- ------------ -->
     <view class=' commit_module ' id="list2">
       <view class='global_large_font flex_about commit_title'>
         <view class='iconfont icon-pinglun2'></view>评论
@@ -125,4 +126,3 @@
   </view>
   <!-- <view bindtap='top' class='newclool'>返回顶部</view> -->
 </scroll-view>
-

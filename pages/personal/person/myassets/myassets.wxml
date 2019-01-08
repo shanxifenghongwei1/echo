@@ -1,0 +1,25 @@
+<!-- 我的总资产页面 -->
+
+  <!-- 我的余额 -->
+<view class='bill'>
+  <view class='global_middle_font'>我的余额</view>
+  <view class='global_middle_font'><text class='global_color_red'>{{user_money}}</text> 元</view>
+</view>
+
+  <!-- 我的积分 -->
+<view class='bill'>
+  <view class='global_middle_font'>我的积分</view>
+  <view class='global_middle_font'><text class='global_color_red'>{{integral}}</text></view>
+</view>
+
+  <!-- 我的买单币 -->
+<view class='bill'>
+  <view class='global_middle_font'>我的买单币</view>
+  <view class='global_middle_font'><text class='global_color_red'>{{mdb}}</text></view>
+</view>
+
+  <!-- 我的券包 -->
+<view class='bill'>
+  <view class='global_middle_font'>我的券包</view>
+  <view class='global_middle_font'><text class='global_color_red'>{{yhq_limit}}</text>张</view>
+</view>

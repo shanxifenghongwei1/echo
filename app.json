@@ -1,6 +1,10 @@
 {
   "pages": [
+    "pages/personal/person/recharges/recharge",
+    "pages/personal/person/myassets/myassets",
+    "pages/index/oddments/map/map",
     "pages/index/index",
+    "pages/dengl/dengl",
     "pages/index/oddments/oddments",
     "pages/nearby/index/index",
     "pages/shop/details/details",
@@ -26,7 +30,8 @@
     "pages/personal/business/business",
     "pages/personal/purchase/purchase",
     "pages/personal/recompose/recompose",
-    "pages/personal/putaway/putaway"
+    "pages/personal/putaway/putaway",
+    "pages/nearby/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",

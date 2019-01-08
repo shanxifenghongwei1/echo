@@ -49,10 +49,10 @@ let requestPost = ajaxJson=> {
             "icon":"none",
           });
       }else { //未知错误
-          wx.showToast({
-            "title": "发生错误，请稍候再试",
-            "icon": "none",
-          });
+          // wx.showToast({
+          //   "title": "发生错误，请稍候再试",
+          //   "icon": "none",
+          // });
       }
     },
     complete: function(res) {

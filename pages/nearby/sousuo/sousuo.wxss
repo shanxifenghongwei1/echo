@@ -1,0 +1,48 @@
+
+.header{
+    width: 100%;
+    height: 75rpx;
+    /* background-color: rosybrown; */
+    margin-top: 50rpx;
+}
+.headersun{
+    width: 600rpx;
+    height: 70rpx;
+    /* background-color: blueviolet; */
+    display: flex;
+    border: 2px solid gainsboro;
+    border-radius: 15rpx;
+    margin:50rpx auto;
+    justify-content: space-around;
+}
+.headerL{
+    font-size: 30rpx;
+    width: 460rpx;
+    height: 100%;
+    /* background-color: aquamarine; */
+}
+.headerR{
+    width: 70rpx;
+    height: 70rpx;
+    /* background-color: cadetblue; */
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.headerRTP{
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.xia{
+    width: 650rpx;
+    height: 70rpx;
+    /* background-color: red; */
+    font-size: 30rpx;
+    border-bottom:1px solid gainsboro;
+    margin:70rpx auto;
+}
+.xia text{
+   margin-left: 50rpx;
+   line-height: 70rpx;
+}

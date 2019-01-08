@@ -74,12 +74,13 @@ Page({
     })
   },
 
+
   /*
    * 图片上传
    */
   uploadImage() {
     wx.chooseImage({
-      count: 3,
+      count: 1,
       sizeType: ['original'],
       success: (res) => {
         let imgArray = this.data.imageArray;
@@ -105,21 +106,30 @@ Page({
   /*提交评论 */
   addComment() {
     var that = this
-   
     var user_img = this.data.imageArray
-
+    console.log(this.data.imageArray)
     var ass = [];
+    
     for (var i = 0; i < this.data.imageArray.length; i++) {
+      wx.showToast({
+        title: '正在上传第'+i+'张图片',
+        icon: 'success',
+        mask: 'true'
+      })
       wx.uploadFile({
         url: 'https://www.sdhcnet.com/api/comment/upload',
         filePath: this.data.imageArray[i][0],
         name: 'file',
         success: function(res) {
-          ass.push(res.data)
+          ass.concat(res.data)+','
         }
       })
     }
-
+    wx.showToast({
+      title: '正在上传内容',
+      icon: 'success',
+      mask: 'true'
+    })
     setTimeout(function() {
       app.request.post({
         url: "comment/index",
@@ -130,13 +140,14 @@ Page({
           user_img: ass
         },
         success: (e) => {
-          console.log(e)
           wx.showToast({
             title: '评论成功',
             icon: 'success',
             mask: 'true'
           })
-          
+          wx.switchTab({
+            url: '/pages/personal/order/order',
+          })
         }
       })
     }, 3000)

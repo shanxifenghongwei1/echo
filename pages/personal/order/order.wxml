@@ -1,3 +1,5 @@
+
+
 <view class='any'>
   <view class='order'>
     <view wx:for="{{order}}" wx:key='orderKey' class='order-son {{cid==item.type_id?"active":""}}' data-id='{{item.type_id}}' bindtap='addorderid'>{{item.text}}</view>
@@ -6,13 +8,14 @@
 
 
   <!-- 订单模块 -->
-  <view wx:if='{{cid==2}}'>
+  <view>
     <view class='my-order' wx:for="{{shop}}" wx:key='index'>
       <!-- 店家名字+支付状态 -->
       <view class='shop'>
         <view class=' global_middle_font shop-name'>{{item.shop_name}}
         </view>
-        <view class='state'>{{state}}</view>
+        <view class='state' wx:if='{{item.pay_type==2}}'>待支付</view>
+         <view class='state' wx:if='{{item.pay_type==1}}'>已支付</view>
       </view>
 
       <view class='flex_about padding-all commdity'>
@@ -43,8 +46,9 @@
         <view class='global_small_font this-time'>时间:{{item.order_time}}</view>
         <view></view>
         <view class='flex_about'>
-          <!-- <navigator class='global_bg_color_red global_middle_font payfor ' url="/pages/shop/comment/comment">详情</navigator> -->
-          <navigator class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator>
+          <navigator wx:if='{{item.pay_type==2}}' bindtap='storygoodslist' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>去支付</navigator>
+          <navigator wx:if='{{item.comment_status==0}}' class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator>
+          
         </view>
       </view>
     </view>

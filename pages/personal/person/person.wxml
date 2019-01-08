@@ -1,6 +1,13 @@
 <!--pages/person/person.wxml-->
 <!-- 背景底色框 -->
- <button wx:if="{{userInfoBtn}}" class='global_postion_module newbutto' open-type='getUserInfo' bindgetuserinfo='getCodeUserInfo'></button>
+
+<!-- <button wx:if='{{dengluzhuangtai==3}}' style='background:#fff;' class='global_postion_module newbutto' open-type='getUserInfo' bindgetuserinfo='getCodeUserInfo'>
+  <image class='plase-image' src='/images/production/nazhuatubiao.jpg'></image>
+  <view class='global_large_font plases'>请您使用微信登陆</view>
+  <button class='onclic' open-type='getUserInfo' bindgetuserinfo='getCodeUserInfo'>
+    <text style='color:#fff;' class='global_middle_font iconfont icon-weixin'>微信登陆</text>
+  </button>
+</button> -->
 
 <view class="content global_bg_color anywhere">
   <!-- 用户信息 -->
@@ -22,28 +29,32 @@
           <view class='line-inline'>总资产</view>
           <view class='line-inline colorrr'></view>
         </view>
-        <view class='line-inline balance-left-p'>详情</view>
-        <navigator url='/pages/personal/person/payrecharge/payrecharge' class='line-inline balance-left-p'>充值</navigator>
-        <view class='line-inline balance-left-p'>账单</view>
+        <navigator url='/pages/personal/person/myassets/myassets' class='line-inline balance-left-p'>
+          <text class='global_color_red'>详情</text>
+        </navigator>
+        <navigator url='/pages/personal/person/recharges/recharge?payforid=2' class='line-inline balance-left-p'>充值</navigator>
+        <navigator url='/pages/personal/person/payrecharge/payrecharge' class='line-inline balance-left-p'>账单</navigator>
       </view>
 
       <view class='balance-left1-1-1'>
         <view class='line-inline balance-left-p2'>
           <view class='line-inline global_middle_font'>余额: </view>
-          <view class='line-inline colorrr global_middle_font overfloow'> <text class='monettt'> {{user_money}}</text></view>
+          <view class='line-inline colorrr global_middle_font overfloow'>
+            <text class='monettt'> {{user_money}}</text>
+          </view>
         </view>
         <!-- <view class='line-inline balance-left-p3'>
           <view class='line-inline'>已提现:</view>
           <view class='line-inline colorrr overfloow'>1000000</view>
         </view> -->
-        <view class='line-inline balance-left-p4'>
+        <navigator url='/pages/personal/person/recharges/recharge?payforid=4&zongyue={{user_money}}' class='line-inline balance-left-p4'>
           <view class='line-inline'>提现</view>
           <!-- <view class='line-inline colorrr'></view> -->
-        </view>
+        </navigator>
       </view>
     </view>
 
-    
+
 
   </view>
   <!-- 我的资产 -->
@@ -74,7 +85,7 @@
         <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-qianbi'></view>
         <view class='whit2 global_middle_font'>我的买单币</view>
         <view class='whit3 global_small_font'>0.00</view>
-      </navigator>  
+      </navigator>
     </view>
 
     <view class='matter'>
@@ -118,12 +129,12 @@
     <view class='site2 global_middle_font'>收货地址</view>
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
   </view> -->
-<!-- 商户中心 -->
-  <!-- <navigator url='/pages/personal/business/business' class='site'>
+  <!-- 商户中心 -->
+  <navigator url='/pages/personal/business/business' class='site'>
     <view class='site1 iconfont icon-tubiao201' style='font-size:30rpx;'></view>
     <view class='site2 global_middle_font'>商户中心</view>
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
-  </navigator> -->
+  </navigator>
   <!-- 意见反馈 -->
   <navigator url="/pages/personal/feedback/feedback" class='site'>
     <view class='site1 iconfont icon-yijianfankui' style='font-size:30rpx;'></view>
