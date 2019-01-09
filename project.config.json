@@ -38,7 +38,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 20,
+			"current": 21,
 			"list": [
 				{
 					"id": -1,
@@ -166,6 +166,13 @@
 					"name": "首页",
 					"pathName": "pages/index/index",
 					"query": ""
+				},
+				{
+					"id": 21,
+					"name": "全包",
+					"pathName": "pages/personal/coupon/coupon",
+					"query": "",
+					"scene": "1001"
 				}
 			]
 		}

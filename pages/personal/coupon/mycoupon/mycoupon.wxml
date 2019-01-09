@@ -1,0 +1,31 @@
+<view class='any'>
+<view bindtap='run' class='bigmoster'>
+		<text class='global_middle_font iconfont icon-fanhui'></text>
+		<text class='global_middle_font bigmoster12'>返回个人中心</text>
+</view>
+
+
+  <view class='onecoupon'>
+    <view class='onecoupon-top'>
+      <view class='global_middle_font center center-aling2'>{{shop_name}}</view>
+      <view class='global_middle_font center center-aling1 global_large_font'>{{titlie}}</view>
+
+
+      <view class='global_middle_font share'>
+        
+          <button class='global_middle_font share12' open-type="share">分享</button>
+        
+      </view>
+
+      <view class='notch'></view>
+      <view class='notch1'></view>
+    </view>
+    <view class='onecoupon-bottom'>
+      <view class='global_small_font center center-aling'>使用时向服务员出示此券</view>
+      <view class='code-image'>
+        <image class='image-coupon' src='{{qr_code}}'></image>
+      </view>
+      <view bindtap='onShareAppMessage' class='global_large_font center'>{{card_sn}}</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,118 @@
+.any {
+  padding: 3%;
+  width: 94%;
+  height: 100vh;
+  background: #ed4444;
+}
+
+.bigmoster{
+	border-radius: 5rpx;
+	overflow: hidden;
+	color: #fff;
+	background: #fff;
+	padding: 4%;
+	width: 92%;
+	height: 20rpx;
+	margin-bottom:20rpx;
+	line-height: 20rpx;
+}
+
+.bigmoster12{
+	margin-left:20rpx; 
+}
+
+.onecoupon {
+  overflow: hidden;
+  height: 950rpx;
+  width: 100%;
+  background: #fff;
+}
+
+.onecoupon-top {
+  overflow: hidden;
+  height: 250rpx;
+  width: 100%;
+  border-bottom: 1rpx dashed #eee;
+  position: relative;
+}
+
+.onecoupon-bottom {
+  overflow: hidden;
+  height: 700rpx;
+  width: 100%;
+  /* border: 1rpx solid black; */
+}
+
+.image-coupon {
+  width: 100%;
+  height: 100%;
+}
+
+.center {
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.center-aling {
+  margin-top: 80rpx;
+}
+
+.center-aling1 {
+  margin-top: 60rpx;
+}
+
+.center-aling2 {
+  margin-top: 40rpx;
+}
+
+.code-image {
+  margin: 0 auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 60%;
+  height: 60%;
+}
+
+.notch {
+  width: 30rpx;
+  height: 30rpx;
+  background: #ed4444;
+  position: absolute;
+  bottom: -15rpx;
+  left: -15rpx;
+  border-radius: 15rpx;
+}
+
+.notch1 {
+  width: 30rpx;
+  height: 30rpx;
+  background: #ed4444;
+  position: absolute;
+  bottom: -15rpx;
+  right: -15rpx;
+  border-radius: 15rpx;
+}
+
+.share {
+  width: 150rpx;
+  height: 100rpx;
+  position: absolute;
+  right: 50rpx;
+  top: 50rpx;
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.share12 {
+	text-align: center;
+	width: 150rpx;
+	height: 100rpx;
+  background: #fff;
+  border: none;
+}
+
+.share12::after {
+  border: none;
+}

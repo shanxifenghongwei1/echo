@@ -1,10 +1,29 @@
+@import '/pages/index/oddments/oddments.wxss';
+
+
+.fontbig{
+	font-size: 35rpx;
+}
 .any {
-  width: 94%;
-  padding: 3%;
-  height: 100vh;
-  background: #eee;
+  width: 96%;
+  padding: 2%;
+  
 }
 
+.bigmoster{
+	overflow: hidden;
+	background: #fff;
+	padding: 4%;
+	width: 92%;
+	height: 20rpx;
+	margin-bottom:20rpx;
+	line-height: 20rpx;
+}
+
+.bigmoster12{
+	margin-left:20rpx; 
+}
+/*
 .one-coupon {
   border-radius: 20rpx;
   width: 100%;
@@ -23,7 +42,7 @@
   
   /* background: #ed4444; */
   /* border: 1rpx solid black; */
-}
+ /* }
 
 .one-coupon-right {
     padding: 30rpx;
@@ -31,7 +50,7 @@
   width: 60%;
   height: 100%;
   /* border: 1rpx solid black; */
-}
+/*}
 
 .one-coupon-right-top{
   height: 50%;
@@ -41,4 +60,4 @@
 .one-coupon-right-bottom{
   height: 50%;
   line-height: 75rpx;
-}
+} */

@@ -12,7 +12,7 @@
     <view class='one-sloat-list-left'>
       <view class='global_large_font one-sloat-list-left-top one-sloat-list-left-font'>{{item.type}}×{{item.limit}}</view>
       <view class='global_small_font one-sloat-list-left-top'>{{item.shop_name}}</view>
-      <view class='global_middle_font'> {{item.d-time}}</view>
+      <view class='global_middle_font'> {{item.d_time}}</view>
     </view>
     <view class='one-sloat-list-right global_large_font one-sloat-list-left-font'>¥ {{item.pay_money}}</view>
   </view>

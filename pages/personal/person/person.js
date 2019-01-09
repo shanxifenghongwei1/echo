@@ -12,6 +12,7 @@ Page({
   makePhoneCall: function(e) {
     app.utils.makePhoneCall("87654321000" + e.currentTarget.dataset.phone);
   },
+	
   /**
    * 生命周期函数--监听页面加载
    */

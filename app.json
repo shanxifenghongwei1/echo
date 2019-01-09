@@ -25,6 +25,7 @@
     "pages/shop/index/index",
     "pages/personal/activ/activ",
     "pages/personal/coupon/coupon",
+		"pages/personal/coupon/mycoupon/mycoupon",
     "pages/personal/address/address",
     "pages/personal/integral/integral",
     "pages/personal/business/business",

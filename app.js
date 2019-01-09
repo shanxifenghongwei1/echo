@@ -27,15 +27,13 @@ App({
     pay_order: 2,
     dengluzhuangtai: 3
   },
-
   dengluzt() {
-    if (this.status.dengluzhuangtai == 3&&!wx.getStorageSync('user_id')){
+    if (this.status.dengluzhuangtai == 3 && !wx.getStorageSync('user_id')) {
       wx.navigateTo({
         url: '/pages/dengl/dengl',
       })
     }
   },
-
   host: common.host,
   regular: regular,
   utils: utils,
@@ -50,6 +48,5 @@ App({
     wx.setNavigationBarTitle({
       title: titile
     })
-  },
-
+  }
 })
