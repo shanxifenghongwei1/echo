@@ -6,103 +6,311 @@ Page({
    */
   data: {
     app: app,
+		areyouok:0,
     orderType: 0, //订单支付方式  1.店铺下单  2.商品下单
-    order_money:0,
+    order_money: 0,
     boolIntegration: false,
-    myisclo:true
+    myisclo: true,
+    iloveyou: 3,
+    card_id: 0,
+    radioItems: [{
+        name: '微信支付',
+        value: '9'
+      },
+      {
+        name: '余额支付',
+        value: '6'
+      },
+      {
+        name: '买单币支付',
+        value: '3',
+        checked: 'true'
+      }
+    ]
+  },
+  // 选择支付方式
+  radioChange: function(e) {
+    console.log(e)
+    var checked = e.detail.value
+    var changed = {}
+    for (var i = 0; i < this.data.radioItems.length; i++) {
+      if (checked.indexOf(this.data.radioItems[i].name) !== -1) {
+        changed['radioItems[' + i + '].checked'] = true
+        this.setData({
+          iloveyou: this.data.radioItems[i].value
+        })
+      } else {
+        changed['radioItems[' + i + '].checked'] = false
+      }
+    }
+    this.setData(changed)
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     app.setNavigationBarTitle("支付");
-
+    console.log(options)
+    if (!options.card_id) {
+      this.setData({
+        card_id: 0
+      })
+    } else {
+      this.setData({
+        card_id: options.card_id,
+      })
+    }
+    this.setData({
+			order_money: options.order_money,
+      order_id: options.order_id,
+      shop_image: options.shop_image,
+      shop_id: options.shop_id,
+      order_type: options.order_type,
+      shop_name: options.shop_name,
+      goods_image: options.goods_image,
+      goods_keywords: options.goods_keywords,
+      goods_name: options.goods_keywords,
+      goods_number: options.goods_number,
+      goods_price: options.goods_price,
+      act_name: options.act_name
+      // goods_moneypay: Number(this.data.goods_number) * Number(this.data.goods_price)
+    })
     this.init(options);
 
   },
-  onShow:function(){
+  onShow: function() {
 
-    let abc=wx.getStorageSync("ourdermessage")
+  },
+	checkboxChange(e){
+		console.log(e.detail.value.length)
+		this.setData({
+			areyouok: e.detail.value.length
+		})
+	},
+  shurumoney(e) {
+    if (Number(e.detail.value) < Number(this.data.act_name)) {
+      wx.showToast({
+        title: '该活动充值最少充值' + this.data.act_name + '元',
+        icon: 'none'
+      })
+    } else {
+      this.setData({
+        payformoney: e.detail.value
+      })
+      return;
+    }
     this.setData({
-      abc:abc,
-      order_type:abc.order_type
+      payformoney: e.detail.value
     })
-    console.log(this.data.abc)
-
   },
   init(options) {
-    // 历史页面里面传过来的东西
-    // console.log(options)
-    // 判断类型
-    this.setData({
-      orderType: options.orderType,
-      orderObj: options.orderObj
-    })
-    // 发送请求拿到数据
-  },
-  payClick() {
-   //店铺下订单  验证价格是否正确
-    // if (options.orderType == app.status.orderType.shop) {
-    //   //验证价格 是否是价格
-    //   if (app.regular.validationNumber(this.data.order_money, 0)) {
-    //     wx.showToast({
-    //       "title": "金额格式不正确",
-    //       "icon": "none",
-    //     });
-    //     return;
-    //   }
-    // }
-    var that = this
-    function zhifu() {
     app.request.post({
-      url: "pay/Wx_pay",
+      url: "pay/getUserMoney",
       isLoading: true,
       data: {
-        order_id:that.data.abc.order_id,         //"订单Id",
-        order_number:that.data.abc.goods.goods_number,           //"订单数量",
-        order_money: that.data.abc.goods.order_money,      //"支付的金额",
-        virtual_id: 0,         //"优惠券Id",
-        order_type:that.data.abc.order_type
+        shop_id: options.shop_id
       },
-      success: (e) => {
-       
-        wx.requestPayment({
-          timeStamp: e.timeStamp,
-          nonceStr: e.nonceStr,
-          package: e.package,
-          signType: e.signType,
-          paySign: e.paySign,
-          success:(res)=>{
-              console.log('成功了！')
+      success: (res) => {
+
+        this.setData({
+          pay_bill: res.pay_bill,
+          user_money: res.user_money
+        })
+      }
+    })
+  },
+  // 商家支付
+  shangjiapay() {
+		console.log('优惠卷id='+this.data.card_id)
+    if (this.data.payformoney) {
+      app.request.post({
+        url: "pay/Wx_Shop_pay",
+        isLoading: true,
+        data: {
+          order_number: 1, //"订单数量",
+          order_money: this.data.payformoney, //"支付的金额",
+          virtual_id: this.data.card_id, //"优惠券Id",
+          order_type: this.data.order_type,
+          shop_id: this.data.shop_id,
+          pay_mode: this.data.iloveyou
+        },
+        success: (e) => {
+          console.log(e)
+					if(e.state!==1){
+						let t = '失败'
+						let c = e.msg
+						app.showmodal(t,c);
+						return false;
+					}
+          if (e.pay_mode == 9) {
+            wx.requestPayment({
+              timeStamp: e.timeStamp,
+              nonceStr: e.nonceStr,
+              package: e.package,
+              signType: e.signType,
+              paySign: e.paySign,
+              success: (res) => {
+                app.request.post({
+                  url: "pay/editOrderStatus",
+                  isLoading: true,
+                  data: {
+                    order_id: e.order_id, //"订单Id",
+                  },
+                  success: (e) => {
+										let title = '支付成功'
+										app.showtost(title)
+										setTimeout(()=>{
+											wx.switchTab({
+												url: '/pages/personal/order/order',
+												success: function () {
+													app.status.pay_order = 1
+												}
+											})
+										},2000)
+                 
+                  }
+                })
+              },
+              fail: () => {
+                wx.showToast({
+                  title: '支付失败',
+                  icon: 'none'
+                })
+              }
+            })
+          } else {
             app.request.post({
               url: "pay/editOrderStatus",
               isLoading: true,
               data: {
-                order_id: that.data.abc.order_id,         //"订单Id",
+                order_id: e.order_id, //"订单Id",
+                pay_mode: e.pay_mode
               },
               success: (e) => {
-                  wx.switchTab({
-                    url: '/pages/personal/order/order',
-                    success:()=>{
-                      app.status.pay_order=1
-                    }
-                    
-                  })
+                wx.switchTab({
+                  url: '/pages/personal/order/order',
+                  success: () => {
+                    app.status.pay_order = 1
+										let title = '支付成功'
+										app.showtost(title)
+										setTimeout(() => {
+											wx.switchTab({
+												url: '/pages/personal/order/order',
+												success: function () {
+													app.status.pay_order = 1
+												}
+											})
+										}, 2000)
+                  }
+                })
               }
             })
+          }
 
+        }
+      })
+      // Number(this.data.payformoney) <= Number(this.data.pay_bill)
+    } else {
+      wx.showToast({
+        title: '金额不能为空',
+        icon: 'none'
+      })
+    }
+  },
+  // 商品支付
+  payClick() {
+    var that = this
+      function zhifu() {
+        app.request.post({
+          url: "pay/Wx_pay",
+          isLoading: true,
+          data: {
+            order_id: that.data.order_id, //"订单Id",
+            order_number: that.data.goods_number, //"订单数量",
+            order_money: that.data.order_money, //"支付的金额",
+            virtual_id: 0, //"优惠券Id",
+            order_type: that.data.order_type,
+						pay_mode :that.data.iloveyou
+          },
+          success: (e) => {
+						if (e.state !== 1) {
+							let t = '失败'
+							let c = e.msg
+							app.showmodal(t, c);
+							return false;
+						}
+           if(e.pay_mode == 9){
+						 wx.requestPayment({
+							 timeStamp: e.timeStamp,
+							 nonceStr: e.nonceStr,
+							 package: e.package,
+							 signType: e.signType,
+							 paySign: e.paySign,
+							 success: (res) => {
+								 app.showtost('支付成功')
+								 app.request.post({
+									 url: "pay/editOrderStatus",
+									 isLoading: true,
+									 data: {
+										 order_id: that.data.order_id, //"订单Id",
+									 },
+									 success: (e) => {
+										 wx.switchTab({
+											 url: '/pages/personal/order/order',
+											 success: function() {
+												 app.status.pay_order = 1	 
+											 }
+										 })
+									 }
+								 })
+							 },
+							 fail: () => {
+								 wx.showToast({
+									 title: '支付失败',
+									 icon: 'none'
+								 })
+							 }
+						 })
+					 }
+					 else{
+						 app.request.post({
+							 url: "pay/editOrderStatus",
+							 isLoading: true,
+							 data: {
+								 order_id: that.data.order_id, //"订单Id",
+								 pay_mode:e.pay_mode
+							 },
+							 success: (e) => {
+								 wx.switchTab({
+									 url: '/pages/personal/order/order',
+									 success: () => {
+										 app.status.pay_order = 1
+									
+								
+											 wx.switchTab({
+												 url: '/pages/personal/order/order',
+												 success: function () {
+													 app.status.pay_order = 1
+														 app.showtost('支付成功')
+												 }
+											 })
+									
+									 }
+								 })
+							 }
+						 })
+					 }
           }
         })
       }
-    })
+      zhifu();
 
-}
-zhifu();
+
 
   },
 
-  buyherd:function(){
-    
+  buyherd: function() {
+
   },
 
   /*

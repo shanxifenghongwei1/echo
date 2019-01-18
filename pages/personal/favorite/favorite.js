@@ -7,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-   
     app: app,
     lovelist:[],
     page:0
@@ -40,7 +39,11 @@ Page({
     
    
   },
-
+	runingoods(e){
+		wx.redirectTo({
+			url: '/pages/shop/details/details?goods_id=' + e.currentTarget.dataset.goods_id
+		})
+	},
   /**
    * 生命周期函数--监听页面隐藏
    */

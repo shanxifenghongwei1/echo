@@ -9,9 +9,11 @@ Page({
     dengluzhuangtai: 3,
     userInfo: {},
   },
+
   makePhoneCall: function(e) {
     app.utils.makePhoneCall("87654321000" + e.currentTarget.dataset.phone);
   },
+	
 	
   /**
    * 生命周期函数--监听页面加载
@@ -32,7 +34,9 @@ Page({
       isLoading:false,
       success: (e) => {
         this.setData({
-          user_money: e.user_money
+          user_money: e.user_money,
+					business:e.is_merchant,
+					myshop_id:e.myshop_id
         })
       }
     })

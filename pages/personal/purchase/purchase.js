@@ -31,8 +31,8 @@ Page({
       success: (e) => {
         console.log(e)
         this.setData({
-          mymonet:e.money,
-          list:e.list
+					mymonet: e.pay_bill,
+          list:e.all_pay_bill
         })
         
       }

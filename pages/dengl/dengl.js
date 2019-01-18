@@ -54,7 +54,9 @@ Page({
                     wx.setStorageSync('user_id', we.user_id);
                     wx.setStorageSync('user_info', e.userInfo);
                     app.status.dengluzhuangtai = 8
-                    wx.navigateBack({})
+                    wx.navigateBack({
+											
+										})
                   }
                 })
               }

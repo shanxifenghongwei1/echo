@@ -12,6 +12,7 @@
 }
 
 
+
 .bottom-border {
   border-bottom: 1px solid #ddd;
 }
@@ -169,7 +170,7 @@
 }
 
 .business_operation {
-  height: 80rpx;
+  /* height: 80rpx; */
   line-height: 80rpx;
   padding: 
 }

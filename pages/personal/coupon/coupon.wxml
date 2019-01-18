@@ -9,7 +9,7 @@
   </view>
 </view> -->
 <view class='any'>
-	<view bindtap='run' class='bigmoster'>
+	<view bindtap='run' class='bigmoster' wx:if='{{card_id !== 0}}'>
 		<text class='global_middle_font iconfont icon-fanhui'></text>
 		<text class='global_middle_font bigmoster12'>返回个人中心</text>
 	</view>
@@ -17,7 +17,7 @@
     <view class='global_middle_font'></view>
   </view>
   <view wx:if='{{vi_list.length==0}}' class='global_small_font'>暂无活动</view>
-  <view wx:for='{{vi_list}}' wx:key='index' bindtap='shiyong' data-shop_name='{{item.shop_name}}' data-card_name='{{item.card_name}}' data-card_sn='{{item.card_sn}}' data-card_id='{{item.card_id}}' data-qr_code='{{item.qr_code}}' class='ticket flex_about'>
+  <view wx:for='{{vi_list}}' wx:key='index' bindtap='shiyong' data-shop_name='{{item.shop_name}}' data-card_name='{{item.card_name}}' data-card_sn='{{item.card_sn}}' data-sign='{{item.sign}}' data-card_id='{{item.card_id}}' data-qr_code='{{item.qr_code}}' class='ticket flex_about'>
     <view class=' global_color_red ticket_money flex_about fontbig '>{{item.type_name}}
     </view>
     <view class="ticket_info">
@@ -26,7 +26,7 @@
     </view>
     <view class="payment flex_about global_large_font">
       <view class='iconfont icon-hongbaojuchi-copy'></view>
-      <view class='flex_about payment1'>使用</view>
+      <view class='flex_about payment1'>{{item.number}}张</view>
     </view>
   </view>
 </view>

@@ -6,6 +6,16 @@ Page({
    * 页面的初始数据
    */
   data: {
+		money:'20%' ,
+		background:0
+  },
+  //点击选择银行卡
+
+  checked_bank(e) {
+    this.setData({
+      background: e.currentTarget.dataset.id,
+      bank_id: e.currentTarget.dataset.bank_id
+    })
 
   },
 
@@ -19,15 +29,69 @@ Page({
       shop_id: options.shop_id,
       ac_id: options.ac_id,
       zongyue: options.zongyue
-    })
+    });
+    this.mybanklist();
   },
+
   moneyinthis(e) {
-    this.setData({
-      usermoney: e.detail.value
+		if(Number(e.detail.value)>=1){
+			this.setData({
+				usermoney: e.detail.value,
+				money: Number(e.detail.value)*20/100+'元'
+			})
+		}else{
+			wx.showToast({
+				title: '最少输入1元哦',
+			})
+			this.setData({
+				usermoney: e.detail.value
+			})
+		}
+  },
+  //我的银行卡
+  mybanklist() {
+    app.request.post({
+      url: "cash/bankList",
+      success: (e) => {
+				console.log('拿到银行卡')
+        console.log(e)
+				if(this.data.payforid == 4){
+					if (e.length == 0) {
+						wx.switchTab({
+							url: "/pages/personal/person/person",
+							success: function () {
+								wx.showToast({
+									title: '请您先绑定银行卡',
+									icon: 'none',
+									duration: 3000,
+									mask: true,
+								})
+							}
+						})
+					} else {
+						this.setData({
+							bank_list: e
+						})
+					}
+				}
+
+      }
     })
   },
+
   // 买单币活动充值
   mdbhdcz() {
+		if (!this.data.usermoney){
+					wx.showToast({
+						title: '请输入金额',
+					})
+		} else  {
+    wx.showToast({
+      title: '正在提交',
+      icon: 'success',
+      duration: 2000,
+      mask: true
+    })
     app.request.post({
       url: "activity/joinnoblecard",
       data: {
@@ -43,14 +107,16 @@ Page({
           signType: e.signType,
           paySign: e.paySign,
           success: (res) => {
+            // console.log(res)
             app.request.post({
               url: "activity/valimdb",
               data: {
                 type: e.type,
                 desc_sn: e.desc_sn,
-                ac_id:this.data.ac_id
+                ac_id: this.data.ac_id
               },
               success: (e) => {
+                // console.log(e)
                 wx.navigateBack({
                   url: 'shop_id=' + this.data.shop_id,
                   success: () => {
@@ -63,13 +129,43 @@ Page({
                 })
               }
             })
+          },
+          fail: (sb) => {
+            app.request.post({
+              url: "activity/valimdb",
+              data: {
+                type: e.type,
+                desc_sn: e.desc_sn,
+                pay_state: 2,
+                ac_id: this.data.ac_id
+              },
+              success: (sbyh) => {
+                wx.showToast({
+									title: '充值失败',
+									icon:'none'
+								})
+              }
+            })
           }
         })
       }
     })
+		}
   },
   // 买单币充值
   mdbcz() {
+		if (!this.data.usermoney) {
+			wx.showToast({
+				title: '请输入金额',
+				icon: 'none'
+			})
+		}else{
+			wx.showToast({
+				title: '正在提交',
+				icon: 'success',
+				duration: 2000,
+				mask: true
+			})
     app.request.post({
       url: "activity/joinnoblecard",
       data: {
@@ -87,12 +183,12 @@ Page({
             app.request.post({
               url: "activity/valimdb",
               data: {
-                 type: e.type,
-                 desc_sn:e.desc_sn
-                 },
+                type: e.type,
+                desc_sn: e.desc_sn
+              },
               success: (e) => {
                 wx.navigateBack({
-                  url:'shop_id=' + this.data.shop_id,
+                  url: 'shop_id=' + this.data.shop_id,
                   success: () => {
                     wx.showToast({
                       title: '充值成功',
@@ -102,17 +198,44 @@ Page({
                   }
                 })
               }
-              })
-            
-
-           
+            })
+          },
+          fail: (sb) => {
+            app.request.post({
+              url: "activity/valimdb",
+              data: {
+                type: e.type,
+                desc_sn: e.desc_sn,
+                pay_state: 2,
+                ac_id: ''
+              },
+              success: (sbyh) => {
+								wx.showToast({
+									title: '充值失败',
+									icon: 'none'
+								})
+              }
+            })
           }
         })
       }
     })
+		}
   },
   // yecz
   xjcz() {
+		if (!this.data.usermoney) {
+			wx.showToast({
+				title: '请输入金额',
+				icon: 'none'
+			})
+		}else{
+			wx.showToast({
+				title: '正在提交',
+				icon: 'success',
+				duration: 2000,
+				mask: true
+			})
     app.request.post({
       url: "activity/re_money",
       data: {
@@ -126,7 +249,7 @@ Page({
           signType: e.signType,
           paySign: e.paySign,
           success: (res) => {
-            
+
             app.request.post({
               url: "activity/valire_money",
               data: {
@@ -145,16 +268,144 @@ Page({
                 })
               }
             })
-
-
+          },
+          fail: (sb) => {
+            app.request.post({
+							url: "activity/valire_money",
+              data: {
+                type: e.type,
+                desc_sn: e.desc_sn,
+                pay_state: 2
+              },
+              success: (sbyh) => {
+                wx.showToast({
+									title: '充值失败',
+									icon:'none'
+								})
+              }
+            })
           }
+
         })
       }
     })
+		}
   },
   // 余额提现
-  yetx() {
+  // yetx() {
+	// 	if (!this.data.usermoney) {
+	// 		wx.showToast({
+	// 			title: '请输入金额',
+	// 			icon: 'none'
+	// 		})
+	// 	}else{
+	// 		wx.showToast({
+	// 			title: '正在提交',
+	// 			icon: 'success',
+	// 			duration: 3000,
+	// 			mask: true
+	// 		})
+  //   app.request.post({
+  //     url: "activity/joinnoblecard",
+  //     data: {
+  //       business_id: this.data.shop_id,
+  //       money: this.data.usermoney
+  //     },
+  //     success: (e) => {
+  //       wx.requestPayment({
+  //         timeStamp: e.timeStamp,
+  //         nonceStr: e.nonceStr,
+  //         package: e.package,
+  //         signType: e.signType,
+  //         paySign: e.paySign,
+  //         success: (wer) => {
+  //           app.request.post({
+  //             url: "activity/valimdb",
+  //             data: {
+  //               type: e.type,
+  //               desc_sn: e.desc_sn
+  //             },
+  //             success: (e) => {
+  //               wx.navigateBack({
+  //                 url: 'shop_id=' + this.data.shop_id,
+  //                 success: () => {
+  //                   wx.showToast({
+  //                     title: '充值成功',
+  //                     duration: 3000,
+  //                     icon: 'success'
+  //                   })
+  //                 }
+  //               })
+  //             }
+  //           })
+  //         },
+  //         fail: (sb) => {
+  //           app.request.post({
+  //             url: "activity/valimdb",
+  //             data: {
+  //               type: e.type,
+  //               desc_sn: e.desc_sn,
+  //               pay_state: 2,
+  //               ac_id: ''
+  //             },
+  //             success: (sbyh) => {
+	// 							wx.showToast({
+	// 								title: '充值失败',
+	// 								icon: 'none'
+	// 							})
+  //             }
+  //           })
+  //         }
+  //       })
+  //     }
+  //   })
+	// 	}
+  // },
+  // yetx
+  xjtx() {
+		if (!this.data.usermoney) {
+			wx.showToast({
+				title: '请输入金额',
+				icon:'none'
+			})
+		}else{
+			wx.showToast({
+				title: '正在提交',
+				icon: 'none',
+				duration: 2000,
+				mask: true
+			})
+    app.request.post({
+      url: "cash/cash",
+      data: {
+        cash_money: this.data.usermoney,
+        bank_id: this.data.bank_id
+      },
+      success: (e) => {
+          console.log(e)
+					if(e.msg==1){
+						wx.switchTab({
+							url: '/pages/personal/person/person',
+							success: function () {
+								wx.showToast({
+									title: '申请成功',
+									duration:2000
+								})
+							}
+						})	
+					}else{
+						wx.showToast({
+							title: '失败了，请您检查网络后再试',
+							duration: 2000
+						})
+					}
+						
+      },
+      fail: (sb) => {
 
+      }
+    })
+		}
   },
 
   /**

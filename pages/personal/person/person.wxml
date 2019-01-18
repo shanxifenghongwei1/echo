@@ -65,26 +65,26 @@
       <navigator url="/pages/personal/activ/activ" class='whit'>
         <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1  iconfont icon-huodong'></view>
         <view class='whit2 global_middle_font'>我的活动</view>
-        <view class='whit3 global_small_font'>共0个</view>
+        <!-- <view class='whit3 global_small_font'>共0个</view> -->
       </navigator>
       <!-- 奖励列表 -->
       <navigator url='/pages/personal/coupon/coupon' class='whit'>
         <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-qiaquan'></view>
         <view class='whit2 global_middle_font'>我的券包</view>
-        <view class='whit3 global_small_font'>共0个</view>
+        <!-- <view class='whit3 global_small_font'>共0个</view> -->
       </navigator>
 
       <!-- 我的积分 -->
       <navigator url='/pages/personal/integral/integral' class='whit'>
         <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-integral'></view>
         <view class='whit2 global_middle_font'>我的积分</view>
-        <view class='whit3 global_small_font'>0.00</view>
+        <!-- <view class='whit3 global_small_font'>0.00</view> -->
       </navigator>
       <!-- 我的买单币 -->
       <navigator url='/pages/personal/purchase/purchase' class='whit'>
         <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-qianbi'></view>
         <view class='whit2 global_middle_font'>我的买单币</view>
-        <view class='whit3 global_small_font'>0.00</view>
+        <!-- <view class='whit3 global_small_font'>0.00</view> -->
       </navigator>
     </view>
 
@@ -130,7 +130,7 @@
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
   </view> -->
   <!-- 商户中心 -->
-  <navigator url='/pages/personal/business/business' class='site'>
+  <navigator wx:if='{{business==1}}' url='/pages/personal/business/business?myshop_id={{myshop_id}}' class='site'>
     <view class='site1 iconfont icon-tubiao201' style='font-size:30rpx;'></view>
     <view class='site2 global_middle_font'>商户中心</view>
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>

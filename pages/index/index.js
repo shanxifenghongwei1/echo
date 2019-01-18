@@ -35,7 +35,7 @@ Page({
     app.setNavigationBarTitle("商家首页");
 
     const scene = decodeURIComponent(options.scene)
-    console.log(scene)
+    
     if (scene == 'undefined'){
       console.log('啥也没穿')
     } else if (scene.length > 1){
@@ -81,7 +81,7 @@ Page({
 
   },
   onPageScroll: function(e) {
-    console.log(e)
+   
 
     if (e.detail.scrollTop > 100) {
       this.setData({
@@ -127,23 +127,7 @@ Page({
     })
   },
   /*店铺id */
-  addOrder(e) {
-
-    app.request.post({
-      url: "order/index",
-      isLoading: true,
-      data: {
-        virtual_id: e.currentTarget.dataset.id,
-        shop_id: app.globalData.shopId,
-        order_type: app.status.orderType.shop
-      },
-      success: (e) => {
-        wx.redirectTo({
-          url: '/pages/scattered/pay/pay?orderType=' + app.status.orderType.shop + '&order_id=' + e.order_id + "&orderObj=" + this.data.shopObj
-        });
-      }
-    })
-  },
+ 
   scrolltolower() {
     this.comment.getComment({ 
       shop_id: app.globalData.shopId
@@ -161,6 +145,17 @@ Page({
       swiperHeight: app.utils.imageCalculate(e)
     })
   },
+	addmoney(e) {
+		wx.navigateTo({
+			url: '/pages/personal/person/recharges/recharge?payforid=3&shop_id=' + app.globalData.shopId
+		})
+	},
+	addOrder(e) {
+		console.log(e)
+		wx.navigateTo({
+			url: '/pages/scattered/pay/pay?shop_id=' + app.globalData.shopId + '&card_id=' + e.currentTarget.dataset.card_id + '&order_type=1' + '&shop_image=' + e.currentTarget.dataset.shop_image + '&shop_name=' + e.currentTarget.dataset.shop_name,
+		})
+	},
   jumpTo: function(e) {
     // 获取标签元素上自定义的 data-opt 属性的值
     this.setData({

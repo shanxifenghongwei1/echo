@@ -79,7 +79,7 @@ height: 80%;
     padding-bottom:2.5%;
 }
 .di_item{
-  width: 47.2%;
+  width: 46.2%;
       margin-top:2.5%;
       background: #fff;
       padding: 1%;

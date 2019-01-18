@@ -41,11 +41,17 @@ Component({
         data: data,
         success: (e) => {
           if (this.page == 1) {
+            let that = this
             this.prompt.funPrompt({
               "type": "dataLoading"
             });
+            setTimeout(function(){
+              that.prompt.funPrompt({
+                "type": "dataFinish"
+              });
+            },2000)
           }
-          if (e.length == 0) {
+          if (e.comment.length == 0) {
             let type = "";
             if (this.page > 1) {
               type = "dataFinish";
@@ -59,9 +65,9 @@ Component({
           }
           let list = this.data.commentArrar;
           if (list.length > 0) {
-            list = list.concat(e);
+            list = list.concat(e.comment);
           } else {
-            list = e;
+            list = e.comment;
           }
           this.setData({
             commentArrar: list
@@ -81,7 +87,22 @@ Component({
         position_commit:2
       });
     },
- 
+		wherecommit(e) {
+		
+			this.setData({
+				whereid: e.currentTarget.dataset.id
+			})
+		},
+		showCommentImage(e) {
+			setTimeout(() => {
+	
+				let dataarray = this.data.commentArrar[this.data.whereid].msg_img
+				wx.previewImage({
+					urls: dataarray,
+					current: dataarray[e.currentTarget.dataset.id]
+				})
+			}, 500)
+		},
     hideCommentImage(){
       this.setData({
         position_commit:1

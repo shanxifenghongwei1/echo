@@ -65,13 +65,3 @@
   /* border: 1rpx solid black; */
 }
 
-.addmycard{
-  margin-top:30rpx;
-  width: 93%;
-  margin-left: 3%;
-  height: 90rpx;
-  text-align: center;
-  line-height: 90rpx;
-  background: #666;
-  border-radius: 15rpx; 
-}

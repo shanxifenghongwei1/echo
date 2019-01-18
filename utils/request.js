@@ -2,7 +2,7 @@ const app = getApp();
 let host = {
   image: "https://www.sdhcnet.com/", //图片域名
   resources: "https://www.sdhcnet.com/applets/", //静态资源域名
-  request: "https://www.sdhcnet.com/api/", //请求域名
+  request: "https://www.nazhua.com.cn/api/", //请求域名
 }
 /**
  * 封装ajax的post请求
@@ -44,15 +44,24 @@ let requestPost = ajaxJson=> {
           });
         }
       } else if (result.code == 2) { //整体出错
+				if (typeof ajaxJson.success === "function") {
+					ajaxJson.success(result.data.data);
+				}else{
           wx.showToast({
             "title": result.data.msg,
             "icon":"none",
           });
+				}
       }else { //未知错误
-          // wx.showToast({
-          //   "title": "发生错误，请稍候再试",
-          //   "icon": "none",
-          // });
+				
+				if (typeof ajaxJson.success === "function") {
+					ajaxJson.success(result.data.data);
+				}else{
+          wx.showToast({
+            "title": "发生错误，请稍候再试",
+            "icon": "none",
+          });
+				}
       }
     },
     complete: function(res) {

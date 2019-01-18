@@ -1,0 +1,57 @@
+
+.any{
+	width: 100%;
+	background: #eee;
+}
+
+.oneaccount{
+	display: flex;
+	height: 100rpx;
+	padding: 3%;
+	width: 94%;
+	background: #fff;
+	border-bottom: 1rpx solid #eee;
+}
+
+.site1{
+width: 20%;
+height: 100%;
+	/* border: 1rpx solid black; */
+}
+
+.site1-image{
+	width: 80%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+.site2{
+width: 65%;
+padding-left: 5%;
+height: 100%;
+line-height: 100rpx;
+/* border: 1rpx solid black; */
+}
+
+.site3{
+width: 10%;
+height: 100%;
+/* border: 1rpx solid black; */
+position: relative;
+}
+
+.yessure{
+	width: 30rpx;
+	height: 30rpx;
+	border-radius: 15rpx;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top:0;
+	bottom: 0;
+	margin: auto;
+	/* background-color: black; */
+}
+.active{
+	background: #d4237a;
+}

@@ -1,11 +1,8 @@
-
-
-
 <scroll-view style='height:{{scrollHeight}}rpx;' scroll-top="0" bindscrolltolower="scrolltolower" scroll-with-animation scroll-y class='page_module global_bg_color'>
   <view class='global_single_ellipsis global_middle_font flex_about header_Area' bindtap='roaming'>
-      {{areaText}}
-      <view class='iconfont icon-jiantouxia' style='color:#fff;'></view>
-    </view>
+    {{areaText}}
+    <view class='iconfont icon-jiantouxia' style='color:#fff;'></view>
+  </view>
   <view class='global_single_ellipsis global_bg_color_red flex_about header_module '>
     <view class='search_module flex_about'>
       <input placeholder='输入商品名，类别' bindfocus='jump'>
@@ -16,7 +13,7 @@
   <swiper indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="height:{{swiperHeight}}rpx;">
     <block wx:for="{{imgUrls}}" wx:key="imgUrlsKey">
       <swiper-item>
-        <image src="/images/test/{{item}}" class="slide-image" mode='widthFix' bindload="imageLoad" />
+        <image src="{{item.ad_img}}" class="slide-image" mode='widthFix' data-img='{{item.ad_url}}' bindload="imageLoad" />
       </swiper-item>
     </block>
   </swiper>
@@ -49,49 +46,23 @@
     <view class=' iconfont icon-arrow-right-copy guide global_color_red'>
     </view>
   </view>
-<!-- 附近商家模块 主首页 -->
-  <!-- <view class='shop-list' wx:if='{{yeson==0}}'>
-    <view wx:for="{{dataList}}" wx:key="dataListKey" class='store_module flex_about'>
-      <view  bindtap='clickTabBar'  data-id="{{item.id}}" data-di='{{item.juli}}' class='store_info flex_about'>
-        <view class='info_img_icon'>
-          <image src='{{app.host.resources}}/grounding.png' mode='widthFix'></image>
-          <text class='global_small_font flex_about'>{{item.cat_name}}</text>
-        </view>
-        <view class='info_img'>
-          <image src='{{item.shop_logo}}' mode='widthFix'></image>
-        </view>
-        <view class='info_content'>
-          <view class="info_title global_middle_font global_multiLine">{{item.shop_name}}</view>
-          <view class='ic_info'>
-            <text class="global_middle_font global_color_red"><text class='iconfont icon-huaduo'></text>热度:{{item.hot}}</text>
-            <text class="global_middle_font">距离:{{item.juli}}</text>
-          </view>
-          <view class='ic_info'>
-            <text class="global_middle_font">总订单数:{{item.order_form}}</text>
-          </view>
-        </view>
-      </view>
-      <view class='iconfont icon-dianhua store_phone'  bindtap='makePhoneCall' data-phone="{{item.iphone}}">
-      </view>
-    </view>
-    <view class='prompt'>
-      <prompt id="prompt"></prompt>
-    </view>
-  </view> -->
-
-<!-- 附近商家模块 副首页 -->
-   <view class='shop-list'>
+  <!-- 附近商家模块 副首页 -->
+  <view class='shop-list'>
     <view wx:for="{{dataList}}" wx:key="dataListKey" class='store_module flex_about'>
       <navigator url='/pages/index/oddments/oddments?shop_id={{item.id}}&juli={{item.juli}}' data-id="{{item.id}}" class='store_info flex_about'>
         <view class='info_img_icon'>
           <image src='{{app.host.resources}}/grounding.png' mode='widthFix'></image>
-          <text class='global_small_font flex_about'>{{item.cat_name}}</text>
+          <text class='global_small_font flex_about'>促销</text>
         </view>
         <view class='info_img'>
           <image src='{{item.shop_logo}}' mode='widthFix'></image>
         </view>
         <view class='info_content'>
-          <view class="info_title global_middle_font global_multiLine">{{item.shop_name}}</view>
+          <view class="info_title global_middle_font global_multiLine">
+
+            <view style='font-weight:bold' class='global_middle_font'>{{item.shop_name}}</view>
+            <view class='global_middle_font'>{{item.cat_name}}</view>
+          </view>
           <view class='ic_info'>
             <text class="global_middle_font global_color_red"><text class='iconfont icon-huaduo'></text>热度:{{item.hot}}</text>
             <text class="global_middle_font">距离:{{item.juli}}</text>
@@ -101,7 +72,7 @@
           </view>
         </view>
       </navigator>
-      <view class='iconfont icon-dianhua store_phone'  bindtap='makePhoneCall' data-phone="{{item.iphone}}">
+      <view class='iconfont icon-dianhua store_phone' bindtap='makePhoneCall' data-phone="{{item.iphone}}">
       </view>
     </view>
     <view class='prompt'>

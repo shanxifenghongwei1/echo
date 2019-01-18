@@ -3,9 +3,9 @@
   <!-- 用户信息 -->
   <view class='user'>
     <view class='user-head'>
-      <image src='{{app.globalData.userInfo.avatarUrl}}' mode='widthFix'></image>
+      <image src='{{userInfo.avatarUrl}}' mode='widthFix'></image>
     </view>
-    <view class='user-name global_middle_font'>{{app.globalData.userInfo.nickName}}</view>
+    <view class='user-name global_middle_font'>{{userInfo.nickName}}</view>
     <!-- 选择加盟意愿 -->
     <br/>
     <view class='user-choose global_middle_font'>选择合作意愿</view>

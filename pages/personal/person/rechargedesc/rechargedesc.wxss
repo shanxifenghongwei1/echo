@@ -1,0 +1,29 @@
+
+
+
+re_but{
+  width: 100%;
+	
+}
+
+.onegoodslistondetal{
+	top:0;
+	bottom:0;
+	right: 0;
+	left: 0;
+	margin: 0 auto;
+	width: 80%;
+	padding: 4%;
+	height: 30rpx;
+	line-height: 40rpx;
+	background: #fff;
+	/* margin-top: 5rpx; */
+	/* margin-bottom: 10rpx; */
+}
+
+.any{
+	width: 92%;
+	padding: 4%;
+	height: 100vh;
+	background: #eee;
+}

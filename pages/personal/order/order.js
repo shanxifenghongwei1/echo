@@ -96,7 +96,17 @@ Page({
   onReady: function() {
 
   },
-
+	runjump(e){
+		console.log(e)
+		wx.navigateTo({
+			url: '/pages/shop/details/details?goods_id=' + e.currentTarget.dataset.goods_id,
+		})	
+	},
+	runshop(e){
+		wx.navigateTo({
+			url: '/pages/index/oddments/oddments?shop_id='+e.currentTarget.dataset.shop_id,
+		})
+	},
   /**
    * 生命周期函数--监听页面显示
    */

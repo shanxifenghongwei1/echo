@@ -37,12 +37,12 @@
 }
 
 .comment_min_image {
-  margin-top: 2%;
+  /* margin-top: 2%; */
 }
 
 .comment_min_image image {
-  width: 23.5%;
-  margin-right: 1.75%;
+  /* width: 23.5%; */
+  /* margin-right: 1.75%; */
   justify-content: flex-start;
 }
 

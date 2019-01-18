@@ -11,6 +11,6 @@
 </view>
 
 <view class='bill' wx:for='{{list}}'>
-  <view class='global_middle_font'>商家：{{item.shop_name}}</view>
-  <view class='global_middle_font'>余额：{{item.card_money}}</view>
+  <view class='global_middle_font'>{{item.shop_name}}</view>
+  <view class='global_middle_font'>{{item.card_money}}</view>
 </view>

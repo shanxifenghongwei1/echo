@@ -1,4 +1,4 @@
-<view class='flex_about commit' wx:for="{{commentArrar}}"  wx:key="ca_key">
+<view class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit'  wx:key="ca_key">
   <!-- 评论的用户头像图片 -->
   <view class='commit_avatar'>
     <image src='{{item.Head_portrait}}' mode='widthFix'></image>
@@ -15,13 +15,13 @@
         </view>
       </view>
       <!-- 评论内容 -->
-      <view class='global_small_font'>
+      <view style='font-size:25rpx;color:#333;margin-bottom:15rpx;' class='global_small_font'>
         {{item.msg_desc}}
       </view>
     </view>
     <!-- 评论图片 -->
-    <view class='comment_min_image' data-array="{{item.msg_img}}" bindtap='showCommentImage'>
-      <image wx:for="{{item.msg_img}}" wx:key="cmi_Key" src="{{item}}" mode='widthFix'></image>
+    <view style='heigth:170rpx;' class='comment_min_image' data-array="{{item.msg_img}}" bindtap='showCommentImage'>
+      <image wx:for="{{item.msg_img}}" bindtap='showCommentImage' data-id='{{index}}' style='width:30%;height:150rpx;' wx:key="cmi_Key" src="{{item}}" ></image>
     </view>
   </view>
 </view>

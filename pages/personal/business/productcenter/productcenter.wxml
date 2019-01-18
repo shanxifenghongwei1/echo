@@ -1,0 +1,25 @@
+<view class='any'>
+  <navigator url="#" class='site'>
+    <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
+    <view class='site2 name-site-onlode global_middle_font'>产品添加</view>
+    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+  </navigator>
+  <navigator url="#" class='site'>
+    <view class='site1 iconfont icon-chanpin'></view>
+    <view class='site2 name-site-onlode global_middle_font'>产品查看</view>
+    <view class='site3 iconfont icon-jiantouxia'></view>
+  </navigator>
+
+  <view class='one-shop-list'>
+    <view class='one-shop-list-left'>
+			<image class='one-shop-list-left-image' src='/images/test/pics666.jpg'></image>
+		</view>
+    <view class='one-shop-list-right'>
+			<view>商品名字</view>
+			<view>商品简介</view>
+		</view>
+  </view>
+
+
+
+</view>

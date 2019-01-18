@@ -31,6 +31,12 @@ Page({
       shop_personal: 3, //l类型
     }
   },
+	onLoad(){
+		let opt = wx.getStorageSync('user_info')
+		this.setData({
+			userInfo:opt
+		})
+	},
   addactive: function(even) {
     let shop_personal = even.target.dataset.id;
     if (even.target.dataset.id == 3) {

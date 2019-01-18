@@ -8,7 +8,24 @@ Page({
   data: {
 
   },
-
+	movemove(e){
+		console.log(e)
+		app.request.post({
+			url: "moneycard/outcard",
+			data:{
+				moneycard_id:e.currentTarget.dataset.id
+			},
+			success: (e) => {
+				wx.showToast({
+					title: '取消绑定成功',
+					icon:'success',
+					duration:1500,
+					mask:true
+				})			
+				this.init();
+			}
+		})
+	},
   /**
    * 生命周期函数--监听页面加载
    */

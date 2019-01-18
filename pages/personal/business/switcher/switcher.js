@@ -1,4 +1,5 @@
-// pages/personal/coupon/mycoupon/mycoupon.js
+// pages/personal/business/switcher/switcher.js
+const app = getApp();
 Page({
 
 	/**
@@ -7,42 +8,56 @@ Page({
 	data: {
 
 	},
-	run() {
-		wx.switchTab({
-			url: '/pages/personal/person/person',
-		})
-	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-			this.setData({
-				card_sn: options.card_sn,
-				qr_code: options.qr_code,
-				shop_name: options.shop_name,
-				titlie: options.titlie,
-				card_id:options.card_id,
-				sign: options.sign
-			})
+		console.log(options)
+		app.setNavigationBarTitle("账号切换");
+		this.setData({
+			cid: options.myshop_id
+		})
+		this.init();
 	},
-// 
-//  
+	switchon(e){
+		
+		this.setData({
+			cid: e.currentTarget.dataset.id
+		})
 
+		wx.redirectTo({
+			url: '/pages/personal/business/business?myshop_id=' + e.currentTarget.dataset.id
+		})
+
+
+	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
 	onReady: function () {
-
+	
 	},
+	init(){
+		app.request.post({
+			url: "shopcenter/getbusiness",
+			isLoading: true,
+			data: {
 
+			},
+			success: (e) => {
+				console.log(e)
+				this.setData({
+					shop_list:e,
+				})
+			}
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-		var huser_id = wx.getStorageSync('user_id')
-		this.setData({
-			huser_id: huser_id
-		})
+
 	},
 
 	/**
@@ -77,10 +92,6 @@ Page({
 	 * 用户点击右上角分享
 	 */
 	onShareAppMessage: function () {
-		return {
-			title:'您的朋友送给你' + this.data.titlie,
-			path: '/pages/personal/coupon/coupon?card_id=' + this.data.card_id + '&huser_id=' + this.data.huser_id + '&sign=' + this.data.sign,
-			imageUrl: this.data.qr_code,
-		}
+
 	}
 })

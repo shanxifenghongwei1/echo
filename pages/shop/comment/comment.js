@@ -38,7 +38,7 @@ Page({
         console.log(e)
         this.setData({
           shop_name: e.shop.shop_name,
-          goods:e.goods,
+          goods: e.goods,
           order_mode: e.order_mode
         })
       }
@@ -108,49 +108,150 @@ Page({
     var that = this
     var user_img = this.data.imageArray
     console.log(this.data.imageArray)
-    var ass = [];
-    
-    for (var i = 0; i < this.data.imageArray.length; i++) {
-      wx.showToast({
-        title: '正在上传第'+i+'张图片',
-        icon: 'success',
-        mask: 'true'
-      })
-      wx.uploadFile({
-        url: 'https://www.sdhcnet.com/api/comment/upload',
-        filePath: this.data.imageArray[i][0],
-        name: 'file',
-        success: function(res) {
-          ass.concat(res.data)+','
+
+    var ass = '';
+    var i = 0
+    // for (var i = 0; i < this.data.imageArray.length; i++) {
+    wx.showToast({
+      title: '正在上传第' + i + '张图片',
+      icon: 'success',
+      mask: 'true'
+    })
+    wx.uploadFile({
+      url: 'https://www.sdhcnet.com/api/comment/upload',
+      filePath: this.data.imageArray[i][0],
+      name: 'file',
+      success: (res) => {
+        i++
+        ass += res.data + ','
+        if (i < this.data.imageArray.length) {
+         
+          wx.uploadFile({
+            url: 'https://www.sdhcnet.com/api/comment/upload',
+            filePath: this.data.imageArray[i][0],
+            name: 'file',
+            success: (res) => {
+              i++
+              ass += res.data + ','
+              if (i < this.data.imageArray.length) {
+               
+								console.log('图片' + i + '上传完成')
+                wx.uploadFile({
+                  url: 'https://www.sdhcnet.com/api/comment/upload',
+                  filePath: this.data.imageArray[i][0],
+                  name: 'file',
+                  success: (res) => {
+                    i++
+                    ass += res.data + ','
+                    if (i <= this.data.imageArray.length) {
+                    
+											console.log('图片' + i + '上传完成')
+                      app.request.post({
+                        url: "comment/index",
+                        isLoading: true,
+                        data: {
+                          order_id: that.data.order_id,
+                          content: that.data.commentText,
+                          user_img: ass
+                        },
+                        success: (e) => {
+                          wx.showToast({
+                            title: '评论成功',
+                            icon: 'success',
+                            mask: 'true'
+                          })
+                          wx.switchTab({
+                            url: '/pages/personal/order/order',
+                          })
+                        }
+                      })
+
+                    } else {
+											console.log('图片' + i + '上传完成')
+                      app.request.post({
+                        url: "comment/index",
+                        isLoading: true,
+                        data: {
+                          order_id: that.data.order_id,
+                          content: that.data.commentText,
+                          user_img: ass
+                        },
+                        success: (e) => {
+                          wx.showToast({
+                            title: '评论成功',
+                            icon: 'success',
+                            mask: 'true'
+                          })
+                          wx.switchTab({
+                            url: '/pages/personal/order/order',
+                          })
+                        }
+                      })
+
+                    }
+                  }
+                })
+
+              } else {
+                console.log('图片' + i + '上传完成')
+                app.request.post({
+                  url: "comment/index",
+                  isLoading: true,
+                  data: {
+                    order_id: that.data.order_id,
+                    content: that.data.commentText,
+                    user_img: ass
+                  },
+                  success: (e) => {
+                    wx.showToast({
+                      title: '评论成功',
+                      icon: 'success',
+                      mask: 'true'
+                    })
+                    wx.switchTab({
+                      url: '/pages/personal/order/order',
+                    })
+                  }
+                })
+
+              }
+            }
+          })
+
+        } else {
+          console.log('图片' + i + '上传完成')
+          app.request.post({
+            url: "comment/index",
+            isLoading: true,
+            data: {
+              order_id: that.data.order_id,
+              content: that.data.commentText,
+              user_img: ass
+            },
+            success: (e) => {
+              wx.showToast({
+                title: '评论成功',
+                icon: 'success',
+                mask: 'true'
+              })
+              wx.switchTab({
+                url: '/pages/personal/order/order',
+              })
+            }
+          })
+
         }
-      })
-    }
+      }
+    })
+    // }
     wx.showToast({
       title: '正在上传内容',
       icon: 'success',
       mask: 'true'
     })
-    setTimeout(function() {
-      app.request.post({
-        url: "comment/index",
-        isLoading: true,
-        data: {
-          order_id: that.data.order_id,
-          content: that.data.commentText,
-          user_img: ass
-        },
-        success: (e) => {
-          wx.showToast({
-            title: '评论成功',
-            icon: 'success',
-            mask: 'true'
-          })
-          wx.switchTab({
-            url: '/pages/personal/order/order',
-          })
-        }
-      })
-    }, 3000)
+   
+
+ 
 
 
   }

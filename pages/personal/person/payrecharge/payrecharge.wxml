@@ -1,19 +1,16 @@
 <!-- 充值详情列表 -->
 
 <view class='any'>
-
   <view class='order order-pay'>
     <view wx:for="{{order}}" wx:key='orderKey' class='order-son {{cid==item.type_id?"active":""}}' data-id='{{item.type_id}}' bindtap='addorderid'>{{item.text}}</view>
   </view>
-
-
 <!-- 一个充值详情 -->
-  <view class='one-sloat-list' wx:for="{{money_list}}" wx:key='index'>
+  <navigator class='one-sloat-list'  url="/pages/personal/person/rechargedesc/rechargedesc?type={{item.order_type_li}}&desc_sn={{item.desc_sn}}" wx:for="{{money_list}}" wx:key='index'>
     <view class='one-sloat-list-left'>
       <view class='global_large_font one-sloat-list-left-top one-sloat-list-left-font'>{{item.type}}×{{item.limit}}</view>
       <view class='global_small_font one-sloat-list-left-top'>{{item.shop_name}}</view>
       <view class='global_middle_font'> {{item.d_time}}</view>
     </view>
     <view class='one-sloat-list-right global_large_font one-sloat-list-left-font'>¥ {{item.pay_money}}</view>
-  </view>
+  </navigator>
 </view>

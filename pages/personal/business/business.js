@@ -1,4 +1,5 @@
 // pages/personal/business/business.js
+const app = getApp();
 Page({
 
   /**
@@ -9,23 +10,81 @@ Page({
     autoplay:true,
     interval:2000,
     vertical:true,
-    srcs: ['热情的赛利亚开始发放优惠券啦',
-      '滚动提示其它店铺优惠券消息',
-      '张三包子铺：甩卖啦！']
+    srcs: []
   },
 
+  qrcode:function(){
+  wx.scanCode({
+    scanType:"qrCode",
+    fail(){
+      wx.showToast({
+        title: '未识别到二维码',
+        icon:"none",
+        duration:3000
+      })
+    },
+    success(res){
+      wx.showToast({
+        title: '识别成功',
+        duration: 3000
+      })
+			app.request.post({
+				url: "virtual/useVirtual",
+				isLoading: true,
+				data: {
+					card_sn: res.result 
+				},
+				success: (e) => {
+
+				}
+			})			
+    }
+  })
+  },
+
+	init(myshop_id){
+		app.request.post({
+			url: "shopcenter/shopcentermsg",
+			isLoading: true,
+			data: { myshop_id: this.data.myshop_id},
+			success: (e) => {
+				console.log(e)
+				this.setData({
+					daymoney: e.daymoney,
+					dayorder: e.dayorder
+				})
+			}
+		})
+// 广告
+		app.request.post({
+			url: "shopcenter/getad",
+			isLoading: true,
+			success: (res) => {
+				this.setData({
+					srcs:res
+				})
+			}
+		})
+	},
+	switcher(){
+		wx.navigateTo({
+			url: '/pages/personal/business/switcher/switcher?myshop_id='+this.data.myshop_id,
+		})
+	},
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+		app.setNavigationBarTitle("商户中心");
+		let myshop_id = options.myshop_id
+		this.init(myshop_id);
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+	
   },
 
   /**

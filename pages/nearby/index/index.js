@@ -17,7 +17,7 @@ Page({
     dataList: [],
     scrollHeight: 0,
     yeson: 0,
-    page: 0
+    page: 1
   },
   
   roaming() {
@@ -48,10 +48,38 @@ Page({
       },
       success: (e) => {
         this.ruset();
-        this.scrolltolower()
+     
       }
     })
   },
+	addbanner(){
+		app.request.post({
+			url: "ad/index",
+			data:{
+				position_id:2
+			},
+			success: (e) => {
+			
+				this.setData({
+					imgUrls:e
+				})
+			}
+		})
+	},
+	addbanners() {
+		app.request.post({
+			url: "ad/index",
+			data: {
+				position_id: 1
+			},
+			success: (e) => {
+				console.log(e)
+				this.setData({
+					smallbanner: e
+				})
+			}
+		})
+	},
   // 搜索栏
   jump() {
 
@@ -100,11 +128,13 @@ Page({
         //  第一页的数据
         this.ruset();
         //  分页的数据
-        this.scrolltolower();
+    
       }
     });
   },
   onShow: function() {
+		this.addbanner();
+		this.addbanners();
     app.dengluzt()
   },
   // 传给后台位置
@@ -135,9 +165,11 @@ Page({
         keywords: this.data.navActive
       },
       success: (e) => {
+
         this.setData({
           dataList: e.sort_shop
         })
+
       }
     })
   },
@@ -149,7 +181,7 @@ Page({
       navActive: e.target.dataset.index
     })
     this.ruset();
-    this.scrolltolower();
+    
   },
   imageLoad(e) { //获取图片真实宽度  
     this.setData({
@@ -158,19 +190,16 @@ Page({
   },
   // 商品分页
   scrolltolower() {
-    // if (this.prompt.getJudgePromptType()) {
-    //   return;
-    // }
     app.request.post({
       url: "user/nobleaddress",
       data: {
-        page: ++this.page,
+        page: ++this.data.page,
         lat: this.jingwei.latitude,
         lng: this.jingwei.longitude,
         keywords: this.data.navActive
       },
       success: (e) => {
-        if (this.page == 1) {
+        if (this.data.page == 1) {
           this.prompt.funPrompt({
             "type": "dataLoading"
           });
@@ -188,12 +217,12 @@ Page({
           return;
         }
 
-        let list = this.data.dataList;
+        let list = e.sort_shop
 
         if (list.length > 0) {
-          list = list.concat(e);
+          list = list.concat(this.data.dataList);
         } else {
-          list = e;
+					list = e.sort_shop;
         }
         this.setData({
           dataList: list
@@ -203,16 +232,10 @@ Page({
   },
   clickTabBar(e) {
     let juli = e.currentTarget.dataset.di
-
     if (this.data.yeson == 0) {
       if (app.globalData.shopType == app.status.shopType.shop_status_Type) {
         app.globalData.shopId = e.currentTarget.dataset.id;
-        // this.setData({
-        //   yeson: 20
-        // })
-
       }
-
       wx.switchTab({
         url: '/pages/index/index',
         success: () => {
@@ -222,5 +245,8 @@ Page({
     } else if (this.data.yeson == 20) {
       console.log('已经有了')
     }
-  }
+  },
+	onReachBottom:function(){
+		this.scrolltolower();
+	}
 })

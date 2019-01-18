@@ -14,11 +14,11 @@ Page({
     scrollHeight: 0, //页面可用高度
     topNav: "goodsComment" //锚点Id
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+		console.log('商品ID是多少？' + options.goods_id)
     app.setNavigationBarTitle("产品详情");
     this.options = options;
     this.init(options);
@@ -57,14 +57,21 @@ Page({
             ticketArray.push(p);
           }
         });
+				
+				let a = e.goods_desc
+				let opt = '<div>'
+				let iop = '</div>'
+				var ccc = {text: opt + a + iop }
+
         this.setData({
-          
           goodsObj: e,
           buy: e.goods_type[0],
           ticketArray: ticketArray,
           ticket: ticketArray[0],
-          typeCollection: e.collection_type
+          typeCollection: e.collection_type,
+					usertext: ccc
         })
+			
       }
     })
     app.utils.computeScrollViewHeight((e) => {
@@ -88,9 +95,10 @@ Page({
         order_type: app.status.orderType.goods
       },
       success: (e) => {
-        wx:wx.setStorageSync('ourdermessage', e)
+        console.log(e)
+       
         wx.redirectTo({
-          url: '/pages/scattered/pay/pay?orderType=' + app.status.orderType.goods + '&order_id=' + e.order_id + "&orderObj=" + this.data.goodsObj
+          url: '/pages/scattered/pay/pay?order_type=2&order_id=' + e.order_id + "&shop_image=" + e.shop.shop_thumb + '&shop_name=' + e.shop.shop_name+'&goods_image='+e.goods.goods_thumb+'&goods_name='+e.goods.goods_name+'&goods_price='+e.goods.goods_price+'&goods_number='+e.goods.goods_number+'&goods_keywords='+e.goods.keywords+'&order_money='+e.goods.order_money
         });
       }
     })

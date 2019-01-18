@@ -1,60 +1,62 @@
 <view class='page_module global_middle_font global_bg_color'>
   <view class='padding-all   pay-info'>
 
-  <!-- 订单类型 -->
+    <!-- 订单类型 -->
     <view class='flex_about  line-border-bottom shop-goods'>
       <view>
         订单类型
       </view>
       <view></view>
-      <view wx:if='{{abc.order_type==2}}'>商品订单</view>
-      <view wx:if='{{abc.order_type==1}}'>店铺订单</view>
+      <view wx:if='{{order_type==2}}'>商品订单</view>
+      <view wx:if='{{order_type==1}}'>店铺订单</view>
     </view>
     <!-- 店铺订单 -->
     <view class='flex_about shop-detail  line-border-bottom'>
       <view class="slide-image">
-        <image src='{{abc.shop.shop_thumb}}' mode='widthFix'></image>
+        <image src='{{shop_image}}' mode='widthFix'></image>
       </view>
-      <view class=' global_single_ellipsis'>{{abc.shop.shop_name}}</view>
+      <view class=' global_single_ellipsis'>{{shop_name}}</view>
     </view>
-
+   
     <!-- 支付金额输入框 -->
-    <view wx:if='{{abc.order_type==1}}' class='flex_about money'>
+    <view wx:if='{{order_type==1}}' class='flex_about money'>
       <text>支付金额</text>
-      <input type="number" focus="true" placeholder-class="money_input" maxlength="10" placeholder='请输入金额'></input>
+      <input type="number" focus="true" bindinput='shurumoney' placeholder='请输入金额' placeholder-class="money_input" maxlength="10"></input>
     </view>
     <!-- 商品订单菜单 -->
-    <view wx:if='{{abc.order_type==2}}'>
+    <view wx:if='{{order_type==2}}'>
       <view class='flex_about goods-detail  line-border-bottom'>
         <view class="slide-image">
-          <image src='{{abc.goods.goods_thumb}}' mode='widthFix'></image>
+          <image src='{{goods_image}}' style='width:100%;height:150rpx;'></image>
         </view>
         <view class=' global_single_ellipsis goods-info'>
-          <view class='global_single_ellipsis'>{{abc.goods.name}}</view>
-          <view class='global_small_font'>{{abc.goods.keywords}}</view>
+          <view class='global_single_ellipsis'>{{goods_name}}</view>
+          <view class='global_small_font'>{{goods_keywords}}</view>
           <view class='flex_about'>
-            <view class="global_color_red">￥{{abc.goods.goods_price}}</view>
+            <view class="global_color_red">￥{{goods_price}}</view>
             <view></view>
-            <view>数量：{{abc.goods.goods_number}}</view>
+            <view class='shuliang'>数量：{{goods_number}}
+              <!--<button bindtap='oncladd' class='global_middle_font addandjian'>+</button> <input class=' addandjian' placeholder='{{goods_number}}'></input>  <button bindtap='onclfadd' class='global_middle_font addandjian'>-</button>-->
+            </view>
           </view>
         </view>
 
       </view>
 
       <!-- 优惠 +  ... -->
-      <view class=''>
+      <!-- <view class=''>
         <view class="flex_about global_small_font padding-all details-bar" data-buyStatus="1">
           <view>优惠</view>
           <view>{{ticket.card_name}}</view>
           <view class='iconfont icon-sandian1 global_large_font' bindtap='buyherd'></view>
         </view>
-      </view>
+      </view> -->
 
       <!-- 支付金额 -->
       <view class='integration line-border-bottom money'>
         <view class='flex_about switch_module'>
           <view>支付金额</view>
-          <view class="global_color_red">￥{{abc.goods.order_money}}</view>
+          <view class="global_color_red">￥{{goods_price}}</view>
         </view>
       </view>
     </view>
@@ -100,7 +102,20 @@
     </view>
   </radio-group>
   <view class='newline'></view>-->
-
+ <!-- 选择支付方式 -->
+    <view  class='flex_about money paymessage-choose'>
+      <radio-group  bindchange="radioChange" class="group">
+        <view class="label-2" wx:for="{{radioItems}}" wx:key='index'>
+          <radio id="{{item.name}}" hidden value="{{item.name}}" checked="{{item.checked}}"></radio>
+          <view class="label-2__icon">
+            <view class="label-2__icon-checked" style="opacity:{{item.checked ? 1: 0}}"></view>
+          </view>
+          <label class="label-2__text" for="{{item.name}}">
+            <text>{{item.name}}</text>
+          </label>
+				</view>
+      </radio-group>
+    </view>
   <!-- 阅读并同意 -->
   <view class='padding-all integration  pay_btn'>
 
@@ -109,10 +124,13 @@
       <navigator url="/pages/scattered/userAgreement/userAgreement">用户协议 </navigator>
     </checkbox-group>
 
-<!-- 确认支付按钮 -->
-    <button class='global_bg_color_red global_middle_font' bindtap='payClick'>
+    <!-- 确认支付按钮 -->
+		<view wx:if='{{areyouok==1}}'>
+    <button wx:if='{{order_type==2}}' class='global_bg_color_red global_middle_font' bindtap='payClick'>
       确定支付
     </button>
+    <button wx:if='{{order_type==1}}' class='global_bg_color_red global_middle_font' bindtap='shangjiapay'>商铺支付</button>
+</view>
   </view>
 </view>
 

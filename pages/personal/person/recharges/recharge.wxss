@@ -1,5 +1,5 @@
 /* pages/recharge/recharge.wxss */
-@import "/utils/wxss/global.wxss";
+@import "/pages/personal/bandcard/addbandcard/addbandcard.wxss";
 
 /* .body{
     width: 650rpx;

@@ -29,8 +29,25 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+	wherecommit(e){
+	
+this.setData({
+	whereid:e.currentTarget.dataset.id
+})
+	},
+
+	showCommentImage(e){
+		// e.currentTarget.dataset.id
+		setTimeout(() => { 
+			let dataarray = this.data.commentArrar[this.data.whereid].msg_img
+			wx.previewImage({
+				urls: dataarray,
+				current: dataarray[e.currentTarget.dataset.id]
+			})
+		
+		},500)
+	},
   onLoad: function (options) {
-   
     app.setNavigationBarTitle("商家首页");
     this.setData({
       shop_id:options.shop_id,
@@ -44,11 +61,6 @@ Page({
     })
   },
   onShow() {
-    // 引用组件
-    // this.comment = this.selectComponent("#comment");
-    // this.comment.setData({
-    //   position_commit: 1, //评论图片不显示
-    // });
     this.init(app.globalData.shopId);
     this.scrolltolower();
     app.dengluzt()
@@ -64,7 +76,7 @@ Page({
       success: (e) => {
       
         this.setData({
-          commentArrar: e,
+          commentArrar: e.comment,
           type: e.shop_id
         })
         
@@ -99,26 +111,16 @@ Page({
   },
   /*店铺id */
   addOrder(e) {
- 
-    // app.request.post({
-    //   url: "order/index",
-    //   isLoading: true,
-    //   data: {
-      
-    //   },
-    //   success: (e) => {
-     
-    //   }
-    // })
+		console.log(e)
+		wx.navigateTo({
+			url: '/pages/scattered/pay/pay?shop_id=' + this.data.shop_id + '&card_id=' + e.currentTarget.dataset.card_id +'&order_type=1'+'&shop_image='+e.currentTarget.dataset.shop_image + '&shop_name='+ e.currentTarget.dataset.shop_name +'&act_name=' + e.currentTarget.dataset.act_name
+		})
+
   },
 
   // 组件中拿到shop_id并发送出去
   scrolltolower() {
-    // console.log(this.comment)
-    // this.comment.getComment({
-    //   shop_id: app.globalData.shopId
-    // })
-    // this.comment.setCommentData()
+
   },
 
   // 充值
@@ -148,7 +150,7 @@ Page({
   },
   /*分享 */
   onShareAppMessage: function () {
-    console.log(this.data.shop_id)
+    
     return {
       title: this.data.shopObj.shop_name,
       path: '/pages/index/index?shopId=' + this.data.shop_id,

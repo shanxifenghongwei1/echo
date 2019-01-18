@@ -10,7 +10,7 @@
 <!-- 商品评论模块 -->
   <view class='flex_about padding-all commodity-comment' wx:if='{{order_mode==2}}'>
     <view class='shop-image'>
-      <image src='{{goods.goods_thumb}}' mode='widthFix'></image>
+      <image src='{{goods.goods_thumb}}' style='width:100%;height:150rpx'></image>
     </view>
     <view>
       <view class='global_middle_font global_multiLine_ellipsis commodity-title '> {{goods.goods_name}} </view>

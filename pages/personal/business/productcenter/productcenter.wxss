@@ -1,0 +1,33 @@
+@import "/pages/personal/person/person.wxss";
+
+
+.name-site-onlode{
+	padding-left:20rpx; 
+}
+
+.one-shop-list{
+	display: flex;
+	height: 200rpx;
+	width: 94%;
+	padding: 3%;
+	border: 1rpx solid black;
+}
+
+.one-shop-list-left{
+	width: 30%;
+	height: 100%;
+		border: 1rpx solid black;
+}
+
+.one-shop-list-left-image{
+	display: block;
+	width: 80%;
+	height: 80%;
+	margin: auto;
+}
+
+.one-shop-list-right{
+	width: 70%;
+	height: 100%;
+		border: 1rpx solid black;
+}

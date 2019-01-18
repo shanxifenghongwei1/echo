@@ -1,32 +1,20 @@
-// pages/personal/coupon/mycoupon/mycoupon.js
+// pages/personal/business/productcenter/productcenter.js
+const app = getApp();
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
+	
+	},
 
-	},
-	run() {
-		wx.switchTab({
-			url: '/pages/personal/person/person',
-		})
-	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-			this.setData({
-				card_sn: options.card_sn,
-				qr_code: options.qr_code,
-				shop_name: options.shop_name,
-				titlie: options.titlie,
-				card_id:options.card_id,
-				sign: options.sign
-			})
+		app.setNavigationBarTitle("产品中心");
 	},
-// 
-//  
 
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
@@ -39,10 +27,7 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-		var huser_id = wx.getStorageSync('user_id')
-		this.setData({
-			huser_id: huser_id
-		})
+
 	},
 
 	/**
@@ -77,10 +62,6 @@ Page({
 	 * 用户点击右上角分享
 	 */
 	onShareAppMessage: function () {
-		return {
-			title:'您的朋友送给你' + this.data.titlie,
-			path: '/pages/personal/coupon/coupon?card_id=' + this.data.card_id + '&huser_id=' + this.data.huser_id + '&sign=' + this.data.sign,
-			imageUrl: this.data.qr_code,
-		}
+
 	}
 })

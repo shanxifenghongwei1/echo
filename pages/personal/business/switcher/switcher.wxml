@@ -1,0 +1,11 @@
+<view class='any'>
+  <view class='site oneaccount' wx:for='{{shop_list}}' data-id='{{item.id}}' bindtap='switchon'>
+    <view class='site1'>
+      <image src='{{item.shop_logo}}' class='site1-image'></image>
+    </view>
+    <view class='site2 global_middle_font'>{{item.shop_name}}</view>
+    <view class='site3'>
+      <view class='yessure {{cid==item.id?"active":""}}'></view>
+    </view>
+  </view>
+</view>

@@ -1,4 +1,5 @@
 // pages/index/oddments/map/map.js
+const app= getApp();
 Page({
 
   /**
@@ -12,7 +13,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+		let shop_id = options.shop_id
+		this.init(shop_id);
   },
 
   /**
@@ -28,7 +30,23 @@ Page({
   onShow: function () {
 
   },
-
+	init(shop_id){
+		app.request.post({
+			url: "place/index",
+			isLoading: true,
+			data: {
+				shop_id: shop_id
+			},
+			success:(e)=>{
+				wx.openLocation({
+					latitude: e.lat,
+					longitude: e.lng,
+					name:e.shop_name,
+					address:e.address
+				})
+			}
+		})
+	},
   /**
    * 生命周期函数--监听页面隐藏
    */

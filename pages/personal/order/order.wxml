@@ -14,13 +14,13 @@
       <view class='shop'>
         <view class=' global_middle_font shop-name'>{{item.shop_name}}
         </view>
-        <view class='state' wx:if='{{item.pay_type==2}}'>待支付</view>
-         <view class='state' wx:if='{{item.pay_type==1}}'>已支付</view>
+        <view class='state global_middle_font' wx:if='{{item.order_mode==2}}'>商品订单</view>
+         <view class='state global_middle_font' wx:if='{{item.order_mode==1}}'>店铺订单</view>
       </view>
-
-      <view class='flex_about padding-all commdity'>
+<!-- 商品订单 -->
+      <view wx:if='{{item.order_mode==2}}' class='flex_about padding-all commdity' data-goods_id='{{item.goods_id}}' bindtap='runjump'>
         <view class='commdity-pic'>
-          <image src='{{item.goods_img}}' mode="widthFix"></image>
+          <image src='{{item.goods_img}}' style='width:100%;height:150rpx;'></image>
         </view>
         <view class=' global_middle_font commdity-particulars'>
           <view class='flex_about shop-money'>
@@ -41,13 +41,36 @@
           <view class='shop-number'></view>
         </view>
       </view>
-
+<!-- 店铺订单 -->
+  <view wx:if='{{item.order_mode==1}}' class='flex_about padding-all commdity' data-shop_id='{{item.shop_id}}' bindtap='runshop'>
+        <view class='commdity-pic'>
+          <image src='{{item.shop_img}}' mode="widthFix"></image>
+        </view>
+        <view class=' global_middle_font commdity-particulars'>
+          <view class='flex_about shop-money'>
+            <view class=''>{{item.shop_name}}</view>
+            <view></view>
+            <!-- <view class='global_color_red global_large_font'> ¥{{item.order_money}}</view> -->
+          </view>
+          <view class='flex_about shop-money'>
+            <view class='global_small_font'>七天无理由退换</view>
+            <view></view>
+            <!-- <view> 共{{item.goods_number}}件</view> -->
+          </view>
+          <view class='flex_about shop-money'>
+            <view>总计</view>
+            <view></view>
+            <view class='global_color_red global_large_font'> ¥{{item.order_money}}</view>
+          </view>
+          <view class='shop-number'></view>
+        </view>
+      </view>
       <view class=' flex_about padding-all time'>
         <view class='global_small_font this-time'>时间:{{item.order_time}}</view>
         <view></view>
         <view class='flex_about'>
           <navigator wx:if='{{item.pay_type==2}}' bindtap='storygoodslist' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>去支付</navigator>
-          <navigator wx:if='{{item.comment_status==0}}' class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator>
+          <navigator wx:if='{{item.pay_type!==2||item.comment_status!==0}}' class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator>
           
         </view>
       </view>

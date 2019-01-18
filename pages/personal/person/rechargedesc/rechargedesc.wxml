@@ -1,0 +1,24 @@
+<view class='any'>
+  <view class='onegoodslistondetal global_middle_font'>商品名称:{{es.goods_name}}</view>
+  <view class='onegoodslistondetal global_middle_font'>商品数量:{{es.goods_number}}</view>
+
+  <view wx:if="{{iphone.length>0}}" class='onegoodslistondetal global_middle_font'>商家电话:{{iphone}}</view>
+  <view wx:else class='onegoodslistondetal global_middle_font'>商家电话:暂无</view>
+
+  <view class='onegoodslistondetal global_middle_font'>支付金额:{{es.pay_money}}</view>
+  <view class='onegoodslistondetal global_middle_font'>赠送金额:{{es.give_money}}</view>
+
+  <view class='onegoodslistondetal global_middle_font'>商家名称:{{es.shop_name}}</view>
+  <view class='onegoodslistondetal global_middle_font'>订单编号No:{{es.order_sn}}</view>
+  <view class='onegoodslistondetal global_middle_font'>订单时间:{{es.order_time}}</view>
+  <view class='onegoodslistondetal global_middle_font'>支付时间:{{es.pay_time}}</view>
+
+
+
+
+  <!-- <view wx:if='{{!business_id}}' class='onegoodslistondetal global_middle_font'>
+    <navigator class='onegoodslistondetal global_middle_font' url="/pages/index/oddments/oddments?shop_id={{business_id}}&juli=账单查看">
+      <button class="re_but">进入店铺</button>
+    </navigator>
+  </view> -->
+</view>
