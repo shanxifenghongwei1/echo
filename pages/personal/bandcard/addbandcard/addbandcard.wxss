@@ -1,6 +1,8 @@
 .anyone {
   width: 94%;
   padding: 3%;
+	/* background: #eee;
+	height: 100vh; */
 }
 
 .one-bancard {
@@ -65,3 +67,12 @@
   /* border: 1rpx solid black; */
 }
 
+.addmycard{
+	width: 90%;
+	text-align: center;
+	line-height: 30rpx;
+	padding: 5%;
+	height: 30rpx;
+	border-radius: 20rpx;
+	background: #1AAD19;
+	}

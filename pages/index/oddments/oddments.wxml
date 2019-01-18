@@ -8,7 +8,7 @@
     <button open-type="share"></button>
     <view class='iconfont icon-fenxiang2'></view>
   </view>
-  <swiper wx:if="{{shopObj!=null&&shopObj.shop_img.length>0}}" indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="height:{{swiperHeight}}rpx;">
+  <swiper wx:if="{{shopObj!=null&&shopObj.shop_img.length>0}}" indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="height:300rpx;">
     <block wx:for-items="{{shopObj.shop_img}}" wx:key="imageUrl">
       <swiper-item>
         <image style='width:850rpx;height:350rpx;' src="{{item}}" class="slide-image" mode='widthFix' bindload="imageLoad" />
@@ -68,7 +68,7 @@
     <view wx:for-items="{{navArray}}" wx:key="navKey" bindtap='jumpTo' data-id="{{index}}" data-opt="{{item.id}}" class="nav_item {{index==navActive?'nav_active':''}}">{{item.name}}</view>
   </view>
   <view class='ticket_product_commit'>
-    <view wx:if="{{shopObj!=null&&shopObj.youhui.length==0}}" class='global_small_font'>暂无产品券</view>
+   
 
     <view wx:if="{{shopObj!=null&&shopObj.youhui.length>0}}" id="list0" class='ticket_module ' wx:for="{{shopObj.youhui}}" wx:key="youhuiKey">
       <!--满减（支付优惠券）-->
@@ -114,6 +114,7 @@
           <view class='global_middle_font line-inline global_color_red'>{{item.money}}</view>
           <text class='global_middle_font line-inline'>赠</text>
           <view class='global_middle_font line-inline global_color_red'>{{item.give_money}}</view>
+					<view wx:if='{{!item.ac_title==""}}' class='global_middle_font'>{{item.ac_tontent}}</view>
         </view>
         <view class="payment flex_about global_large_font">
           <view class='iconfont icon-hongbaojuchi-copy'></view>
@@ -162,7 +163,7 @@
 
 
     <!-- ----------开头---------------- -->
-    <view wx:if='{{type==shop_id}}' class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit' wx:key="index">
+    <view wx:if='{{type==shop_id}}' class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit'  wx:key="index">
       <!-- 评论的用户头像图片 -->
       <view class='commit_avatar'>
         <image src='{{item.Head_portrait}}' mode='widthFix'></image>

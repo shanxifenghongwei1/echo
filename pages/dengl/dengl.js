@@ -36,6 +36,7 @@ Page({
     wx.login({
       success(res) {
         if (dd.detail.userInfo) {
+				  
           wx.getUserInfo({
             success: (e) => {
               if (res.code) {
@@ -50,13 +51,23 @@ Page({
                     userInfo: e.userInfo
                   },
                   success: (we) => {
-                    // console.log(e.userInfo)
+                   
+										console.log(app.status.dengluzhuangtai)
                     wx.setStorageSync('user_id', we.user_id);
                     wx.setStorageSync('user_info', e.userInfo);
-                    app.status.dengluzhuangtai = 8
-                    wx.navigateBack({
-											
-										})
+										 function mydenglu() {
+											 console.log('登录成功')
+
+											 console.log('登录状态码改变了吗?')
+											 app.status.dengluzhuangtai = 8
+											 console.log(app.status.dengluzhuangtai)
+
+											 
+											getCurrentPages()
+											wx.navigateBack({})
+										} 
+										mydenglu();
+                   
                   }
                 })
               }

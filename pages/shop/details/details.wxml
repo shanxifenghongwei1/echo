@@ -16,8 +16,8 @@
   <view class='slide-image' id="goodsSlide">
     <!-- <image wx:for='{{goodsObj.goods_img}}' src="{{item}}" class="slide-image" style='height:350rpx' bindload="imageLoad" /> -->
 		<!-- ----- -->
-		  <swiper indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="height:{{swiperHeight}}rpx;">
-    <block wx:for="{{shopObj.shop_img}}" wx:key="imageUrl">
+		  <swiper indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="height:300rpx;">
+    <block wx:for="{{goodsObj.goods_img}}" wx:key="imageUrl">
       <swiper-item>
         <image src="{{item}}" class="slide-image" mode='widthFix' bindload="imageLoad" />
       </swiper-item>

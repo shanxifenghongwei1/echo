@@ -1,25 +1,32 @@
 <view class='any'>
-  <navigator url="#" class='site'>
+<!-- c产品添加 -->
+  <navigator url='/pages/personal/putaway/putaway' class='site'>
     <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
-    <view class='site2 name-site-onlode global_middle_font'>产品添加</view>
+    <view  class='site2 name-site-onlode global_middle_font'>产品添加</view>
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
   </navigator>
+	<!-- 产品查看 -->
   <navigator url="#" class='site'>
     <view class='site1 iconfont icon-chanpin'></view>
     <view class='site2 name-site-onlode global_middle_font'>产品查看</view>
     <view class='site3 iconfont icon-jiantouxia'></view>
   </navigator>
-
+<!-- 一个商品详情 -->
+<view wx:for='{{goods_list}}' class='avery-any-shop-list-and-one'>
   <view class='one-shop-list'>
     <view class='one-shop-list-left'>
-			<image class='one-shop-list-left-image' src='/images/test/pics666.jpg'></image>
+			<image class='one-shop-list-left-image' src='{{item.goods_thumb}}'></image>
 		</view>
     <view class='one-shop-list-right'>
-			<view>商品名字</view>
-			<view>商品简介</view>
+			<view class='one-shop-list-right-shop_name global_middle_font global_single_ellipsis'>{{item.goods_name}}</view>
+			<scroll-view scroll-y class='one-shop-list-right-shop_vicie global_middle_font global_multiLine_ellipsis'>{{}}</scroll-view>
 		</view>
   </view>
-
-
+		<!-- 删除，修改模块 -->
+	<view class='move-shop'>
+		<view url='/pages/personal/putaway/putaway' class='move-shop-modifier global_middle_font'>修改商品</view>
+		<view class='move-shop-modifier-resmove global_middle_font'>删除商品</view>
+	</view>
+</view>
 
 </view>

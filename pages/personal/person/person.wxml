@@ -10,7 +10,7 @@
 </button> -->
 
 <view class="content global_bg_color anywhere">
-  <!-- 用户信息 -->
+  <!-- 用户信息 -->  
   <view class='user'>
     <view style='margin:0 auto;height:150rpx;width:150rpx;border-radius:75rpx;'>
       <image src='{{userInfo.avatarUrl}}' class='user-head'></image>
@@ -130,7 +130,7 @@
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
   </view> -->
   <!-- 商户中心 -->
-  <navigator wx:if='{{business==1}}' url='/pages/personal/business/business?myshop_id={{myshop_id}}' class='site'>
+  <navigator wx:if='{{business==1}}' url='/pages/personal/business/business?myshop_id={{myshop_id[0].id}}' class='site'>
     <view class='site1 iconfont icon-tubiao201' style='font-size:30rpx;'></view>
     <view class='site2 global_middle_font'>商户中心</view>
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>

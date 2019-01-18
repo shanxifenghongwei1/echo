@@ -30,7 +30,7 @@ App({
     dengluzhuangtai: 3
   },
   dengluzt() {
-    if (this.status.dengluzhuangtai == 3 && !wx.getStorageSync('user_id')) {
+    if (!wx.getStorageSync('user_id')) {
       wx.navigateTo({
         url: '/pages/dengl/dengl',
       })

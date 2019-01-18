@@ -32,6 +32,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+		console.log(app.status.dengluzhuangtai+'登录状态的值')
 		console.log(options)
 		if (!options.sign){
 			this.setData({
@@ -45,7 +46,7 @@ Page({
 				card_id: options.card_id
 			})
 
-		if (app.status.dengluzhuangtai==8){
+		if (wx.getStorageSync('user_id')){	
 			this.init(idd, huser_id, sign);
 		}
 		

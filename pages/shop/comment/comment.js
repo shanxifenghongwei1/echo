@@ -118,7 +118,7 @@ Page({
       mask: 'true'
     })
     wx.uploadFile({
-      url: 'https://www.sdhcnet.com/api/comment/upload',
+      url: 'https://www.nazhua.com.cn/api/comment/upload',
       filePath: this.data.imageArray[i][0],
       name: 'file',
       success: (res) => {
@@ -127,7 +127,7 @@ Page({
         if (i < this.data.imageArray.length) {
          
           wx.uploadFile({
-            url: 'https://www.sdhcnet.com/api/comment/upload',
+						url: 'https://www.nazhua.com.cn/api/comment/upload',
             filePath: this.data.imageArray[i][0],
             name: 'file',
             success: (res) => {
@@ -137,7 +137,7 @@ Page({
                
 								console.log('图片' + i + '上传完成')
                 wx.uploadFile({
-                  url: 'https://www.sdhcnet.com/api/comment/upload',
+									url: 'https://www.nazhua.com.cn/api/comment/upload',
                   filePath: this.data.imageArray[i][0],
                   name: 'file',
                   success: (res) => {

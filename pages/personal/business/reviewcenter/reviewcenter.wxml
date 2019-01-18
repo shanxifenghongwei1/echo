@@ -1,0 +1,29 @@
+<view class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit' wx:key="index">
+  <!-- 评论的用户头像图片 -->
+  <view class='commit_avatar'>
+    <image src='{{item.Head_portrait}}' mode='widthFix'></image>
+  </view>
+  <!-- 评论的用户名字 -->
+  <view>
+    <view class='commit_text'>
+      <view class='flex_about global_large_font commit_name_date'>
+        <view>{{item.nickname}}</view>
+        <view></view>
+        <!-- 评论时间 -->
+        <view class='global_small_font'>
+          {{item.msg_date}}
+        </view>
+      </view>
+      <!-- 评论内容 -->
+      <view class='global_small_font'>
+        {{item.msg_desc}}
+      </view>
+    </view>
+    <!-- 评论图片 -->
+    <view class='comment_min_image'>
+      <view>
+        <image bindtap='showCommentImage' data-id='{{index}}' wx:for="{{item.msg_img}}" style='width:30%;height:150rpx;' wx:key="index" src="{{item}}"></image>
+      </view>
+    </view>
+  </view>
+</view>

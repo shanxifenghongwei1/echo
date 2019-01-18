@@ -14,6 +14,11 @@ Page({
 	 */
 	onLoad: function (options) {
 		app.setNavigationBarTitle("产品中心");
+		this.setData({
+			myshop_id: options.myshop_id
+		})
+	  
+		this.init()
 	},
 
 	/**
@@ -27,9 +32,23 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
+	
 	},
-
+	init(){
+		app.request.post({
+			url: "merchant/bygoods",
+			isLoading: true,
+			data: {
+				shangjiaid: this.data.myshop_id
+			},
+			success: (e) => {
+		
+				this.setData({
+					goods_list:e.goods
+				})
+			}
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面隐藏
 	 */

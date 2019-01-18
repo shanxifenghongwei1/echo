@@ -1,4 +1,4 @@
-// pages/personal/business/switcher/switcher.js
+// pages/personal/business/reviewcenter/reviewcenter.js
 const app = getApp();
 Page({
 
@@ -13,46 +13,36 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
-		app.setNavigationBarTitle("账号切换");
 		this.setData({
-			cid: options.myshop_id
+			myshop_id: options.myshop_id
 		})
-		this.init();
+		this.getpinglun();
 	},
-	switchon(e){
-		
+	wherecommit(e) {
 		this.setData({
-			cid: e.currentTarget.dataset.id
+			whereid: e.currentTarget.dataset.id
 		})
+	},
 
-		wx.redirectTo({
-			url: '/pages/personal/business/business?myshop_id=' + e.currentTarget.dataset.id
-		})
+	showCommentImage(e) {
+	
+		setTimeout(() => {
+			let dataarray = this.data.commentArrar[this.data.whereid].msg_img
+			console.log(dataarray)
+			wx.previewImage({
+				urls: dataarray,
+				current: dataarray[e.currentTarget.dataset.id]
+			})
 
-
+		}, 500)
 	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
 	onReady: function () {
-	
-	},
-	init(){
-		app.request.post({
-			url: "shopcenter/getbusiness",
-			isLoading: true,
-			data: {
 
-			},
-			success: (e) => {
-			
-				this.setData({
-					shop_list:e,
-				})
-			}
-		})
 	},
+
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
@@ -73,7 +63,20 @@ Page({
 	onUnload: function () {
 
 	},
-
+	getpinglun: function () {
+		app.request.post({
+			url: "comment/getCommentList",
+			data: {
+				shop_id: this.data.myshop_id,
+			},
+			success: (e) => {
+				this.setData({
+					commentArrar: e.comment,
+					type: e.shop_id
+				})
+			}
+		})
+	},
 	/**
 	 * 页面相关事件处理函数--监听用户下拉动作
 	 */

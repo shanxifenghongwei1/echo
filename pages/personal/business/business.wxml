@@ -42,7 +42,7 @@
   <!-- 完成订单 -->
   <view class="today">
     <view class="todaySun1">
-      <view class='global_middle_font'>今日完成订单</view>
+      <navigator class='global_middle_font'>今日完成订单</navigator>
       <view class="todaySunR">
         <text class='global_middle_font global_color_red'>{{dayorder}}</text>
       </view>
@@ -62,13 +62,13 @@
   <!-- 中间方格 -->
   <view class="body">
     <view class="bodyL">
-      <view class="bodyLT">
+      <navigator url='/pages/personal/business/productcenter/productcenter?myshop_id={{myshop_id}}' class="bodyLT">
         <view class="bodyLTsun">
           <view class="bodyLTsunS"> <view class="mdsz iconfont icon-chanpin"></view> </view>
           <view class="bodyLTsunX"> <text>产品中心</text> </view>
         </view>
-      </view>
-      <view class="bodyLZ">
+      </navigator>
+      <navigator  url='/pages/personal/business/reviewcenter/reviewcenter?myshop_id={{myshop_id}}' class="bodyLZ">
         <view class="bodyLTsun">
           <view class="bodyLTsunS1">
             <view class="mdsz iconfont icon-pinglun"></view>
@@ -77,7 +77,7 @@
             <text>评论中心</text>
           </view>
         </view>
-      </view>
+      </navigator>
       <view class="bodyLB">
         <view class="bodyLTsun">
           <view class="bodyLTsunS2">
@@ -90,7 +90,7 @@
       </view>
     </view>
     <view class="bodyZ">
-      <view class="bodyZT">
+      <navigator url='/pages/personal/business/shopordercenter/shopordercenter' class="bodyZT">
         <view class="bodyLTsun">
           <view class="bodyLTsunS3">
             <view class="mdsz iconfont icon-dingdan"></view>
@@ -99,7 +99,7 @@
             <text>订单中心</text>
           </view>
         </view>
-      </view>
+      </navigator>
       <view class="bodyZZ">
         <view class="bodyLTsun">
           <view class="bodyLTsunS4">

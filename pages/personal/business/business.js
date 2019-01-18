@@ -1,7 +1,6 @@
 // pages/personal/business/business.js
 const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -12,8 +11,8 @@ Page({
     vertical:true,
     srcs: []
   },
-
   qrcode:function(){
+		var that = this
   wx.scanCode({
     scanType:"qrCode",
     fail(){
@@ -24,20 +23,26 @@ Page({
       })
     },
     success(res){
-      wx.showToast({
-        title: '识别成功',
-        duration: 3000
-      })
+			console.log('二维码拿到的')
+			console.log(res)
+
+			
 			app.request.post({
 				url: "virtual/useVirtual",
 				isLoading: true,
 				data: {
-					card_sn: res.result 
+					card_sn: res.result,
+					shop_id: that.data.myshop_id
 				},
 				success: (e) => {
-
+					wx.showToast({
+						title: '识别成功',
+						duration: 3000
+					})
+					console.log(e)
 				}
-			})			
+			})	
+
     }
   })
   },
@@ -46,10 +51,11 @@ Page({
 		app.request.post({
 			url: "shopcenter/shopcentermsg",
 			isLoading: true,
-			data: { myshop_id: this.data.myshop_id},
+			data: { myshop_id: myshop_id},
 			success: (e) => {
-				console.log(e)
+			
 				this.setData({
+					myshop_id: myshop_id,
 					daymoney: e.daymoney,
 					dayorder: e.dayorder
 				})
@@ -77,6 +83,9 @@ Page({
   onLoad: function (options) {
 		app.setNavigationBarTitle("商户中心");
 		let myshop_id = options.myshop_id
+		this.setData({
+			myshop_id: myshop_id
+		})
 		this.init(myshop_id);
   },
 

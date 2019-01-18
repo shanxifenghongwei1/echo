@@ -38,7 +38,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 23,
+			"current": 24,
 			"list": [
 				{
 					"id": -1,
@@ -184,6 +184,12 @@
 					"id": -1,
 					"name": "产品中心",
 					"pathName": "pages/personal/business/productcenter/productcenter",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单中心",
+					"pathName": "pages/personal/business/shopordercenter/shopordercenter",
 					"query": ""
 				}
 			]

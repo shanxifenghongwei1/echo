@@ -29,8 +29,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-	wherecommit(e){
-	
+	wherecommit(e){	
 this.setData({
 	whereid:e.currentTarget.dataset.id
 })
