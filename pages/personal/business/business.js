@@ -25,8 +25,6 @@ Page({
     success(res){
 			console.log('二维码拿到的')
 			console.log(res)
-
-			
 			app.request.post({
 				url: "virtual/useVirtual",
 				isLoading: true,
@@ -35,25 +33,44 @@ Page({
 					shop_id: that.data.myshop_id
 				},
 				success: (e) => {
-					wx.showToast({
-						title: '识别成功',
-						duration: 3000
-					})
-					console.log(e)
+					setTimeout(() => {
+						app.showtost('识别成功')
+					}, 1000)
 				}
 			})	
-
     }
   })
   },
-
+	moveid(e){
+		this.setData({
+			hexiao:e.detail.value
+		})
+	},
+	eliminate(){
+		app.request.post({
+			url: "virtual/useVirtual",
+			isLoading: true,
+			data: {
+				card_sn: this.data.hexiao,
+				shop_id: this.data.myshop_id
+			},
+			success: (e) => {
+				setTimeout(() => {
+					app.showtost('识别成功')
+					this.setData({
+						hexiao: ''
+					})
+				
+				}, 1000)
+			}
+		})	
+	},
 	init(myshop_id){
 		app.request.post({
 			url: "shopcenter/shopcentermsg",
 			isLoading: true,
-			data: { myshop_id: myshop_id},
+			data: { shop_id: myshop_id},
 			success: (e) => {
-			
 				this.setData({
 					myshop_id: myshop_id,
 					daymoney: e.daymoney,

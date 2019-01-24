@@ -32,6 +32,7 @@ Page({
     }
   },
 	onLoad(){
+		app.setNavigationBarTitle("商家加盟");
 		let opt = wx.getStorageSync('user_info')
 		this.setData({
 			userInfo:opt

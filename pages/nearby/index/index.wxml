@@ -49,7 +49,7 @@
   <!-- 附近商家模块 副首页 -->
   <view class='shop-list'>
     <view wx:for="{{dataList}}" wx:key="dataListKey" class='store_module flex_about'>
-      <navigator url='/pages/index/oddments/oddments?shop_id={{item.id}}&juli={{item.juli}}' data-id="{{item.id}}" class='store_info flex_about'>
+      <navigator url='/pages/index/oddments/oddments?shop_id={{item.id}}&juli={{item.juli}}&hot={{item.hot}}' data-id="{{item.id}}" class='store_info flex_about'>
         <view class='info_img_icon'>
           <image src='{{app.host.resources}}/grounding.png' mode='widthFix'></image>
           <text class='global_small_font flex_about'>促销</text>

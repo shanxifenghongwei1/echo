@@ -23,14 +23,12 @@ Page({
         this.setData({
           lovelist:e
         })
-       
       }
-      
     });
-    
   },
  
   onLoad: function(options) {
+		app.setNavigationBarTitle("我的收藏");
     this.init();
    
   },

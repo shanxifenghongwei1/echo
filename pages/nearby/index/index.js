@@ -73,7 +73,6 @@ Page({
 				position_id: 1
 			},
 			success: (e) => {
-				console.log(e)
 				this.setData({
 					smallbanner: e
 				})
@@ -107,7 +106,6 @@ Page({
       url: "user/getcat",
       data: {},
       success: (e) => { 
-      
         this.setData({
           navArray:e.cat
         })

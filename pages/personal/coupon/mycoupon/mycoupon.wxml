@@ -8,13 +8,13 @@
   <view class='onecoupon'>
     <view class='onecoupon-top'>
       <view class='global_middle_font center center-aling2'>{{shop_name}}</view>
-      <view class='global_middle_font center center-aling1 global_large_font'>{{titlie}}</view>
+      <view class='global_middle_font center center-aling1 global_large_font'>{{titlie}}
+			<navigator url='#'>进店看看</navigator>
+			</view>
 
 
       <view class='global_middle_font share'>
-        
-          <button class='global_middle_font share12' open-type="share">分享</button>
-        
+          <button class='global_middle_font share12' open-type="share">赠送给朋友</button> 
       </view>
 
       <view class='notch'></view>

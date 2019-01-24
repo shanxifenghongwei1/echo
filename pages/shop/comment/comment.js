@@ -11,6 +11,7 @@ Page({
       "service": 0,
       "environment": 0,
     },
+		is_anonymous:2,
     user_img: [],
     commentText: "",
     checked: 2 //1.真实发表  2.匿名发表
@@ -52,7 +53,10 @@ Page({
     if (e.detail.value == 2) {
       this.data.checked = 2;
     }
-    console.log('checkbox发生change事件，携带value值为：', this.data.checked);
+		// 匿名为2
+		this.setData({
+			is_anonymous: this.data.checked
+		})
   },
 
   /*
@@ -152,7 +156,8 @@ Page({
                         data: {
                           order_id: that.data.order_id,
                           content: that.data.commentText,
-                          user_img: ass
+                          user_img: ass,
+													is_anonymous: that.data.is_anonymous
                         },
                         success: (e) => {
                           wx.showToast({
@@ -174,6 +179,7 @@ Page({
                         data: {
                           order_id: that.data.order_id,
                           content: that.data.commentText,
+													is_anonymous: that.data.is_anonymous,
                           user_img: ass
                         },
                         success: (e) => {
@@ -200,6 +206,7 @@ Page({
                   data: {
                     order_id: that.data.order_id,
                     content: that.data.commentText,
+										is_anonymous: that.data.is_anonymous,
                     user_img: ass
                   },
                   success: (e) => {
@@ -226,6 +233,7 @@ Page({
             data: {
               order_id: that.data.order_id,
               content: that.data.commentText,
+							is_anonymous: that.data.is_anonymous,
               user_img: ass
             },
             success: (e) => {
@@ -243,16 +251,10 @@ Page({
         }
       }
     })
-    // }
     wx.showToast({
       title: '正在上传内容',
       icon: 'success',
       mask: 'true'
     })
-   
-
- 
-
-
   }
 })

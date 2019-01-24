@@ -23,6 +23,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+		app.setNavigationBarTitle('账单')
     this.init()
   },
   init(cid) {
@@ -34,7 +35,6 @@ Page({
         key: this.data.cid
       },
       success: (e) => {
-        console.log(e)
         this.setData({
             money_list:e.desc,
 						page:1
@@ -94,7 +94,7 @@ message(){
 					});
 				},2000)
 			}
-			if (e.sort_shop.length == 0) {
+			if (e.desc.length == 0) {
 				let type = "";
 				if (this.page > 1) {
 					type = "dataFinish";
@@ -124,7 +124,7 @@ message(){
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-		// this.message()
+		this.message()
   },
 
   /**

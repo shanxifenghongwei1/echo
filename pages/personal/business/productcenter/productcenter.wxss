@@ -67,7 +67,7 @@
 
 	width: 40%;
 	height: 100%;
-	background: #1AAD19;
+	background: rgb(194, 76, 156);
 	margin-left: 5%;
 }
 
@@ -78,6 +78,6 @@
 
 	width: 40%;
 	height: 100%;
-	background: #1AAD19;
+	background: #666;
 	margin-left: 10%;
 }

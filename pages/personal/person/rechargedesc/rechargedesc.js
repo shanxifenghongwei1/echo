@@ -13,7 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-		
+		app.setNavigationBarTitle('账单明细')
 		let desc_sn = options.desc_sn
 		let key = options.type
 		this.init(desc_sn, key);
@@ -42,20 +42,19 @@ callshop:function(e){
 				desc_sn: desc_sn
       },
       success: (e) => {
-				console.log('请求成功')
-			
-				if(e.msg == 2){
-					wx.navigateBack({
-						success:()=>{
-							wx.showToast({
-								title: '该商品已下架',
-								duration:2000,
-								icon: 'none'
-							})
+				if(e.state == 2){
+						app.navigateback({
+								success:()=>{
+									setTimeout(()=>{
+										wx.showToast({
+											title: e.msg,
+											icon: 'none',
+											duration: 1000
+										})
+									},1000)
 						}
-					})
+						})
 				}else{
-					console.log(e)
 					this.setData({
 						es: e
 					})

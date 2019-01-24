@@ -2,7 +2,7 @@
   <view class='onegoodslistondetal global_middle_font'>商品名称:{{es.goods_name}}</view>
   <view class='onegoodslistondetal global_middle_font'>商品数量:{{es.goods_number}}</view>
 
-  <view wx:if="{{iphone.length>0}}" class='onegoodslistondetal global_middle_font'>商家电话:{{iphone}}</view>
+  <view wx:if="{{es.iphone.length>0}}" class='onegoodslistondetal global_middle_font'>商家电话: {{es.iphone}}</view>
   <view wx:else class='onegoodslistondetal global_middle_font'>商家电话:暂无</view>
 
   <view class='onegoodslistondetal global_middle_font'>支付金额:{{es.pay_money}}</view>

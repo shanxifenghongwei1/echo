@@ -4,6 +4,9 @@ Page({
   data: {
     scrollHeight: 0
   },
+	onShow(){
+		app.setNavigationBarTitle("我的评论");
+	},
   onLoad() {
     app.utils.computeScrollViewHeight((e) => {
       this.setData({

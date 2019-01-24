@@ -30,7 +30,7 @@
       <view class=' detial_text '>
         <view class='global_large_font global_single_ellipsis'>{{goodsObj.goods_name}}</view>
         <view class='global_small_font global_single_ellipsis'>
-          <text wx:for="{{goodsObj.keywords}}" wx:key='index'>  {{item}} {{goodsObj.goods_brief}}</text>
+          <text> {{goodsObj.goods_brief}}</text>
 
         </view>
       </view>

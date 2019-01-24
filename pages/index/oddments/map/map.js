@@ -13,6 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+		app.setNavigationBarTitle("地图");
 		let shop_id = options.shop_id
 		this.init(shop_id);
   },

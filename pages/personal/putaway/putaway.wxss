@@ -6,6 +6,19 @@
 
 .addimage-one{
   display: block;
+	width:96%;
+padding:2%;
+/* height:600rpx; */
+background:#fff;
+border-bottom:1rpx solid #eee;
+/* display:flex; */
+flex-wrap:nowrap;
+
+}
+
+.my-connert-shop-goods{
+	width: 65%;
+	height: 100%;
 }
 
 .addimage-two{

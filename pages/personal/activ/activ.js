@@ -19,7 +19,11 @@ Page({
     }, {
       src: '/images/test/pic7.png'
     }],
-    mode: 'aspectFit'
+    mode: 'aspectFit',
+		my_active:[],
+		cid:7,
+		page:1,
+		order: [{ text: '排队返现', type_id: 7 }, { text: '会员充值', type_id: 4 }, { text: '购物返现', type_id: 1 }],
   },
 
   /**
@@ -28,19 +32,33 @@ Page({
   onLoad: function(options) {
     app.setNavigationBarTitle("活动明细");
   },
-
+	addorderid: function (e) {
+		this.setData({
+			cid: e.currentTarget.dataset.id
+		})
+		this.init();
+	},
   exchange:function(e){
     console.log(e)
   },
   init() {
     app.request.post({
-      url: "",
+      url: "return/index",
       isLoading: true,
       data: {
-        
+        return_type:this.data.cid,
+				page:this.data.page
       },
       success: (e) => {
-        console.log(e)
+				if(e.state == 1){
+					this.setData({
+						my_active:e.return_cash
+					})
+				}
+				if(e.state==2){
+					app.showtost(e.msg)
+				}
+
       }
     })
   },

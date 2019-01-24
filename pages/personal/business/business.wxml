@@ -15,8 +15,8 @@
   <!-- 核销码 -->
   <view class="header">
     <view class="headersun">
-      <input type="text" placeholder="请输入优惠券编号" />
-      <view class="headersunR">
+      <input type="number" bindinput='moveid' placeholder="请输入优惠券编号" value='{{hexiao}}' />
+      <view class="headersunR" bindtap='eliminate'>
         <text>去验证</text>
       </view>
     </view>

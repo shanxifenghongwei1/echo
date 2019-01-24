@@ -107,7 +107,7 @@
 
 .share12 {
 	text-align: center;
-	width: 150rpx;
+	width: 200rpx;
 	height: 100rpx;
   background: #fff;
   border: none;

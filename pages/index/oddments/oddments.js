@@ -50,7 +50,8 @@ this.setData({
     app.setNavigationBarTitle("商家首页");
     this.setData({
       shop_id:options.shop_id,
-      juli: options.juli
+      juli: options.juli,
+			hot:options.hot
     })
   },
   givemoneytome(e){

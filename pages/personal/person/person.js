@@ -19,7 +19,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onShow: function() {
-		console.log(app.status.dengluzhuangtai)
     let usermane = wx.getStorageSync('user_info')
     this.setData({
       userInfo: usermane

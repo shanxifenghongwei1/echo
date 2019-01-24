@@ -1,4 +1,5 @@
 // pages/personal/coupon/mycoupon/mycoupon.js
+const app = getApp()
 Page({
 
 	/**
@@ -16,18 +17,53 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		if(options.joinpage==2){
 			this.setData({
-				card_sn: options.card_sn,
-				qr_code: options.qr_code,
-				shop_name: options.shop_name,
-				titlie: options.titlie,
-				card_id:options.card_id,
-				sign: options.sign
+				joinpage: 2
 			})
+			this.init(options.card_sn)
+		}else if(options.joinpage==1){
+			this.init(options.card_sn)
+			this.setData({
+				joinpage:1
+			})
+		}
 	},
 // 
 //  
-
+init(asd){
+	app.request.post({
+		url: "virtual/shareCard",
+		isLoading: true,
+		data: {
+			card_sn:asd
+		},
+		success: (e) => {
+			if(e.state==1){
+				this.setData({
+					qr_code: e.virtual.qr_code,
+					shop_name: e.virtual.shop_name,
+					titlie: e.virtual.card_name,
+					card_sn: e.virtual.sign
+				})
+				if(this.data.joinpage==2){
+				setTimeout(()=>{
+					app.showtost(e.msg)
+				},1000)
+				} 
+				if (this.data.joinpage == 1) {
+					// setTimeout(() => {
+					// 	app.showtost('点击界面进来的')
+					// }, 1000)
+				}
+			}else{
+				setTimeout(() => {
+					app.showtost(e.msg)
+				}, 1000)
+			}
+		}
+	})
+},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
@@ -56,7 +92,7 @@ Page({
 	 * 生命周期函数--监听页面卸载
 	 */
 	onUnload: function () {
-
+		app.setNavigationBarTitle("优惠券详情");
 	},
 
 	/**
@@ -79,7 +115,7 @@ Page({
 	onShareAppMessage: function () {
 		return {
 			title:'您的朋友送给你' + this.data.titlie,
-			path: '/pages/personal/coupon/coupon?card_id=' + this.data.card_id + '&huser_id=' + this.data.huser_id + '&sign=' + this.data.sign,
+			path: '/pages/personal/coupon/mycoupon/mycoupon?card_sn=' + this.data.card_sn + '&joinpage=2',
 			imageUrl: this.data.qr_code,
 		}
 	}

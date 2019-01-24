@@ -33,7 +33,7 @@
 
         </view>
         <view class='ic_info'>
-          <text class="global_middle_font global_color_red"><text class='iconfont icon-huaduo'></text>热度:{{shopObj.hot_goods}}</text>
+          <text class="global_middle_font global_color_red"><text class='iconfont icon-huaduo'></text>热度:{{hot}}</text>
           <text class="global_middle_font">距离:{{juli}}</text>
         </view>
         <view class='ic_info flex_about'>
@@ -70,9 +70,9 @@
   <view class='ticket_product_commit'>
    
 
-    <view wx:if="{{shopObj!=null&&shopObj.youhui.length>0}}" id="list0" class='ticket_module ' wx:for="{{shopObj.youhui}}" wx:key="youhuiKey">
+     <!-- <view wx:if="{{shopObj!=null&&shopObj.youhui.length>0}}" id="list0" class='ticket_module ' wx:for="{{shopObj.youhui}}" wx:key="youhuiKey"> -->
       <!--满减（支付优惠券）-->
-      <view wx:if="{{item.card_type==app.globalData.voucher.fullFeduction}}" bindtap='addOrder' data-shop_name='{{shopObj.shop_name}}' data-shop_image='{{shopObj.shop_logo}}' data-act_name='{{item.card_money}}' data-card_id="{{item.card_id}}" class='ticket flex_about'>
+    <!--  <view wx:if="{{item.card_type==app.globalData.voucher.fullFeduction}}" bindtap='addOrder' data-shop_name='{{shopObj.shop_name}}' data-shop_image='{{shopObj.shop_logo}}' data-act_name='{{item.card_money}}' data-card_id="{{item.card_id}}" class='ticket flex_about'>
         <view class=' global_color_red ticket_money flex_about '>{{tools.turnInt(item.card_money)}}
           <text class='global_small_font global_color_red'>元</text>
         </view>
@@ -84,9 +84,9 @@
           <view class='flex_about payment1'>去付款</view>
         </view>
 
-      </view>
+      </view> -->
       <!--满赠-->
-      <view wx:if="{{item.card_type==18}}" bindtap='addOrder' data-shop_name='{{shopObj.shop_name}}' data-shop_image='{{shopObj.shop_logo}}' data-act_name='{{item.card_money}}' data-card_id="{{item.card_id}}" class='ticket flex_about'>
+      <!-- <view wx:if="{{item.card_type==18}}" bindtap='addOrder' data-shop_name='{{shopObj.shop_name}}' data-shop_image='{{shopObj.shop_logo}}' data-act_name='{{item.card_money}}' data-card_id="{{item.card_id}}" class='ticket flex_about'>
         <view class=' global_color_red ticket_money flex_about '>{{tools.turnInt(item.card_money)}}
           <text class='global_small_font global_color_red'>元</text>
         </view>
@@ -98,7 +98,32 @@
           <view class='flex_about payment1'>去付款</view>
         </view>
       </view>
+    </view> -->
+<!-- 支付活动	 -->
+<view wx:if="{{shopObj!=null&&shopObj.pay_ac.length !== 0}}">
+      <view class='global_large_font flex_about commit_title'>
+        <view class='global_middle_font'></view>支付活动
+      </view>
+
+      <view wx:for='{{shopObj.pay_ac}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.pay_ac.length > 0}}" bindtap='givemoneytome' data-id="{{item.ac_tontent}}" data-ac='{{item.ac_id}}' data-shop='{{item.shop_id}}' class='ticket flex_about'>
+        <view class=' global_color_red ticket_money flex_about '>{{item.give_money}}
+          <text class='global_small_font global_color_red'>元</text>
+        </view>
+        <view class="ticket_info">
+          <text class='global_middle_font line-inline'>充值满</text>
+          <view class='global_middle_font line-inline global_color_red'>{{item.money}}</view>
+          <text class='global_middle_font line-inline'>减</text>
+          <view class='global_middle_font line-inline global_color_red'>{{item.give_money}}</view>
+					<view wx:if='{{!item.ac_title==""}}' class='global_middle_font'>{{item.title}}</view>
+        </view>
+        <view class="payment flex_about global_large_font">
+          <view class='iconfont icon-hongbaojuchi-copy'></view>
+          <view class='flex_about payment1'>去支付</view>
+        </view>
+      </view>
     </view>
+
+
     <!-- 充值活动模块 -->
     <view wx:if="{{shopObj!=null&&shopObj.shop_ac.length !== 0}}">
       <view class='global_large_font flex_about commit_title'>
@@ -114,7 +139,7 @@
           <view class='global_middle_font line-inline global_color_red'>{{item.money}}</view>
           <text class='global_middle_font line-inline'>赠</text>
           <view class='global_middle_font line-inline global_color_red'>{{item.give_money}}</view>
-					<view wx:if='{{!item.ac_title==""}}' class='global_middle_font'>{{item.ac_tontent}}</view>
+					<view wx:if='{{!item.ac_title==""}}' class='global_middle_font'>{{item.title}}</view>
         </view>
         <view class="payment flex_about global_large_font">
           <view class='iconfont icon-hongbaojuchi-copy'></view>
@@ -145,7 +170,6 @@
     <view wx:if="{{shopObj!=null&&shopObj.goods.length==0}}" class='global_large_font flex_about commit_title'>
       <view class=''></view>全部商品
     </view>
-
     <view class='product_module' id="list1">
       <navigator style='border:0.5rpx solid #eee;' wx:if="{{shopObj!=null&&shopObj.goods.length>0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.goods}}" wx:key="dataListKey" class="di_item">
         <image src="{{item.goods_thumb}}" style='width:300rpx;height:300rpx;'></image>

@@ -10,9 +10,12 @@ Page({
     orderType: 0, //订单支付方式  1.店铺下单  2.商品下单
     order_money: 0,
     boolIntegration: false,
+		ischecked: false,
     myisclo: true,
     iloveyou: 3,
     card_id: 0,
+		textcenter:false,
+		youhuitext:'',
     radioItems: [{
         name: '微信支付',
         value: '9'
@@ -30,7 +33,6 @@ Page({
   },
   // 选择支付方式
   radioChange: function(e) {
-    console.log(e)
     var checked = e.detail.value
     var changed = {}
     for (var i = 0; i < this.data.radioItems.length; i++) {
@@ -45,6 +47,33 @@ Page({
     }
     this.setData(changed)
   },
+
+// 点击传优惠券内容
+	givemoneytome(e){
+			this.setData({
+				youhuitext:e.currentTarget.dataset.id,
+				virtual: e.currentTarget.dataset.ac,
+				shop_id: e.currentTarget.dataset.shop,
+				reduce_money: e.currentTarget.dataset.moneys,
+				textcenter:false,
+				ischecked:true
+			})
+	},
+
+	// 优惠券点击弹出列表
+	runjumpthis() {
+		this.setData({
+			textcenter: true
+		})
+		this.getuservirtual()
+	},
+
+	// 关闭优惠券
+	closessa(){
+		this.setData({
+			textcenter:false
+		})
+	},
   /**
    * 生命周期函数--监听页面加载
    */
@@ -76,18 +105,39 @@ Page({
       // goods_moneypay: Number(this.data.goods_number) * Number(this.data.goods_price)
     })
     this.init(options);
-
   },
   onShow: function() {
 
   },
+	getuservirtual(){
+		app.request.post({
+			url: "virtual/getMyVirtualList",
+			isLoading: true,
+			data: {
+				shop_id: this.data.shop_id,
+				money:this.data.payformoney,
+				page:1
+			},
+			success:(res)=>{
+				console.log(res)
+				if(res.state==1){
+					this.setData({
+						uservirtual: res.virtual
+					})
+				}else if(res.state==2){
+					app.showtost(msg)
+				}	
+				console.log('请求了')
+			}
+		})
+	},
 	checkboxChange(e){
-		console.log(e.detail.value.length)
 		this.setData({
 			areyouok: e.detail.value.length
 		})
 	},
   shurumoney(e) {
+		
     if (Number(e.detail.value) < Number(this.data.act_name)) {
       wx.showToast({
         title: '该活动充值最少充值' + this.data.act_name + '元',
@@ -102,6 +152,7 @@ Page({
     this.setData({
       payformoney: e.detail.value
     })
+		
   },
   init(options) {
     app.request.post({
@@ -111,7 +162,6 @@ Page({
         shop_id: options.shop_id
       },
       success: (res) => {
-
         this.setData({
           pay_bill: res.pay_bill,
           user_money: res.user_money
@@ -129,10 +179,10 @@ Page({
         data: {
           order_number: 1, //"订单数量",
           order_money: this.data.payformoney, //"支付的金额",
-          virtual_id: this.data.card_id, //"优惠券Id",
           order_type: this.data.order_type,
           shop_id: this.data.shop_id,
-          pay_mode: this.data.iloveyou
+          pay_mode: this.data.iloveyou,
+					virtual_id:this.data.virtual
         },
         success: (e) => {
           console.log(e)
@@ -157,17 +207,16 @@ Page({
                     order_id: e.order_id, //"订单Id",
                   },
                   success: (e) => {
-										let title = '支付成功'
-										app.showtost(title)
-										setTimeout(()=>{
-											wx.switchTab({
-												url: '/pages/personal/order/order',
-												success: function () {
-													app.status.pay_order = 1
-												}
-											})
-										},2000)
-                 
+										app.showtost('支付成功')
+										setTimeout(() => {
+										wx.switchTab({
+											url: '/pages/personal/order/order',
+											success: function () {
+												app.status.pay_order = 1
+											}
+										})
+								
+										}, 3000)
                   }
                 })
               },
@@ -187,22 +236,21 @@ Page({
                 pay_mode: e.pay_mode
               },
               success: (e) => {
-                wx.switchTab({
-                  url: '/pages/personal/order/order',
-                  success: () => {
-                    app.status.pay_order = 1
-										let title = '支付成功'
-										app.showtost(title)
-										setTimeout(() => {
-											wx.switchTab({
-												url: '/pages/personal/order/order',
-												success: function () {
-													app.status.pay_order = 1
-												}
+								app.status.pay_order = 1
+							
+								setTimeout(() => {
+									wx.switchTab({
+										url: '/pages/personal/order/order',
+										success: () => {
+											wx.showToast({
+												title: '支付成功',
+												icon: 'success',
+												duration: 2000,
 											})
-										}, 2000)
-                  }
-                })
+										}
+									})
+
+								}, 1000)
               }
             })
           }

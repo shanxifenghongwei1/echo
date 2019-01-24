@@ -3,7 +3,7 @@
   <view class="body">
     <view wx:if='{{payforid==3}}' class='global_large_font top_body'>买单币充值</view>
     <view wx:if='{{payforid==2}}' class='global_large_font top_body'>余额充值</view>
-    <view wx:if='{{payforid==1}}' class='global_large_font top_body'>买单币活动充值</view>
+    <view wx:if='{{payforid==1}}' class='global_large_font top_body'>支付活动</view>
     <view wx:if='{{payforid==4}}' class='global_large_font top_body'>余额提现</view>
 
     <view class='global_large_font'>{{conten}}</view>
@@ -23,12 +23,13 @@
         <input type="digit" focus='{true}' bindinput='moneyinthis'></input>
       </view>
     </view>
-<view wx:if='{{payforid==4}}' style='margin-bottom:30rpx;' class='global_large_font line-inline'>个人所得提现收取 <text class='line-inline' style='height:100%;color:#ed4444'>{{money}}</text> 手续费</view>
+    <view wx:if='{{payforid==4}}' style='margin-bottom:30rpx;' class='global_large_font line-inline'>
+      个人所得提现收取20%手续费
+      <text class='line-inline' style='height:100%;color:#ed4444'>{{money}}</text>
+    </view>
     <view wx:if='{{payforid==4}}' class='global_large_font'>银行卡选择</view>
- <view wx:if='{{payforid==4&&bank_list.length==0}}' class='global_large_font'>请您先绑定银行卡后再提现</view>
-	
     <!-- 一张银行卡 -->
-    <view style='position:relative;' data-id='{{index}}' data-bank_id='{{item.id}}'   bindtap='checked_bank' class='one-bancard' wx:for='{{bank_list}}' wx:if='{{payforid==4}}'  wx:key='index'>
+    <view style='position:relative;' data-id='{{index}}' data-bank_id='{{item.id}}' bindtap='checked_bank' class='one-bancard' wx:for='{{bank_list}}' wx:if='{{payforid==4}}' wx:key='index'>
       <view class='one-bancard-top'>
         <view class='one-bancard-top-left'>
           <image src='/images/test/pic5.jpg' class='one-bancard-top-left-image'></image>
@@ -49,6 +50,18 @@
 
       <view style='width:30rpx;height:30rpx;position:absolute;right:50rpx;top:50rpx;border-radius: 15rpx;{{background==index?"background:#ed4444":"background:#fff"}}'></view>
     </view>
+
+		<!-- 选择支付方式、 -->
+		      <view class="section section_gap" wx:if='{{payforid==1}}'>
+        <radio-group class="radio_group" bindchange="radioChange" name="radio_group">
+          <radio class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.id}}" checked="{{item.checked}}">
+            <text>{{item.value}}</text>
+          </radio>
+        </radio-group>
+      </view>
+
+
+
     <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==1}}' bindtap='mdbhdcz'>提交</button>
     <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==3}}' bindtap='mdbcz'>买单币充值</button>
     <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==2}}' bindtap='xjcz'>充值</button>

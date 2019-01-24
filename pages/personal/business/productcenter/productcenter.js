@@ -49,6 +49,28 @@ Page({
 			}
 		})
 	},
+
+
+	// 删除商品
+	removeproduct(e){
+			let goods_id = e.currentTarget.dataset.id
+			let index = e.currentTarget.dataset.index
+		app.request.post({
+			url: "shopcenter/delgoods",
+			isLoading: true,
+			data: {
+				goods_id: goods_id
+			},
+			success: (res) => {
+				app.showtost('删除成功')
+				let a = this.data.goods_list
+				a.splice(index,1)
+				this.setData({
+					goods_list:a
+				})
+			}
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面隐藏
 	 */

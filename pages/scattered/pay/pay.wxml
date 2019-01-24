@@ -1,5 +1,7 @@
+<wxs src="../../../utils/tools.wxs" module="tools" />
+
 <view class='page_module global_middle_font global_bg_color'>
-  <view class='padding-all   pay-info'>
+  <view class='padding-all pay-info'>
 
     <!-- 订单类型 -->
     <view class='flex_about  line-border-bottom shop-goods'>
@@ -17,15 +19,30 @@
       </view>
       <view class=' global_single_ellipsis'>{{shop_name}}</view>
     </view>
-   
+
     <!-- 支付金额输入框 -->
     <view wx:if='{{order_type==1}}' class='flex_about money'>
       <text>支付金额</text>
-      <input type="number" focus="true" bindinput='shurumoney' placeholder='请输入金额' placeholder-class="money_input" maxlength="10"></input>
+      <input type="digit" focus="true" bindinput='shurumoney' placeholder='请输入金额' placeholder-class="money_input" maxlength="10"></input>
     </view>
+    <!-- 优惠券 -->
+    <view wx:if='{{uservirtual.length !==0}}' style='display:flex;align-items: center;justify-content:space-between' class='money'>
+      <text>优惠券</text>
+			<text style='width:50%'>{{youhuitext}}</text>
+      <view bindtap='runjumpthis' style='width:20%;;height:80rpx;text-align:right;line-height:80rpx;' class='iconfont icon-sandian1 money_input'></view>
+    </view>
+
+    <!-- 支付金额 -->
+    <view style='display:flex;align-items: center;justify-content:space-between' class='money'>
+      <text style='width:30%;'>应付：{{payformoney}}</text>
+			<text wx:if='{{ischecked}}' style='width:40%;text-align:center;'> 使用优惠券减少{{reduce_money}}</text>
+      <view style='width:30%;;height:80rpx;text-align:right;line-height:80rpx;' class='money_input'> 实付：{{ischecked==true?payformoney-reduce_money:payformoney}}</view>
+    </view>
+
+
     <!-- 商品订单菜单 -->
     <view wx:if='{{order_type==2}}'>
-      <view class='flex_about goods-detail  line-border-bottom'>
+      <view class='flex_about goods-detail line-border-bottom'>
         <view class="slide-image">
           <image src='{{goods_image}}' style='width:100%;height:150rpx;'></image>
         </view>
@@ -102,20 +119,20 @@
     </view>
   </radio-group>
   <view class='newline'></view>-->
- <!-- 选择支付方式 -->
-    <view  class='flex_about money paymessage-choose'>
-      <radio-group  bindchange="radioChange" class="group">
-        <view class="label-2" wx:for="{{radioItems}}" wx:key='index'>
-          <radio id="{{item.name}}" hidden value="{{item.name}}" checked="{{item.checked}}"></radio>
-          <view class="label-2__icon">
-            <view class="label-2__icon-checked" style="opacity:{{item.checked ? 1: 0}}"></view>
-          </view>
-          <label class="label-2__text" for="{{item.name}}">
-            <text>{{item.name}}</text>
-          </label>
-				</view>
-      </radio-group>
-    </view>
+  <!-- 选择支付方式 -->
+  <view class='flex_about money paymessage-choose'>
+    <radio-group style='width:100%;' bindchange="radioChange" class="group">
+      <view class="label-2" wx:for="{{radioItems}}" wx:key='index'>
+        <radio id="{{item.name}}" hidden value="{{item.name}}" checked="{{item.checked}}"></radio>
+        <view class="label-2__icon">
+          <view class="label-2__icon-checked" style="opacity:{{item.checked ? 1: 0}}"></view>
+        </view>
+        <label class="label-2__text" for="{{item.name}}">
+          <text>{{item.name}}</text>
+        </label>
+      </view>
+    </radio-group>
+  </view>
   <!-- 阅读并同意 -->
   <view class='padding-all integration  pay_btn'>
 
@@ -125,40 +142,36 @@
     </checkbox-group>
 
     <!-- 确认支付按钮 -->
-		<view wx:if='{{areyouok==1}}'>
-    <button wx:if='{{order_type==2}}' class='global_bg_color_red global_middle_font' bindtap='payClick'>
-      确定支付
-    </button>
-    <button wx:if='{{order_type==1}}' class='global_bg_color_red global_middle_font' bindtap='shangjiapay'>商铺支付</button>
-</view>
-  </view>
-</view>
-
-
-<!-- 优惠券 -->
-<!-- <view class='any global_bg_color  wx:if='{{myisclo==true}}'>
-  <view wx:for='{{my_coupon}}' wx:key='index' data-index="{{index}}"  data-card_id='{{item.card_id}}'>
-    <view class='ticket flex_about'>
-      <view class=' global_color_red ticket_money flex_about global_middle_font'>{{tools.turnInt(item.reduce_money)}}
-        <text class='global_small_font global_color_red'>元--{{item.card_id}}</text>
-      </view>
-      <view class="ticket_info">
-        <view class='global_middle_font'> 满{{tools.turnInt(item.card_money)}} 元
-          <text wx:if='{{item.id==18}}'>减</text>
-          <text wx:if='{{item.id==17}}'>得</text>
-          <text wx:if='{{item.id==19}}'>送</text>
-          <text wx:if='{{item.id==16}}'>打</text> {{tools.turnInt(item.reduce_money)}} 元
-          <text wx:if='{{item.id==16}}'>折</text>
-        </view>
-      </view>
-      <view class="payment flex_about global_large_font">
-        <view class='iconfont icon-hongbaojuchi-copy'></view>
-        <view class='flex_about payment1 '>去付款</view>
-      </view>
+    <view wx:if='{{areyouok==1}}'>
+      <button wx:if='{{order_type==2}}' class='global_bg_color_red global_middle_font' bindtap='payClick'>
+        确定支付
+      </button>
+      <button wx:if='{{order_type==1}}' class='global_bg_color_red global_middle_font' bindtap='shangjiapay'>商铺支付</button>
     </view>
   </view>
+</view>
 
-  <view class='prompt'>
-    <prompt id="prompt"></prompt>
+<view  wx:if='{{textcenter}}' class='anyevery'>
+  <view class='bottom-in-price'>
+    <view class='price-top'>
+      <view class='top-lefty'></view>
+      <view class='top-rights' bindtap='closessa'>×</view>
+    </view>
+    <scroll-view  scroll-y class='bottom-in-price-content'>
+	
+ <view wx:for='{{uservirtual}}' wx:key='index' bindtap='givemoneytome'  data-moneys='{{tools.turnInt(item.reduce_money)}}' data-id="{{item.card_name}}" data-ac='{{item.id}}' data-shop='{{item.shop_id}}' class='ticket flex_about'>
+        <view class=' global_color_red ticket_money flex_about '>{{tools.turnInt(item.reduce_money)}}
+          <!-- <text class='global_small_font global_color_red'>元</text> -->
+        </view>
+        <view class="ticket_info">
+					<view class='global_middle_font'>{{item.card_name}}</view>
+        </view>
+        <view class="payment flex_about global_large_font">
+          <view class='iconfont icon-hongbaojuchi-copy'></view>
+          <view class='flex_about payment1'>使用</view>
+        </view>
+</view>
+
+		</scroll-view>
   </view>
-</view> -->
+</view>

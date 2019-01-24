@@ -5,26 +5,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+		page:1
   },
 	run(){
 		wx.switchTab({
 			url: '/pages/personal/person/person',
 		})
 	},
-	init(idd, huser_id, sign) {
+	init() {
     app.request.post({
-      url: "virtual/index",
+			url: "virtual/getMyCardList",
       isLoading: true,
       data: {
-        huser_id:huser_id,
-        card_id:idd,
-				sign: sign
+				page:this.data.page
       },
       success:(e) => {
+				if(e.state==2){
 				this.setData({
-          vi_list: e.virtual,
-        })
+					state:e.state,
+					msg:e.msg
+				})
+				}
+				if(e.state==1){
+					this.setData({
+						vi_list: e.virtual
+					})
+				}
+			
       }
     })
   },
@@ -32,30 +39,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-		console.log(app.status.dengluzhuangtai+'登录状态的值')
+		app.setNavigationBarTitle("我的券包");
 		console.log(options)
-		if (!options.sign){
-			this.setData({
-				card_id:0
-			})
-		}
-			let huser_id = options.huser_id
-			let idd = options.card_id
-			let sign = options.sign
-			this.setData({
-				card_id: options.card_id
-			})
-
+		// if (!options.sign){
+		// 	this.setData({
+		// 		card_id:0
+		// 	})
+		// }
+		// 	let huser_id = options.huser_id
+		// 	let idd = options.card_id
+		// 	let sign = options.sign
+		// 	this.setData({
+		// 		card_id: options.card_id
+		// 	})
 		if (wx.getStorageSync('user_id')){	
-			this.init(idd, huser_id, sign);
+			this.init();
 		}
-		
-		
-
   },
   shiyong(e) {
     wx.reLaunch({
-			url: '/pages/personal/coupon/mycoupon/mycoupon?shop_name=' + e.currentTarget.dataset.shop_name + '&titlie=' + e.currentTarget.dataset.card_name + '&card_sn=' + e.currentTarget.dataset.card_sn + '&qr_code=' + e.currentTarget.dataset.qr_code + '&card_id=' + e.currentTarget.dataset.card_id + '&sign=' + e.currentTarget.dataset.sign
+			url: '/pages/personal/coupon/mycoupon/mycoupon?joinpage=1&shop_name=' + e.currentTarget.dataset.shop_name + '&titlie=' + e.currentTarget.dataset.card_name + '&card_sn=' + e.currentTarget.dataset.card_sn + '&qr_code=' + e.currentTarget.dataset.qr_code + '&card_id=' + e.currentTarget.dataset.card_id + '&sign=' + e.currentTarget.dataset.sign
     })
 		this.setData({
 			card_id: e.currentTarget.dataset.card_id
@@ -72,7 +75,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-		
     app.dengluzt();
   },
 
