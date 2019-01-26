@@ -37,51 +37,52 @@
 			 <view style='margin-left:40rpx;' class='list1-have global_small_font'>已到账:
         <view class='global_small_font line-inline'>{{item.money}}</view>
       </view>
-
 			 <view style='margin-left:40rpx;' class='list1-have global_small_font'>未到账:
         <view class='global_small_font line-inline'>{{item.total_money-item.money}}</view>
       </view>
-
     </view>
+  </view>
 
 
-
-
-
+<!-- ---- -->
+	<view wx:for='{{my_active}}' wx:key='index'  wx:if='{{cid == 4}}' class='queue'>
+    <view class='list line-border-bottm'>
+      <view class='user-list line-inline global_middle_font'>买单币充值</view>
+      <view class='user-list1 line-inline global_middle_font'>{{item.shop_name}} > </view>
+    </view>
+    <view  class='list1 flex_about'>
+      <view class='list1-have global_small_font'>充值买单币
+        <view class='global_small_font line-inline'>{{item.money}}</view>
+      </view>
+      <view class='list1-wit have global_small_font'>赠送买单币
+        <view class='global_small_font line-inline'>{{item.give_money}}</view>
+      </view>
+    </view>
+		 <view  class='list1 flex_about'>
+      <view class='list1-have global_small_font'>余额：
+        <view class='global_small_font line-inline'>{{item.card_money}}</view>
+      </view>
+      <view class='list1-wit have global_small_font'>充值时间：
+        <view class='global_small_font line-inline'>{{item.time}}</view>
+      </view>
+    </view>
+		 <view  class='list1 flex_about'>
+      <view class='list1-have global_small_font'>充值内容
+        <view class='global_small_font line-inline'>{{item.content}}</view>
+      </view> 
+    </view>
   </view>
   <!-- 会员充值 -->
-  <view class='member' wx:if='{{cid == 4}}'>
-    <view class='member-top line-border-bottm'>
-      <view class='member-money line-inline global_middle_font'>会员充值</view>
-      <view bindtap='exchange' data-shopid='{{9}}' class='member-shop line-inline global_middle_font'>萌萌商店 > </view>
-    </view>
-    <view class='member-bottom'>
-      <view class='member-bottom-left-any'>
 
-        <!-- 充值金额1 -->
-        <view class='member-bottom-left'>
-          <view class='member-bottom-one global_small_font'>充值金额</view>
-          <view class='member-bottom-two global_small_font'>800</view>
-        </view>
-        <!-- 充值金额2 -->
-        <view class='member-bottom-left'>
-          <view class='member-bottom-one global_small_font'>会员金额</view>
-          <view class='member-bottom-two global_small_font'>800</view>
-        </view>
-        <!-- 余额 -->
-        <view class='member-bottom-left'>
-          <view class='member-bottom-one global_small_font'>余额</view>
-          <view class='member-bottom-two global_small_font'>500</view>
-        </view>
-      </view>
+      
       <!-- 去消费 -->
       <!-- <view class='member-bottom-right'>
         <view class='member-bottom-right1 global_small_font'>去消费</view>
       </view> -->
 
-    </view>
+    
 
-  </view>
+  
 
   <!-- 购物返现 -->
   <view class='shopping' wx:if='{{cid == 1}}'>

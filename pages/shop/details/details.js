@@ -89,17 +89,21 @@ Page({
       isLoading: true,
       data: {
         goods_id: this.data.goodsObj.goods_id,
-        virtual_id: this.data.ticket.card_id != undefined ? this.data.ticket.card_id : 0,
+        virtual_id:0,
         shop_id: this.data.goodsObj.id,
         goods_number:1,
         order_type: app.status.orderType.goods
       },
       success: (e) => {
-        console.log(e)
        
-        wx.redirectTo({
-          url: '/pages/scattered/pay/pay?order_type=2&order_id=' + e.order_id + "&shop_image=" + e.shop.shop_thumb + '&shop_name=' + e.shop.shop_name+'&goods_image='+e.goods.goods_thumb+'&goods_name='+e.goods.goods_name+'&goods_price='+e.goods.goods_price+'&goods_number='+e.goods.goods_number+'&goods_keywords='+e.goods.keywords+'&order_money='+e.goods.order_money
-        });
+      if(e.state==1){
+				wx.redirectTo({
+					url: '/pages/scattered/pay/pay?order_type=2&order_id=' + e.order_id + "&shop_image=" + e.shop.shop_thumb + '&shop_name=' + e.shop.shop_name + '&goods_image=' + e.goods.goods_thumb + '&goods_name=' + e.goods.goods_name + '&goods_price=' + e.goods.goods_price + '&goods_number=' + e.goods.goods_number + '&goods_keywords=' + e.goods.keywords + '&order_money=' + e.goods.order_money +'&virtual='+e.virtual + '&shop_id==' + e.shop.shop_id
+				})
+			}
+			else{
+				app.showtost(e.msg)
+			}
       }
     })
   },

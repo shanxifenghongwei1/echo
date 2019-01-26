@@ -65,7 +65,6 @@ Page({
 		this.setData({
 			textcenter: true
 		})
-		this.getuservirtual()
 	},
 
 	// 关闭优惠券
@@ -79,7 +78,6 @@ Page({
    */
   onLoad: function(options) {
     app.setNavigationBarTitle("支付");
-    console.log(options)
     if (!options.card_id) {
       this.setData({
         card_id: 0
@@ -107,7 +105,7 @@ Page({
     this.init(options);
   },
   onShow: function() {
-
+		this.getusershopvirtual()
   },
 	getuservirtual(){
 		app.request.post({
@@ -115,25 +113,57 @@ Page({
 			isLoading: true,
 			data: {
 				shop_id: this.data.shop_id,
-				money:this.data.payformoney,
+				money: Number(this.data.payformoney),
 				page:1
 			},
 			success:(res)=>{
-				console.log(res)
 				if(res.state==1){
 					this.setData({
 						uservirtual: res.virtual
 					})
 				}else if(res.state==2){
-					app.showtost(msg)
+					app.showtost(res.msg)
 				}	
-				console.log('请求了')
+				if (res.virtual.length==0){
+					this.setData({
+						ischecked:false,
+						virtual:0,
+						youhuitext:''
+					})
+				}
 			}
 		})
 	},
 	checkboxChange(e){
 		this.setData({
 			areyouok: e.detail.value.length
+		})
+	},
+	getusershopvirtual() {
+		app.request.post({
+			url: "virtual/getMyVirtualList",
+			isLoading: true,
+			data: {
+				shop_id: this.data.shop_id,
+				money: Number(this.data.goods_price),
+				page: 1
+			},
+			success: (res) => {
+				if (res.state == 1) {
+					this.setData({
+						uservirtual: res.virtual
+					})
+				} else if (res.state == 2) {
+					// app.showtost(res.msg)
+				}
+				if (res.virtual.length == 0) {
+					this.setData({
+						ischecked: false,
+						virtual: 0,
+						youhuitext: ''
+					})
+				}
+			}
 		})
 	},
   shurumoney(e) {
@@ -147,12 +177,11 @@ Page({
       this.setData({
         payformoney: e.detail.value
       })
-      return;
     }
     this.setData({
-      payformoney: e.detail.value
+      payformoney: e.detail.value,
     })
-		
+		this.getuservirtual()
   },
   init(options) {
     app.request.post({
@@ -171,7 +200,6 @@ Page({
   },
   // 商家支付
   shangjiapay() {
-		console.log('优惠卷id='+this.data.card_id)
     if (this.data.payformoney) {
       app.request.post({
         url: "pay/Wx_Shop_pay",
@@ -185,7 +213,6 @@ Page({
 					virtual_id:this.data.virtual
         },
         success: (e) => {
-          console.log(e)
 					if(e.state!==1){
 						let t = '失败'
 						let c = e.msg
@@ -205,6 +232,7 @@ Page({
                   isLoading: true,
                   data: {
                     order_id: e.order_id, //"订单Id",
+										virtual_id: this.data.virtual
                   },
                   success: (e) => {
 										app.showtost('支付成功')
@@ -215,7 +243,6 @@ Page({
 												app.status.pay_order = 1
 											}
 										})
-								
 										}, 3000)
                   }
                 })
@@ -233,7 +260,8 @@ Page({
               isLoading: true,
               data: {
                 order_id: e.order_id, //"订单Id",
-                pay_mode: e.pay_mode
+                pay_mode: e.pay_mode,
+								virtual_id: this.data.virtual
               },
               success: (e) => {
 								app.status.pay_order = 1
@@ -274,11 +302,12 @@ Page({
           isLoading: true,
           data: {
             order_id: that.data.order_id, //"订单Id",
-            order_number: that.data.goods_number, //"订单数量",
+            order_number: 1, //"订单数量",
             order_money: that.data.order_money, //"支付的金额",
-            virtual_id: 0, //"优惠券Id",
+						virtual_id: that.data.virtual,
             order_type: that.data.order_type,
-						pay_mode :that.data.iloveyou
+						pay_mode :that.data.iloveyou,
+				
           },
           success: (e) => {
 						if (e.state !== 1) {
@@ -326,7 +355,8 @@ Page({
 							 isLoading: true,
 							 data: {
 								 order_id: that.data.order_id, //"订单Id",
-								 pay_mode:e.pay_mode
+								 pay_mode:e.pay_mode,
+								 virtual_id: that.data.virtual
 							 },
 							 success: (e) => {
 								 wx.switchTab({

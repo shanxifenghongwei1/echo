@@ -23,7 +23,7 @@ Page({
 		my_active:[],
 		cid:7,
 		page:1,
-		order: [{ text: '排队返现', type_id: 7 }, { text: '会员充值', type_id: 4 }, { text: '购物返现', type_id: 1 }],
+		order: [{ text: '排队返现', type_id: 7 }, { text: '充值活动', type_id: 4 }, { text: '支付活动', type_id: 1 }],
   },
 
   /**
@@ -52,16 +52,36 @@ Page({
       success: (e) => {
 				if(e.state == 1){
 					this.setData({
-						my_active:e.return_cash
+						my_active:e.return_cash,
+						page:1
 					})
 				}
 				if(e.state==2){
 					app.showtost(e.msg)
 				}
-
       }
     })
   },
+	initii(){
+		app.request.post({
+			url: "return/index",
+			isLoading: true,
+			data: {
+				return_type: this.data.cid,
+				page: ++this.data.page
+			},
+			success: (e) => {
+				if (e.state == 1) {
+					this.setData({
+						my_active: this.data.my_active.concat(e.return_cash),
+					})
+				}
+				if (e.state == 2) {
+					app.showtost(e.msg)
+				}
+			}
+		})
+	},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -101,7 +121,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+		this.initii()
   },
 
   /**

@@ -1,4 +1,4 @@
-<view class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit'  wx:key="ca_key">
+<view class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' data-pinid='{{item.comment_id}}' bindlongtap='deletes'  bindtap='wherecommit'  wx:key="ca_key">
   <!-- 评论的用户头像图片 -->
   <view class='commit_avatar'>
     <image src='{{item.Head_portrait}}' mode='widthFix'></image>

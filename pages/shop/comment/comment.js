@@ -111,150 +111,169 @@ Page({
   addComment() {
     var that = this
     var user_img = this.data.imageArray
-    console.log(this.data.imageArray)
-
+ 
     var ass = '';
     var i = 0
-    // for (var i = 0; i < this.data.imageArray.length; i++) {
-    wx.showToast({
-      title: '正在上传第' + i + '张图片',
-      icon: 'success',
-      mask: 'true'
-    })
-    wx.uploadFile({
-      url: 'https://www.nazhua.com.cn/api/comment/upload',
-      filePath: this.data.imageArray[i][0],
-      name: 'file',
-      success: (res) => {
-        i++
-        ass += res.data + ','
-        if (i < this.data.imageArray.length) {
-         
-          wx.uploadFile({
-						url: 'https://www.nazhua.com.cn/api/comment/upload',
-            filePath: this.data.imageArray[i][0],
-            name: 'file',
-            success: (res) => {
-              i++
-              ass += res.data + ','
-              if (i < this.data.imageArray.length) {
-               
-								console.log('图片' + i + '上传完成')
-                wx.uploadFile({
-									url: 'https://www.nazhua.com.cn/api/comment/upload',
-                  filePath: this.data.imageArray[i][0],
-                  name: 'file',
-                  success: (res) => {
-                    i++
-                    ass += res.data + ','
-                    if (i <= this.data.imageArray.length) {
-                    
-											console.log('图片' + i + '上传完成')
-                      app.request.post({
-                        url: "comment/index",
-                        isLoading: true,
-                        data: {
-                          order_id: that.data.order_id,
-                          content: that.data.commentText,
-                          user_img: ass,
-													is_anonymous: that.data.is_anonymous
-                        },
-                        success: (e) => {
-                          wx.showToast({
-                            title: '评论成功',
-                            icon: 'success',
-                            mask: 'true'
-                          })
-                          wx.switchTab({
-                            url: '/pages/personal/order/order',
-                          })
-                        }
-                      })
+		if ( !user_img[i] ) {
+			wx.showToast({
+				title: '正在上传第' + i + '张图片',
+				icon: 'success',
+				mask: 'true'
+			})
+			wx.uploadFile({
+				url: 'https://www.nazhua.com.cn/api/comment/upload',
+				filePath: this.data.imageArray[i][0],
+				name: 'file',
+				success: (res) => {
+					i++
+					ass += res.data + ','
+					if (i < this.data.imageArray.length) {
+						wx.uploadFile({
+							url: 'https://www.nazhua.com.cn/api/comment/upload',
+							filePath: this.data.imageArray[i][0],
+							name: 'file',
+							success: (res) => {
+								i++
+								ass += res.data + ','
+								if (i < this.data.imageArray.length) {
+									console.log('图片' + i + '上传完成')
+									wx.uploadFile({
+										url: 'https://www.nazhua.com.cn/api/comment/upload',
+										filePath: this.data.imageArray[i][0],
+										name: 'file',
+										success: (res) => {
+											i++
+											ass += res.data + ','
+											if (i <= this.data.imageArray.length) {
 
-                    } else {
-											console.log('图片' + i + '上传完成')
-                      app.request.post({
-                        url: "comment/index",
-                        isLoading: true,
-                        data: {
-                          order_id: that.data.order_id,
-                          content: that.data.commentText,
-													is_anonymous: that.data.is_anonymous,
-                          user_img: ass
-                        },
-                        success: (e) => {
-                          wx.showToast({
-                            title: '评论成功',
-                            icon: 'success',
-                            mask: 'true'
-                          })
-                          wx.switchTab({
-                            url: '/pages/personal/order/order',
-                          })
-                        }
-                      })
+												console.log('图片' + i + '上传完成')
+												app.request.post({
+													url: "comment/index",
+													isLoading: true,
+													data: {
+														order_id: that.data.order_id,
+														content: that.data.commentText,
+														user_img: ass,
+														is_anonymous: that.data.is_anonymous
+													},
+													success: (e) => {
+														wx.showToast({
+															title: '评论成功',
+															icon: 'success',
+															mask: 'true'
+														})
+														wx.switchTab({
+															url: '/pages/personal/order/order',
+														})
+													}
+												})
 
-                    }
-                  }
-                })
+											} else {
+												console.log('图片' + i + '上传完成')
+												app.request.post({
+													url: "comment/index",
+													isLoading: true,
+													data: {
+														order_id: that.data.order_id,
+														content: that.data.commentText,
+														is_anonymous: that.data.is_anonymous,
+														user_img: ass
+													},
+													success: (e) => {
+														wx.showToast({
+															title: '评论成功',
+															icon: 'success',
+															mask: 'true'
+														})
+														wx.switchTab({
+															url: '/pages/personal/order/order',
+														})
+													}
+												})
 
-              } else {
-                console.log('图片' + i + '上传完成')
-                app.request.post({
-                  url: "comment/index",
-                  isLoading: true,
-                  data: {
-                    order_id: that.data.order_id,
-                    content: that.data.commentText,
-										is_anonymous: that.data.is_anonymous,
-                    user_img: ass
-                  },
-                  success: (e) => {
-                    wx.showToast({
-                      title: '评论成功',
-                      icon: 'success',
-                      mask: 'true'
-                    })
-                    wx.switchTab({
-                      url: '/pages/personal/order/order',
-                    })
-                  }
-                })
+											}
+										}
+									})
 
-              }
-            }
-          })
+								} else {
+									console.log('图片' + i + '上传完成')
+									app.request.post({
+										url: "comment/index",
+										isLoading: true,
+										data: {
+											order_id: that.data.order_id,
+											content: that.data.commentText,
+											is_anonymous: that.data.is_anonymous,
+											user_img: ass
+										},
+										success: (e) => {
+											wx.showToast({
+												title: '评论成功',
+												icon: 'success',
+												mask: 'true'
+											})
+											wx.switchTab({
+												url: '/pages/personal/order/order',
+											})
+										}
+									})
 
-        } else {
-          console.log('图片' + i + '上传完成')
-          app.request.post({
-            url: "comment/index",
-            isLoading: true,
-            data: {
-              order_id: that.data.order_id,
-              content: that.data.commentText,
-							is_anonymous: that.data.is_anonymous,
-              user_img: ass
-            },
-            success: (e) => {
-              wx.showToast({
-                title: '评论成功',
-                icon: 'success',
-                mask: 'true'
-              })
-              wx.switchTab({
-                url: '/pages/personal/order/order',
-              })
-            }
-          })
+								}
+							}
+						})
 
-        }
-      }
-    })
-    wx.showToast({
-      title: '正在上传内容',
-      icon: 'success',
-      mask: 'true'
-    })
+					} else {
+						console.log('图片' + i + '上传完成')
+						app.request.post({
+							url: "comment/index",
+							isLoading: true,
+							data: {
+								order_id: that.data.order_id,
+								content: that.data.commentText,
+								is_anonymous: that.data.is_anonymous,
+								user_img: ass
+							},
+							success: (e) => {
+								wx.showToast({
+									title: '评论成功',
+									icon: 'success',
+									mask: 'true'
+								})
+								wx.switchTab({
+									url: '/pages/personal/order/order',
+								})
+							}
+						})
+					}
+				}
+			})
+		 }else{
+			app.request.post({
+				url: "comment/index",
+				isLoading: true,
+				data: {
+					order_id: that.data.order_id,
+					content: that.data.commentText,
+					is_anonymous: that.data.is_anonymous,
+					user_img: ass
+				},
+				success: (e) => {
+					wx.showToast({
+						title: '评论成功',
+						icon: 'success',
+						mask: 'true'
+					})
+					wx.switchTab({
+						url: '/pages/personal/order/order',
+					})
+				}
+			})
+			wx.showToast({
+				title: '正在上传内容',
+				icon: 'success',
+				mask: 'true'
+			})
+		}
+		
   }
 })

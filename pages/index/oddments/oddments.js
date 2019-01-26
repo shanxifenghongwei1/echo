@@ -55,11 +55,20 @@ this.setData({
     })
   },
   givemoneytome(e){
-    console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url: '/pages/personal/person/recharges/recharge?payforid=1&conten=' + e.currentTarget.dataset.id + '&shop_id=' + e.currentTarget.dataset.shop + '&ac_id=' + e.currentTarget.dataset.ac,
     })
   },
+	givemoneytohe(e){
+		wx.navigateTo({
+			url: '/pages/personal/person/recharges/recharge?payforid=5&conten=' + e.currentTarget.dataset.id + '&shop_id=' + e.currentTarget.dataset.shop + '&ac_id=' + e.currentTarget.dataset.ac,
+		})
+	},
+	returncash(e) {
+		wx.navigateTo({
+			url: '/pages/personal/person/recharges/recharge?payforid=6&conten=' + e.currentTarget.dataset.id + '&shop_id=' + e.currentTarget.dataset.shop + '&ac_id=' + e.currentTarget.dataset.ac,
+		})
+	},
   onShow() {
     this.init(app.globalData.shopId);
     this.scrolltolower();
@@ -74,12 +83,10 @@ this.setData({
         page:this.data.page
       },
       success: (e) => {
-      
         this.setData({
           commentArrar: e.comment,
           type: e.shop_id
-        })
-        
+        })  
       }
     })
   },

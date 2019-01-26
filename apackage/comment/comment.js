@@ -78,6 +78,46 @@ Component({
     bindchange: function (e) {
       this.setData({ current: e.detail.current })
     },
+		// 删除
+		deletes:function(e){
+			// wx.playVoice({
+			// 	filePath:'/images/test/'
+			// })
+			let pinid = e.currentTarget.dataset.pinid
+			wx.showModal({
+				title: '提示',
+				content: '确认删除这条吗？',
+				showCancel: true,
+				cancelText: '确认',
+				confirmText: '取消',
+				success:(as)=> {
+					if (as.cancel == true) {
+
+						app.request.post({
+							url: "comment/delete_comment",
+							data: {
+								comment_id: pinid
+							},
+							success: (res) => {
+								if (res.state == 1) {
+									app.showtost(res.msg)
+									let a = this.data.commentArrar
+									let index = e.currentTarget.dataset.id
+									a.splice(index, 1)
+									this.setData({
+										commentArrar: a
+									})
+
+								} else if (res.state == 2) {
+									app.showtost(res.msg)
+								}
+							}
+						})
+
+					} 
+				}
+			})	
+		},
  
     //显示评论图
  
@@ -95,7 +135,6 @@ Component({
 		},
 		showCommentImage(e) {
 			setTimeout(() => {
-	
 				let dataarray = this.data.commentArrar[this.data.whereid].msg_img
 				wx.previewImage({
 					urls: dataarray,

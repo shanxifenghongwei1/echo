@@ -11,7 +11,6 @@
     <view class="iconfont icon-shezhi setactivepartition" bindtap='switcher'> </view>
   </view>
 
-
   <!-- 核销码 -->
   <view class="header">
     <view class="headersun">
@@ -29,10 +28,9 @@
         <swiper-item clas='bigmos'>
           <view class='global_middle_font line-inline'>
             <view class='line-inline iconfont icon-xiaolaba horn global_color_red'></view>
-						 {{item.shop_name}}的
+            {{item.shop_name}}的
             <view class='global_middle_font line-inline global_color_red'>{{item.card_name}}</view>
-						  还有{{item.time}}
-							分钟开始使用啦
+            还有{{item.time}} 分钟开始使用啦
           </view>
         </swiper-item>
       </block>
@@ -58,17 +56,19 @@
   </view>
   <view class="hentiao"></view>
 
-
   <!-- 中间方格 -->
   <view class="body">
     <view class="bodyL">
       <navigator url='/pages/personal/business/productcenter/productcenter?myshop_id={{myshop_id}}' class="bodyLT">
         <view class="bodyLTsun">
-          <view class="bodyLTsunS"> <view class="mdsz iconfont icon-chanpin"></view> </view>
-          <view class="bodyLTsunX"> <text>产品中心</text> </view>
+          <view class="bodyLTsunS">
+            <view class="mdsz iconfont icon-chanpin"></view>
+          </view>
+          <view class="bodyLTsunX">
+            <text>产品中心</text> </view>
         </view>
       </navigator>
-      <navigator  url='/pages/personal/business/reviewcenter/reviewcenter?myshop_id={{myshop_id}}' class="bodyLZ">
+      <navigator url='/pages/personal/business/reviewcenter/reviewcenter?myshop_id={{myshop_id}}' class="bodyLZ">
         <view class="bodyLTsun">
           <view class="bodyLTsunS1">
             <view class="mdsz iconfont icon-pinglun"></view>
@@ -155,10 +155,6 @@
     </view>
   </view>
 
-
-
-
-
   <!-- 账户余额 -->
   <!-- <view class="bill">
     <view class="billsun">
@@ -193,7 +189,5 @@
     <view class='module-two global_middle_font'>购买产品券</view>
     <view class='module-three-1-1 global_middle_font iconfont icon-arrow-right-copy'></view>
   </view> -->
-
-
 
 </view>

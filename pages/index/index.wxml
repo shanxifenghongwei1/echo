@@ -99,16 +99,17 @@
           <view></view>
           <view class='iconfont icon-arrow-right-copy'></view>
         </view> -->
+				
       </view>
     </view>
     <!-- 热门商品模块 -->
-    <view wx:if="{{shopObj!=null&&shopObj.hot_goods.length !==0}}" class='global_large_font flex_about commit_title'>
+    <view wx:if="{{shopObj!=null&&shopObj.hot_goods.length !==0}}" style='border:0.5rpx solid #eee;' class='global_large_font flex_about commit_title'>
       <view class='iconfont icon-remenhuodong-copy-copy'></view>热门商品
     </view>
    
     <view class='product_module' id="list1">
       <navigator wx:if="{{shopObj!=null&&shopObj.hot_goods.length>0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.hot_goods}}" wx:key="dataListKey" class="di_item">
-        <image src="{{item.goods_thumb}}" mode='widthFix'></image>
+        <image src="{{item.goods_thumb}}"  style='width:300rpx;height:300rpx;'></image>
         <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
         <view class='dl_detailed global_small_font flex_about'>
           <text class='global_middle_font global_color_red'>￥{{item.shop_price}}</text>
@@ -122,7 +123,7 @@
     </view>
     <view wx:if="{{goods1.length==0}}" class='global_small_font'>暂无商品</view>
     <view class='product_module' id="list1">
-      <navigator wx:if="{{goods1!=null&&goods1.length>0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for="{{goods1}}" wx:key="index" class="di_item">
+      <navigator style='border:0.5rpx solid #eee;' wx:if="{{goods1!=null&&goods1.length>0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for="{{goods1}}" wx:key="index" class="di_item">
         <image src="{{item.goods_thumb}}"  style='width:300rpx;height:300rpx;'></image>
         <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
         <view class='dl_detailed global_small_font flex_about'>
@@ -136,7 +137,40 @@
       <view class='global_large_font flex_about commit_title'>
         <view class='iconfont icon-pinglun2'></view>评论
       </view>
-      <comment id="comment"></comment>
+
+			
+      <!-- ----------开头---------------- -->
+    <view class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit'  wx:key="index">
+      <!-- 评论的用户头像图片 -->
+      <view class='commit_avatar'>
+        <image src='{{item.Head_portrait}}' mode='widthFix'></image>
+      </view>
+      <!-- 评论的用户名字 -->
+      <view>
+        <view class='commit_text'>
+          <view class='flex_about global_large_font commit_name_date'>
+            <view>{{item.nickname}}</view>
+            <view></view>
+            <!-- 评论时间 -->
+            <view class='global_small_font'>
+              {{item.msg_date}}
+            </view>
+          </view>
+          <!-- 评论内容 -->
+          <view class='global_small_font'>
+            {{item.msg_desc}}
+          </view>
+        </view>
+        <!-- 评论图片 -->
+        <view class='comment_min_image'>
+          <view>
+            <image bindtap='showCommentImage' data-id='{{index}}' wx:for="{{item.msg_img}}" style='width:30%;height:150rpx;' wx:key="index" src="{{item}}"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
     </view>
   </view>
   <!-- <view bindtap='top' class='newclool'>返回顶部</view> -->

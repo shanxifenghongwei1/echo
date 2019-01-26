@@ -63,11 +63,6 @@ Page({
               if (res.state == 1) {
                 app.showtost(res.msg)
                 let a = that.data.shop
-								console.log('a的值')
-								console.log(a)
-								console.log('index的值')
-								console.log(index)
-								a.splice(index, 1)
                 that.setData({
                   shop: a
                 })
@@ -131,7 +126,8 @@ Page({
   },
   storygoodslist(e) {
     this.setData({
-      order_id: e.currentTarget.dataset.order_id
+      order_id: e.currentTarget.dataset.order_id,
+			
     })
 
     var that = this

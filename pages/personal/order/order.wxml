@@ -69,9 +69,9 @@
         <view class='global_small_font this-time'>时间:{{item.order_time}}</view>
         <view></view>
         <view class='flex_about'>
-          <navigator wx:if='{{item.pay_type==2}}' bindtap='storygoodslist' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>去支付</navigator>
-					          <view wx:if='{{item.pay_type==2}}' bindtap='removeorderlist' data-index='{{index}}' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>取消</view>
-          <navigator wx:if='{{item.pay_type!==2||item.comment_status!==0}}' class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator>
+          <navigator wx:if='{{item.pay_type==2&&cid!==3}}' bindtap='storygoodslist' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>去支付</navigator>
+					          <view wx:if='{{item.pay_type==2&&cid!==3}}' bindtap='removeorderlist' data-index='{{index}}' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>取消</view>
+          <navigator wx:if='{{ item.pay_type==1 && item.comment_status == 0 }}' class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator>
         </view>
       </view>
     </view>

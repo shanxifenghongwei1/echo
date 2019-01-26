@@ -1,5 +1,6 @@
 @import '/utils/wxss/store.wxss';
 @import '/utils/wxss/voucher.wxss';
+@import '/apackage/comment/comment.wxss';
 
 .header_top {
   position: absolute;

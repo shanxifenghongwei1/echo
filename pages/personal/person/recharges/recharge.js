@@ -77,15 +77,17 @@ Page({
       success: (e) => {
         if (this.data.payforid == 4) {
           if (e.length == 0) {
-            wx.switchTab({
-              url: "/pages/personal/person/person",
+						wx.redirectTo({
+							url: "/pages/personal/bandcard/addbandcard/addbandcard",
               success: function() {
-                wx.showToast({
-                  title: '请您先绑定银行卡',
-                  icon: 'none',
-                  duration: 3000,
-                  mask: true,
-                })
+								setTimeout(()=>{
+									wx.showToast({
+										title: '请您先绑定银行卡再提现',
+										icon: 'none',
+										duration: 3000,
+										mask: true,
+									})
+								},500)
               }
             })
           } else {
@@ -100,8 +102,8 @@ Page({
     })
   },
 
-  // 买单币活动充值
-  mdbhdcz() {
+  // 支付充值
+  zhifcz() {
     if (!this.data.usermoney) {
       wx.showToast({
         title: '请输入金额',
@@ -126,7 +128,6 @@ Page({
           pay_mode: this.data.pay_mode,
         },
         success: (e) => {
-          console.log(e)
           if (e.state !== 1) {
             let t = '失败'
             let c = e.msg
@@ -145,11 +146,9 @@ Page({
                   url: "pay/editOrderStatus",
                   isLoading: true,
                   data: {
-                    order_id: e.order_id, //"订单Id",
-
+                    order_id: e.order_id, //"订单Id"
                   },
                   success: (e) => {
-
                     wx.switchTab({
                       url: '/pages/personal/order/order',
                       success: function() {
@@ -182,13 +181,6 @@ Page({
                   url: '/pages/personal/order/order',
                   success: () => {
                     app.status.pay_order = 1
-                    wx.switchTab({
-                      url: '/pages/personal/order/order',
-                      success: function() {
-                        app.status.pay_order = 1
-                      }
-                    })
-
                     setTimeout(() => {
                       app.showtost('支付成功')
                     }, 1000)
@@ -203,6 +195,99 @@ Page({
 
     }
   },
+	// 排队返现充值
+	paiduicz() {
+		if (!this.data.usermoney) {
+			wx.showToast({
+				title: '请输入金额',
+				icon: 'none'
+			})
+		} else {
+			wx.showToast({
+				title: '正在提交',
+				icon: 'success',
+				duration: 2000,
+				mask: true
+			})
+			app.request.post({
+				url: "pay/Wx_Shop_pay",
+				isLoading: true,
+				data: {
+					order_number: 1, //"订单数量",
+					order_money: this.data.usermoney, //"支付的金额",
+					return_id: this.data.ac_id, //"排队返现Id",
+					order_type: 1,
+					shop_id: Number(this.data.shop_id),
+					pay_mode: this.data.pay_mode,
+				},
+				success: (e) => {
+					if (e.state !== 1) {
+						let t = '失败'
+						let c = e.msg
+						app.showmodal(t, c);
+						return false;
+					}
+					if (e.pay_mode == 9) {
+						wx.requestPayment({
+							timeStamp: e.timeStamp,
+							nonceStr: e.nonceStr,
+							package: e.package,
+							signType: e.signType,
+							paySign: e.paySign,
+							success: (res) => {
+								app.request.post({
+									url: "pay/editOrderStatus",
+									isLoading: true,
+									data: {
+										order_id: e.order_id, //"订单Id"
+									},
+									success: (e) => {
+										wx.switchTab({
+											url: '/pages/personal/order/order',
+											success: function () {
+												setTimeout(() => {
+													app.showtost('支付成功')
+												}, 2000)
+												app.status.pay_order = 1
+											}
+										})
+									}
+								})
+							},
+							fail: () => {
+								wx.showToast({
+									title: '支付失败',
+									icon: 'none'
+								})
+							}
+						})
+					} else {
+						app.request.post({
+							url: "pay/editOrderStatus",
+							isLoading: true,
+							data: {
+								order_id: e.order_id, //"订单Id",
+								pay_mode: e.pay_mode
+							},
+							success: (e) => {
+								wx.switchTab({
+									url: '/pages/personal/order/order',
+									success: () => {
+										app.status.pay_order = 1
+										setTimeout(() => {
+											app.showtost('支付成功')
+										}, 1000)
+									}
+								})
+							}
+						})
+					}
+
+				}
+			})
+
+		}
+	},
   // 买单币充值
   mdbcz() {
     if (!this.data.usermoney) {
@@ -217,13 +302,7 @@ Page({
         duration: 500,
         mask: true
       })
-      app.request.post({
-        url: "activity/joinnoblecard",
-        data: {
-          business_id: this.data.shop_id,
-          money: this.data.usermoney
-        },
-        success: (e) => {
+
 
           wx.showModal({
             title: '提醒',
@@ -233,6 +312,17 @@ Page({
             confirmText: '余额支付',
             success: (res) => {
               if (res.cancel == true) {
+
+								app.request.post({
+									url: "pay/pay_bill_recharge",
+									data: {
+										shop_id: this.data.shop_id,
+										money: this.data.usermoney,
+										pay_mode:9
+									},
+									success: (e) => {
+
+								
                 wx.requestPayment({
                   timeStamp: e.timeStamp,
                   nonceStr: e.nonceStr,
@@ -241,7 +331,7 @@ Page({
                   paySign: e.paySign,
                   success: (wer) => {
                     app.request.post({
-                      url: "activity/valimdb",
+											url: "pay/edit_pay_bill",
                       data: {
                         type: e.type,
                         desc_sn: e.desc_sn
@@ -261,29 +351,28 @@ Page({
                     })
                   },
                   fail: (sb) => {
-                    app.request.post({
-                      url: "activity/valimdb",
-                      data: {
-                        type: e.type,
-                        desc_sn: e.desc_sn,
-                        pay_state: 2,
-                        ac_id: ''
-                      },
-                      success: (sbyh) => {
-                        wx.showToast({
-                          title: '充值失败',
-                          icon: 'none'
-                        })
-                      }
-                    })
+										wx.showToast({
+											title: '充值失败',
+											icon: 'none'
+										})
                   }
                 })
+									}
+								})
               } else if (res.confirm == true) {
+								app.request.post({
+									url: "pay/pay_bill_recharge",
+									data: {
+										shop_id: this.data.shop_id,
+										money: this.data.usermoney,
+										pay_mode: 6
+									},
+									success: (e) => {
                 app.request.post({
-                  url: "pay/editOrderStatus",
+									url: "pay/edit_pay_bill",
                   isLoading: true,
                   data: {
-                    order_id: e.order_id, //"订单Id",
+                    desc_sn: e.desc_sn, //"订单Id",
                     pay_mode: 6
                   },
                   success: (e) => {
@@ -297,10 +386,10 @@ Page({
                     })
                   }
                 })
+									}
+								})
 
               }
-            }
-          })
         }
       })
 
@@ -414,8 +503,6 @@ Page({
                     duration: 2000
                   })
                 }, 1000)
-
-
               }
             })
           } else {
@@ -436,7 +523,135 @@ Page({
       })
     }
   },
+  // hdcz
+  hdcz() {
+    if (!this.data.usermoney) {
+      wx.showToast({
+        title: '请输入金额',
+      })
+    } else {
+     
+      wx.showModal({
+        title: '提醒',
+        content: '请您选择支付方式',
+        showCancel: true,
+        cancelText: '微信支付',
+        confirmText: '余额支付',
+        success: (res) => {
+          if (res.cancel == true) {
+            app.request.post({
+              url: "pay/pay_bill_recharge",
+              data: {
+                ac_id: this.data.ac_id,
+                shop_id: this.data.shop_id,
+                money: this.data.usermoney,
+                pay_mode: 9
+              },
+              success: (e) => {
+                wx.requestPayment({
+                  timeStamp: e.timeStamp,
+                  nonceStr: e.nonceStr,
+                  package: e.package,
+                  signType: e.signType,
+                  paySign: e.paySign,
+                  success: (res) => {
 
+                    app.request.post({
+                      url: "pay/edit_pay_bill",
+                      data: {
+                        pay_mode: e.pay_mode,
+                        desc_sn: e.desc_sn,
+                      },
+                      success: (e) => {
+                        // console.log(e)
+                        if (e.state == 1) {
+                          wx.navigateBack({
+                            url: 'shop_id=' + this.data.shop_id,
+                            success: () => {
+                              wx.showToast({
+                                title: e.msg,
+                                duration: 2000,
+                                icon: 'none'
+                              })
+                            }
+                          })
+                        } else {
+                          wx.showToast({
+                            title: e.msg,
+                            duration: 2000,
+                            icon: 'none'
+                          })
+                        }
+                      }
+                    })
+                  },
+                  fail: (sb) => {
+                    wx.showToast({
+                      title: '充值失败',
+                      icon: 'none'
+                    })
+                  }
+                })
+              }
+            })
+          } else if (res.confirm == true) {
+            app.request.post({
+              url: "pay/pay_bill_recharge",
+              data: {
+                ac_id: this.data.ac_id,
+                shop_id: this.data.shop_id,
+                money: this.data.usermoney,
+                pay_mode: 6
+              },
+              success: (e) => {
+               if(e.state==1){
+								 app.request.post({
+									 url: "pay/edit_pay_bill",
+									 data: {
+										 pay_mode: e.pay_mode,
+										 desc_sn: e.desc_sn,
+									 },
+									 success: (e) => {
+										 // console.log(e)
+										 if (e.state == 1) {
+											 wx.navigateBack({
+												 url: 'shop_id=' + this.data.shop_id,
+												 success: () => {
+													 wx.showToast({
+														 title: e.msg,
+														 duration: 2000,
+														 icon: 'none'
+													 })
+												 }
+											 })
+										 } else {
+											 wx.showToast({
+												 title: e.msg,
+												 duration: 2000,
+												 icon: 'none'
+											 })
+										 }
+									 }
+								 })
+							 }
+							 else{
+								 wx.showToast({
+									 title: e.msg,
+									 duration: 2000,
+									 icon: 'none'
+								 })
+							 }
+
+              }
+            })
+          }
+        }
+      })
+
+    }
+
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

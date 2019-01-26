@@ -24,22 +24,18 @@ Page({
     toView: '',
     shopObj: {},
     scrollHeight: 0,
-    scene:56
-  
+    scene:56,
+		page:1
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     app.setNavigationBarTitle("商家首页");
-
     const scene = decodeURIComponent(options.scene)
-    
     if (scene == 'undefined'){
       console.log('啥也没穿')
     } else if (scene.length > 1){
-  
       this.setData({
         scene: scene
       })
@@ -48,41 +44,24 @@ Page({
       console.log('传了东西')
     }
 // 二维码
-   
-    // 通过分享方式进入，店铺Id一直不变
+// 通过分享方式进入，店铺Id一直不变
     if (options.shopId != undefined) {
       console.log('分享进来的啊')
- 
       app.globalData.shopId = options.shopId;
-      app.globalData.shopType = app.status.shopType.shop_share_Type;
-      
+      app.globalData.shopType = app.status.shopType.shop_share_Type;  
     }
-    
-// --------  
-
     // 请求整个页面的数据
     this.init(options.shopId);
-   
   },
-
   onShow() {
     app.dengluzt()
+		this.getpinglun()
     let a = wx.getStorageSync('diliweizhi')
-    this.comment = this.selectComponent("#comment");
-    this.comment.setData({
-      position_commit: 1, //评论图片不显示
-    });
-    this.scrolltolower();
     this.setData({
       juli: a
     })
-
-
-
   },
   onPageScroll: function(e) {
-   
-
     if (e.detail.scrollTop > 100) {
       this.setData({
         floorstatus: true
@@ -92,9 +71,38 @@ Page({
         floorstatus: false
       });
     }
-
   },
+	wherecommit(e) {
+		this.setData({
+			whereid: e.currentTarget.dataset.id
+		})
+	},
+	showCommentImage(e) {
+		// e.currentTarget.dataset.id
+		setTimeout(() => {
+			let dataarray = this.data.commentArrar[this.data.whereid].msg_img
+			wx.previewImage({
+				urls: dataarray,
+				current: dataarray[e.currentTarget.dataset.id]
+			})
 
+		}, 500)
+	},
+	getpinglun: function () {
+		app.request.post({
+			url: "comment/getCommentList",
+			data: {
+				shop_id: app.globalData.shopId,
+				page: this.data.page
+			},
+			success: (e) => {
+				this.setData({
+					commentArrar: e.comment,
+					type: e.shop_id
+				})
+			}
+		})
+	},
   // 返回顶部
   top:function(){
     wx.pageScrollTo({
@@ -103,7 +111,6 @@ Page({
   },
 
   init() {
-    
     app.request.post({
       url: "merchant/bygoods",
       isLoading: true,
@@ -127,12 +134,6 @@ Page({
     })
   },
   /*店铺id */
- 
-  scrolltolower() {
-    this.comment.getComment({ 
-      shop_id: app.globalData.shopId
-    })
-  },
   /*
    * 拨打电话
    */
