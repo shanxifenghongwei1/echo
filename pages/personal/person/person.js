@@ -14,7 +14,29 @@ Page({
     app.utils.makePhoneCall("87654321000" + e.currentTarget.dataset.phone);
   },
 	
-	
+	blancked(){
+
+		if (this.data.aaa == 0) {
+			wx.navigateTo({
+				url: "/pages/personal/bandcard/addbandcard/addbandcard",
+				success: function () {
+					setTimeout(() => {
+						wx.showToast({
+							title: '请您先绑定银行卡再提现',
+							icon: 'none',
+							duration: 3000,
+							mask: true,
+						})
+					}, 500)
+				}
+			})
+		}else{
+			wx.navigateTo({
+				url: '/pages/personal/person/recharges/recharge?payforid=4&zongyue='+ this.data.user_money,
+			})
+		}
+
+	},
   /**
    * 生命周期函数--监听页面加载
    */
@@ -40,6 +62,21 @@ Page({
         })
       }
     })
+
+		app.request.post({
+			url: "cash/bankList",
+			success: (e) => {
+				if (e.length==0) {
+						this.setData({
+							aaa:0
+						})
+				}else if(e.length>0){
+					this.setData({
+						aaa:1
+					})
+				}
+			}
+		})
   },
 
   onLoad: function(options) {

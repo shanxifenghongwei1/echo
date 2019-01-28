@@ -104,7 +104,41 @@ Page({
 			myshop_id: myshop_id
 		})
 		this.init(myshop_id);
+		// this.showneworder();
   },
+	//新的订单响铃
+	// showneworder: function () {
+	// 	let that = this;
+	// 	that.ordercount();
+	// 	if (this.data.myshop_id) {
+	// 		var a = setInterval(function () {
+	// 			that.ordercount();
+	// 		}, 6000)
+	// 	}
+	// },
+
+	//获取响铃次数
+	// ordercount: function () {
+	// 	app.request.post({
+	// 		url: "order/get_new_order",
+	// 		data: {
+	// 			shop_id: this.data.myshop_id
+	// 		},
+	// 		success: (e) => {
+	// 			if (e.count !== 0) {
+	// 				for (var i = 0; i < e.count; i++) {
+	// 					var innerAudioContext = wx.createInnerAudioContext()
+	// 					innerAudioContext.autoplay = true
+	// 					innerAudioContext.src = 'https://www.nazhua.com.cn/upload/music/dd.mp3'
+	// 					innerAudioContext.onPlay(() => {
+	// 						console.log('开始播放')
+	// 					})
+	// 					wx.vibrateLong();
+	// 				}
+	// 			}
+	// 		}
+	// 	})
+	// },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

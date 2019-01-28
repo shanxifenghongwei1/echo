@@ -1,0 +1,22 @@
+
+<view class='any'>
+<!-- 优惠券买卖 -->
+  <navigator url='#' class='site'>
+    <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
+    <view  class='site2 name-site-onlode global_middle_font'>优惠券买卖</view>
+    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+  </navigator>
+<!-- 优惠券添加 -->
+  <navigator url='/pages/personal/putaway/putaway?type=2&myshop_id={{myshop_id}}' class='site'>
+    <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
+    <view  class='site2 name-site-onlode global_middle_font'>优惠券添加</view>
+    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+  </navigator>
+	<!-- 优惠券查看 -->
+  <navigator url="#" class='site'>
+    <view class='site1 iconfont icon-chanpin'></view>
+    <view class='site2 name-site-onlode global_middle_font'>我的优惠券查看</view>
+    <view class='site3 iconfont icon-jiantouxia'></view>
+  </navigator>
+
+	</view>

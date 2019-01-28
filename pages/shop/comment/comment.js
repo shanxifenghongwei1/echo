@@ -114,7 +114,7 @@ Page({
  
     var ass = '';
     var i = 0
-		if ( !user_img[i] ) {
+		if (user_img[i] ) {
 			wx.showToast({
 				title: '正在上传第' + i + '张图片',
 				icon: 'success',
@@ -247,7 +247,7 @@ Page({
 					}
 				}
 			})
-		 }else{
+		 } else{
 			app.request.post({
 				url: "comment/index",
 				isLoading: true,
@@ -255,7 +255,6 @@ Page({
 					order_id: that.data.order_id,
 					content: that.data.commentText,
 					is_anonymous: that.data.is_anonymous,
-					user_img: ass
 				},
 				success: (e) => {
 					wx.showToast({
@@ -268,12 +267,7 @@ Page({
 					})
 				}
 			})
-			wx.showToast({
-				title: '正在上传内容',
-				icon: 'success',
-				mask: 'true'
-			})
-		}
+		 }
 		
   }
 })

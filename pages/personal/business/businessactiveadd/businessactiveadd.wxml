@@ -1,0 +1,59 @@
+<!-- 产品发布页面 -->
+<!-- 产品名称 -->
+<form bindsubmit="{{gotype==1?'change':'addshopproduct'}}">
+
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>活动店铺：</view>
+    <input name='goods_name' class=' global_middle_font one-module-input' value='{{goods.goods_name}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+
+  <!-- 商品详细建扫把 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>活动类型：</view>
+    <radio-group class="radio_group one-module-input" bindchange="radioChange" name="radio_group">
+      <radio class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.id}}" checked="{{item.checked}}">
+        <text>{{item.value}}</text>
+      </radio>
+    </radio-group>
+  </view>
+
+  <!-- 商品关键词 -->
+  <view class='one-module'>
+    <view class='global_middle_font one-module-text'>附赠优惠券：</view>
+    <view name='keywords' class='one-module-input iconfont icon-jiantouxia' style='text-align:right;'> {{}}</view>
+  </view>
+  <view class='global_middle_font youhuiquan'>
+    <view class='global_middle_font'>
+      <view class='line-inline'>满200减80</view>
+      <view class='global_middle_font line-inline'>库存：1</view>
+    </view>
+  </view>
+
+  <!-- 商品详细建扫把 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>活动标题：</view>
+    <input name='goods_brief' class=' global_middle_font one-module-input' value='{{goods.goods_brief}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+
+  <!-- 产品单价 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>活动简介：</view>
+    <input name='shop_price' class=' global_middle_font one-module-input' value='{{goods.shop_price}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+
+  <!-- 产品数量 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>活动内容：</view>
+    <input name='goods_number' class=' global_middle_font one-module-input' value='{{goods.goods_number}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+
+  <!-- 产品数量 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>活动时间：</view>
+    <input name='goods_number' class=' global_middle_font one-module-input' value='{{goods.goods_number}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+  <!-- 提交 	-->
+  <button wx:if='{{gotype==1}}' style='width:80%;height:80rpx;' type='primary' form-type="submit">确认修改</button>
+  <button wx:if='{{!gotype==1}}' style='width:80%;height:80rpx;' type='primary' form-type="submit">提交</button>
+  <view style='width:90%;height:80rpx;'></view>
+</form>

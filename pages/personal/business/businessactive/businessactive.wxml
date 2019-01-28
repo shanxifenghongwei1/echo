@@ -1,0 +1,35 @@
+
+<view class='any'>
+<!-- 活动添加 -->
+  <navigator url='/pages/personal/business/businessactiveadd/businessactiveadd' class='site'>
+    <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
+    <view  class='site2 name-site-onlode global_middle_font'>活动添加</view>
+    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+  </navigator>
+	<!-- 产品查看 -->
+  <navigator url="#" class='site'>
+    <view class='site1 iconfont icon-chanpin'></view>
+    <view class='site2 name-site-onlode global_middle_font'>活动查看</view>
+    <view class='site3 iconfont icon-jiantouxia'></view>
+  </navigator>
+<!-- 一个活动详情 -->
+<view wx:for='{{goods_list}}' wx:key='index' class='avery-any-shop-list-and-one'>
+  <view class='one-shop-list'>
+    <view class='one-shop-list-left'>
+			<image class='one-shop-list-left-image' src='{{item.goods_thumb}}'></image>
+		</view>
+    <view class='one-shop-list-right'>
+			<view class='one-shop-list-right-shop_name global_middle_font global_single_ellipsis'>{{item.goods_name}}</view>
+			<scroll-view scroll-y class='one-shop-list-right-shop_vicie global_middle_font global_multiLine_ellipsis'>{{item.goods_brief}}</scroll-view>
+		</view>
+  </view>
+
+
+	<!-- 删除，修改模块 -->
+	<view class='move-shop'>
+		<navigator url='/pages/personal/putaway/putaway?type=1&myshop_id={{myshop_id}}&goods_id={{item.goods_id}}' class='move-shop-modifier global_middle_font'>修改商品</navigator>
+		<view class='move-shop-modifier-resmove global_middle_font' bindtap='removeproduct' data-index='{{index}}' data-id='{{item.goods_id}}'>删除商品</view>
+	</view>
+</view>
+
+</view>

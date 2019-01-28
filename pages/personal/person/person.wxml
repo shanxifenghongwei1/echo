@@ -47,10 +47,10 @@
           <view class='line-inline'>已提现:</view>
           <view class='line-inline colorrr overfloow'>1000000</view>
         </view> -->
-        <navigator url='/pages/personal/person/recharges/recharge?payforid=4&zongyue={{user_money}}' class='line-inline balance-left-p4'>
+        <view bindtap='blancked'  class='line-inline balance-left-p4'>
           <view class='line-inline'>提现</view>
           <!-- <view class='line-inline colorrr'></view> -->
-        </navigator>
+        </view>
       </view>
     </view>
 

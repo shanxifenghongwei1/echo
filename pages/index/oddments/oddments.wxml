@@ -207,12 +207,10 @@
       </navigator>
     </view>
     <!-- 等待加载的组件 -->
-
-
-
-
-
     <!-- ----------开头---------------- -->
+		      <view  wx:if='{{type==shop_id}}' class='global_large_font flex_about commit_title'>
+        <view class='iconfont icon-pinglun2'></view>评论
+      </view>
     <view wx:if='{{type==shop_id}}' class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit'  wx:key="index">
       <!-- 评论的用户头像图片 -->
       <view class='commit_avatar'>
@@ -248,11 +246,6 @@
     </view> -->
 
   </view>
-
-
   <!-- --结尾- -->
-
   <!-- <comment id="comment"></comment> -->
-
-
 </scroll-view>
