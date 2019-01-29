@@ -13,7 +13,7 @@
       <view wx:if='{{order_type==1}}'>店铺订单</view>
     </view>
     <!-- 店铺订单 -->
-    <view class='flex_about shop-detail  line-border-bottom'>
+    <view class='flex_about shop-detail line-border-bottom'>
       <view class="slide-image">
         <image src='{{shop_image}}' mode='widthFix'></image>
       </view>

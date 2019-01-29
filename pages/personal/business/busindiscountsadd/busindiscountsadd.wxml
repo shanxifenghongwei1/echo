@@ -1,2 +1,160 @@
-<!--pages/personal/business/busindiscountsadd/busindiscountsadd.wxml-->
-<text>pages/personal/business/busindiscountsadd/busindiscountsadd.wxml</text>
+<wxs src="../../../../utils/tools.wxs" module="tools" />
+<view class='order'>
+  <view wx:for="{{order}}" wx:key='orderKey' class='order-son {{cid==item.type_id?"active":""}}' data-id='{{item.type_id}}' bindtap='addorderid'>{{item.text}}</view>
+</view>
+
+<view class='newline'></view>
+
+<view style='width:100%;height:100%;background:#eee'>
+
+
+  <view class='body-any' style='border-radius:30rpx;background:#fff;'>
+
+    <!-- 优惠券 -->
+    <!-- <view  class='global_small_font'>{{msg}}</view> -->
+    <view wx:if='{{cid==1}}' wx:for='{{virtual}}' wx:key='index' style='margin-top:10rpx;' class='ticket flex_about'>
+      <view class='global_color_red ticket_money flex_about' style='font-size:40rpx;'>{{item.type_name}}
+      </view>
+      <view class="ticket_info">
+        <view class='global_middle_font global_color_red'>{{item.shop_name}}</view>
+        <view class='global_middle_font global_color_red'>{{item.card_name}}</view>
+        <view class='global_middle_font global_color_red'>过期时间{{item.end_date}}</view>
+      </view>
+      <view bindtap='alentbuy' data-card_sn='{{item.card_sn}}' data-id='{{index}}' class="payment flex_about global_large_font">
+        <view class='iconfont icon-hongbaojuchi-copy'></view>
+        <view class='flex_about payment1'>{{item.sale_money}}</view>
+      </view>
+    </view>
+
+    <view wx:if='{{cid==2}}'>
+      <!-- 地址选择 -->
+      <picker style='margin-bottom:10rpx;height:80rpx;line-height:80rpx;border-bottom:1rpx solid #eee' mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view style='margin-left:60rpx;' class="picker global_large_font">
+          位置： {{region[0]}}----{{region[1]}}----{{region[2]}}
+        </view>
+      </picker>
+      <!-- 类型选择 -->
+      <view style='margin-bottom:10rpx;' class='nav_module flex_about global_bg_color'>
+        <scroll-view scroll-x class='nav_item '>
+          <view bindtap='navClick' wx:for="{{navArray}}" wx:key="navArrayKey" data-index="{{item.id}}" class="global_large_font {{navActive==item.id?'nav_active':''}}">
+            {{item.cat_name}}
+          </view>
+        </scroll-view>
+      </view>
+
+      <!-- 优惠券 -->
+
+      <!-- <view  class='global_small_font'>{{msg}}</view> -->
+      <view wx:for='{{virtual}}' wx:key='index' style='margin-top:10rpx;' class='ticket flex_about'>
+        <view class=' global_color_red ticket_money flex_about' style='font-size:40rpx;'>{{item.type_name}}
+        </view>
+        <view class="ticket_info">
+          <view class='global_middle_font global_color_red'>{{item.shop_name}}</view>
+          <view class='global_middle_font global_color_red'>{{item.card_name}}</view>
+          <view class='global_middle_font global_color_red'>过期时间 {{item.end_date}}</view>
+        </view>
+        <view bindtap='alentbuy' data-card_sn='{{item.card_sn}}' data-id='{{index}}' class="payment flex_about global_large_font">
+          <view class='iconfont icon-hongbaojuchi-copy'></view>
+          <view class='flex_about payment1'>{{item.sale_money}}</view>
+        </view>
+      </view>
+
+
+    </view>
+  </view>
+</view>
+
+<view wx:if='{{display}}' class='banckground-color'>
+  <view class='content-in-va'>
+    <!-- 关闭 -->
+    <view class='global_middle_font textclow'>
+      <text></text>
+      <text bindtap='closepage' class='iconfont icon-fork closessss'></text>
+    </view>
+    <!-- 店铺 -->
+    <navigator url='/pages/index/oddments/oddments?shop_id={{virtual[x].shop_id}}' class='flex_about shop-detail line-border-bottom'>
+      <view class="slide-image">
+        <image src='{{virtual[x].shop_logo}}' style='width:70rpx;height:70rpx;'></image>
+      </view>
+      <view class=' global_single_ellipsis'>{{virtual[x].shop_name}}</view>
+    </navigator>
+    <!-- 商品 -->
+    <navigator url='/pages/shop/details/details?goods_id={{virtual[x].goods.goods_id}}' wx:if="{{virtual[x].card_type==17}}" class='flex_about goods-detail line-border-bottom'>
+      <view class="slide-image">
+        <image src='{{virtual[x].goods.goods_thumb}}' style='width:150rpx;height:150rpx;'></image>
+      </view>
+      <view class=' global_single_ellipsis goods-info'>
+        <view class='global_single_ellipsis'>{{virtual[x].goods.goods_name}}</view>
+        <view class='global_small_font'></view>
+        <view class='flex_about'>
+          <view class="global_color_red">￥{{virtual[x].goods.shop_price}}</view>
+          <view></view>
+          <view class='shuliang'>
+          </view>
+        </view>
+      </view>
+    </navigator>
+
+
+    <scroll-view scroll-y style='height:40%;overflow:hidden;'>
+
+      <view class='global_middle_font cone-cump-1'>
+        <text>优惠券名称:</text>
+        <text class='m-margin-left-busin'>{{virtual[x].card_name}}</text>
+      </view>
+      <view class='global_middle_font cone-cump-2'>
+        <text>优惠券出售价格:</text>
+        <text class='m-margin-left-busin'>{{virtual[x].sale_money}}</text>
+      </view>
+      <view class='global_middle_font cone-cump-2'>
+        <text>优惠券类型:</text>
+        <text class='m-margin-left-busin'>{{virtual[x].type_name}}</text>
+      </view>
+
+      <view class='global_middle_font cone-cump-2'>
+        <text>优惠券商家:</text>
+        <text class='m-margin-left-busin'>{{virtual[x].shop_name}}</text>
+      </view>
+      <view class='global_middle_font cone-cump-2'>
+        <text>优惠券距离:</text>
+        <text class='m-margin-left-busin'>{{virtual[x].distance}}</text>
+      </view>
+      <view class='global_middle_font cone-cump-2'>
+        <text>优惠券出售数量:</text>
+        <text class='m-margin-left-busin'>{{virtual[x].sale_number}}</text>
+      </view>
+      <view class='global_middle_font cone-cump-2'>
+        <text>优惠券过期时间:</text>
+        <text class='m-margin-left-busin'>{{virtual[x].end_date}}</text>
+      </view>
+
+
+    </scroll-view>
+    <view>
+      <view class='flex_about-onecenter'>
+        <view class='global_middle_font'>购买数量</view>
+        <view class='global_middle_font flex_about'>
+          <view bindtap='loss' class='add {{ goodnumber>1 ? "cdd" :"" }}'>-</view>
+          <input type='number' bindinput='inputcenter' value='{{goodnumber}}'></input>
+          <view bindtap='add' class='cdd'>+</view>
+        </view>
+      </view>
+    </view>
+    <view>
+      <view class='flex_about-onecenter'>
+        <view class='global_middle_font'></view>
+        <view class='global_middle_font flex_about-onecenter'>
+          <radio-group class="radio_group" bindchange="radioChange" name="radio_group">
+            <radio class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.id}}" checked="{{item.checked}}">
+              <text style='font-size:38rpx'>{{item.value}}</text>
+            </radio>
+          </radio-group>
+          <view style='margin-left:130rpx;'> 付款： {{goodnumber*( virtual[x].sale_money + 10) }} </view>
+        </view>
+      </view>
+    </view>
+
+    <button bindtap='buyv' style='margin-top:10rpx;' class='global_middle_font'>确认购买</button>
+
+  </view>
+</view>

@@ -1,15 +1,15 @@
 
 <view class='any'>
 <!-- 优惠券买卖 -->
-  <navigator url='#' class='site'>
+  <navigator url='/pages/personal/business/busindiscountsadd/busindiscountsadd?shop_id={{shop_id}}' class='site'>
     <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
-    <view  class='site2 name-site-onlode global_middle_font'>优惠券买卖</view>
+    <view  class='site2 name-site-onlode global_middle_font'>优惠券购买</view>
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
   </navigator>
 <!-- 优惠券添加 -->
-  <navigator url='/pages/personal/putaway/putaway?type=2&myshop_id={{myshop_id}}' class='site'>
+  <navigator url='/pages/personal/business/busindiscountssell/busindiscountssell?shop_id={{shop_id}}' class='site'>
     <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
-    <view  class='site2 name-site-onlode global_middle_font'>优惠券添加</view>
+    <view  class='site2 name-site-onlode global_middle_font'>优惠券出售</view>
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
   </navigator>
 	<!-- 优惠券查看 -->

@@ -1,1 +1,88 @@
 /* pages/personal/business/busindiscountsadd/busindiscountsadd.wxss */
+@import "/pages/personal/order/order";
+@import '/pages/personal/coupon/coupon.wxss';
+
+@import '/pages/scattered/pay/pay.wxss';
+@import '/pages/nearby/index/index.wxss';
+
+.body-any{
+  width: 96%;
+  padding: 2%;
+}
+
+.banckground-color{
+	width: 100%;
+	height: 100%;
+	background: #666;
+	position: fixed;
+	top:0;
+	left: 0;
+}
+
+.content-in-va{
+	width: 94%;
+	/* height: 82%; */
+	background: #fff;
+	margin-top:23%;
+	padding: 3%;
+}
+
+.cone-cump-1{
+	width: 100%;
+	height: 60rpx;
+	border-bottom: #eee;
+	line-height: 60rpx;
+}
+
+.cone-cump-2{
+	width: 100%;
+	height: 60rpx;
+	border-bottom: 1rpx solid #eee;
+	line-height: 60rpx;
+}
+
+
+.textclow{
+	display: flex;
+	justify-content: space-between;
+}
+
+.closessss{
+	width: 10%;
+	text-align: center;
+}
+
+.flex_about-onecenter{
+	display: flex;
+	justify-content: space-between;
+	height: 80rpx;
+	line-height: 80rpx;
+	flex-wrap:nowrap;
+}
+
+/* flex_about-onecenterss{
+	display: flex;
+	justify-content: 
+} */
+
+.flex_about-onecenter input{
+	width: 80rpx;
+}
+
+.add{
+	width: 80rpx;
+	height: 80rpx;
+	background: #eee;
+	text-align: center;
+}
+
+.cdd{
+	width: 80rpx;
+	height: 80rpx;
+	background: rgb(199, 243, 214);
+	text-align: center;
+}
+
+.m-margin-left-busin{
+	margin-left:10rpx;
+}

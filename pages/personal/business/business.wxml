@@ -100,7 +100,7 @@
           </view>
         </view>
       </navigator>
-      <navigator url='/pages/personal/business/businessdiscount/businessdiscount' class="bodyZZ">
+      <navigator url='/pages/personal/business/businessdiscount/businessdiscount?shop_id={{myshop_id}}' class="bodyZZ">
         <view class="bodyLTsun">
           <view class="bodyLTsunS4">
             <view class="mdsz iconfont icon-qiaquan"></view>
