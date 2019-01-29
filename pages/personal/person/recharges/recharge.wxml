@@ -25,9 +25,13 @@
         <input type="digit" focus='{true}' bindinput='moneyinthis'></input>
       </view>
     </view>
-    <view wx:if='{{payforid==4}}' style='margin-bottom:30rpx;' class='global_large_font line-inline'>
+    <view wx:if='{{payforid==4 && !business_id}}' style='margin-bottom:30rpx;' class='global_large_font line-inline'>
       个人所得提现收取20%手续费
       <text class='line-inline' style='height:100%;color:#ed4444'>{{money}}</text>
+    </view>
+	 <view wx:if='{{payforid==4 && business_id}}' style='margin-bottom:30rpx;' class='global_large_font line-inline'>
+      商户提现收取10%手续费
+      <text class='line-inline' style='height:100%;color:#ed4444'>{{mones}}</text>
     </view>
     <view wx:if='{{payforid==4}}' class='global_large_font'>银行卡选择</view>
     <!-- 一张银行卡 -->

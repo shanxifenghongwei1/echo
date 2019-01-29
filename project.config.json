@@ -38,7 +38,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 26,
+			"current": 27,
 			"list": [
 				{
 					"id": -1,
@@ -203,6 +203,13 @@
 					"id": -1,
 					"name": "优惠券买卖",
 					"pathName": "pages/personal/business/busindiscountsadd/busindiscountsadd",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加优惠券",
+					"pathName": "pages/personal/business/busindiscountssell/busindiscountssell",
 					"scene": null
 				}
 			]

@@ -1,1 +1,8 @@
-/* pages/personal/business/busindiscountssell/busindiscountssell.wxss */
+/* pages/personal/business/businessactiveadd/businessactiveadd.wxss */
+@import '/pages/personal/putaway/putaway.wxss';
+
+.youhuiquan{
+	width: 94%;
+	padding: 3%;
+	border-bottom: 1rpx solid #eee;
+}

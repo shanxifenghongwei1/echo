@@ -1,13 +1,46 @@
-// pages/personal/business/busindiscountssell/busindiscountssell.js
+// pages/personal/business/businessactiveadd/businessactiveadd.js
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-
+		items: [{
+			id: '9',
+			value: '现金券',
+			checked: 'true'
+		},
+		{
+			id: '6',
+			value: '产品券'
+		},
+			{
+				id: '6',
+				value: '满减券'
+			},
+		],
+		atems: [{
+			id: '9',
+			value: '是',
+			checked: 'true'
+		},
+		{
+			id: '6',
+			value: '否'
+		},
+		],
 	},
-
+	radioChange(e) {
+		this.setData({
+			pay_mode: e.detail.value
+		})
+	},
+	// 是否
+	radioChanges(e){
+		this.setData({
+			istrue: e.detail.value
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */

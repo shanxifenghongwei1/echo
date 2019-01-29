@@ -49,7 +49,8 @@ Page({
       payforid: options.payforid,
       shop_id: options.shop_id,
       ac_id: options.ac_id,
-      zongyue: options.zongyue
+      zongyue: options.zongyue,
+			business_id: options.business_id
     });
     this.mybanklist();
   },
@@ -58,7 +59,8 @@ Page({
     if (Number(e.detail.value) >= 1) {
       this.setData({
         usermoney: e.detail.value,
-        money: Number(e.detail.value) * 20 / 100 + '元'
+        money: Number(e.detail.value) * 20 / 100 + '元',
+				mones: Number(e.detail.value) * 10 / 100 + '元',
       })
     } else {
       wx.showToast({
@@ -489,7 +491,8 @@ Page({
         url: "cash/cash",
         data: {
           cash_money: this.data.usermoney,
-          bank_id: this.data.bank_id
+          bank_id: this.data.bank_id,
+					business_id: this.data.business_id
         },
         success: (e) => {
           console.log(e)

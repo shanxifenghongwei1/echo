@@ -1,11 +1,12 @@
 // pages/personal/business/businessdiscount/businessdiscount.js
+const app = getApp()
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-
+		page:1
 	},
 
 	/**
@@ -24,11 +25,27 @@ Page({
 
 	},
 
+	// 获取优惠券
+init(){
+	app.request.post({
+		url: "virtual/getBusinessVirtualList",
+		data:{
+			shop_id:this.data.shop_id,
+			page:this.data.page
+		},
+		success: (e) => {
+				console.log(e)
+				this.setData({
+					virtual:e.virtual
+				})
+		}
+	})
+},
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
+		this.init()
 	},
 
 	/**

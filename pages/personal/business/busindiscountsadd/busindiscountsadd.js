@@ -45,16 +45,17 @@ Page({
 	},
 // 省市区选择器
 	bindRegionChange(e) {
-		console.log('picker发送选择改变，携带值为', e.detail.value)
 		this.setData({
 			region: e.detail.value
 		})
+		this.init()
 	},
 	// 类型选择
 	navClick(e) {
 		this.setData({
 			navActive: e.target.dataset.index
 		})
+		this.init()
 		// this.ruset();
 	},
 	// 商品的菜单列表获取
@@ -75,6 +76,8 @@ Page({
 			data: {
 				shop_id:this.data.shop_id,
 				type_id:this.data.cid,
+				address: this.data.region,
+				class_id: this.data.navActive,
 				page:1
 			},
 			success: (e) => {
@@ -150,16 +153,19 @@ Page({
 			success: (e) => {
 					if(e.state==1){
 						app.request.post({
-							url: "buy_virtual/buyVirtual",
+							url: "buy_virtual/editVirtual",
 							data: {
 								order_id:	e.order_id,
 								pay_mode:	e.pay_mode
 							},
 							success:(res)=>{
 									if(res.state==1){
-										console.log(res)
+										app.showtost('购买成功')
+										this.setData({
+											display:false
+										})
 									}else if(res.state==2){
-										app.showtost(e.msg)
+										app.showtost(res.msg)
 									}
 							}
 						})

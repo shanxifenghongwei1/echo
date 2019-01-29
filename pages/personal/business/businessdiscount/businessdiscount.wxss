@@ -1,2 +1,3 @@
 /* pages/personal/business/businessdiscount/businessdiscount.wxss */
 @import '/pages/personal/business/productcenter/productcenter.wxss';
+@import '/pages/personal/coupon/coupon.wxss';
