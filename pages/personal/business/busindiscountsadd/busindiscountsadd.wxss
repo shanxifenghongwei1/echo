@@ -21,7 +21,7 @@
 
 .content-in-va{
 	width: 94%;
-	/* height: 82%; */
+	height: 82%;
 	background: #fff;
 	margin-top:23%;
 	padding: 3%;

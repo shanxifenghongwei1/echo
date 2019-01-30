@@ -1,5 +1,8 @@
 /* pages/personal/business/businessactiveadd/businessactiveadd.wxss */
 @import '/pages/personal/putaway/putaway.wxss';
+@import '/pages/index/oddments/oddments.wxss';
+
+
 
 .youhuiquan{
 	width: 94%;

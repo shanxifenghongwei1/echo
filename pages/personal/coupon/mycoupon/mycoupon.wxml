@@ -9,7 +9,8 @@
     <view class='onecoupon-top'>
       <view class='global_middle_font center center-aling2'>{{shop_name}}</view>
       <view class='global_middle_font center center-aling1 global_large_font'>{{titlie}}
-			<navigator url='#'>进店看看</navigator>
+			<navigator url='/pages/index/oddments/oddments?shop_id={{shop_id}}'>进店看看</navigator>
+			<view class='line-inline' bindtap='goo'>商品查看</view>
 			</view>
 
 
@@ -21,7 +22,7 @@
       <view class='notch1'></view>
     </view>
     <view class='onecoupon-bottom'>
-      <view class='global_small_font center center-aling'>使用时向服务员出示此券</view>
+      <view class='global_small_font center center-aling'>使用时向商家出示此券</view>
       <view class='code-image'>
         <image class='image-coupon' src='{{qr_code}}'></image>
       </view>

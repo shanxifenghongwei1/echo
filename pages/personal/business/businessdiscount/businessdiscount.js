@@ -6,7 +6,8 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		page:1
+		page:1,
+		istrue:true
 	},
 
 	/**
@@ -17,7 +18,18 @@ Page({
 			shop_id:options.shop_id
 		})
 	},
-
+	hide(){
+		if(this.data.istrue==true){
+			this.setData({
+				istrue: false
+			})
+		}else{
+			this.setData({
+				istrue: true
+			})
+		}
+	
+	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
@@ -34,13 +46,36 @@ init(){
 			page:this.data.page
 		},
 		success: (e) => {
-				console.log(e)
 				this.setData({
 					virtual:e.virtual
 				})
 		}
 	})
 },
+
+
+// 分页
+	addinit() {
+		app.request.post({
+			url: "virtual/getBusinessVirtualList",
+			data: {
+				shop_id: this.data.shop_id,
+				page: ++this.data.page
+			},
+			success: (e) => {
+				if(e.state==2){
+					this.setData({
+						virtual: this.data.virtual
+					})
+				}else if(e.state==1){
+					this.setData({
+						virtual: this.data.virtual.concat(e.virtual)
+					})
+				}
+			
+			}
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
@@ -73,7 +108,7 @@ init(){
 	 * 页面上拉触底事件的处理函数
 	 */
 	onReachBottom: function () {
-
+		this.addinit()
 	},
 
 	/**

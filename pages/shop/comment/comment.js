@@ -255,6 +255,7 @@ Page({
 					order_id: that.data.order_id,
 					content: that.data.commentText,
 					is_anonymous: that.data.is_anonymous,
+					user_img: ''
 				},
 				success: (e) => {
 					wx.showToast({

@@ -7,12 +7,12 @@ Page({
 	data: {
 		items: [{
 			id: '9',
-			value: '满减',
+			value: '充值活动',
 			checked: 'true'
 		},
 		{
 			id: '6',
-			value: '满赠'
+			value: '支付活动'
 		},
 
 		],

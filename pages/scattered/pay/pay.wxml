@@ -25,20 +25,20 @@
       <text>支付金额</text>
       <input type="digit" focus="true" bindinput='shurumoney' placeholder='请输入金额' placeholder-class="money_input" maxlength="10"></input>
     </view>
-<view wx:if='{{order_type==1}}'>
-   <!-- 优惠券 -->
-    <view wx:if='{{uservirtual.length !==0}}' style='display:flex;align-items: center;justify-content:space-between' class='money'>
-      <text>优惠券</text>
-      <text style='width:50%'>{{youhuitext}}</text>
-      <view bindtap='runjumpthis' style='width:20%;;height:80rpx;text-align:right;line-height:80rpx;' class='iconfont icon-sandian1 money_input'></view>
+    <view wx:if='{{order_type==1}}'>
+      <!-- 优惠券 -->
+      <view wx:if='{{uservirtual.length !==0}}' style='display:flex;align-items: center;justify-content:space-between' class='money'>
+        <text>优惠券</text>
+        <text style='width:50%'>{{youhuitext}}</text>
+        <view bindtap='runjumpthis' style='width:20%;;height:80rpx;text-align:right;line-height:80rpx;' class='iconfont icon-sandian1 money_input'></view>
+      </view>
+      <!-- 支付金额 -->
+      <view style='display:flex;align-items: center;justify-content:space-between' class='money'>
+        <text style='width:30%;'>应付：{{payformoney}}</text>
+        <text wx:if='{{ischecked}}' style='width:40%;text-align:center;'> 优惠{{reduce_money}}</text>
+        <view style='width:30%;;height:80rpx;text-align:right;line-height:80rpx;' class='money_input'> 实付：{{ischecked==true?payformoney-reduce_money:payformoney}}</view>
+      </view>
     </view>
-    <!-- 支付金额 -->
-    <view style='display:flex;align-items: center;justify-content:space-between' class='money'>
-      <text style='width:30%;'>应付：{{payformoney}}</text>
-      <text wx:if='{{ischecked}}' style='width:40%;text-align:center;'> 优惠{{reduce_money}}</text>
-      <view style='width:30%;;height:80rpx;text-align:right;line-height:80rpx;' class='money_input'> 实付：{{ischecked==true?payformoney-reduce_money:payformoney}}</view>
-    </view>
-</view>
     <!-- 商品订单菜单 -->
     <view wx:if='{{order_type==2}}'>
       <view class='flex_about goods-detail line-border-bottom'>
@@ -77,22 +77,22 @@
       </view>
 
 
-   <!-- 优惠券 -->
-    <view style='display:flex;align-items: center;justify-content:space-between' class='money'>
-      <text>优惠券</text>
-      <text style='width:50%'>{{youhuitext}}</text>
-      <view bindtap='runjumpthis' style='width:20%;;height:80rpx;text-align:right;line-height:80rpx;' class='iconfont icon-sandian1 money_input'></view>
-    </view>
-    <!-- 支付金额 -->
-    <view style='display:flex;align-items: center;justify-content:space-between' class='money'>
-      <text style='width:30%;'>应付：{{goods_price}}</text>
-      <text wx:if='{{ischecked}}' style='width:40%;text-align:center;'> 优惠{{reduce_money}}</text>
-      <view style='width:30%;;height:80rpx;text-align:right;line-height:80rpx;' class='money_input'> 实付：{{ischecked==true?goods_price-reduce_money:goods_price}}</view>
-    </view>
+      <!-- 优惠券 -->
+      <view style='display:flex;align-items: center;justify-content:space-between' class='money'>
+        <text>优惠券</text>
+        <text style='width:50%'>{{youhuitext}}</text>
+        <view bindtap='runjumpthis' style='width:20%;;height:80rpx;text-align:right;line-height:80rpx;' class='iconfont icon-sandian1 money_input'></view>
+      </view>
+      <!-- 支付金额 -->
+      <view style='display:flex;align-items: center;justify-content:space-between' class='money'>
+        <text style='width:30%;'>应付：{{goods_price}}</text>
+        <text wx:if='{{ischecked}}' style='width:40%;text-align:center;'> 优惠{{reduce_money}}</text>
+        <view style='width:30%;;height:80rpx;text-align:right;line-height:80rpx;' class='money_input'> 实付：{{ischecked==true?goods_price-reduce_money:goods_price}}</view>
+      </view>
 
     </view>
 
- 
+
   </view>
 
 

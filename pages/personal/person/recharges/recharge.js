@@ -20,6 +20,7 @@ Page({
         value: '买单币支付'
       }
     ],
+    hidden: true,
     money: '20%',
     pay_mode: 9,
     background: 0
@@ -43,6 +44,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
+    wx.login({
+      success: (res) => {
+        var code = res.code;
+        this.setData({
+          code: code,
+        })
+      }
+    });
+
+
+    let a = wx.getStorageSync('iphone')
+    console.log('这是' + a)
+    if (a == 1) {
+      this.setData({
+        hidden: false
+      })
+    }
+
     app.setNavigationBarTitle("充值消费");
     this.setData({
       conten: options.conten,
@@ -50,7 +70,7 @@ Page({
       shop_id: options.shop_id,
       ac_id: options.ac_id,
       zongyue: options.zongyue,
-			business_id: options.business_id
+      business_id: options.business_id
     });
     this.mybanklist();
   },
@@ -60,7 +80,7 @@ Page({
       this.setData({
         usermoney: e.detail.value,
         money: Number(e.detail.value) * 20 / 100 + '元',
-				mones: Number(e.detail.value) * 10 / 100 + '元',
+        mones: Number(e.detail.value) * 10 / 100 + '元',
       })
     } else {
       wx.showToast({
@@ -79,17 +99,17 @@ Page({
       success: (e) => {
         if (this.data.payforid == 4) {
           if (e.length == 0) {
-						wx.redirectTo({
-							url: "/pages/personal/bandcard/addbandcard/addbandcard",
+            wx.redirectTo({
+              url: "/pages/personal/bandcard/addbandcard/addbandcard",
               success: function() {
-								setTimeout(()=>{
-									wx.showToast({
-										title: '请您先绑定银行卡再提现',
-										icon: 'none',
-										duration: 3000,
-										mask: true,
-									})
-								},500)
+                setTimeout(() => {
+                  wx.showToast({
+                    title: '请您先绑定银行卡再提现',
+                    icon: 'none',
+                    duration: 3000,
+                    mask: true,
+                  })
+                }, 500)
               }
             })
           } else {
@@ -197,99 +217,99 @@ Page({
 
     }
   },
-	// 排队返现充值
-	paiduicz() {
-		if (!this.data.usermoney) {
-			wx.showToast({
-				title: '请输入金额',
-				icon: 'none'
-			})
-		} else {
-			wx.showToast({
-				title: '正在提交',
-				icon: 'success',
-				duration: 2000,
-				mask: true
-			})
-			app.request.post({
-				url: "pay/Wx_Shop_pay",
-				isLoading: true,
-				data: {
-					order_number: 1, //"订单数量",
-					order_money: this.data.usermoney, //"支付的金额",
-					return_id: this.data.ac_id, //"排队返现Id",
-					order_type: 1,
-					shop_id: Number(this.data.shop_id),
-					pay_mode: this.data.pay_mode,
-				},
-				success: (e) => {
-					if (e.state !== 1) {
-						let t = '失败'
-						let c = e.msg
-						app.showmodal(t, c);
-						return false;
-					}
-					if (e.pay_mode == 9) {
-						wx.requestPayment({
-							timeStamp: e.timeStamp,
-							nonceStr: e.nonceStr,
-							package: e.package,
-							signType: e.signType,
-							paySign: e.paySign,
-							success: (res) => {
-								app.request.post({
-									url: "pay/editOrderStatus",
-									isLoading: true,
-									data: {
-										order_id: e.order_id, //"订单Id"
-									},
-									success: (e) => {
-										wx.switchTab({
-											url: '/pages/personal/order/order',
-											success: function () {
-												setTimeout(() => {
-													app.showtost('支付成功')
-												}, 2000)
-												app.status.pay_order = 1
-											}
-										})
-									}
-								})
-							},
-							fail: () => {
-								wx.showToast({
-									title: '支付失败',
-									icon: 'none'
-								})
-							}
-						})
-					} else {
-						app.request.post({
-							url: "pay/editOrderStatus",
-							isLoading: true,
-							data: {
-								order_id: e.order_id, //"订单Id",
-								pay_mode: e.pay_mode
-							},
-							success: (e) => {
-								wx.switchTab({
-									url: '/pages/personal/order/order',
-									success: () => {
-										app.status.pay_order = 1
-										setTimeout(() => {
-											app.showtost('支付成功')
-										}, 1000)
-									}
-								})
-							}
-						})
-					}
+  // 排队返现充值
+  paiduicz() {
+    if (!this.data.usermoney) {
+      wx.showToast({
+        title: '请输入金额',
+        icon: 'none'
+      })
+    } else {
+      wx.showToast({
+        title: '正在提交',
+        icon: 'success',
+        duration: 2000,
+        mask: true
+      })
+      app.request.post({
+        url: "pay/Wx_Shop_pay",
+        isLoading: true,
+        data: {
+          order_number: 1, //"订单数量",
+          order_money: this.data.usermoney, //"支付的金额",
+          return_id: this.data.ac_id, //"排队返现Id",
+          order_type: 1,
+          shop_id: Number(this.data.shop_id),
+          pay_mode: this.data.pay_mode,
+        },
+        success: (e) => {
+          if (e.state !== 1) {
+            let t = '失败'
+            let c = e.msg
+            app.showmodal(t, c);
+            return false;
+          }
+          if (e.pay_mode == 9) {
+            wx.requestPayment({
+              timeStamp: e.timeStamp,
+              nonceStr: e.nonceStr,
+              package: e.package,
+              signType: e.signType,
+              paySign: e.paySign,
+              success: (res) => {
+                app.request.post({
+                  url: "pay/editOrderStatus",
+                  isLoading: true,
+                  data: {
+                    order_id: e.order_id, //"订单Id"
+                  },
+                  success: (e) => {
+                    wx.switchTab({
+                      url: '/pages/personal/order/order',
+                      success: function() {
+                        setTimeout(() => {
+                          app.showtost('支付成功')
+                        }, 2000)
+                        app.status.pay_order = 1
+                      }
+                    })
+                  }
+                })
+              },
+              fail: () => {
+                wx.showToast({
+                  title: '支付失败',
+                  icon: 'none'
+                })
+              }
+            })
+          } else {
+            app.request.post({
+              url: "pay/editOrderStatus",
+              isLoading: true,
+              data: {
+                order_id: e.order_id, //"订单Id",
+                pay_mode: e.pay_mode
+              },
+              success: (e) => {
+                wx.switchTab({
+                  url: '/pages/personal/order/order',
+                  success: () => {
+                    app.status.pay_order = 1
+                    setTimeout(() => {
+                      app.showtost('支付成功')
+                    }, 1000)
+                  }
+                })
+              }
+            })
+          }
 
-				}
-			})
+        }
+      })
 
-		}
-	},
+    }
+  },
   // 买单币充值
   mdbcz() {
     if (!this.data.usermoney) {
@@ -306,25 +326,25 @@ Page({
       })
 
 
-          wx.showModal({
-            title: '提醒',
-            content: '请您选择支付方式',
-            showCancel: true,
-            cancelText: '微信支付',
-            confirmText: '余额支付',
-            success: (res) => {
-              if (res.cancel == true) {
+      wx.showModal({
+        title: '提醒',
+        content: '请您选择支付方式',
+        showCancel: true,
+        cancelText: '微信支付',
+        confirmText: '余额支付',
+        success: (res) => {
+          if (res.cancel == true) {
 
-								app.request.post({
-									url: "pay/pay_bill_recharge",
-									data: {
-										shop_id: this.data.shop_id,
-										money: this.data.usermoney,
-										pay_mode:9
-									},
-									success: (e) => {
+            app.request.post({
+              url: "pay/pay_bill_recharge",
+              data: {
+                shop_id: this.data.shop_id,
+                money: this.data.usermoney,
+                pay_mode: 9
+              },
+              success: (e) => {
 
-								
+
                 wx.requestPayment({
                   timeStamp: e.timeStamp,
                   nonceStr: e.nonceStr,
@@ -333,7 +353,7 @@ Page({
                   paySign: e.paySign,
                   success: (wer) => {
                     app.request.post({
-											url: "pay/edit_pay_bill",
+                      url: "pay/edit_pay_bill",
                       data: {
                         type: e.type,
                         desc_sn: e.desc_sn
@@ -353,25 +373,25 @@ Page({
                     })
                   },
                   fail: (sb) => {
-										wx.showToast({
-											title: '充值失败',
-											icon: 'none'
-										})
+                    wx.showToast({
+                      title: '充值失败',
+                      icon: 'none'
+                    })
                   }
                 })
-									}
-								})
-              } else if (res.confirm == true) {
-								app.request.post({
-									url: "pay/pay_bill_recharge",
-									data: {
-										shop_id: this.data.shop_id,
-										money: this.data.usermoney,
-										pay_mode: 6
-									},
-									success: (e) => {
+              }
+            })
+          } else if (res.confirm == true) {
+            app.request.post({
+              url: "pay/pay_bill_recharge",
+              data: {
+                shop_id: this.data.shop_id,
+                money: this.data.usermoney,
+                pay_mode: 6
+              },
+              success: (e) => {
                 app.request.post({
-									url: "pay/edit_pay_bill",
+                  url: "pay/edit_pay_bill",
                   isLoading: true,
                   data: {
                     desc_sn: e.desc_sn, //"订单Id",
@@ -388,10 +408,10 @@ Page({
                     })
                   }
                 })
-									}
-								})
-
               }
+            })
+
+          }
         }
       })
 
@@ -492,7 +512,7 @@ Page({
         data: {
           cash_money: this.data.usermoney,
           bank_id: this.data.bank_id,
-					business_id: this.data.business_id
+          business_id: this.data.business_id
         },
         success: (e) => {
           console.log(e)
@@ -533,7 +553,7 @@ Page({
         title: '请输入金额',
       })
     } else {
-     
+
       wx.showModal({
         title: '提醒',
         content: '请您选择支付方式',
@@ -607,43 +627,42 @@ Page({
                 pay_mode: 6
               },
               success: (e) => {
-               if(e.state==1){
-								 app.request.post({
-									 url: "pay/edit_pay_bill",
-									 data: {
-										 pay_mode: e.pay_mode,
-										 desc_sn: e.desc_sn,
-									 },
-									 success: (e) => {
-										 // console.log(e)
-										 if (e.state == 1) {
-											 wx.navigateBack({
-												 url: 'shop_id=' + this.data.shop_id,
-												 success: () => {
-													 wx.showToast({
-														 title: e.msg,
-														 duration: 2000,
-														 icon: 'none'
-													 })
-												 }
-											 })
-										 } else {
-											 wx.showToast({
-												 title: e.msg,
-												 duration: 2000,
-												 icon: 'none'
-											 })
-										 }
-									 }
-								 })
-							 }
-							 else{
-								 wx.showToast({
-									 title: e.msg,
-									 duration: 2000,
-									 icon: 'none'
-								 })
-							 }
+                if (e.state == 1) {
+                  app.request.post({
+                    url: "pay/edit_pay_bill",
+                    data: {
+                      pay_mode: e.pay_mode,
+                      desc_sn: e.desc_sn,
+                    },
+                    success: (e) => {
+                      // console.log(e)
+                      if (e.state == 1) {
+                        wx.navigateBack({
+                          url: 'shop_id=' + this.data.shop_id,
+                          success: () => {
+                            wx.showToast({
+                              title: e.msg,
+                              duration: 2000,
+                              icon: 'none'
+                            })
+                          }
+                        })
+                      } else {
+                        wx.showToast({
+                          title: e.msg,
+                          duration: 2000,
+                          icon: 'none'
+                        })
+                      }
+                    }
+                  })
+                } else {
+                  wx.showToast({
+                    title: e.msg,
+                    duration: 2000,
+                    icon: 'none'
+                  })
+                }
 
               }
             })
@@ -654,6 +673,59 @@ Page({
     }
 
 
+  },
+  // 获取用户手机号
+  getPhoneNumber: function(e) {
+    var that = this
+    if (this.data.code.length < 0) {
+      wx.login({
+        success: function(res) {
+          var code = res.code;
+          that.setData({
+            code: code,
+          })
+        }
+      });
+    } else {
+      if (e.detail.encryptedData.length > 0) {
+        var that = this;
+        //发起请求解密手机号
+        app.request.post({
+          url: "user/getiphone",
+          data: {
+            encryptedData: e.detail.encryptedData,
+            iv: e.detail.iv,
+            code: this.data.code,
+          },
+          success: (as) => {
+            console.log(as);
+            if (as.msg !== 1) {
+              wx.showModal({
+                title: '获取失败',
+                content: '您的状态已过期了哟请重新授权',
+              })
+              wx.login({
+                success: function(res) {
+                  var code = res.code;
+                  that.setData({
+                    code: code,
+                  })
+                }
+              });
+            } else {
+              wx.showModal({
+                title: '成功',
+                content: '小拿抓将为您提供更多优质服务!',
+              })
+              wx.setStorageSync('iphone', as.phone_type)
+              that.setData({
+                hidden: false,
+              })
+            }
+          }
+        })
+      }
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

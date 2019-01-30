@@ -6,7 +6,7 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-
+	
 	},
 	run() {
 		wx.switchTab({
@@ -29,6 +29,18 @@ Page({
 			})
 		}
 	},
+
+	goo(){
+		if(!this.data.goods_id){
+			
+		}
+		else{
+			wx.navigateTo({
+				url: 'pages/shop/details/details?goods=' + this.data.goods_id,
+			})
+		}
+
+	},
 // 
 //  
 init(asd){
@@ -44,7 +56,9 @@ init(asd){
 					qr_code: e.virtual.qr_code,
 					shop_name: e.virtual.shop_name,
 					titlie: e.virtual.card_name,
-					card_sn: e.virtual.sign
+					card_sn: e.virtual.sign,
+					shop_id: e.virtual.shop_id,
+					goods_id: e.virtual.goods_id
 				})
 				if(this.data.joinpage==2){
 				setTimeout(()=>{

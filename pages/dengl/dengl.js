@@ -32,11 +32,9 @@ Page({
   },
   getCodeUserInfo(dd) {
     var that = this
-
     wx.login({
       success(res) {
         if (dd.detail.userInfo) {
-				  
           wx.getUserInfo({
             success: (e) => {
               if (res.code) {
@@ -51,7 +49,6 @@ Page({
                     userInfo: e.userInfo
                   },
                   success: (we) => {
-                   
 										console.log(app.status.dengluzhuangtai)
                     wx.setStorageSync('user_id', we.user_id);
                     wx.setStorageSync('user_info', e.userInfo);
@@ -60,9 +57,7 @@ Page({
 
 											 console.log('登录状态码改变了吗?')
 											 app.status.dengluzhuangtai = 8
-											 console.log(app.status.dengluzhuangtai)
-
-											 
+											 console.log(app.status.dengluzhuangtai) 
 											getCurrentPages()
 											wx.navigateBack({})
 										} 
@@ -92,7 +87,8 @@ Page({
       }
     })
 
-  },
+	},
+
   /**
    * 生命周期函数--监听页面隐藏
    */

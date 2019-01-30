@@ -149,7 +149,7 @@
               <text style='font-size:38rpx'>{{item.value}}</text>
             </radio>
           </radio-group>
-          <view style='margin-left:130rpx;'> 付款： {{goodnumber*( virtual[x].sale_money + 10) }} </view>
+          <view style='margin-left:100rpx;'> 付款： {{goodnumber*virtual[x].sale_money }} </view>
         </view>
       </view>
     </view>
