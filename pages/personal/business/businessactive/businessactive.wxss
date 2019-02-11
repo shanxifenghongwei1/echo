@@ -1,2 +1,5 @@
 /* pages/personal/business/businessactive/businessactive.wxss */
-@import '/pages/personal/business/productcenter/productcenter.wxss'
+@import '/pages/personal/business/productcenter/productcenter.wxss';
+@import '/pages/personal/business/businessactiveadd/businessactiveadd.wxss';
+
+
