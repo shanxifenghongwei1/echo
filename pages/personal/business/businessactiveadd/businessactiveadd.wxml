@@ -1,70 +1,95 @@
-<!-- 产品发布页面 -->
-<!-- 产品名称 -->
+<!-- 活动添加页面 -->
+
 <form bindsubmit="addshopproduct">
 
-  <!-- 商品详细建扫把 -->
+  <!-- 活动类型 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>活动类型：</view>
-    <radio-group class="radio_group one-module-input" bindchange="radioChange" name="radio_group">
+    <radio-group class="radio_group one-module-input" bindchange="radioChange" name="ac_type">
       <radio class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.id}}" checked="{{item.checked}}">
         <text>{{item.value}}</text>
       </radio>
     </radio-group>
   </view>
-
-  <!-- 商品关键词 -->
+  <!-- 充值满多少 -->
   <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>充值满：</view>
+    <input name='money' class=' global_middle_font one-module-input' placeholder='充值金额' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+  <!-- 充值赠送多少 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>满送：</view>
+    <input name='give_money' class=' global_middle_font one-module-input' placeholder='充值赠送' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+  <!-- 附赠优惠券 -->
+  <view class='flex_abouts one-module' bindtap='resally'>
     <view class='global_middle_font one-module-text'>附赠优惠券：</view>
-    <view name='keywords' class='one-module-input iconfont icon-jiantouxia' style='text-align:right;'> {{}}</view>
+    <view class='global_middle_font' style=''>{{valurl}}</view>
+    <view class='one-module-input iconfont {{really==true? "icon-jiantouxia" : "icon-arrow-right-copy"}} ' style='text-align:right;width:10%'></view>
   </view>
 
-	<!-- 优惠券 -->
-<view style='width:94%;padding:3%'>
+  <scroll-view scroll-y wx:if='{{really}}'  lower-threshold='0' bindscrolltolower='roll' style='height:400rpx'>
+    <!-- 优惠券不赠送 -->
+    <view class='one-module bussinessno global_middle_font' bindtap='dont'>不赠送</view>
+    <!-- 优惠券选择 -->
+    <view wx:if='{{virtuall != 0}}'  style='width:94%;padding:3%'>
 
- <view class='ticket flex_about'>
-        <view style='font-size:35rpx;' class=' global_color_red ticket_money flex_about '>满赠券
+      <view class='ticket flex_about'  wx:for='{{virtuall}}' wx:key='index' bindtap='gaincontent' data-content='{{item.card_name}}' data-id='{{item.card_id}}'>
+        <view style='font-size:35rpx;' class=' global_color_red ticket_money flex_about '>{{item.type_name}}
         </view>
         <view class="ticket_info">
-          <view class='global_middle_font line-inline global_color_red'>{{item.money}}</view>
+          <view class='global_middle_font line-inline global_color_red'>{{item.shop_name}}</view>
+          <view class='global_middle_font line-inline global_color_red'>{{item.card_name}}</view>
+          <view class='global_middle_font line-inline global_color_red'>{{item.end_date}}过期</view>
         </view>
         <view class="payment flex_about global_large_font">
           <view class='iconfont icon-hongbaojuchi-copy'></view>
-          <view class='flex_about payment1'>使用</view>
+          <view class='flex_about payment1'>{{item.card_number}}张</view>
         </view>
       </view>
 
-</view>
-  <!-- 商品详细建扫把 -->
+    </view>
+
+  </scroll-view>
+
+  <!-- 赠送数量 -->
+  <view wx:if='{{card_id != 0 }}' class='one-module'>
+    <view class=' global_middle_font one-module-text'>赠送数量：</view>
+    <input name='number' class=' global_middle_font one-module-input'> </input>
+  </view>
+
+
+  <!-- 活动标题 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>活动标题：</view>
-    <input name='goods_brief' class=' global_middle_font one-module-input' value='{{goods.goods_brief}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+    <input name='ac_title' class=' global_middle_font one-module-input' value='{{goods.goods_brief}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
 
-  <!-- 产品单价 -->
+  <!-- 活动简介 -->
   <view class='one-module'>
-    <view class=' global_middle_font one-module-text'>活动简介：</view>
-    <input name='shop_price' class=' global_middle_font one-module-input' value='{{goods.shop_price}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+    <view class='global_middle_font one-module-text'>活动简介：</view>
+    <input name='ac_brief' class=' global_middle_font one-module-input' value='{{goods.shop_price}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
 
-  <!-- 产品数量 -->
+  <!-- 活动内容 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>活动内容：</view>
-    <input name='goods_number' class=' global_middle_font one-module-input' value='{{goods.goods_number}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+    <input name='ac_tontent' class=' global_middle_font one-module-input' value='{{goods.goods_number}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
 
-  <!-- 活动时间 -->
+  <!-- 活动开始时间 -->
   <view class='one-module'>
-    <view class=' global_middle_font one-module-text'>活动开始时间：</view>
-    <picker mode='date' name='goods_number' class='global_middle_font one-module-input'> </picker>
+    <view class='global_middle_font one-module-text'>活动开始时间：</view>
+    <picker mode='date' bindchange='bigintime' name='ac_stime' class='global_middle_font one-module-input'>{{date}} </picker>
   </view>
-	
-	  <!-- 结束时间 -->
+
+  <!-- 活动结束时间 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>活动结束时间：</view>
-    <picker mode='date'  name='goods_number' class=' global_middle_font one-module-input'> </picker>
+    <picker mode='date' name='ac_etime' bindchange='endtime' class='global_middle_font one-module-input'>{{time}} </picker>
   </view>
 
   <!-- 提交 	-->
-  <button style='width:80%;height:80rpx;' type='primary' form-type="submit">修改</button>
+  <button style='width:100%;height:80rpx;margin-top:10rpx;' type='primary' form-type="submit">确认添加</button>
   <view style='width:90%;height:80rpx;'></view>
 </form>

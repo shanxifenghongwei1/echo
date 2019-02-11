@@ -1,5 +1,4 @@
-// pages/personal/business/switcher/switcher.js
-const app = getApp();
+// pages/personal/business/businessactiveawait/businessactiveawait.js
 Page({
 
 	/**
@@ -13,46 +12,21 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
-		app.setNavigationBarTitle("账号切换");
 		this.setData({
-			cid: options.myshop_id
+			shop_id:options.shop_id
 		})
-		this.init();
 	},
-	switchon(e){
-		
-		this.setData({
-			cid: e.currentTarget.dataset.id
-		})
-
-		wx.navigateBack({
-			url: '?myshop_id=' + e.currentTarget.dataset.id
-		})
-
-
+	addshopproduct(e){
+		let opt = e.detail.value
+		console.log(e)
 	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
 	onReady: function () {
-	
-	},
-	init(){
-		app.request.post({
-			url: "shopcenter/getbusiness",
-			isLoading: true,
-			data: {
 
-			},
-			success: (e) => {
-			
-				this.setData({
-					shop_list:e,
-				})
-			}
-		})
 	},
+
 	/**
 	 * 生命周期函数--监听页面显示
 	 */

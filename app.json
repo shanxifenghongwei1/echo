@@ -37,6 +37,7 @@
 		"pages/personal/business/businessactive/businessactive", 
 		"pages/personal/business/businessdiscount/businessdiscount",
 		"pages/personal/business/businessactiveadd/businessactiveadd",
+		"pages/personal/business/businessactiveawait/businessactiveawait",
 		"pages/personal/business/busindiscounts/busindiscounts",
 		"pages/personal/business/busindiscountsadd/busindiscountsadd",
 		"pages/personal/business/busindiscountssell/busindiscountssell",

@@ -122,7 +122,7 @@
       </view>
     </view>
     <view class="bodyR">
-      <navigator url='/pages/personal/business/businessactive/businessactive' class="bodyRT">
+      <navigator url='/pages/personal/business/businessactive/businessactive?shop_id={{myshop_id}}' class="bodyRT">
         <view class="bodyLTsun">
           <view class="bodyLTsunS6">
             <view class="mdsz iconfont icon-huodong"></view>
