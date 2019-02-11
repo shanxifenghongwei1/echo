@@ -21,14 +21,14 @@
       </view>
     </view>
 
-		 <view  class='list1 flex_about'>
+		 <!-- <view  class='list1 flex_about'>
       <view class='list1-have global_small_font'>开始时间
         <view class='global_small_font line-inline'>{{item.start_time}}</view>
       </view>
       <view class='list1-wit have global_small_font'>返现时间：
         <view class='global_small_font line-inline'>{{item.now_time}}</view>
       </view>
-    </view>
+    </view> -->
 		 <view  class='list1 flex_about'>
       <view class='list1-have global_small_font'>我的位置
         <view class='global_small_font line-inline'>{{item.position}}</view>

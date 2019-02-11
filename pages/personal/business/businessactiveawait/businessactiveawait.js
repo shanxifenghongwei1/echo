@@ -1,4 +1,5 @@
 // pages/personal/business/businessactiveawait/businessactiveawait.js
+const app = getApp();
 Page({
 
 	/**
@@ -18,7 +19,19 @@ Page({
 	},
 	addshopproduct(e){
 		let opt = e.detail.value
-		console.log(e)
+		opt.shop_id = this.data.shop_id
+		app.request.post({
+			url: "activity/addReturnCash",
+			data:opt,
+			success: (res) => {
+				setTimeout(()=>{app.showtost(res.msg)})
+				if(res.state==1){
+					wx.navigateBack({})
+				}else if (res.state==2){
+					app.showtost(res.msg)
+				}
+			}
+		})
 	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
