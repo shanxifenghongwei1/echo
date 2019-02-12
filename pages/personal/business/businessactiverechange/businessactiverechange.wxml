@@ -1,0 +1,95 @@
+<!-- 活动添加页面 -->
+
+<form bindsubmit="addshopproduct">
+
+  <!-- 活动类型 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>活动类型：</view>
+    <radio-group class="radio_group one-module-input" bindchange="radioChange" name="ac_type">
+      <radio class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.id}}" checked="{{item.checked}}">
+        <text>{{item.value}}</text>
+      </radio>
+    </radio-group>
+  </view>
+  <!-- 充值满多少 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>充值满：</view>
+    <input name='money' class=' global_middle_font one-module-input' value='{{activity.money}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+  <!-- 充值赠送多少 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>满送：</view>
+    <input name='give_money' class=' global_middle_font one-module-input' value='{{activity.give_money}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+  <!-- 附赠优惠券 -->
+  <view class='flex_abouts one-module' bindtap='resally'>
+    <view class='global_middle_font one-module-text'>附赠优惠券：</view>
+    <view class='global_middle_font' style=''>{{valurl}}</view>
+    <view class='one-module-input iconfont {{really==true? "icon-jiantouxia" : "icon-arrow-right-copy"}} ' style='text-align:right;width:10%'></view>
+  </view>
+
+  <scroll-view scroll-y wx:if='{{really}}'  lower-threshold='0' bindscrolltolower='roll' style='height:400rpx'>
+    <!-- 优惠券不赠送 -->
+    <view class='one-module bussinessno global_middle_font' bindtap='dont'>不赠送</view>
+    <!-- 优惠券选择 -->
+    <view wx:if='{{virtuall != 0}}'  style='width:94%;padding:3%'>
+
+      <view class='ticket flex_about'  wx:for='{{virtuall}}' wx:key='index' bindtap='gaincontent' data-content='{{item.card_name}}' data-id='{{item.card_id}}'>
+        <view style='font-size:35rpx;' class=' global_color_red ticket_money flex_about '>{{item.type_name}}
+        </view>
+        <view class="ticket_info">
+          <view class='global_middle_font line-inline global_color_red'>{{item.shop_name}}</view>
+          <view class='global_middle_font line-inline global_color_red'>{{item.card_name}}</view>
+          <view class='global_middle_font line-inline global_color_red'>{{item.end_date}}过期</view>
+        </view>
+        <view class="payment flex_about global_large_font">
+          <view class='iconfont icon-hongbaojuchi-copy'></view>
+          <view class='flex_about payment1'>{{item.card_number}}张</view>
+        </view>
+      </view>
+
+    </view>
+
+  </scroll-view>
+
+  <!-- 赠送数量 -->
+  <view wx:if='{{card_id != 0 }}' class='one-module'>
+    <view class=' global_middle_font one-module-text'>赠送数量：</view>
+    <input name='number' class=' global_middle_font one-module-input' value='{{activity.number}}'> </input>
+  </view>
+
+
+  <!-- 活动标题 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>活动标题：</view>
+    <input name='ac_title' class=' global_middle_font one-module-input' value='{{activity.ac_title}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+
+  <!-- 活动简介 -->
+  <view class='one-module'>
+    <view class='global_middle_font one-module-text'>活动简介：</view>
+    <input name='ac_brief' class=' global_middle_font one-module-input' value='{{activity.ac_brief}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+
+  <!-- 活动内容 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>活动内容：</view>
+    <input name='ac_tontent' class=' global_middle_font one-module-input' value='{{activity.ac_tontent}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+
+  <!-- 活动开始时间 -->
+  <view class='one-module'>
+    <view class='global_middle_font one-module-text'>活动开始时间：</view>
+    <picker mode='date' bindchange='bigintime' name='ac_stime' class='global_middle_font one-module-input'>{{date}} </picker>
+  </view>
+
+  <!-- 活动结束时间 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>活动结束时间：</view>
+    <picker mode='date' name='ac_etime' bindchange='endtime' class='global_middle_font one-module-input'>{{time}} </picker>
+  </view>
+
+  <!-- 提交 	-->
+  <button style='width:100%;height:80rpx;margin-top:10rpx;' type='primary' form-type="submit">确认添加</button>
+  <view style='width:90%;height:80rpx;'></view>
+</form>

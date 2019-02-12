@@ -90,7 +90,7 @@
       </navigator>
     </view>
     <view class="bodyZ">
-      <navigator url='/pages/personal/business/shopordercenter/shopordercenter' class="bodyZT">
+      <navigator url='/pages/personal/business/shopordercenter/shopordercenter?shop_id={{myshop_id}}' class="bodyZT">
         <view class="bodyLTsun">
           <view class="bodyLTsunS3">
             <view class="mdsz iconfont icon-dingdan"></view>
@@ -132,7 +132,7 @@
           </view>
         </view>
       </navigator>
-      <view class="bodyRZ">
+      <navigator class="bodyRZ" url='/pages/personal/business/bussinessuservoucher/bussinessuservoucher?shop_id={{myshop_id}}'>
         <view class="bodyLTsun">
           <view class="bodyLTsunS7">
             <view class="mdsz iconfont icon-qiandaijinbi"></view>
@@ -141,7 +141,7 @@
             <text>充值中心</text>
           </view>
         </view>
-      </view>
+      </navigator>
       <navigator url='/pages/personal/bandcard/addbandcard/addbandcard?shop_id={{myshop_id}}' class="bodyRB">
         <view class="bodyLTsun">
           <view class="bodyLTsunS8">

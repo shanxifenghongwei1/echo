@@ -9,6 +9,8 @@ Page({
   data: {
     istrue: false,
     page: 1,
+		runistrue:false,
+		runpage:1,
   },
 
   /**
@@ -37,7 +39,7 @@ Page({
       }
     })
   },
-
+// 活动分页
   addinit() {
     app.request.post({
       url: "activity/getBusinessActivityList",
@@ -46,7 +48,7 @@ Page({
         page: ++this.data.page
       },
       success: (e) => {
-        if (state == 1) {
+        if (e.state == 1) {
           this.setData({
             activity: this.data.activity.concat(e.activity)
           })
@@ -76,13 +78,75 @@ Page({
 			url: "return/getBusinessReturnList",
 			data: {
 				shop_id: this.data.shop_id,
-				page: 1
+				page: this.data.runpage
 			},
 			success: (e) => {
-					console.log(e)
+				this.setData({
+					runmoney:e.return,
+					runpage:1
+				})
 			}
 		})
 	},
+
+	// 排队返现活动的显示隐藏
+	runistru(){
+		if(this.data.runistrue == true){
+			this.setData({
+				runistrue:false
+			})
+		}else{
+			this.setData({
+				runistrue:true
+			})
+		}
+	},
+
+	// 排队返现分页
+	runactve(){
+		app.request.post({
+			url: "return/getBusinessReturnList",
+			data: {
+				shop_id: this.data.shop_id,
+				page: ++this.data.runpage
+			},
+			success: (e) => {
+				if(e.return.length > 0){
+					this.setData({
+						runmoney: this.data.runmoney.concat(e.return),
+					})
+				}else{
+						app.showtost('没有更多啦')
+				}
+			}
+		})
+	},
+	// 删除活动
+	removeac(e){
+		let index = e.currentTarget.dataset.index
+		let abc = this.data.activity
+		abc.forEach((k,v)=>{
+			if(index == v){
+				this.setData({
+					ac_id : k.ac_id
+				})
+			}
+		})
+		app.request.post({
+			url:'activity/deleteActivity',
+			data:{
+				ac_id:this.data.ac_id
+			},
+			success:(res)=>{
+				app.showtost(res.msg)
+			}	
+		})
+		abc.splice(index,1)
+		this.setData({
+			activity:abc
+		})
+	},
+	
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

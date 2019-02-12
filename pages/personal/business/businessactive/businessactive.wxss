@@ -3,3 +3,23 @@
 @import '/pages/personal/business/businessactiveadd/businessactiveadd.wxss';
 
 
+.avtivcenter{
+	width: 100%;
+	line-height: 70rpx;
+	display: flex;
+	justify-content: space-between;
+}
+
+.middel{
+	width: 100%;
+	line-height: 70rpx;
+	border-top:1rpx solid #eee;
+	border-bottom:1rpx solid #eee;
+}
+
+.one-activ{
+	width: 100%;
+	border-top: 1rpx solid #eee;
+	margin-top:20rpx;
+	margin-bottom: 80rpx;
+}

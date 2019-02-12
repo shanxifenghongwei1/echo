@@ -1,0 +1,11 @@
+<wxs src="../../../../utils/tools.wxs" module="tools" />
+
+<view class='record'>
+  <view class='my'>我的账户</view>
+  <view class='money'>{{ total_money }}</view>
+</view>
+
+<view class='bill' wx:for='{{recharge}}' wx:key='index'>
+  <view class='global_middle_font'>{{ item.Nickname}}</view>
+  <view class='global_middle_font'>{{ tools.turnInt(item.card_money) }}</view>
+</view>

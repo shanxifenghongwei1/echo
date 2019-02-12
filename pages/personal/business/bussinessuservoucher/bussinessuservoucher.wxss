@@ -1,0 +1,2 @@
+/* pages/personal/business/bussinessuservoucher/bussinessuservoucher.wxss */
+@import '/pages/personal/purchase/purchase.wxss';

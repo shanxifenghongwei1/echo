@@ -63,6 +63,7 @@ Page({
               if (res.state == 1) {
                 app.showtost(res.msg)
                 let a = that.data.shop
+								a.splice(index,1)
                 that.setData({
                   shop: a
                 })
@@ -74,10 +75,6 @@ Page({
         }
       },
     })
-
-
-
-
   },
 
   addorderid: function(e) {

@@ -1,96 +1,22 @@
 
-
 <view class='any'>
-  <view class='order'>
+  <!-- <view class='order'>
     <view wx:for="{{order}}" wx:key='orderKey' class='order-son {{cid==item.type_id?"active":""}}' data-id='{{item.type_id}}' bindtap='addorderid'>{{item.text}}</view>
   </view>
-  <view class='newline'></view>
+  <view class='newline'></view> -->
 
 
   <!-- 订单模块 -->
   <view>
     <view class='my-order' wx:for="{{shop}}" wx:key='index'>
-      
-<!-- 商品订单 -->
-      <view wx:if='{{type_id==1}}' class='flex_about padding-all commdity' data-goods_id='{{item.goods_id}}' bindtap='runjump'>
-        <view class='commdity-pic'>
-          <image src='{{item.goods_img}}' style='width:100%;height:150rpx;'></image>
-        </view>
-        <view class=' global_middle_font commdity-particulars'>
-          <view class='flex_about shop-money'>
-            <view class=''>{{item.goods_name}}</view>
-            <view></view>
-            <view class='global_color_red global_large_font'> ¥{{item.goods_price}}</view>
-          </view>
-          <view class='flex_about shop-money'>
-            <view class='global_small_font'>七天无理由退换</view>
-            <view></view>
-            <view> 共{{item.goods_number}}件</view>
-          </view>
-          <view class='flex_about shop-money'>
-            <view>总计</view>
-            <view></view>
-            <view class='global_color_red global_large_font'> ¥{{item.order_money}}</view>
-          </view>
-          <view class='shop-number'></view>
-        </view>
-      </view>
-<!-- 店铺订单 -->
-  <view wx:if='{{type_id==2}}' class='flex_about padding-all commdity' data-shop_id='{{item.shop_id}}' bindtap='runshop'>
-        <view class='commdity-pic'>
-          <image src='{{item.shop_img}}' mode="widthFix"></image>
-        </view>
-        <view class=' global_middle_font commdity-particulars'>
-          <view class='flex_about shop-money'>
-            <view class=''>{{item.shop_name}}</view>
-            <view></view>
-          </view>
-          <view class='flex_about shop-money'>
-            <view class='global_small_font'>七天无理由退换</view>
-            <view></view>
-          </view>
-          <view class='flex_about shop-money'>
-            <view>总计</view>
-            <view></view>
-            <view class='global_color_red global_large_font'> ¥{{item.order_money}}</view>
-          </view>
-          <view class='shop-number'></view>
-        </view>
-      </view>
-      <!-- <view class=' flex_about padding-all time'>
-        <view class='global_small_font this-time'>时间:{{item.order_time}}</view>
-        <view></view>
-        <view class='flex_about'> -->
-          <!-- <navigator wx:if='{{item.pay_type==2}}' bindtap='storygoodslist' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>去支付</navigator>
-          <navigator wx:if='{{item.pay_type!==2||item.comment_status!==0}}' class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator> -->
-          
-        <!-- </view> -->
-      <!-- </view> -->
-    </view>
-  </view>
-
-</view>
-
-
-<view class='any'>
-  <view class='order'>
-    <view wx:for="{{order}}" wx:key='orderKey' class='order-son {{cid==item.type_id?"active":""}}' data-id='{{item.type_id}}' bindtap='addorderid'>{{item.text}}</view>
-  </view>
-  <view class='newline'></view>
-
-
-  <!-- 订单模块 -->
-  <view>
-    <view class='my-order' wx:for="{{shop}}" wx:key='index'>
-      <!-- 店家名字+支付状态 -->
-      <view class='shop'>
+            <view class='shop'>
         <view class=' global_middle_font shop-name'>{{item.shop_name}}
         </view>
         <view class='state global_middle_font' wx:if='{{item.order_mode==2}}'>商品订单</view>
          <view class='state global_middle_font' wx:if='{{item.order_mode==1}}'>店铺订单</view>
       </view>
 <!-- 商品订单 -->
-      <view wx:if='{{item.order_mode==2}}' class='flex_about padding-all commdity' data-goods_id='{{item.goods_id}}' bindtap='runjump'>
+      <view wx:if='{{item.order_mode == 2}}' class='flex_about padding-all commdity'>
         <view class='commdity-pic'>
           <image src='{{item.goods_img}}' style='width:100%;height:150rpx;'></image>
         </view>
@@ -122,12 +48,10 @@
           <view class='flex_about shop-money'>
             <view class=''>{{item.shop_name}}</view>
             <view></view>
-            <!-- <view class='global_color_red global_large_font'> ¥{{item.order_money}}</view> -->
           </view>
           <view class='flex_about shop-money'>
             <view class='global_small_font'>七天无理由退换</view>
             <view></view>
-            <!-- <view> 共{{item.goods_number}}件</view> -->
           </view>
           <view class='flex_about shop-money'>
             <view>总计</view>
@@ -137,25 +61,16 @@
           <view class='shop-number'></view>
         </view>
       </view>
-      <view class=' flex_about padding-all time'>
+      <!-- <view class=' flex_about padding-all time'>
         <view class='global_small_font this-time'>时间:{{item.order_time}}</view>
         <view></view>
-        <view class='flex_about'>
-          <navigator wx:if='{{item.pay_type==2}}' bindtap='storygoodslist' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>去支付</navigator>
-          <navigator wx:if='{{item.pay_type!==2||item.comment_status!==0}}' class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator>
+        <view class='flex_about'> -->
+          <!-- <navigator wx:if='{{item.pay_type==2}}' bindtap='storygoodslist' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>去支付</navigator>
+          <navigator wx:if='{{item.pay_type!==2||item.comment_status!==0}}' class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator> -->
           
-        </view>
-      </view>
+        <!-- </view> -->
+      <!-- </view> -->
     </view>
   </view>
-
-  <!-- ----已完成模块 -->
-
-  <!-- 待使用模块 -->
-  
-  <!-- 已取消模块 -->
-
- 
-  <!-- ---- -->
 
 </view>
