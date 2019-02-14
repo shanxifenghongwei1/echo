@@ -1,0 +1,30 @@
+<view class='any'>
+  <!-- 收益中心 -->
+  <navigator url='#' class='site'>
+    <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
+    <view class='site2 name-site-onlode global_middle_font'>
+      <text>总收益</text>
+      <text style='margin-left:300rpx;color:#ed4444'>{{turnover}}</text> </view>
+    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+  </navigator>
+
+  <navigator url='#' class='site' bindtap='istrues'>
+    <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
+    <view class='site2 name-site-onlode global_middle_font'>日收益</view>
+    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+  </navigator>
+
+<view wx:if='{{istrue}}'>
+  <view>
+    <view wx:for='{{data_list}}' wx:key='index' class='global_middle_font' style='width:94%;padding:3%;display:flex;justify-content:space-around;border-bottom:1rpx solid #eee;'>
+      <view>{{item.date}}</view>
+      <view>{{item.money}}</view>
+    </view>
+  </view>
+
+	<view class='global_middle_font' style='width:94%;padding:3%;display:flex;justify-content:space-around;border-bottom:1rpx solid #eee;'>
+	<picker mode='date' value='{{date}}' bindchange='querytime'> {{date}} </picker>
+	<view> {{turnovermoney}} </view>
+	</view>
+</view>
+</view>

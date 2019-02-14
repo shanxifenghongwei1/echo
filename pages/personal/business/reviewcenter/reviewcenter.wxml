@@ -1,29 +1,90 @@
-<view class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit' wx:key="index">
-  <!-- 评论的用户头像图片 -->
-  <view class='commit_avatar'>
-    <image src='{{item.Head_portrait}}' mode='widthFix'></image>
+<view style='padding:20rpx'>
+<!-- 店铺评论 -->
+  <view class='global_large_font' style='line-height:70rpx;display:flex;justify-content:space-between;width:100%;height:70rpx;padding:7rpx;border-bottom: 1rpx solid #eee;' bindtap='istrues'>
+    <text>店铺评论:</text>
+    <text class='iconfont icon-arrow-right-copy'></text>
   </view>
-  <!-- 评论的用户名字 -->
-  <view>
-    <view class='commit_text'>
-      <view class='flex_about global_large_font commit_name_date'>
-        <view>{{item.nickname}}</view>
-        <view></view>
-        <!-- 评论时间 -->
+
+
+
+
+  <view wx:if='{{istrue}}' class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit' wx:key="index">
+    <!-- 评论的用户头像图片 -->
+    <view class='commit_avatar'>
+      <image src='{{item.Head_portrait}}' mode='widthFix'></image>
+    </view>
+    <!-- 评论的用户名字 -->
+    <view>
+      <view class='commit_text'>
+        <view class='flex_about global_large_font commit_name_date'>
+          <view>{{item.nickname}}</view>
+          <view></view>
+          <!-- 评论时间 -->
+          <view class='global_small_font'>
+            {{item.msg_date}}
+          </view>
+        </view>
+        <!-- 评论内容 -->
         <view class='global_small_font'>
-          {{item.msg_date}}
+          {{item.msg_desc}}
         </view>
       </view>
-      <!-- 评论内容 -->
-      <view class='global_small_font'>
-        {{item.msg_desc}}
-      </view>
-    </view>
-    <!-- 评论图片 -->
-    <view class='comment_min_image'>
-      <view>
-        <image bindtap='showCommentImage' data-id='{{index}}' wx:for="{{item.msg_img}}" style='width:30%;height:150rpx;' wx:key="index" src="{{item}}"></image>
+      <!-- 评论图片 -->
+      <view class='comment_min_image'>
+        <view>
+          <image bindtap='showCommentImage' data-id='{{index}}' wx:for="{{item.msg_img}}" style='width:30%;height:150rpx;' wx:key="index" src="{{item}}"></image>
+        </view>
       </view>
     </view>
   </view>
+
+
+
+	<!-- 商品评论 -->
+  <view class='global_large_font' style='line-height:70rpx;display:flex;justify-content:space-between;width:100%;height:70rpx;padding:7rpx;border-bottom: 1rpx solid #eee;' bindtap='goodstrues'>
+    <text>商品评论:</text>
+    <text class='iconfont icon-arrow-right-copy'></text>
+  </view>
+<!-- 商品列表 -->
+	<view wx:if='{{goodstrue}}' wx:for='{{goods_list}}' wx:key='index' >
+			<view class='large-box'  data-id='{{item.goods_id}}' data-cid='{{item.goods_id}}' bindtap='lookgoodscomment'>
+				<view style='width:80rpx;height:80rpx;'>
+					<image src='{{item.goods_thumb}}' style='width:80rpx;height:80rpx;'></image>
+				</view>
+				<view style='margin-left:40rpx;'>
+					<text class='global_middle_font' style='color:{{cid == item.goods_id ? "red" : "blue" }}'>{{item.goods_name}}</text>
+				</view>
+				<view class='iconfont icon-arrow-right-copy'></view>
+			</view>
+	</view>
+  <view wx:if='{{goodstrue}}'  class='flex_about commit' wx:for="{{comment_list}}" data-id='{{index}}' bindtap='wherecommit' wx:key="index">
+    <!-- 评论的用户头像图片 -->
+    <view class='commit_avatar'>
+      <image src='{{item.Head_portrait}}' mode='widthFix'></image>
+    </view>
+    <!-- 评论的用户名字 -->
+    <view>
+      <view class='commit_text'>
+        <view class='flex_about global_large_font commit_name_date'>
+          <view>{{item.nickname}}</view>
+          <view></view>
+          <!-- 评论时间 -->
+          <view class='global_small_font'>
+            {{item.msg_date}}
+          </view>
+        </view>
+        <!-- 评论内容 -->
+        <view class='global_small_font'>
+          {{item.msg_desc}}
+        </view>
+      </view>
+      <!-- 评论图片 -->
+      <view class='comment_min_image'>
+        <view>
+          <image bindtap='showCommentImage' data-id='{{index}}' wx:for="{{item.msg_img}}" style='width:30%;height:150rpx;' wx:key="index" src="{{item}}"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
 </view>

@@ -42,7 +42,7 @@
         <image src="{{item}}" mode="widthFix"></image>
       </view>
     </view>
-    <view class='upload-image' wx:if="{{imageArray.length<=3}}" bindtap='uploadImage'>
+    <view class='upload-image' wx:if="{{imageArray.length - 3 < 0}}" bindtap='uploadImage'>
       <view class='iconfont icon-tupianshangchuan '></view>
       <view class='global_middle_font'>上传图片</view>
     </view>

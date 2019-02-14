@@ -21,7 +21,7 @@ Page({
 		let opt = e.detail.value
 		opt.shop_id = this.data.shop_id
 		app.request.post({
-			url: "activity/addReturnCash",
+			url: "return/addReturnCash",
 			data:opt,
 			success: (res) => {
 				setTimeout(()=>{app.showtost(res.msg)})

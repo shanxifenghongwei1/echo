@@ -1,0 +1,2 @@
+/* pages/personal/businessuserearnings/businessuserearnings.wxss */
+@import '/pages/personal/business/bussinessuseraccount/bussinessuseraccount.wxss';

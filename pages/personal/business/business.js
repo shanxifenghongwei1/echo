@@ -35,7 +35,7 @@ Page({
 				success: (e) => {
 					setTimeout(() => {
 						app.showtost('识别成功')
-					}, 1000)
+					}, 100)
 				}
 			})	
     }
@@ -90,7 +90,7 @@ Page({
 		})
 	},
 	switcher(){
-		wx.navigateTo({
+		wx.redirectTo({
 			url: '/pages/personal/business/switcher/switcher?myshop_id='+this.data.myshop_id,
 		})
 	},
@@ -116,7 +116,6 @@ Page({
 	// 		}, 6000)
 	// 	}
 	// },
-
 	//获取响铃次数
 	// ordercount: function () {
 	// 	app.request.post({

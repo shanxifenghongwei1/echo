@@ -69,8 +69,6 @@ Page({
     //日  
     var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
 
-
-
     this.setData({
       shop_id: options.shop_id,
       start: '' + Y + '-' + M + '-' + D,
@@ -83,9 +81,10 @@ Page({
   addshopmoney(e) {
 		e.detail.value.address = this.data.region
 		e.detail.value.sale_type = this.data.sale_type
+		e.detail.value.goods_id = this.data.goods_id
     console.log(e.detail.value)
     app.request.post({
-      url: 'virtual/addVirtual',
+      url: 'virtual/addVirtual',				
       data: {
         virtual: e.detail.value,
         shop_id: this.data.shop_id
@@ -96,12 +95,9 @@ Page({
 					success:()=>{
 						setTimeout(()=>{
 							app.showtost(res.msg);
-						},500)
+						},100)
 					}
 				})
-      
-
-
       }
     })
   },
@@ -113,7 +109,8 @@ Page({
       },
       success: (res) => {
         this.setData({
-          goods: res.goods
+          goods: res.goods,
+					goods_id:res.goods[0].goods_id
         })
       }
     })
@@ -173,7 +170,6 @@ Page({
     })
   },
 	bindRegionChange(e) {
-		console.log('picker发送选择改变，携带值为', e.detail.value)
 		this.setData({
 			region: e.detail.value
 		})

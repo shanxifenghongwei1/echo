@@ -106,7 +106,7 @@ Page({
 
     this.setData({
       display: false,
-      goodnumber: 0
+      goodnumber: 1
     })
   },
   // 商品数量

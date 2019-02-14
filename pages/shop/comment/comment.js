@@ -83,6 +83,7 @@ Page({
    * 图片上传
    */
   uploadImage() {
+
     wx.chooseImage({
       count: 1,
       sizeType: ['original'],
@@ -94,6 +95,7 @@ Page({
         })
       }
     })
+
   },
 
   /*

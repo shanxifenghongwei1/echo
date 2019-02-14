@@ -31,9 +31,12 @@ App({
   },
   dengluzt() {
     if (!wx.getStorageSync('user_id')) {
-      wx.navigateTo({
-        url: '/pages/dengl/dengl',
-      })
+			wx.navigateTo({
+				url:'/pages/dengl/dengl'
+			})
+			// wx.reLaunch({
+      //   url: '/pages/dengl/dengl',
+      // })
     }
   },
   host: common.host,

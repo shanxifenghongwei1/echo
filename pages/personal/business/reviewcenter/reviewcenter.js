@@ -6,63 +6,98 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-
+		istrue:false,
+		goodstrue:false,
 	},
-
+	// 店铺评论的显示隐藏
+	istrues(){
+		if(this.data.istrue == true){
+			this.setData({
+				istrue:false
+			})
+		}else{
+			this.setData({
+				istrue:true
+			})
+		}
+	},
+	// 商品的显示隐藏
+	goodstrues(){
+		if (this.data.goodstrue == true) {
+			this.setData({
+				goodstrue: false
+			})
+		} else {
+			this.setData({
+				goodstrue: true
+			})
+		}
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
 		this.setData({
-			myshop_id: options.myshop_id
+			shop_id: options.shop_id
 		})
+		this.getgoodslist();
 		this.getpinglun();
 	},
+	// 点击的是哪个图片？
 	wherecommit(e) {
 		this.setData({
 			whereid: e.currentTarget.dataset.id
 		})
 	},
-
+// 图片点击查看
 	showCommentImage(e) {
-	
 		setTimeout(() => {
 			let dataarray = this.data.commentArrar[this.data.whereid].msg_img
-			console.log(dataarray)
 			wx.previewImage({
 				urls: dataarray,
 				current: dataarray[e.currentTarget.dataset.id]
 			})
-
 		}, 500)
 	},
-	/**
-	 * 生命周期函数--监听页面初次渲染完成
-	 */
-	onReady: function () {
+
+// 获取商品评论
+	lookgoodscomment(e){
+		console.log(e)
+		let goods_id = e.currentTarget.dataset.id
+		this.setData({
+			cid: e.currentTarget.dataset.cid
+		})
+		app.request.post({
+			url: "comment/getGoodsCommentList",
+			data: {
+				goods_id:goods_id,
+				page:1
+			},
+			success: (e) => {
+				this.setData({
+					comment_list: e.comment,
+				})
+			}
+		})
+
 
 	},
-
-	/**
-	 * 生命周期函数--监听页面显示
-	 */
-	onShow: function () {
-
+	// 获取商品列表
+	getgoodslist() {
+		app.request.post({
+			url: "merchant/bygoods",
+			isLoading: true,
+			data: {
+				shangjiaid: this.data.shop_id
+			},
+			success: (e) => {
+				this.setData({
+					goods_list: e.goods
+				})
+			}
+		})
 	},
-
-	/**
-	 * 生命周期函数--监听页面隐藏
-	 */
-	onHide: function () {
-
-	},
-
-	/**
-	 * 生命周期函数--监听页面卸载
-	 */
-	onUnload: function () {
-
-	},
+	// 获取店铺评论
 	getpinglun: function () {
 		app.request.post({
 			url: "comment/getCommentList",
@@ -76,6 +111,30 @@ Page({
 				})
 			}
 		})
+	},
+	/**
+	 * 生命周期函数--监听页面初次渲染完成
+	 */
+	onReady: function () {
+
+	},
+	/**
+	 * 生命周期函数--监听页面显示
+	 */
+	onShow: function () {
+
+	},
+	/**
+	 * 生命周期函数--监听页面隐藏
+	 */
+	onHide: function () {
+
+	},
+	/**
+	 * 生命周期函数--监听页面卸载
+	 */
+	onUnload: function () {
+
 	},
 	/**
 	 * 页面相关事件处理函数--监听用户下拉动作

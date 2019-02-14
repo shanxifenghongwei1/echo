@@ -68,7 +68,7 @@
             <text>产品中心</text> </view>
         </view>
       </navigator>
-      <navigator url='/pages/personal/business/reviewcenter/reviewcenter?myshop_id={{myshop_id}}' class="bodyLZ">
+      <navigator url='/pages/personal/business/reviewcenter/reviewcenter?shop_id={{myshop_id}}' class="bodyLZ">
         <view class="bodyLTsun">
           <view class="bodyLTsunS1">
             <view class="mdsz iconfont icon-pinglun"></view>
@@ -110,7 +110,7 @@
           </view>
         </view>
       </navigator>
-      <view class="bodyZB">
+      <navigator url='/pages/personal/business/bussinessuseraccount/bussinessuseraccount?shop_id={{myshop_id}}' class="bodyZB">
         <view class="bodyLTsun">
           <view class="bodyLTsunS5">
             <view class="mdsz iconfont icon-yonghu"></view>
@@ -119,7 +119,7 @@
             <text>账户中心</text>
           </view>
         </view>
-      </view>
+      </navigator>
     </view>
     <view class="bodyR">
       <navigator url='/pages/personal/business/businessactive/businessactive?shop_id={{myshop_id}}' class="bodyRT">

@@ -8,16 +8,17 @@ Page({
 	data: {
 
 	},
-
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
 
 		app.setNavigationBarTitle("账号切换");
+
 		this.setData({
 			cid: options.myshop_id
 		})
+
 		this.init();
 	},
 	switchon(e){
@@ -26,10 +27,9 @@ Page({
 			cid: e.currentTarget.dataset.id
 		})
 
-		wx.navigateBack({
-			url: '?myshop_id=' + e.currentTarget.dataset.id
+		wx.redirectTo({
+			url: '/pages/personal/business/business?myshop_id=' + e.currentTarget.dataset.id,
 		})
-
 
 	},
 	/**
@@ -42,11 +42,7 @@ Page({
 		app.request.post({
 			url: "shopcenter/getbusiness",
 			isLoading: true,
-			data: {
-
-			},
 			success: (e) => {
-			
 				this.setData({
 					shop_list:e,
 				})

@@ -1,0 +1,17 @@
+<view class='any'>
+<!-- 收益中心 -->
+  <navigator url='/pages/personal/businessuserearnings/businessuserearnings?shop_id={{shop_id}}' class='site'>
+    <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
+    <view  class='site2 name-site-onlode global_middle_font'>收益中心</view>
+    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+  </navigator>
+	<!-- 修改商店信息 -->
+  <navigator url='/pages/personal/business/bussinessmessage/bussinessusermessage?shop_id={{shop_id}}' class='site'>
+    <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
+    <view  class='site2 name-site-onlode global_middle_font'>修改商店信息</view>
+    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+  </navigator>
+
+
+
+</view>

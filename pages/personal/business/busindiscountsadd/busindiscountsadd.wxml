@@ -99,11 +99,15 @@
     <scroll-view scroll-y style='height:40%;overflow:hidden;'>
 
       <view class='global_middle_font cone-cump-1'>
-        <text>优惠券名称:</text>
+        <text>商品名称:</text>
         <text class='m-margin-left-busin'>{{virtual[x].card_name}}</text>
       </view>
+			<view class='global_middle_font cone-cump-2'>
+        <text>出售原价:</text>
+        <text class='m-margin-left-busin'>{{virtual[x].goods.shop_price}}</text>
+      </view>
       <view class='global_middle_font cone-cump-2'>
-        <text>优惠券出售价格:</text>
+        <text>现价:</text>
         <text class='m-margin-left-busin'>{{virtual[x].sale_money}}</text>
       </view>
       <view class='global_middle_font cone-cump-2'>
@@ -149,7 +153,7 @@
               <text style='font-size:38rpx'>{{item.value}}</text>
             </radio>
           </radio-group>
-          <view style='margin-left:100rpx;'> 付款： {{goodnumber*virtual[x].sale_money }} </view>
+          <view style='margin-left:45rpx;'> 付款： {{goodnumber*virtual[x].sale_money }} </view>
         </view>
       </view>
     </view>

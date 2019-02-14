@@ -1,41 +1,44 @@
 {
-  "pages": [
+	"pages": [
+		"pages/index/index",
 		"pages/personal/person/person",
 		"pages/nearby/index/index",
-    "pages/personal/person/recharges/recharge",
-    "pages/personal/person/myassets/myassets",
-    "pages/index/oddments/map/map",
-    "pages/index/index",
-    "pages/dengl/dengl",
-    "pages/index/oddments/oddments",
-    "pages/shop/details/details",
-    "pages/shop/comment/comment",
-    "pages/personal/order/order",
-    "pages/personal/join/join",
-    "pages/personal/helptext/helptextdetail/helptextdetail",
-    "pages/personal/bandcard/bandcard",
-    "pages/personal/bandcard/addbandcard/addbandcard",
+		"pages/personal/person/recharges/recharge",
+		"pages/personal/person/myassets/myassets",
+		"pages/index/oddments/map/map",
+		"pages/dengl/dengl",
+		"pages/index/oddments/oddments",
+		"pages/shop/details/details",
+		"pages/shop/comment/comment",
+		"pages/personal/order/order",
+		"pages/personal/join/join",
+		"pages/personal/helptext/helptextdetail/helptextdetail",
+		"pages/personal/bandcard/bandcard",
+		"pages/personal/bandcard/addbandcard/addbandcard",
 		"pages/personal/person/rechargedesc/rechargedesc",
-    "pages/personal/person/payrecharge/payrecharge",
-    "pages/personal/helptext/helptext",
-    "pages/personal/feedback/feedback",
-    "pages/personal/favorite/favorite",
-    "pages/personal/observer/observer",
-    "pages/scattered/userAgreement/userAgreement",
-    "pages/scattered/pay/pay",
-    "pages/shop/index/index",
-    "pages/personal/activ/activ",
-    "pages/personal/coupon/coupon",
+		"pages/personal/person/payrecharge/payrecharge",
+		"pages/personal/helptext/helptext",
+		"pages/personal/feedback/feedback",
+		"pages/personal/favorite/favorite",
+		"pages/personal/observer/observer",
+		"pages/scattered/userAgreement/userAgreement",
+		"pages/scattered/pay/pay",
+		"pages/shop/index/index",
+		"pages/personal/activ/activ",
+		"pages/personal/coupon/coupon",
 		"pages/personal/coupon/mycoupon/mycoupon",
-    "pages/personal/address/address",
-    "pages/personal/integral/integral",
-    "pages/personal/business/business",
+		"pages/personal/address/address",
+		"pages/personal/integral/integral",
+		"pages/personal/businessuserearnings/businessuserearnings",
+		"pages/personal/business/business",
+		"pages/personal/business/bussinessuseraccount/bussinessuseraccount",
 		"pages/personal/business/switcher/switcher",
-		"pages/personal/business/shopordercenter/shopordercenter", 
-		"pages/personal/business/bussinessuservoucher/bussinessuservoucher", 
+		"pages/personal/business/bussinessmessage/bussinessusermessage",
+		"pages/personal/business/shopordercenter/shopordercenter",
+		"pages/personal/business/bussinessuservoucher/bussinessuservoucher",
 		"pages/personal/business/productcenter/productcenter",
 		"pages/personal/business/reviewcenter/reviewcenter",
-		"pages/personal/business/businessactive/businessactive", 
+		"pages/personal/business/businessactive/businessactive",
 		"pages/personal/business/businessdiscount/businessdiscount",
 		"pages/personal/business/businessactiveadd/businessactiveadd",
 		"pages/personal/business/businessactiverechange/businessactiverechange",
@@ -43,52 +46,52 @@
 		"pages/personal/business/busindiscounts/busindiscounts",
 		"pages/personal/business/busindiscountsadd/busindiscountsadd",
 		"pages/personal/business/busindiscountssell/busindiscountssell",
-    "pages/personal/purchase/purchase",
-    "pages/personal/recompose/recompose",
-    "pages/personal/putaway/putaway",
-    "pages/nearby/search/search"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ed4444",
-    "navigationBarTitleText": "微商城",
-    "navigationBarTextStyle": "white"
-  },
-  "tabBar": {
-    "position": "bottom",
-    "color": "#666",
-    "backgroundColor": "#fff",
-    "selectedColor": "#ed4444",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "/images/tabBar/shouye.png",
-        "selectedIconPath": "/images/tabBar/shouye1(1).png"
-      },
-      {
-        "pagePath": "pages/nearby/index/index",
-        "text": "附近活动",
-        "iconPath": "/images/tabBar/shangjia.png",
-        "selectedIconPath": "/images/tabBar/shangjia1(1).png"
-      },
-      {
-        "pagePath": "pages/personal/order/order",
-        "text": "订单列表",
-        "iconPath": "/images/tabBar/jf.png",
-        "selectedIconPath": "/images/tabBar/jf1(1).png"
-      },
-      {
-        "pagePath": "pages/personal/person/person",
-        "text": "个人中心",
-        "iconPath": "/images/tabBar/wode.png",
-        "selectedIconPath": "/images/tabBar/wode1(1).png"
-      }
-    ]
-  },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "将用来计算您与商铺的距离"
-    }
-  }
+		"pages/personal/purchase/purchase",
+		"pages/personal/recompose/recompose",
+		"pages/personal/putaway/putaway",
+		"pages/nearby/search/search"
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#ed4444",
+		"navigationBarTitleText": "微商城",
+		"navigationBarTextStyle": "white"
+	},
+	"tabBar": {
+		"position": "bottom",
+		"color": "#666",
+		"backgroundColor": "#fff",
+		"selectedColor": "#ed4444",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "/images/tabBar/shouye.png",
+				"selectedIconPath": "/images/tabBar/shouye1(1).png"
+			},
+			{
+				"pagePath": "pages/nearby/index/index",
+				"text": "附近活动",
+				"iconPath": "/images/tabBar/shangjia.png",
+				"selectedIconPath": "/images/tabBar/shangjia1(1).png"
+			},
+			{
+				"pagePath": "pages/personal/order/order",
+				"text": "订单列表",
+				"iconPath": "/images/tabBar/jf.png",
+				"selectedIconPath": "/images/tabBar/jf1(1).png"
+			},
+			{
+				"pagePath": "pages/personal/person/person",
+				"text": "个人中心",
+				"iconPath": "/images/tabBar/wode.png",
+				"selectedIconPath": "/images/tabBar/wode1(1).png"
+			}
+		]
+	},
+	"permission": {
+		"scope.userLocation": {
+			"desc": "将用来计算您与商铺的距离"
+		}
+	}
 }

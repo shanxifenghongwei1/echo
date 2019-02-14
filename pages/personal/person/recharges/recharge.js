@@ -334,7 +334,6 @@ Page({
         confirmText: '余额支付',
         success: (res) => {
           if (res.cancel == true) {
-
             app.request.post({
               url: "pay/pay_bill_recharge",
               data: {
@@ -343,8 +342,6 @@ Page({
                 pay_mode: 9
               },
               success: (e) => {
-
-
                 wx.requestPayment({
                   timeStamp: e.timeStamp,
                   nonceStr: e.nonceStr,
@@ -390,6 +387,9 @@ Page({
                 pay_mode: 6
               },
               success: (e) => {
+									if(e.state==2){
+										app.showtost(e.msg)
+									}else if(e.state==1){
                 app.request.post({
                   url: "pay/edit_pay_bill",
                   isLoading: true,
@@ -402,12 +402,14 @@ Page({
                       url: '/pages/personal/person/person',
                       success: () => {
                         setTimeout(() => {
-                          app.showtost('充值成功')
+                          app.showtost(e.msg)
                         }, 1000)
                       }
                     })
                   }
                 })
+
+									}
               }
             })
 

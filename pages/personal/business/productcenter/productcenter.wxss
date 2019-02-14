@@ -1,6 +1,5 @@
 @import "/pages/personal/person/person.wxss";
 
-
 .name-site-onlode{
 	padding-left:20rpx; 
 }
@@ -75,9 +74,9 @@
 	border-radius: 20rpx;
 	text-align: center;
 	color: #fff;
-
 	width: 40%;
 	height: 100%;
 	background: #666;
 	margin-left: 10%;
 }
+

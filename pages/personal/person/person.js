@@ -9,13 +9,12 @@ Page({
  
     userInfo: {},
   },
-
+// 电话号码
   makePhoneCall: function(e) {
     app.utils.makePhoneCall("87654321000" + e.currentTarget.dataset.phone);
   },
 	
 	blancked(){
-
 		if (this.data.aaa == 0) {
 			wx.navigateTo({
 				url: "/pages/personal/bandcard/addbandcard/addbandcard",
@@ -35,7 +34,6 @@ Page({
 				url: '/pages/personal/person/recharges/recharge?payforid=4&zongyue='+ this.data.user_money,
 			})
 		}
-
 	},
   /**
    * 生命周期函数--监听页面加载
@@ -80,7 +78,30 @@ Page({
   },
 
   onLoad: function(options) {
+		console.log('二维码收到的')
+		console.log(options)
+		this.setData({
+			scene:options.scene
+		})
     app.setNavigationBarTitle("个人中心");
     app.dengluzt();
+		this.adsinit();
   },
+
+adsinit(){
+	app.request.post({
+		url: "user/nobleaddress",
+		data: {
+			words: '海底捞',
+		},
+		success: (sss) => {
+			console.log(sss)
+			var shop_data = sss.sort_shop;
+			this.setData({
+				shop_data: shop_data
+			})
+		}
+	})
+}
+	
 })

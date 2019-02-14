@@ -57,7 +57,7 @@ height: 80%;
 }
 
 .ic_info>text:first-child {
-  margin-right: 10%;
+  margin-right: 4%;
 }
 
 .store_phone {

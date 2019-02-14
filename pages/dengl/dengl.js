@@ -14,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+		app.setNavigationBarTitle('登录')
   },
 
   /**
@@ -32,8 +32,12 @@ Page({
   },
   getCodeUserInfo(dd) {
     var that = this
+		console.log('这是dd')
+		console.log(dd)
     wx.login({
       success(res) {
+				console.log('这是login')
+				console.log(res)
         if (dd.detail.userInfo) {
           wx.getUserInfo({
             success: (e) => {
@@ -51,13 +55,7 @@ Page({
                   success: (we) => {
                     wx.setStorageSync('user_id', we.user_id);
                     wx.setStorageSync('user_info', e.userInfo);
-										 function mydenglu() {
-											 app.status.dengluzhuangtai = 8
-											 console.log(app.status.dengluzhuangtai) 
-											wx.navigateBack({})
-										} 
-										mydenglu();
-                   
+										that.mydenglu();
                   }
                 })
               }
@@ -81,7 +79,14 @@ Page({
     })
 
 	},
-
+	mydenglu() {
+	app.status.dengluzhuangtai = 8
+		console.log(app.status.dengluzhuangtai) 
+		wx.navigateBack({})
+		// wx.switchTab({
+		// 	url:'/pages/personal/person/person'
+		// })
+	},
   /**
    * 生命周期函数--监听页面隐藏
    */
