@@ -38,7 +38,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 28,
+			"current": 29,
 			"list": [
 				{
 					"id": -1,
@@ -217,7 +217,15 @@
 					"id": -1,
 					"name": "首页",
 					"pathName": "pages/index/index",
+					"query": "",
 					"scene": null
+				},
+				{
+					"id": 29,
+					"name": "9999999999",
+					"pathName": "pages/personal/coupon/mycoupon/mycoupon",
+					"query": "card_sn=32631549867&joinpage=2",
+					"scene": 1007
 				}
 			]
 		}

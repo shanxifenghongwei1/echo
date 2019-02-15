@@ -87,7 +87,7 @@
       <view style='display:flex;align-items: center;justify-content:space-between' class='money'>
         <text style='width:30%;'>应付：{{goods_price}}</text>
         <text wx:if='{{ischecked}}' style='width:40%;text-align:center;'> 优惠{{reduce_money}}</text>
-        <view style='width:30%;;height:80rpx;text-align:right;line-height:80rpx;' class='money_input'> 实付：{{ischecked==true?goods_price-reduce_money:goods_price}}</view>
+        <view style='width:30%;;height:80rpx;text-align:right;line-height:80rpx;' class='money_input'> 实付：{{ischecked==true?a_pa_money:goods_price}}</view>
       </view>
 
     </view>

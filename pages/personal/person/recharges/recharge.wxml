@@ -7,11 +7,13 @@
     <view wx:if='{{payforid==4}}' class='global_large_font top_body'>余额提现</view>
 		 <view wx:if='{{payforid==5}}' class='global_large_font top_body'>充值活动</view>
 <view wx:if='{{payforid==6}}' class='global_large_font top_body'>排队返现活动</view>
+<view wx:if='{{payforid==7}}' class='global_large_font top_body'>提现</view>
     <view wx:if='{{payforid!=6}}'  class='global_large_font'>{{conten}}</view>
 
 		<rich-text wx:if='{{payforid==6}}' class='imgsasa' style="font-size:35rpx;font-weight:400;color:#666;" nodes="{{conten}}"></rich-text>
 
     <view wx:if='{{payforid==4}}' class='global_large_font'>总余额 {{zongyue}}</view>
+		<view wx:if='{{payforid==7}}' class='global_large_font'>可提现金额: {{zongyue}}</view>
 
     <view class="buttom">
       <view class="buttomT">
@@ -25,17 +27,17 @@
         <input type="digit" focus='{true}' bindinput='moneyinthis'></input>
       </view>
     </view>
-    <view wx:if='{{payforid==4 && !business_id}}' style='margin-bottom:30rpx;' class='global_large_font line-inline'>
+    <view wx:if='{{payforid==4}}' style='margin-bottom:30rpx;' class='global_large_font line-inline'>
       个人所得提现收取20%手续费
       <text class='line-inline' style='height:100%;color:#ed4444'>{{money}}</text>
     </view>
-	 <view wx:if='{{payforid==4 && business_id}}' style='margin-bottom:30rpx;' class='global_large_font line-inline'>
+	 <view wx:if='{{payforid==7}}' style='margin-bottom:30rpx;' class='global_large_font line-inline'>
       商户提现收取10%手续费
       <text class='line-inline' style='height:100%;color:#ed4444'>{{mones}}</text>
     </view>
-    <view wx:if='{{payforid==4}}' class='global_large_font'>银行卡选择</view>
+    <view wx:if='{{payforid==4 || payforid==7}}' class='global_large_font'>银行卡选择</view>
     <!-- 一张银行卡 -->
-    <view style='position:relative;' data-id='{{index}}' data-bank_id='{{item.id}}' bindtap='checked_bank' class='one-bancard' wx:for='{{bank_list}}' wx:if='{{payforid==4}}' wx:key='index'>
+    <view style='position:relative;' data-id='{{index}}' data-bank_id='{{item.id}}' bindtap='checked_bank' class='one-bancard' wx:for='{{bank_list}}' wx:if='{{payforid == 4 || payforid == 7}}' wx:key='index'>
       <view class='one-bancard-top'>
         <view class='one-bancard-top-left'>
           <image src='/images/test/pic5.jpg' class='one-bancard-top-left-image'></image>
@@ -70,6 +72,8 @@
     <button type='primary'  class='recharge global_middle_font' wx:if='{{payforid==4 && hidden == false}}' bindtap='xjtx'>提现</button>
 		<button type='primary' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class='recharge global_middle_font' wx:if='{{payforid==4 && hidden == true}}'>提现</button>
 
+		<button type='primary' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class='recharge global_middle_font' wx:if='{{payforid==7 && hidden == true}}'>提现</button>
+    <button type='primary'  class='recharge global_middle_font' wx:if='{{payforid==7 && hidden == false}}' bindtap='xjtx'>提现</button>
 		 <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==5}}' bindtap='hdcz'>活动充值</button>
 		 <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==6}}' bindtap='paiduicz'>返现支付</button>
   </view>

@@ -10,31 +10,31 @@
   <view>
     <view class='my-order' wx:for="{{shop}}" wx:key='index'>
             <view class='shop'>
-        <view class=' global_middle_font shop-name'>{{item.shop_name}}
-        </view>
-        <view class='state global_middle_font' wx:if='{{item.order_mode==2}}'>商品订单</view>
-         <view class='state global_middle_font' wx:if='{{item.order_mode==1}}'>店铺订单</view>
+        <!-- <view class=' global_middle_font shop-name'>
+        </view> -->
+        <view style='text-align:left;' class='state global_middle_font' wx:if='{{item.order_mode==2}}'>商品订单</view>
+         <view style='text-align:left;' class='state global_middle_font' wx:if='{{item.order_mode==1}}'>店铺订单</view>
       </view>
 <!-- 商品订单 -->
       <view wx:if='{{item.order_mode == 2}}' class='flex_about padding-all commdity'>
         <view class='commdity-pic'>
-          <image src='{{item.goods_img}}' style='width:100%;height:150rpx;'></image>
+          <image src='{{item.Head_portrait}}' style='width:100%;height:150rpx;'></image>
         </view>
         <view class=' global_middle_font commdity-particulars'>
           <view class='flex_about shop-money'>
-            <view class=''>{{item.goods_name}}</view>
+            <view class='global_single_ellipsis global_small_font'>用户： {{item.Nickname}}</view>
             <view></view>
-            <view class='global_color_red global_large_font'> ¥{{item.goods_price}}</view>
+            <view class='global_color_red global_small_font'> 商品价格¥：{{item.goods_price}}</view>
           </view>
           <view class='flex_about shop-money'>
-            <view class='global_small_font'>七天无理由退换</view>
+            <view class='global_small_font'>订单编号：{{item.order_sn}}</view>
             <view></view>
-            <view> 共{{item.goods_number}}件</view>
           </view>
+					<view style='margin-top:2%;' class='global_small_font'>支付时间: {{item.order_time}}</view>
           <view class='flex_about shop-money'>
-            <view>总计</view>
+            <view class='global_single_ellipsis global_small_font'>商品：{{item.goods_name}}</view>
             <view></view>
-            <view class='global_color_red global_large_font'> ¥{{item.order_money}}</view>
+            <view class='global_color_red global_small_font'>支付金额： ¥{{item.pay_money}}</view>
           </view>
           <view class='shop-number'></view>
         </view>
@@ -42,21 +42,22 @@
 <!-- 店铺订单 -->
   <view wx:if='{{item.order_mode==1}}' class='flex_about padding-all commdity' data-shop_id='{{item.shop_id}}' bindtap='runshop'>
         <view class='commdity-pic'>
-          <image src='{{item.shop_img}}' mode="widthFix"></image>
+          <image src='{{item.Head_portrait}}' mode="widthFix"></image>
         </view>
         <view class=' global_middle_font commdity-particulars'>
           <view class='flex_about shop-money'>
-            <view class=''>{{item.shop_name}}</view>
+            <view class='global_small_font'>用户：{{item.Nickname}}</view>
             <view></view>
           </view>
           <view class='flex_about shop-money'>
-            <view class='global_small_font'>七天无理由退换</view>
-            <view></view>
+            <view class='global_small_font'>订单编号：{{item.order_sn}}</view>
+         
           </view>
+					   <view style='margin-top:2%;' class='global_small_font'>支付时间:{{item.order_time}}</view>
           <view class='flex_about shop-money'>
-            <view>总计</view>
             <view></view>
-            <view class='global_color_red global_large_font'> ¥{{item.order_money}}</view>
+            <view></view>
+            <view class='global_color_red global_small_font'> 支付金额：¥{{item.order_money}}</view>
           </view>
           <view class='shop-number'></view>
         </view>

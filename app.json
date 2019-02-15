@@ -1,8 +1,8 @@
 {
 	"pages": [
+		"pages/nearby/index/index",
 		"pages/index/index",
 		"pages/personal/person/person",
-		"pages/nearby/index/index",
 		"pages/personal/person/recharges/recharge",
 		"pages/personal/person/myassets/myassets",
 		"pages/index/oddments/map/map",
@@ -63,12 +63,6 @@
 		"backgroundColor": "#fff",
 		"selectedColor": "#ed4444",
 		"list": [
-			{
-				"pagePath": "pages/index/index",
-				"text": "首页",
-				"iconPath": "/images/tabBar/shouye.png",
-				"selectedIconPath": "/images/tabBar/shouye1(1).png"
-			},
 			{
 				"pagePath": "pages/nearby/index/index",
 				"text": "附近活动",

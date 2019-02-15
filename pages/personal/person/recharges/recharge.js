@@ -97,7 +97,7 @@ Page({
     app.request.post({
       url: "cash/bankList",
       success: (e) => {
-        if (this.data.payforid == 4) {
+        if (this.data.payforid == 4 || this.data.payforid == 7) {
           if (e.length == 0) {
             wx.redirectTo({
               url: "/pages/personal/bandcard/addbandcard/addbandcard",

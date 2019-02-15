@@ -85,14 +85,18 @@ Page({
   },
   onLoad(option) {
     app.setNavigationBarTitle("附近商家");
+		let share = wx.getStorageSync('share')
     this.page = 0;
     app.utils.computeScrollViewHeight((e) => {
       this.setData({
-        scrollHeight: e
+        scrollHeight: e , 
+				share:share
       });
     });
     this.getgoodsList();
     this.init();
+	
+
   },
   onReady() {
     this.prompt = this.selectComponent("#prompt");

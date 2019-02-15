@@ -78,7 +78,7 @@
           </view>
         </view>
       </navigator>
-      <navigator url='/pages/personal/person/recharges/recharge?business_id={{myshop_id}}&payforid=4' class="bodyLB">
+      <navigator  bindtap='blancked' class="bodyLB">
         <view class="bodyLTsun">
           <view class="bodyLTsunS2">
             <view class="mdsz iconfont icon-tixian1"></view>

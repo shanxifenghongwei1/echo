@@ -56,7 +56,8 @@ Page({
 				shop_id: e.currentTarget.dataset.shop,
 				reduce_money: e.currentTarget.dataset.moneys,
 				textcenter:false,
-				ischecked:true
+				ischecked:true,
+				a_pa_money: this.data.goods_price - e.currentTarget.dataset.moneys < 0 ? 0 : this.data.goods_price - e.currentTarget.dataset.moneys
 			})
 	},
 
@@ -87,6 +88,8 @@ Page({
         card_id: options.card_id,
       })
     }
+		console.log('从那边传来的shop_id')
+		console.log(options)
     this.setData({
 			order_money: options.order_money,
       order_id: options.order_id,
@@ -307,7 +310,6 @@ Page({
 						virtual_id: that.data.virtual,
             order_type: that.data.order_type,
 						pay_mode :that.data.iloveyou,
-				
           },
           success: (e) => {
 						if (e.state !== 1) {

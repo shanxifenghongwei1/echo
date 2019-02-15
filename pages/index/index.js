@@ -30,7 +30,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+	runnearby(){
+		wx.switchTab({
+			url:'/pages/nearby/index/index'
+		})
+	},
   onLoad: function(options) {
+		console.log(options)
+		console.log('这是分享进来的数据--------')
     app.setNavigationBarTitle("商家首页");
     const scene = decodeURIComponent(options.scene)
     if (scene == 'undefined'){
@@ -40,6 +47,7 @@ Page({
         scene: scene
       })
       app.globalData.shopId = scene
+			wx.setStorageSync('share', 2)
       app.globalData.shopType = app.status.shopType.shop_share_Type;
       console.log('传了东西')
     }
@@ -48,6 +56,7 @@ Page({
     if (options.shopId != undefined) {
       console.log('分享进来的啊')
       app.globalData.shopId = options.shopId;
+			wx.setStorageSync('share', 2)
       app.globalData.shopType = app.status.shopType.shop_share_Type;  
     }
     // 请求整个页面的数据

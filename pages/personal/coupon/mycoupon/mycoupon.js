@@ -17,17 +17,30 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		if(options.joinpage==2){
+		var huser_id = wx.getStorageSync('user_id')
+		if(options.joinpage == 1){
 			this.setData({
-				joinpage: 2
+				joinpage: 1,
 			})
-			this.init(options.card_sn)
-		}else if(options.joinpage==1){
-			this.init(options.card_sn)
+		}else{
 			this.setData({
-				joinpage:1
+				joinpage: 2,
 			})
 		}
+		this.setData({
+			joinpage: 2,
+			huser_id: huser_id,
+			card_sn: options.card_sn
+		})
+
+	
+		if (!huser_id){
+			console.log('没登录')
+			app.dengluzt({})
+		}else{
+			this.init(options.card_sn)
+		}
+
 	},
 
 	goo(){
@@ -48,10 +61,12 @@ init(asd){
 		url: "virtual/shareCard",
 		isLoading: true,
 		data: {
-			card_sn:asd
+			card_sn:asd,
+			jionpage:this.data.jionpage
 		},
 		success: (e) => {
 			if(e.state==1){
+				console.log(this.data.joinpage)
 				this.setData({
 					qr_code: e.virtual.qr_code,
 					shop_name: e.virtual.shop_name,
@@ -60,15 +75,17 @@ init(asd){
 					shop_id: e.virtual.shop_id,
 					goods_id: e.virtual.goods_id
 				})
+				
 				if(this.data.joinpage==2){
-				setTimeout(()=>{
-					app.showtost(e.msg)
-				},1000)
+					setTimeout(()=>{
+						app.showtost(e.msg)
+					},1000)
 				} 
 				if (this.data.joinpage == 1) {
 					// setTimeout(() => {
 					// 	app.showtost('点击界面进来的')
 					// }, 1000)
+					
 				}
 			}else{
 				setTimeout(() => {
@@ -82,17 +99,14 @@ init(asd){
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
 	onReady: function () {
-
+		app.setNavigationBarTitle("优惠券详情");
 	},
 
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-		var huser_id = wx.getStorageSync('user_id')
-		this.setData({
-			huser_id: huser_id
-		})
+		
 	},
 
 	/**
@@ -106,7 +120,7 @@ init(asd){
 	 * 生命周期函数--监听页面卸载
 	 */
 	onUnload: function () {
-		app.setNavigationBarTitle("优惠券详情");
+		
 	},
 
 	/**

@@ -33,10 +33,6 @@
           <view class='global_middle_font global_color_red'>{{item.ac_tontent}}</view>
           <view class='global_middle_font global_color_red'>{{item.ac_etime}}过期</view>
         </view>
-        <view class="payment flex_about global_large_font">
-          <view class='iconfont icon-hongbaojuchi-copy'></view>
-          <view class='flex_about payment1'></view>
-        </view>
       </view>
       <!-- 删除，修改模块 -->
       <view class='move-shop' style='width:100%;'>

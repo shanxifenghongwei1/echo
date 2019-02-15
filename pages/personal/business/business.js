@@ -139,6 +139,37 @@ Page({
 	// 	})
 	// },
 
+	blancked() {
+		
+		if (this.data.aaa == 0) {
+			wx.navigateTo({
+				url: "/pages/personal/bandcard/addbandcard/addbandcard",
+				success: function () {
+					setTimeout(() => {
+						wx.showToast({
+							title: '请您先绑定银行卡再提现',
+							icon: 'none',
+							duration: 3000,
+							mask: true,
+						})
+					}, 500)
+				}
+			})
+		} else {
+
+			app.request.post({
+				url:'business/getBusinessMoney',
+				data:{
+					shop_id:this.data.myshop_id
+				},
+				success:(res)=>{
+			wx.navigateTo({
+				url: '/pages/personal/person/recharges/recharge?payforid=7&zongyue=' + res.cash_money + '&shop_id=' + this.data.myshop_id,
+			})
+				}
+			})
+		}
+	},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -12,6 +12,7 @@ App({
       "fullFeduction": 16, //满减
       "fullGift": 18 //满赠 
     },
+		stashop:0
   },
   status: {
     shopType: { //进入店铺方式
@@ -32,7 +33,7 @@ App({
   dengluzt() {
     if (!wx.getStorageSync('user_id')) {
 			wx.navigateTo({
-				url:'/pages/dengl/dengl'
+				url:'/pages/dengl/dengl',
 			})
 			// wx.reLaunch({
       //   url: '/pages/dengl/dengl',
@@ -97,6 +98,11 @@ App({
 	navigateback(back){
 		wx.navigateBack({
 			delta:back.dalta?"":1,
+			success:back.success
+		})
+	},
+	backnavig(back){
+		wx.navigateBack({
 			success:back.success
 		})
 	},
