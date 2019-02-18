@@ -18,6 +18,8 @@ Page({
 	 */
 	onLoad: function (options) {
 		var huser_id = wx.getStorageSync('user_id')
+
+
 		if(options.joinpage == 1){
 			this.setData({
 				joinpage: 1,
@@ -27,8 +29,9 @@ Page({
 				joinpage: 2,
 			})
 		}
+
+
 		this.setData({
-			joinpage: 2,
 			huser_id: huser_id,
 			card_sn: options.card_sn
 		})
@@ -58,11 +61,11 @@ Page({
 //  
 init(asd){
 	app.request.post({
-		url: "virtual/shareCard",
+		url: "virtual/shareCard?jionpage=" + this.data.joinpage,
 		isLoading: true,
 		data: {
 			card_sn:asd,
-			jionpage:this.data.jionpage
+			
 		},
 		success: (e) => {
 			if(e.state==1){
@@ -76,7 +79,7 @@ init(asd){
 					goods_id: e.virtual.goods_id
 				})
 				
-				if(this.data.joinpage==2){
+				if(this.data.joinpage == 2){
 					setTimeout(()=>{
 						app.showtost(e.msg)
 					},1000)

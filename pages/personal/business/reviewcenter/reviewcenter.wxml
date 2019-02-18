@@ -35,6 +35,8 @@
           <image bindtap='showCommentImage' data-id='{{index}}' wx:for="{{item.msg_img}}" style='width:30%;height:150rpx;' wx:key="index" src="{{item}}"></image>
         </view>
       </view>
+
+			<view class='global_middle_font' style='height:30rpx;width:100%;text-align:right;color:blue;'>回复</view>
     </view>
   </view>
 
