@@ -1,5 +1,5 @@
 <view style='padding:20rpx'>
-<!-- 店铺评论 -->
+  <!-- 店铺评论 -->
   <view class='global_large_font' style='line-height:70rpx;display:flex;justify-content:space-between;width:100%;height:70rpx;padding:7rpx;border-bottom: 1rpx solid #eee;' bindtap='istrues'>
     <text>店铺评论:</text>
     <text class='iconfont icon-arrow-right-copy'></text>
@@ -36,30 +36,38 @@
         </view>
       </view>
 
-			<view class='global_middle_font' style='height:30rpx;width:100%;text-align:right;color:blue;'>回复</view>
+
+      <!-- <view class='global_middle_font' style='height:80rpx;width:100%;text-align:right;line-height:80rpx;'></view> -->
+      <view class='discuss'>
+        <view wx:if='{{ item.reply != null }}' class='global_middle_font' style='color:blue'>商家回复：</view>
+        <view class='global_middle_font dis-desc-shop'>{{item.reply.desc}}</view>
+      </view>
+      <view bindtap='discuss' data-id='{{item.msg_id}}' class='global_middle_font' style='height:50rpx;width:100%;text-align:right;line-height:50rpx;color:{{item.reply == null? "blue" : ""}};'>回复</view>
+
     </view>
+
   </view>
 
 
 
-	<!-- 商品评论 -->
+  <!-- 商品评论 -->
   <view class='global_large_font' style='line-height:70rpx;display:flex;justify-content:space-between;width:100%;height:70rpx;padding:7rpx;border-bottom: 1rpx solid #eee;' bindtap='goodstrues'>
     <text>商品评论:</text>
     <text class='iconfont icon-arrow-right-copy'></text>
   </view>
-<!-- 商品列表 -->
-	<view wx:if='{{goodstrue}}' wx:for='{{goods_list}}' wx:key='index' >
-			<view class='large-box'  data-id='{{item.goods_id}}' data-cid='{{item.goods_id}}' bindtap='lookgoodscomment'>
-				<view style='width:80rpx;height:80rpx;'>
-					<image src='{{item.goods_thumb}}' style='width:80rpx;height:80rpx;'></image>
-				</view>
-				<view style='margin-left:40rpx;'>
-					<text class='global_middle_font' style='color:{{cid == item.goods_id ? "red" : "blue" }}'>{{item.goods_name}}</text>
-				</view>
-				<view class='iconfont icon-arrow-right-copy'></view>
-			</view>
-	</view>
-  <view wx:if='{{goodstrue}}'  class='flex_about commit' wx:for="{{comment_list}}" data-id='{{index}}' bindtap='wherecommit' wx:key="index">
+  <!-- 商品列表 -->
+  <view wx:if='{{goodstrue}}' wx:for='{{goods_list}}' wx:key='index'>
+    <view class='large-box' data-id='{{item.goods_id}}' data-cid='{{item.goods_id}}' bindtap='lookgoodscomment'>
+      <view style='width:80rpx;height:80rpx;'>
+        <image src='{{item.goods_thumb}}' style='width:80rpx;height:80rpx;'></image>
+      </view>
+      <view style='margin-left:40rpx;'>
+        <text class='global_middle_font' style='color:{{cid == item.goods_id ? "red" : "blue" }}'>{{item.goods_name}}</text>
+      </view>
+      <view class='iconfont icon-arrow-right-copy'></view>
+    </view>
+  </view>
+  <view wx:if='{{goodstrue}}' class='flex_about commit' wx:for="{{comment_list}}" data-id='{{index}}' bindtap='wherecommit' wx:key="index">
     <!-- 评论的用户头像图片 -->
     <view class='commit_avatar'>
       <image src='{{item.Head_portrait}}' mode='widthFix'></image>
@@ -89,4 +97,18 @@
     </view>
   </view>
 
+</view>
+
+
+<view class='discuss-input-box-1' wx:if='{{discu}}'>
+  <view class='discuss-div'>
+    <view class='discuss-title global_large_font'>回复</view>
+    <textarea maxlength='140' auto-focus='true' class='global_middle_font discuss-input' placeholder='请输入回复内容' bindinput='textar'></textarea>
+
+    <view class='ensure'>
+      <view class='ensure-ok global_large_font' bindtap='adddiscuss'>提交</view>
+      <view class=' ensure-ok global_large_font' bindtap='discuss'>取消</view>
+    </view>
+    <view class='flexaes global_middle_font' bindtap='discuss'>×</view>
+  </view>
 </view>

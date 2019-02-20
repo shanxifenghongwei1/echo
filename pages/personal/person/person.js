@@ -44,7 +44,7 @@ Page({
       userInfo: usermane
     })
     this.init();
-    app.dengluzt();
+  
   },
 
   init() {
@@ -84,8 +84,9 @@ Page({
 			scene:options.scene
 		})
     app.setNavigationBarTitle("个人中心");
-    app.dengluzt();
+   
 		this.adsinit();
+		app.dengluzt();
   },
 
 adsinit(){

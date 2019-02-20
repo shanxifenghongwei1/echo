@@ -13,7 +13,7 @@ Page({
         checked: 'true'
       },
       {
-        id: '遇到问题',
+        id: '功能建议',
         value: '功能建议'
       },
     ],
@@ -75,7 +75,10 @@ Page({
         type: type,
         desc: desc,
         iphone: iPhone
-      }
+      },
+			success:(res)=>{
+				wx.navigateBack({})
+			}
     })
 
   },
@@ -83,12 +86,11 @@ Page({
 
   // 遇到问题/功能建议
   radioChange(e) {
-    console.log(e.detail.value)
-    if (e.detail.value == 13) {
+    if (e.detail.value == '遇到问题') {
       this.setData({
         text_introduce: '比如在()情况下，小程序出现了()异常。小提示：最少输入10个字'
       })
-    } else if (e.detail.value == 23) {
+    } else if (e.detail.value == '功能建议') {
       this.setData({
         text_introduce: '比如我希望加入/完善()功能，因为()。 小提示：最少输入10个字'
       })

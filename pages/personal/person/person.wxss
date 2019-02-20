@@ -46,7 +46,7 @@
 
 .anywhere {
   overflow: hidden;
-  width: 99.5%;
+  width: 100%;
   /* border: 1rpx solid black;  */
 }
 

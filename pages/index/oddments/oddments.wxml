@@ -68,10 +68,10 @@
     <view wx:for-items="{{navArray}}" wx:key="navKey" bindtap='jumpTo' data-id="{{index}}" data-opt="{{item.id}}" class="nav_item {{index==navActive?'nav_active':''}}">{{item.name}}</view>
   </view>
   <view class='ticket_product_commit'>
-   
 
-     <!-- <view wx:if="{{shopObj!=null&&shopObj.youhui.length>0}}" id="list0" class='ticket_module ' wx:for="{{shopObj.youhui}}" wx:key="youhuiKey"> -->
-      <!--满减（支付优惠券）-->
+
+    <!-- <view wx:if="{{shopObj!=null&&shopObj.youhui.length>0}}" id="list0" class='ticket_module ' wx:for="{{shopObj.youhui}}" wx:key="youhuiKey"> -->
+    <!--满减（支付优惠券）-->
     <!--  <view wx:if="{{item.card_type==app.globalData.voucher.fullFeduction}}" bindtap='addOrder' data-shop_name='{{shopObj.shop_name}}' data-shop_image='{{shopObj.shop_logo}}' data-act_name='{{item.card_money}}' data-card_id="{{item.card_id}}" class='ticket flex_about'>
         <view class=' global_color_red ticket_money flex_about '>{{tools.turnInt(item.card_money)}}
           <text class='global_small_font global_color_red'>元</text>
@@ -85,8 +85,8 @@
         </view>
 
       </view> -->
-      <!--满赠-->
-      <!-- <view wx:if="{{item.card_type==18}}" bindtap='addOrder' data-shop_name='{{shopObj.shop_name}}' data-shop_image='{{shopObj.shop_logo}}' data-act_name='{{item.card_money}}' data-card_id="{{item.card_id}}" class='ticket flex_about'>
+    <!--满赠-->
+    <!-- <view wx:if="{{item.card_type==18}}" bindtap='addOrder' data-shop_name='{{shopObj.shop_name}}' data-shop_image='{{shopObj.shop_logo}}' data-act_name='{{item.card_money}}' data-card_id="{{item.card_id}}" class='ticket flex_about'>
         <view class=' global_color_red ticket_money flex_about '>{{tools.turnInt(item.card_money)}}
           <text class='global_small_font global_color_red'>元</text>
         </view>
@@ -99,8 +99,8 @@
         </view>
       </view>
     </view> -->
-<!-- 支付活动	 -->
-<view wx:if="{{shopObj!=null&&shopObj.pay_ac.length !== 0}}">
+    <!-- 支付活动	 -->
+    <view wx:if="{{shopObj!=null&&shopObj.pay_ac.length !== 0}}">
       <view class='global_large_font flex_about commit_title'>
         <view class='global_middle_font'></view>支付活动
       </view>
@@ -114,7 +114,7 @@
           <view class='global_middle_font line-inline global_color_red'>{{item.money}}</view>
           <text class='global_middle_font line-inline'>减</text>
           <view class='global_middle_font line-inline global_color_red'>{{item.give_money}}</view>
-					<view wx:if='{{!item.ac_title==""}}' class='global_middle_font'>{{item.title}}</view>
+          <view wx:if='{{!item.ac_title==""}}' class='global_middle_font'>{{item.title}}</view>
         </view>
         <view class="payment flex_about global_large_font">
           <view class='iconfont icon-hongbaojuchi-copy'></view>
@@ -139,7 +139,7 @@
           <view class='global_middle_font line-inline global_color_red'>{{item.money}}</view>
           <text class='global_middle_font line-inline'>赠</text>
           <view class='global_middle_font line-inline global_color_red'>{{item.give_money}}</view>
-					<view wx:if='{{!item.ac_title==""}}' class='global_middle_font'>{{item.title}}</view>
+          <view wx:if='{{!item.ac_title==""}}' class='global_middle_font'>{{item.title}}</view>
         </view>
         <view class="payment flex_about global_large_font">
           <view class='iconfont icon-hongbaojuchi-copy'></view>
@@ -149,24 +149,24 @@
     </view>
 
 
-		<!--排队返现活动-->
+    <!--排队返现活动-->
 
 
-<view wx:if="{{shopObj!=null&&shopObj.return.length !== 0}}">
+    <view wx:if="{{shopObj!=null&&shopObj.return.length !== 0}}">
       <view class='global_large_font flex_about commit_title'>
         <view class='global_middle_font'></view>排队返现活动
       </view>
 
       <view wx:for='{{shopObj.return}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.return.length > 0}}" bindtap='returncash' data-id="{{item.brief}}" data-ac='{{item.id}}' data-shop='{{item.shop_id}}' class='ticket flex_about'>
         <view class=' global_color_red ticket_money flex_about '>{{tools.turnInt(item.return_money)}}
-          
+
         </view>
         <view class="ticket_info">
-				<text class='global_middle_font line-inline'>支付满</text>
+          <text class='global_middle_font line-inline'>支付满</text>
           <view class='global_middle_font line-inline global_color_red'>{{tools.turnInt(item.money)}}</view>
           <text class='global_middle_font line-inline'>返</text>
           <view class='global_middle_font line-inline global_color_red'>{{tools.turnInt(item.return_money)}}</view>
-					<view wx:if='{{!item.ac_title==""}}' class='global_middle_font'>{{item.title}}</view>
+          <view wx:if='{{!item.ac_title==""}}' class='global_middle_font'>{{item.title}}</view>
         </view>
         <view class="payment flex_about global_large_font">
           <view class='iconfont icon-hongbaojuchi-copy'></view>
@@ -208,10 +208,10 @@
     </view>
     <!-- 等待加载的组件 -->
     <!-- ----------开头---------------- -->
-		      <view  wx:if='{{commentArrar.length > 0 }}' class='global_large_font flex_about commit_title'>
-        <view class='iconfont icon-pinglun2'></view>评论
-      </view>
-    <view wx:if='{{type==shop_id}}' class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit'  wx:key="index">
+    <view wx:if='{{commentArrar.length > 0 }}' class='global_large_font flex_about commit_title'>
+      <view class='iconfont icon-pinglun2'></view>评论
+    </view>
+    <view wx:if='{{type==shop_id}}' class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit' wx:key="index">
       <!-- 评论的用户头像图片 -->
       <view class='commit_avatar'>
         <image src='{{item.Head_portrait}}' mode='widthFix'></image>
@@ -237,6 +237,11 @@
           <view>
             <image bindtap='showCommentImage' data-id='{{index}}' wx:for="{{item.msg_img}}" style='width:30%;height:150rpx;' wx:key="index" src="{{item}}"></image>
           </view>
+        </view>
+
+        <view class='discuss'>
+          <view wx:if='{{ item.reply != null }}' class='global_middle_font' style='color:blue'>商家回复：</view>
+          <view class='global_middle_font dis-desc-shop'>{{item.reply.desc}}</view>
         </view>
       </view>
     </view>

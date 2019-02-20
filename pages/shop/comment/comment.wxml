@@ -26,7 +26,7 @@
     <view class='flex_about global_small_font commit-prompt'>
       <view class='flex_about'>
         <checkbox-group class="anonymous" bindchange="checkboxChange">
-          <checkbox value="2" checked="true" />
+          <checkbox value="2"  />
         </checkbox-group>匿名发表
       </view>
       <text wx:if="{{commentText.length<10}}">加油，还差{{10-commentText.length}}个字</text>
@@ -39,7 +39,7 @@
     <view class='cu-image' wx:for="{{imageArray}}" wx:key='index'>
       <view>
         <text data-index="{{index}}" bindtap='delCommentImage' class='iconfont global_bg_color_red icon-fork'></text>
-        <image src="{{item}}" mode="widthFix"></image>
+        <image src="{{item}}" style='width:100%;height:180rpx;'></image>
       </view>
     </view>
     <view class='upload-image' wx:if="{{imageArray.length - 3 < 0}}" bindtap='uploadImage'>

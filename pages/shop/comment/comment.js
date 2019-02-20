@@ -14,7 +14,7 @@ Page({
 		is_anonymous:2,
     user_img: [],
     commentText: "",
-    checked: 2 //1.真实发表  2.匿名发表
+    checked: 1 //1.真实发表  2.匿名发表
   },
 
   onLoad: function(options) {
@@ -83,10 +83,9 @@ Page({
    * 图片上传
    */
   uploadImage() {
-
     wx.chooseImage({
       count: 1,
-      sizeType: ['original'],
+			sizeType: ['original', 'compressed'],
       success: (res) => {
         let imgArray = this.data.imageArray;
         imgArray.push(res.tempFilePaths);

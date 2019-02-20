@@ -125,26 +125,39 @@ Page({
 	removeac(e){
 		let index = e.currentTarget.dataset.index
 		let abc = this.data.activity
-		abc.forEach((k,v)=>{
-			if(index == v){
-				this.setData({
-					ac_id : k.ac_id
-				})
-			}
-		})
-		app.request.post({
-			url:'activity/deleteActivity',
-			data:{
-				ac_id:this.data.ac_id
-			},
-			success:(res)=>{
-				app.showtost(res.msg)
-			}	
-		})
-		abc.splice(index,1)
-		this.setData({
-			activity:abc
-		})
+wx.showModal({
+	title: '重要提示',
+	content: '确定要删除吗？',
+	showCancel:true,
+	success:(e)=>{
+		if (e.confirm) { 
+		
+			abc.forEach((k, v) => {
+				if (index == v) {
+					this.setData({
+						ac_id: k.ac_id
+					})
+				}
+			})
+			app.request.post({
+				url: 'activity/deleteActivity',
+				data: {
+					ac_id: this.data.ac_id
+				},
+				success: (res) => {
+					app.showtost(res.msg)
+				}
+			})
+			abc.splice(index, 1)
+			this.setData({
+				activity: abc
+			})
+		} else if (e.cancel) {
+
+		}
+	}
+})
+		
 	},
 	
   /**

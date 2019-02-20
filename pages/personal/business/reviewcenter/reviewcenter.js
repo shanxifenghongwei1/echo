@@ -8,6 +8,7 @@ Page({
 	data: {
 		istrue:false,
 		goodstrue:false,
+		discu:false
 	},
 	// 店铺评论的显示隐藏
 	istrues(){
@@ -32,6 +33,47 @@ Page({
 				goodstrue: true
 			})
 		}
+	},
+
+	// 关闭打开回复框
+	discuss(e){
+		if(this.data.discu == true){
+			this.setData({
+				discu:false,
+				msg_id: e.currentTarget.dataset.id
+			})
+		}else{
+			this.setData({
+				discu:true,
+				msg_id: e.currentTarget.dataset.id
+			})
+		}
+	},
+
+
+// 提交评论
+	adddiscuss(e){
+		app.request.post({
+			url: 'noblemsg/shopreplay',
+			data:{
+				msg_id:this.data.msg_id,
+				desc: this.data.textera
+			},
+			success:(res)=>{
+				app.showtost(res.msg)
+				if(res.state == 1){
+					this.setData({
+						discu:false
+					})
+				}
+			}
+		})
+	},
+
+	textar(e){
+			this.setData({
+				textera: e.detail.value
+			})
 	},
 	/**
 	 * 生命周期函数--监听页面加载
@@ -62,7 +104,6 @@ Page({
 
 // 获取商品评论
 	lookgoodscomment(e){
-		console.log(e)
 		let goods_id = e.currentTarget.dataset.id
 		this.setData({
 			cid: e.currentTarget.dataset.cid

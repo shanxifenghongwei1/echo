@@ -25,12 +25,13 @@
   <!-- 活动选择查看 -->
   <scroll-view scroll-y wx:if='{{istrue}}' lower-threshold='10' bindscrolltolower='addinit' style='width:94%;padding:3%;height:700rpx;'>
 
-    <view wx:for='{{activity}}' wx:key='index' style='margin-bottom:40rpx;'>
-      <view class='ticket flex_about'>
+		<view wx:if='{{activity.length <= 0 }}' class='global_middle_font' style='width:94%;padding:3%;line-height:80rpx;'>无活动，请添加活动</view>
+    <view wx:if='{{activity.length > 0 }}' wx:for='{{activity}}' wx:key='index' style='margin-bottom:40rpx;'>
+      <view class='ticket flex_about' style='width:99%;border-right:1px solid #d54036;'>
         <view style='font-size:25rpx;' class=' global_color_red ticket_money flex_about'>{{item.ac_type==1?'充值活动':'支付活动'}}
         </view>
         <view class="ticket_info">
-          <view class='global_middle_font global_color_red'>{{item.ac_tontent}}</view>
+          <view class='global_middle_font global_color_red'>{{item.ac_title}}</view>
           <view class='global_middle_font global_color_red'>{{item.ac_etime}}过期</view>
         </view>
       </view>

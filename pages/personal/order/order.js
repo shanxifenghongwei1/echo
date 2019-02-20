@@ -21,21 +21,7 @@ Page({
       text: '已取消',
       type_id: 3
     }],
-    shop: [{
-      id: 0,
-      text: '舞东风-水云阁店',
-      money: 15,
-      shopnumber: 1,
-      shopdistribution: '达达专送',
-      thistime: '15:19'
-    }, {
-      id: 0,
-      text: '舞东风-水云阁店',
-      money: 15,
-      shopnumber: 1,
-      shopdistribution: '达达专送',
-      thistime: '15:19'
-    }],
+    shop: [],
     state: '待评论',
 
     page: 1
@@ -112,12 +98,10 @@ Page({
    */
   onLoad: function(options) {
     app.setNavigationBarTitle("我的订单");
+	console.log(options)
 
-    if (app.status.pay_order == 1) {
-      this.setData({
-        cid: app.status.pay_order
-      })
-    }
+	
+
 
 
   },
@@ -187,6 +171,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+		let states = wx.getStorageSync('states')
+		if(states == 1){
+			this.setData({
+				cid: states
+			})
+		}
+
     app.dengluzt()
     this.init();
 

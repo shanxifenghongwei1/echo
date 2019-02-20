@@ -6,7 +6,7 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-	
+		banner:[]
 	},
 
 	/**
@@ -18,7 +18,6 @@ Page({
 			myshop_id: options.myshop_id
 		})
 	  
-		this.init()
 	},
 
 	/**
@@ -32,6 +31,7 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
+		this.init()
 	
 	},
 	init(){

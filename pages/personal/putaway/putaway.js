@@ -12,6 +12,7 @@ Page({
     type_id: 0,
 		idd:2			,
     src: '',
+		is_hot:1,
     banner: [],
     items: [{
         name: 'USA',
@@ -31,10 +32,25 @@ Page({
         value: '不支持优惠券付款'
       },
 
-    ]
+    ],
+		itemsa: [{
+			id: '1',
+			value: '是',
+			checked: 'true'
+		},
+		{
+			id: '2',
+			value: '否'
+		},
+		],
 
   },
-
+	// 是否热销
+	radioChange(e) {
+		this.setData({
+			like: e.detail.value
+		})
+	},
   // 选择产品类型
   bindPickerChange: function(e) {
     console.log(e)
@@ -159,7 +175,7 @@ Page({
           goods: e,
           banner: this.data.banner.concat(e.goods_img),
           listimg: e.goods_img,
-          src: e.goods_img[0],
+          src: e.goods_thumb,
           idd: e.cat_id
         })
       }
@@ -169,6 +185,31 @@ Page({
   change(e) {
     // 商品属性
     e.detail.value.cat_id = this.data.idd
+		let goods_number = e.detail.value.goods_number.split('')
+		let shop_price = e.detail.value.shop_price.split('')
+		if (e.detail.value.goods_name == '') {
+			app.showtost('请输入产品名称')
+		} else if (e.detail.value.keywords == '') {
+			app.showtost('请输入产品关键词')
+		} else if (e.detail.value.goods_brief == '') {
+			app.showtost('请输入产品简介')
+		} else if (e.detail.value.shop_price == '') {
+			app.showtost('请输入产品单价')
+		} else if (goods_number.length >= 6) {
+			app.showtost('单价超出最大限额')
+		}
+		else if (e.detail.value.goods_number == '') {
+			app.showtost('请输入产品数量')
+		} else if (goods_number.length >= 6) {
+			app.showtost('数量超出最大限额')
+		}
+		else if (e.detail.value.goods_desc == '') {
+			app.showtost('请输入产品详情')
+		} else if (this.data.src == '') {
+			app.showtost('请上传产品缩略图')
+		} else if (this.data.banner.length <= 0) {
+			app.showtost('请上传产品详情图')
+		} else {
     // 缩略图上传
     wx.uploadFile({
       url: 'https://www.nazhua.com.cn/api/shopcenter/uploadimg?goods_id=' + this.data.goods.goods_id,
@@ -186,7 +227,7 @@ Page({
           filePath: this.data.banner[i],
           name: 'goods_img',
           success: function(res) {
-            app.showtost('第' + i + '张图片上传成功')
+
           }
         })
       }
@@ -199,9 +240,18 @@ Page({
         shop_edit: e.detail.value
       },
       success: (e) => {
-        console.log(e)
+				wx.navigateBack({
+					success:()=>{
+						setTimeout(()=>{
+							app.showtost('修改成功')
+						},100)
+					}
+				})
+        
       }
     })
+
+		}
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -213,10 +263,31 @@ Page({
 	addshopproduct(e){
 		// 商品属性
 		e.detail.value.cat_id = this.data.idd
-
-
-
-
+		let goods_number = e.detail.value.goods_number.split('')
+		let shop_price = e.detail.value.shop_price.split('')
+if(e.detail.value.goods_name == ''){
+	app.showtost('请输入产品名称')
+} else if (e.detail.value.keywords == ''){
+	app.showtost('请输入产品关键词')
+} else if (e.detail.value.goods_brief == '') {
+	app.showtost('请输入产品简介')
+} else if (e.detail.value.shop_price == '') {
+	app.showtost('请输入产品单价')
+} else if (goods_number.length >= 6) {
+	app.showtost('单价超出最大限额')
+}
+ else if (e.detail.value.goods_number == '') {
+	app.showtost('请输入产品数量')
+} else if (goods_number.length >= 6) {
+	app.showtost('数量超出最大限额')
+}
+ else if (e.detail.value.goods_desc == '') {
+	app.showtost('请输入产品详情')
+} else if (this.data.src == '' ) {
+	app.showtost('请上传产品缩略图')
+} else if (this.data.banner.length <= 0 ) {
+	app.showtost('请上传产品详情图')
+}else {
 
 // 发送文件
 		app.request.post({
@@ -232,7 +303,7 @@ Page({
 					filePath: this.data.src[0],
 					name: 'goods_thumb',
 					success: function (res) {
-						app.showtost('缩略图上传成功')
+						// app.showtost('缩略图上传成功')
 					}
 				})
 				// 添加banner图
@@ -242,18 +313,24 @@ Page({
 						filePath: this.data.banner[i],
 						name: 'goods_img',
 						success: function (res) {
-							app.showtost('第' + i + '张图片上传成功')
+							// app.showtost('第' + i + '张图片上传成功')
 						}
 					})
 				}
-
+				wx.navigateBack({
+					success:()=>{
+						setTimeout(()=>{app.showtost('保存成功')},500)
+					}
+				})
 			}
 		})
+}
 	},
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+
 
   },
 

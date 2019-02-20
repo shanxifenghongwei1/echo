@@ -11,7 +11,13 @@
   background-color: #fff;
 }
 
-
+.commit_title {
+  font-size: 36rpx;
+  color: #333;
+  padding-bottom: 2%;
+  margin-top: 5%;
+  border-bottom: 1px solid #ddd;
+}
 
 .bottom-border {
   border-bottom: 1px solid #ddd;

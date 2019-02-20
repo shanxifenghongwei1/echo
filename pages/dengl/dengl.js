@@ -54,7 +54,6 @@ Page({
                     wx.setStorageSync('user_id', we.user_id);
                     wx.setStorageSync('user_info', e.userInfo);
 										that.mydenglu();
-
                   }
                 })
               }
@@ -81,7 +80,7 @@ Page({
 	mydenglu() {
 	app.status.dengluzhuangtai = 8
 		console.log(app.status.dengluzhuangtai) 
-		app.backnavig()
+		wx.navigateBack({})
 		// wx.switchTab({
 		// 	url:'/pages/personal/person/person'
 		// })

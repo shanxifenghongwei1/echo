@@ -75,6 +75,53 @@ Component({
          }
       })
     },
+		// 请求商品评论
+		getComments(data) {
+			if (this.prompt.getJudgePromptType()) {
+				return;
+			}
+			data.page = ++this.page;
+			app.request.post({
+				url: "comment/getGoodsCommentList",
+				data: data,
+				success: (e) => {
+					if (this.page == 1) {
+						let that = this
+						this.prompt.funPrompt({
+							"type": "dataLoading"
+						});
+						setTimeout(function () {
+							that.prompt.funPrompt({
+								"type": "dataFinish"
+							});
+						}, 2000)
+					}
+					if (e.comment.length == 0) {
+						let type = "";
+						if (this.page > 1) {
+							type = "dataFinish";
+						} else {
+							let type = "dataNo";
+						}
+						this.prompt.funPrompt({
+							"type": type
+						});
+						return;
+					}
+					let list = this.data.commentArrar;
+					if (list.length > 0) {
+						list = list.concat(e.comment);
+					} else {
+						list = e.comment;
+					}
+					this.setData({
+						commentArrar: list
+					})
+				}
+			})
+		},
+
+		// --
     bindchange: function (e) {
       this.setData({ current: e.detail.current })
     },

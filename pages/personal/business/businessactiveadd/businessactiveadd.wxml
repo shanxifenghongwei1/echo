@@ -14,12 +14,12 @@
   <!-- 充值满多少 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>充值满：</view>
-    <input name='money' class=' global_middle_font one-module-input' placeholder='充值金额' placeholder-style='font-size:28rpx;color:#666;'> </input>
+    <input maxlength='{{lengthss}}' name='money' type='number' class=' global_middle_font one-module-input' placeholder='充值金额' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
   <!-- 充值赠送多少 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>满送：</view>
-    <input name='give_money' class=' global_middle_font one-module-input' placeholder='充值赠送' placeholder-style='font-size:28rpx;color:#666;'> </input>
+    <input name='give_money' maxlength='6' type='number' class=' global_middle_font one-module-input' placeholder='充值赠送' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
   <!-- 附赠优惠券 -->
   <view class='flex_abouts one-module' bindtap='resally'>

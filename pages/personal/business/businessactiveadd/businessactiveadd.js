@@ -27,6 +27,7 @@ Page({
         value: '支付活动'
       },
     ],
+		lengthss:6,
 		page:1,
     really: false,
     date: Y + '-' + M + '-' + D,
@@ -135,25 +136,46 @@ Page({
 
 	// 提交
 	addshopproduct(e){
+	
+
 		console.log(e.detail.value)
-		let con =  e.detail.value
+		let con = e.detail.value
 		con.virtual_id = this.data.card_id
 		con.business_id = this.data.shop_id
-		app.request.post({
-			url: "activity/addActivity",
-			data: con,
-			success: (res) => {
-				if(res.state==1){
-					wx.navigateBack({
-						success:()=>{
-							setTimeout(()=>{
-								app.showtost(res.msg)
-							})	
-						}
-					})
+
+		let money = e.detail.value.money.split('')
+		let give_money = e.detail.value.give_money.split('')
+		if (money.length <= 0 ){
+			app.showtost('请输入用户充值金额')
+		} else if (give_money.length <= 0){
+			app.showtost('请输入赠送金额')
+		} else if (e.detail.value.ac_title == ''){
+			app.showtost('请输入活动标题')
+		} else if (e.detail.value.ac_brief == '') {
+			app.showtost('请输入活动简介')
+		} else if (e.detail.value.ac_tontent == '') {
+			app.showtost('请输入活动内容')
+		} else if (e.detail.value.ac_etime == e.detail.value.ac_stime) {
+			app.showtost('请重新规划活动时间')
+		}else{
+			app.request.post({
+				url: "activity/addActivity",
+				data: con,
+				success: (res) => {
+					if (res.state == 1) {
+						wx.navigateBack({
+							success: () => {
+								setTimeout(() => {
+									app.showtost(res.msg)
+								})
+							}
+						})
+					}else{
+						app.showtost(res.msg)
+					}
 				}
-			}
-		})
+			})
+		}
 	},
   /**
    * 生命周期函数--监听页面初次渲染完成

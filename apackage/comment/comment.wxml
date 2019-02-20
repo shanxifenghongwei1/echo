@@ -23,6 +23,10 @@
     <view style='heigth:170rpx;' class='comment_min_image' data-array="{{item.msg_img}}" bindtap='showCommentImage'>
       <image wx:for="{{item.msg_img}}" bindtap='showCommentImage' data-id='{{index}}' style='width:30%;height:150rpx;' wx:key="cmi_Key" src="{{item}}" ></image>
     </view>
+		  <view class='discuss'>
+        <view wx:if='{{ item.reply != null }}' class='global_middle_font' style='color:blue'>商家回复：</view>
+        <view class='global_middle_font dis-desc-shop'>{{item.reply.desc}}</view>
+      </view>
   </view>
 </view>
 <!-- 等待加载的组件 -->

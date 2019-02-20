@@ -173,6 +173,10 @@
               <image bindtap='showCommentImage' data-id='{{index}}' wx:for="{{item.msg_img}}" style='width:30%;height:150rpx;' wx:key="index" src="{{item}}"></image>
             </view>
           </view>
+					      <view class='discuss'>
+        <view wx:if='{{ item.reply != null }}' class='global_middle_font' style='color:blue'>商家回复：</view>
+        <view class='global_middle_font dis-desc-shop'>{{item.reply.desc}}</view>
+      </view>
         </view>
       </view>
 

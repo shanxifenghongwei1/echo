@@ -25,15 +25,23 @@
     <!-- 产品单价 -->	
     <view class='one-module'>
       <view class=' global_middle_font one-module-text'>产品单价：</view>
-      <input name='shop_price' class=' global_middle_font one-module-input' value='{{goods.shop_price}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+      <input name='shop_price' class=' global_middle_font one-module-input' type='digit' value='{{goods.shop_price}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
     </view>
 
     <!-- 产品数量 -->
     <view class='one-module'>
       <view class=' global_middle_font one-module-text'>产品数量：</view>
-      <input name='goods_number' class=' global_middle_font one-module-input' value='{{goods.goods_number}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+      <input name='goods_number' class=' global_middle_font one-module-input' type='number' value='{{goods.goods_number}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
     </view>
-
+		<!-- 热销商品 -->
+    <view class='one-module'>
+      <view class=' global_middle_font one-module-text'>热销商品：</view>
+         <radio-group class="radio_group one-module-input" bindchange="radioChange" name="is_hot">
+      <radio class="radio" wx:for-items="{{itemsa}}" wx:key="name" value="{{item.id}}" checked="{{item.checked}}">
+        <text>{{item.value}}</text>
+      </radio>
+    </radio-group>
+    </view>
 
     <!-- 产品说明 -->
     <!-- <view class='one-module'>
@@ -90,7 +98,7 @@
       <view class='imang-border'>
         <image bindtap='image_exchange' wx:for='{{banner}}' wx:key='index' data-id='{{index}}' mode='aspectFit' class='user-banner' src='{{item}}'></image>
       </view>
-      <view class='addimage-two' bindtap='addimageones'>+</view>
+      <view wx:if='{{banner.length < 3 }}' class='addimage-two' bindtap='addimageones'>+</view>
     </view>
     <!-- 提交 	-->
     <button wx:if='{{gotype==1}}' style='width:80%;height:80rpx;' type='primary' form-type="submit">确认修改</button>

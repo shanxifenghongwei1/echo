@@ -32,9 +32,10 @@ Page({
     this.comment.setData({
       position_commit: 1, //评论图片不显示
     });
-    this.comment.getComment({
+		this.comment.getComments({
       goods_id: this.options.goods_id
     })
+		this.getshopping()
   },
   /**
    * 上拉刷新评论
@@ -85,13 +86,35 @@ Page({
       });
     })
   },
+
+	getshopping(){
+		app.request.post({
+			url: "comment/getGoodsCommentList",
+			data: {
+				goods_id:this.options.goods_id,
+				page:1
+			},
+			success: (e) => {
+				if(e.comment.length > 0 ){
+					this.setData({
+						isture: true
+					})
+				
+				}else{
+					this.setData({
+						isture: false
+					})
+
+				}
+			}
+		})
+	},
   /**
    * 商品购买
    */
   buyClick() {
     app.request.post({
       url: "order/index",
-      isLoading: true,
       data: {
         goods_id: this.data.goodsObj.goods_id,
         virtual_id:0,

@@ -238,15 +238,16 @@ Page({
 										virtual_id: this.data.virtual
                   },
                   success: (e) => {
-										app.showtost('支付成功')
-										setTimeout(() => {
+										wx.setStorageSync('states', 1)
 										wx.switchTab({
-											url: '/pages/personal/order/order',
+											url: '/pages/personal/order/order?states=1',
 											success: function () {
-												app.status.pay_order = 1
+												setTimeout(() => {
+												app.showtost('支付成功')
+											}, 100)
 											}
 										})
-										}, 3000)
+										
                   }
                 })
               },
@@ -266,22 +267,22 @@ Page({
                 pay_mode: e.pay_mode,
 								virtual_id: this.data.virtual
               },
-              success: (e) => {
-								app.status.pay_order = 1
-							
-								setTimeout(() => {
+              success: (e) => {							
+								wx.setStorageSync('states', 1)
 									wx.switchTab({
 										url: '/pages/personal/order/order',
 										success: () => {
+											setTimeout(() => {
 											wx.showToast({
 												title: '支付成功',
 												icon: 'success',
 												duration: 2000,
 											})
+										}, 1000)
 										}
 									})
 
-								}, 1000)
+
               }
             })
           }
@@ -334,10 +335,13 @@ Page({
 										 order_id: that.data.order_id, //"订单Id",
 									 },
 									 success: (e) => {
+										 wx.setStorageSync('states', 1)
 										 wx.switchTab({
-											 url: '/pages/personal/order/order',
+											 url: '/pages/personal/order/order?states=1',
 											 success: function() {
-												 app.status.pay_order = 1	 
+												 setTimeout(()=>{
+													 app.showtost('支付成功')	 
+												 })
 											 }
 										 })
 									 }
@@ -361,20 +365,17 @@ Page({
 								 virtual_id: that.data.virtual
 							 },
 							 success: (e) => {
+								 wx.setStorageSync('states', 1)
 								 wx.switchTab({
 									 url: '/pages/personal/order/order',
 									 success: () => {
-										 app.status.pay_order = 1
-									
-								
+										 wx.setStorageSync('states', 1)
 											 wx.switchTab({
-												 url: '/pages/personal/order/order',
+												 url: '/pages/personal/order/order?states=1',
 												 success: function () {
-													 app.status.pay_order = 1
 														 app.showtost('支付成功')
 												 }
 											 })
-									
 									 }
 								 })
 							 }
