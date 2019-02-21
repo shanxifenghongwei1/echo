@@ -106,6 +106,13 @@ App({
 			success:back.success
 		})
 	},
+	del_msg(yes){
+		wx.showModal({
+			title: yes.t,
+			content: yes.c,
+			success:yes.s
+		})
+	},
   /*设置小程序标题 */
   setNavigationBarTitle(titile) {
     wx.setNavigationBarTitle({

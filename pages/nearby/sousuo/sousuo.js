@@ -8,7 +8,8 @@ Page({
     goodsList: [
       { goods: 'qqq', goodsId: 1 },
       { goods: 'aaaa', goodsId: 2 },
-      { goods: 'www', goodsId: 3 }],
+      { goods: 'www', goodsId: 3 }
+			],
     userinput: "",
     isShow: false,
   },

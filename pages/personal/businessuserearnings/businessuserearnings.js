@@ -6,7 +6,8 @@ Page({
 	 */
 	data: {
 		date:'请选择日期',
-		istrue:false
+		istrue:false,
+		turnovermoney:0
 	},
 
 	/**

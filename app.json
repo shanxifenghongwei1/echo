@@ -7,6 +7,7 @@
 		"pages/personal/person/myassets/myassets",
 		"pages/index/oddments/map/map",
 		"pages/dengl/dengl",
+		"pages/nearby/sousuo/sousuo",
 		"pages/index/oddments/oddments",
 		"pages/shop/details/details",
 		"pages/shop/comment/comment",
@@ -85,7 +86,7 @@
 	},
 	"permission": {
 		"scope.userLocation": {
-			"desc": "将用来计算您与商铺的距离"
+			"desc": "地理位置信息是我们用来找到您附近的商铺"
 		}
 	}
 }

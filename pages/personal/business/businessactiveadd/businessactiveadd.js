@@ -10,7 +10,6 @@ var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth(
 //获取当日日期 
 var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
 
-
 Page({
 
   /**
@@ -27,6 +26,7 @@ Page({
         value: '支付活动'
       },
     ],
+		czje: '充值',
 		lengthss:6,
 		page:1,
     really: false,
@@ -41,6 +41,15 @@ Page({
     this.setData({
       ac_type: e.detail.value
     })
+		if(e.detail.value == 1){
+			this.setData({
+				czje: '充值'
+			})
+		}else if(e.detail.value == 2){
+			this.setData({
+				czje: '消费',
+			})
+		}
   },
 
 

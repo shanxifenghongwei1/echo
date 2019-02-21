@@ -9,22 +9,33 @@ Page({
 
   },
 	movemove(e){
-		console.log(e)
-		app.request.post({
-			url: "moneycard/outcard",
-			data:{
-				moneycard_id:e.currentTarget.dataset.id
-			},
-			success: (e) => {
-				wx.showToast({
-					title: '取消绑定成功',
-					icon:'success',
-					duration:1500,
-					mask:true
-				})			
-				this.init();
+		var that = this
+		wx.showModal({
+			title: '解除绑定',
+			content: '是否确认解除绑定该张银行卡',
+			success:(res)=>{
+				if (res.confirm) {
+					app.request.post({
+						url: "moneycard/outcard",
+						data: {
+							moneycard_id: e.currentTarget.dataset.id
+						},
+						success: (e) => {
+							wx.showToast({
+								title: '取消绑定成功',
+								icon: 'success',
+								duration: 1500,
+								mask: true
+							})
+							that.init();
+						}
+					})
+				}
 			}
 		})
+		
+
+
 	},
   /**
    * 生命周期函数--监听页面加载

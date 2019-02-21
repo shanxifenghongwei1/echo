@@ -67,12 +67,15 @@ Page({
     })
 
   },
-
   // 产品条件
   checkboxChange: function(e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
   },
-
+danjia(e){
+	this.setData({
+		danjia:e.detail.value
+	})
+},
   // 修改商家logo图
   user: function() {
     wx.chooseImage({
@@ -176,16 +179,42 @@ Page({
           banner: this.data.banner.concat(e.goods_img),
           listimg: e.goods_img,
           src: e.goods_thumb,
-          idd: e.cat_id
+          idd: e.cat_id,
+					// like:e.is_hot
         })
+				if(e.is_hot == 1){
+					this.setData({
+						itemsa: [{
+							id: '1',
+							value: '是',
+							checked: 'true'
+						},
+						{
+							id: '2',
+							value: '否'
+						},
+						],
+					})
+				}else if(e.is_hot == 2){
+					this.setData({
+						itemsa: [{
+							id: '1',
+							value: '是',
+						},
+						{
+							id: '2',
+							value: '否',
+							checked: 'true'
+						},
+						],
+					})
+				}
       }
     })
   },
   // 提交修改
   change(e) {
     // 商品属性
-    e.detail.value.cat_id = this.data.idd
-		let goods_number = e.detail.value.goods_number.split('')
 		let shop_price = e.detail.value.shop_price.split('')
 		if (e.detail.value.goods_name == '') {
 			app.showtost('请输入产品名称')
@@ -195,13 +224,9 @@ Page({
 			app.showtost('请输入产品简介')
 		} else if (e.detail.value.shop_price == '') {
 			app.showtost('请输入产品单价')
-		} else if (goods_number.length >= 6) {
-			app.showtost('单价超出最大限额')
 		}
 		else if (e.detail.value.goods_number == '') {
 			app.showtost('请输入产品数量')
-		} else if (goods_number.length >= 6) {
-			app.showtost('数量超出最大限额')
 		}
 		else if (e.detail.value.goods_desc == '') {
 			app.showtost('请输入产品详情')
@@ -216,7 +241,7 @@ Page({
       filePath: this.data.src[0],
       name: 'goods_thumb',
       success: function(res) {
-        app.showtost('缩略图上传成功')
+        // app.showtost('缩略图上传成功')
       }
     })
     // 轮播图上传=
@@ -244,7 +269,7 @@ Page({
 					success:()=>{
 						setTimeout(()=>{
 							app.showtost('修改成功')
-						},100)
+						},500)
 					}
 				})
         
@@ -273,13 +298,9 @@ if(e.detail.value.goods_name == ''){
 	app.showtost('请输入产品简介')
 } else if (e.detail.value.shop_price == '') {
 	app.showtost('请输入产品单价')
-} else if (goods_number.length >= 6) {
-	app.showtost('单价超出最大限额')
-}
+} 
  else if (e.detail.value.goods_number == '') {
 	app.showtost('请输入产品数量')
-} else if (goods_number.length >= 6) {
-	app.showtost('数量超出最大限额')
 }
  else if (e.detail.value.goods_desc == '') {
 	app.showtost('请输入产品详情')
@@ -319,7 +340,7 @@ if(e.detail.value.goods_name == ''){
 				}
 				wx.navigateBack({
 					success:()=>{
-						setTimeout(()=>{app.showtost('保存成功')},500)
+						setTimeout(()=>{app.showtost('保存成功')},1000)
 					}
 				})
 			}

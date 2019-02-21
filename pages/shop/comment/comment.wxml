@@ -47,8 +47,8 @@
       <view class='global_middle_font'>上传图片</view>
     </view>
   </view>
-  <view class='newline'></view>
-  <view class=" padding-all overall-module">
+  <!-- <view class='newline'></view> -->
+  <!-- <view class=" padding-all overall-module">
     <view class='flex_about  overall-title'>
       <view class='global_large_font'>整体评价</view>
       <view></view>
@@ -80,5 +80,5 @@
         <view class='global_middle_font' wx:if="{{score.environment==5}}">满意</view>
       </view>
     </view>
-  </view>
+  </view> -->
 </view>

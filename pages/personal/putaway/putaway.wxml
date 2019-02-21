@@ -25,13 +25,13 @@
     <!-- 产品单价 -->	
     <view class='one-module'>
       <view class=' global_middle_font one-module-text'>产品单价：</view>
-      <input name='shop_price' class=' global_middle_font one-module-input' type='digit' value='{{goods.shop_price}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+      <input name='shop_price' class=' global_middle_font one-module-input' bindinput='danjia' maxlength='6' type='digit' value='{{goods.shop_price}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
     </view>
 
     <!-- 产品数量 -->
     <view class='one-module'>
       <view class=' global_middle_font one-module-text'>产品数量：</view>
-      <input name='goods_number' class=' global_middle_font one-module-input' type='number' value='{{goods.goods_number}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+      <input name='goods_number' class=' global_middle_font one-module-input' maxlength='6' type='number' value='{{goods.goods_number}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
     </view>
 		<!-- 热销商品 -->
     <view class='one-module'>
@@ -85,7 +85,7 @@
         <view class='onereques-list-name global_middle_font one-accretion'>产品缩略图:</view>
         <view class='revamp global_middle_font' bindtap='user'>
           <view class='image-logo'>
-            <image mode='aspectFit' class='user-logo' src='{{src}}'></image>
+            <image  class='user-logo' src='{{src}}'></image>
           </view>
         </view>
       </view>
@@ -96,7 +96,7 @@
         <view class='global_middle_font'>产品详情图:</view>
       </view>
       <view class='imang-border'>
-        <image bindtap='image_exchange' wx:for='{{banner}}' wx:key='index' data-id='{{index}}' mode='aspectFit' class='user-banner' src='{{item}}'></image>
+        <image bindtap='image_exchange' wx:for='{{banner}}' wx:key='index' data-id='{{index}}' style='width:100%;margin-left:25%;' mode='scaleToFill'  class='user-banner' src='{{item}}'></image>
       </view>
       <view wx:if='{{banner.length < 3 }}' class='addimage-two' bindtap='addimageones'>+</view>
     </view>

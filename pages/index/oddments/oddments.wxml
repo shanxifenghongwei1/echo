@@ -22,7 +22,7 @@
         <!-- <text class='global_small_font flex_about'>{{shopObj.cat_name}}</text> -->
       </view>
       <view class='info_img'>
-        <image src='{{shopObj.shop_logo}}' mode='widthFix'></image>
+        <image src='{{shopObj.shop_logo}}' style='width:100px;height:100px;'></image>
       </view>
       <view class='info_content'>
         <view class="info_title global_middle_font global_multiLine_ellipsis">
@@ -125,12 +125,12 @@
 
 
     <!-- 充值活动模块 -->
-    <view wx:if="{{shopObj!=null&&shopObj.shop_ac.length !== 0}}">
+    <view id='list0' wx:if="{{shopObj!=null&&shopObj.shop_ac.length !== 0}}">
       <view class='global_large_font flex_about commit_title'>
         <view class='global_middle_font'></view>充值活动
       </view>
 
-      <view wx:for='{{shopObj.shop_ac}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.shop_ac.length > 0}}" bindtap='givemoneytohe' data-id="{{item.ac_tontent}}" data-ac='{{item.ac_id}}' data-shop='{{item.shop_id}}' class='ticket flex_about'>
+      <view wx:for='{{shopObj.shop_ac}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.shop_ac.length > 0}}" bindtap='givemoneytohe' data-id="{{item.ac_tontent}}" data-money="{{item.money}}" data-ac='{{item.ac_id}}' data-shop='{{item.shop_id}}' class='ticket flex_about'>
         <view class=' global_color_red ticket_money flex_about '>{{item.give_money}}
           <text class='global_small_font global_color_red'>元</text>
         </view>
@@ -152,7 +152,7 @@
     <!--排队返现活动-->
 
 
-    <view wx:if="{{shopObj!=null&&shopObj.return.length !== 0}}">
+    <view id="list0" wx:if="{{shopObj!=null&&shopObj.return.length !== 0}}">
       <view class='global_large_font flex_about commit_title'>
         <view class='global_middle_font'></view>排队返现活动
       </view>
@@ -182,13 +182,16 @@
     </view>
 
     <view class='product_module' id="list1">
-      <navigator style='border:0.5rpx solid #eee;' wx:if="{{shopObj!=null&&shopObj.hot_goods.length > 0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.hot_goods}}" wx:key="dataListKey" class="di_item">
+      <navigator id='ones' style='border:0.5rpx solid #eee;' wx:if="{{shopObj!=null&&shopObj.hot_goods.length > 0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.hot_goods}}" wx:key="dataListKey" class="di_item">
         <image src="{{item.goods_thumb}}" style='width:300rpx;height:300rpx;'></image>
         <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
         <view class='dl_detailed global_small_font flex_about'>
           <text class='global_middle_font global_color_red'>￥{{item.shop_price}}</text>
           <!--   <text class='global_middle_font global_color_red'>{{item.goumai}}</text>人购买-->
         </view>
+							 <view wx:if='{{item.goods_number == 0}}' class='nohavegoods'>
+        <image src='/images/production/nohaveeee.png' class='nohave-img'></image>
+      </view>
       </navigator>
     </view>
 
@@ -197,19 +200,25 @@
       <view class=''></view>全部商品
     </view>
     <view class='product_module' id="list1">
-      <navigator style='border:0.5rpx solid #eee;' wx:if="{{shopObj!=null&&shopObj.goods.length > 0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.goods}}" wx:key="dataListKey" class="di_item">
+      <navigator id="ones" style='border:0.5rpx solid #eee;' wx:if="{{shopObj!=null&&shopObj.goods.length > 0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.goods}}" wx:key="dataListKey" class="di_item">
         <image src="{{item.goods_thumb}}" style='width:300rpx;height:300rpx;'></image>
         <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
         <view class='dl_detailed global_small_font flex_about'>
           <text class='global_middle_font global_color_red'>￥{{item.shop_price}}</text>
           <!--   <text class='global_middle_font global_color_red'>{{item.goumai}}</text>人购买-->
         </view>
+
+			 <view wx:if='{{item.goods_number == 0}}' class='nohavegoods'>
+        <image src='/images/production/nohaveeee.png' class='nohave-img'></image>
+      </view>
       </navigator>
+
+
     </view>
     <!-- 等待加载的组件 -->
     <!-- ----------开头---------------- -->
     <view wx:if='{{commentArrar.length > 0 }}' class='global_large_font flex_about commit_title'>
-      <view class='iconfont icon-pinglun2'></view>评论
+      <view id="list2" class='iconfont icon-pinglun2'></view>评论
     </view>
     <view wx:if='{{type==shop_id}}' class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit' wx:key="index">
       <!-- 评论的用户头像图片 -->

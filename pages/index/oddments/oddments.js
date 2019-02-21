@@ -61,7 +61,7 @@ this.setData({
   },
 	givemoneytohe(e){
 		wx.navigateTo({
-			url: '/pages/personal/person/recharges/recharge?payforid=5&conten=' + e.currentTarget.dataset.id + '&shop_id=' + e.currentTarget.dataset.shop + '&ac_id=' + e.currentTarget.dataset.ac,
+			url: '/pages/personal/person/recharges/recharge?payforid=5&conten=' + e.currentTarget.dataset.id + '&shop_id=' + e.currentTarget.dataset.shop + '&ac_id=' + e.currentTarget.dataset.ac + '&money=' + e.currentTarget.dataset.money,
 		})
 	},
 	returncash(e) {

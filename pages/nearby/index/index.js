@@ -17,9 +17,10 @@ Page({
     dataList: [],
     scrollHeight: 0,
     yeson: 0,
+    istrues: false,
     page: 1
   },
-  
+
   roaming() {
     // 用户自己选择地址
     wx.chooseLocation({
@@ -48,54 +49,55 @@ Page({
       },
       success: (e) => {
         this.ruset();
-     
       }
     })
   },
-	addbanner(){
-		app.request.post({
-			url: "ad/index",
-			data:{
-				position_id:2
-			},
-			success: (e) => {
-			
-				this.setData({
-					imgUrls:e
-				})
-			}
-		})
-	},
-	addbanners() {
-		app.request.post({
-			url: "ad/index",
-			data: {
-				position_id: 1
-			},
-			success: (e) => {
-				this.setData({
-					smallbanner: e
-				})
-			}
-		})
-	},
+  addbanner() {
+    app.request.post({
+      url: "ad/index",
+      data: {
+        position_id: 2
+      },
+      success: (e) => {
+
+        this.setData({
+          imgUrls: e
+        })
+      }
+    })
+  },
+  addbanners() {
+    app.request.post({
+      url: "ad/index",
+      data: {
+        position_id: 1
+      },
+      success: (e) => {
+        this.setData({
+          smallbanner: e
+        })
+      }
+    })
+  },
   // 搜索栏
   jump() {
-
+		wx.navigateTo({
+			url:'/pages/nearby/sousuo/sousuo',
+		})
   },
   onLoad(option) {
     app.setNavigationBarTitle("附近商家");
-		let share = wx.getStorageSync('share')
+    let share = wx.getStorageSync('share')
     this.page = 0;
     app.utils.computeScrollViewHeight((e) => {
       this.setData({
-        scrollHeight: e , 
-				share:share
+        scrollHeight: e,
+        share: share
       });
     });
     this.getgoodsList();
-    this.init();
-	
+    app.dengluzt()
+
 
   },
   onReady() {
@@ -105,19 +107,20 @@ Page({
     // });
   },
   // 商品的菜单列表选择
-  getgoodsList:function(){
+  getgoodsList: function() {
     app.request.post({
       url: "user/getcat",
       data: {},
-      success: (e) => { 
+      success: (e) => {
         this.setData({
-          navArray:e.cat
+          navArray: e.cat
         })
       }
     })
   },
   init() {
     // 获取用户位置信息
+
     wx.getLocation({
       type: 'wgs84',
       success: (e) => {
@@ -130,14 +133,83 @@ Page({
         //  第一页的数据
         this.ruset();
         //  分页的数据
-    
       }
     });
+
+
+
   },
   onShow: function() {
-		this.addbanner();
-		this.addbanners();
-    app.dengluzt()
+    this.addbanner();
+    this.addbanners();
+    var that = this
+    this.init();
+    setTimeout(() => {
+      wx.getSetting({
+        success: (res) => {
+          if (!res.authSetting['scope.userLocation']) {
+						that.setData({
+              istrues: true
+            })
+					}else{
+            that.setData({
+              istrues: false
+            })
+            wx.getLocation({
+              type: 'wgs84',
+              success: (e) => {
+                that.jingwei = e;
+                that.setData({
+                  jwdu: e
+                })
+                // 拿着经纬度去发请求后台了
+                that.getdizhi(e);
+                //  第一页的数据
+                // that.ruset();
+                //  分页的数据
+              }
+            });
+          }
+        }
+      })
+    }, 100)
+  },
+
+  osd() {
+
+    var that = this
+    wx.openSetting({
+      success: (as) => {
+        console.log(as)
+        if (as.authSetting['scope.userLocation']) {
+					that.setData({
+						istrues: false
+					})
+          wx.getLocation({
+            type: 'wgs84',
+            success: (e) => {
+              that.jingwei = e;
+              that.setData({
+                jwdu: e,
+                istrues: false
+              })
+              // 拿着经纬度去发请求后台了
+              that.getdizhi(e);
+              //  第一页的数据
+              // that.ruset();
+              //  分页的数据
+            }
+          });
+        }
+      }
+    })
+  },
+  qwas() {
+    if (this.data.istrues == true) {
+      this.setData({
+        istrues: false
+      })
+    }
   },
   // 传给后台位置
   getdizhi(latlon) {
@@ -148,16 +220,18 @@ Page({
         lng: latlon.longitude,
       },
       success: (e) => {
-        
+
         this.setData({
           areaText: e.address
         })
-        
+
       }
     })
   },
   // 从数据那儿获取数据
+
   ruset() {
+
     app.request.post({
       url: "user/nobleaddress",
       data: {
@@ -167,11 +241,9 @@ Page({
         keywords: this.data.navActive
       },
       success: (e) => {
-
         this.setData({
           dataList: e.sort_shop
         })
-
       }
     })
   },
@@ -183,7 +255,7 @@ Page({
       navActive: e.target.dataset.index
     })
     this.ruset();
-    
+
   },
   imageLoad(e) { //获取图片真实宽度  
     this.setData({
@@ -224,7 +296,7 @@ Page({
         if (list.length > 0) {
           list = list.concat(this.data.dataList);
         } else {
-					list = e.sort_shop;
+          list = e.sort_shop;
         }
         this.setData({
           dataList: list
@@ -248,7 +320,7 @@ Page({
       console.log('已经有了')
     }
   },
-	onReachBottom:function(){
-		this.scrolltolower();
-	}
+  onReachBottom: function() {
+    this.scrolltolower();
+  }
 })

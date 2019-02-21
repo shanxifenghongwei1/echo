@@ -136,7 +136,7 @@ padding:3% 0%;
 }
 
 .money text {
-  width: 18%;
+  width: 35%;
 }
 .money input{
   width: 80%;

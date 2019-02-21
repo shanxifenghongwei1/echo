@@ -79,24 +79,24 @@ Page({
       }
       this.setData({
         codeStatus: 1,
-        codeText: (--this.data.codeSecond) + "秒"
+        // codeText: (--this.data.codeSecond) + "秒"
       })
 
     }
-    this.data.codeTime = setInterval(() => {
-      if (this.data.codeSecond <= 1) {
-        clearInterval(this.data.codeTime);
-        this.setData({
-          codeStatus: 0,
-          codeSecond: 10,
-          codeText: "发送验证码"
-        })
-      } else {
-        this.setData({
-          codeText: (--this.data.codeSecond) + "秒"
-        })
-      }
-    }, 1000);
+    // this.data.codeTime = setInterval(() => {
+    //   if (this.data.codeSecond <= 1) {
+    //     clearInterval(this.data.codeTime);
+    //     this.setData({
+    //       codeStatus: 0,
+    //       codeSecond: 10,
+    //       codeText: "发送验证码"
+    //     })
+    //   } else {
+    //     this.setData({
+    //       codeText: (--this.data.codeSecond) + "秒"
+    //     })
+    //   }
+    // }, 1000);
   },
   bindPhone(e) {
 
@@ -130,13 +130,13 @@ Page({
       });
       return;
     }
-    if (!app.regular.verificationCode(this.data.userFrom.code)) {
-      wx.showToast({
-        "title": "验证码不正确",
-        "icon": "none",
-      });
-      return;
-    }
+    // if (!app.regular.verificationCode(this.data.userFrom.code)) {
+    //   wx.showToast({
+    //     "title": "验证码不正确",
+    //     "icon": "none",
+    //   });
+    //   return;
+    // }
     let address = this.data.userFrom.address;
     this.data.userFrom.address = this.data.region +"&&"+ address;
     wx.getLocation({
@@ -152,6 +152,7 @@ Page({
             this.data.userFrom.address = address;
           }
         })
+				wx.navigateBack({})
       },
       fail(e) {}
     })

@@ -7,6 +7,7 @@ Page({
 	 */
 	data: {
 		banner:[],
+		src:[]
 	},
 	// 修改商家logo图
 	user: function () {
@@ -81,8 +82,9 @@ Page({
 			success:(e)=>{
 				this.setData({
 					business:e.business,
-					src:e.business.shop_logo,
-					banner:e.business.shop_img
+					src: e.business.shop_logo,
+					ars: e.business.shop_logo
+					// banner:e.business.shop_img
 				})
 			}
 		})
@@ -90,31 +92,66 @@ Page({
 	// 修改商店信息
 	addshopproduct(e){
 		let ads = e.detail.value
+		wx.showLoading({
+			title: '正在提交',
+			mask:true
+		})
 		// ads.shop_logo = this.data.src[0]
 		ads.shop_id = this.data.shop_id
-
-		wx.uploadFile({
-			url: 'https://www.nazhua.com.cn/api/business/upload',
-			name:'shop_logo',
-			filePath: this.data.src[0],
-			success:(res)=>{
-					ads.shop_logo = res.data
-						app.request.post({
-							url: 'business/editBusiness',
-							data: ads,
-							success: (e) => {
-								app.showtost(e.msg)
-								if (e.state == 1) {
-								setTimeout(()=>{
-									wx.navigateBack({})
-								},1000)	
+	 let path =   this.data.ars == this.data.src ? this.data.src + '': this.data.src[0] + ''  
+		console.log(this.data.ars == this.data.src ? 'true' : 'false')
+		if (this.data.ars == this.data.src){
+				ads.shop_logo = ''
+			app.request.post({
+					url: 'business/editBusiness',
+					data: ads,
+					success: (e) => {
+						wx.hideLoading()
+						if (e.state == 1) {
+							wx.navigateBack({
+								success: () => {
+									setTimeout(() => {
+										app.showtost(e.msg)
+									}, 500)
 								}
+							})
+						} else {
+							app.showtost(e.msg)
+						}
+					}
+				})
+		} else {
+			wx.uploadFile({
+				url: 'https://www.nazhua.com.cn/api/business/upload',
+				name: 'shop_logo',
+				filePath: path,
+				success: (res) => {
+					ads.shop_logo = res.data
+					app.request.post({
+						url: 'business/editBusiness',
+						data: ads,
+						success: (e) => {
+							if (e.state == 1) {
+								wx.navigateBack({
+									success: () => {
+										setTimeout(() => {
+											app.showtost(e.msg)
+										}, 500)
+									}
+								})
+							} else {
+								app.showtost(e.msg)
 							}
-						})
+						}
+					})
+				},
 
-			},
+			})
+		}
 
-		})
+
+		
+
 
 	
 

@@ -46,14 +46,15 @@ Page({
         key: this.data.cid
       },
       success: (e) => {
-        console.log(e)
         if (e.state == 1) {
           this.setData({
             money_list: e.desc,
             page: e.page
           })
-        } else {
-           
+        } else if(e.state == 2){
+					this.setData({
+						money_list: []
+					})
         }
 
 

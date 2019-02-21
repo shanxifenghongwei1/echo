@@ -90,6 +90,7 @@ Page({
         shop_id: this.data.shop_id
       },
       success: (res) => {
+				if(res.state == 1){
 				wx.navigateBack({
 					delta: 1,
 					success:()=>{
@@ -98,6 +99,9 @@ Page({
 						},100)
 					}
 				})
+				}else if(res.state == 2){
+					app.showtost(res.msg)
+				}
       }
     })
   },

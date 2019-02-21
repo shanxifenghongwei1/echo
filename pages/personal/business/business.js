@@ -56,12 +56,15 @@ Page({
 			},
 			success: (e) => {
 				setTimeout(() => {
+					if(e.state == 1){
+						this.setData({
+							hexiao: ''
+						})
 					app.showtost('识别成功')
-					this.setData({
-						hexiao: ''
-					})
-				
-				}, 1000)
+					}else if(e.state == 2){
+						app.showtost(e.msg)
+					}
+				}, 100)
 			}
 		})	
 	},
@@ -164,7 +167,7 @@ Page({
 				},
 				success:(res)=>{
 			wx.navigateTo({
-				url: '/pages/personal/person/recharges/recharge?payforid=7&zongyue=' + res.cash_money + '&shop_id=' + this.data.myshop_id,
+				url: '/pages/personal/person/recharges/recharge?payforid=7&zongyue=' + res.cash_money + '&business_id=' + this.data.myshop_id,
 			})
 				}
 			})

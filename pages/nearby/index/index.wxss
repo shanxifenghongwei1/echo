@@ -5,6 +5,15 @@
   padding: 0% 2%;
 }
 
+.buttonses{
+background-color: #fff;
+border-radius:0;
+border: none;
+line-height: 110rpx;
+}
+.buttonses::after {
+  border: none;
+}
 .shouye {
   width: 60px;
   height: 60px;

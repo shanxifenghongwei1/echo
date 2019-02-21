@@ -23,7 +23,7 @@
     <!-- 支付金额输入框 -->
     <view wx:if='{{order_type==1}}' class='flex_about money'>
       <text>支付金额</text>
-      <input type="digit" focus="true" bindinput='shurumoney' placeholder='请输入金额' placeholder-class="money_input" maxlength="10"></input>
+      <input type="digit" focus="true" bindinput='shurumoney' maxlength='8' placeholder='请输入金额' placeholder-class="money_input" maxlength="10"></input>
     </view>
     <view wx:if='{{order_type==1}}'>
       <!-- 优惠券 -->
@@ -34,9 +34,9 @@
       </view>
       <!-- 支付金额 -->
       <view style='display:flex;align-items: center;justify-content:space-between' class='money'>
-        <text style='width:30%;'>应付：{{payformoney}}</text>
-        <text wx:if='{{ischecked}}' style='width:40%;text-align:center;'> 优惠{{reduce_money}}</text>
-        <view style='width:30%;;height:80rpx;text-align:right;line-height:80rpx;' class='money_input'> 实付：{{ischecked==true?payformoney-reduce_money:payformoney}}</view>
+        <text style='width:35%;'>应付：{{payformoney}}</text>
+        <text wx:if='{{ischecked}}' style='width:29%;text-align:center;'> 优惠:{{reduce_money}}</text>
+        <view style='width:35%;;height:80rpx;text-align:left;line-height:80rpx;' class='money_input'> 实付：{{ischecked==true?payformoney-reduce_money:payformoney}}</view>
       </view>
     </view>
     <!-- 商品订单菜单 -->

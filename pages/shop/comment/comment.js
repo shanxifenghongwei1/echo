@@ -73,9 +73,11 @@ Page({
    * 输入评论
    */
   bindinput(e) {
+
     this.setData({
       commentText: e.detail.value
     })
+
   },
 
 
@@ -110,6 +112,10 @@ Page({
   },
   /*提交评论 */
   addComment() {
+	if(this.data.commentText.length < 6 ){
+		app.showtost('最少评论6个字哦')
+	}else{
+
     var that = this
     var user_img = this.data.imageArray
  
@@ -272,4 +278,6 @@ Page({
 		 }
 		
   }
+	}
+
 })

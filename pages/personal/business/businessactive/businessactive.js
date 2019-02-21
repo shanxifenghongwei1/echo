@@ -11,6 +11,7 @@ Page({
     page: 1,
 		runistrue:false,
 		runpage:1,
+		activity:[]
   },
 
   /**
@@ -126,7 +127,7 @@ Page({
 		let index = e.currentTarget.dataset.index
 		let abc = this.data.activity
 wx.showModal({
-	title: '重要提示',
+	title: '提示',
 	content: '确定要删除吗？',
 	showCancel:true,
 	success:(e)=>{

@@ -44,7 +44,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+		// 获取用户手机号
     wx.login({
       success: (res) => {
         var code = res.code;
@@ -53,8 +53,6 @@ Page({
         })
       }
     });
-
-
     let a = wx.getStorageSync('iphone')
     console.log('这是' + a)
     if (a == 1) {
@@ -62,7 +60,6 @@ Page({
         hidden: false
       })
     }
-
     app.setNavigationBarTitle("充值消费");
     this.setData({
       conten: options.conten,
@@ -70,7 +67,8 @@ Page({
       shop_id: options.shop_id,
       ac_id: options.ac_id,
       zongyue: options.zongyue,
-      business_id: options.business_id
+      business_id: options.business_id,
+			opmymoney:options.money
     });
     this.mybanklist();
   },
@@ -211,10 +209,8 @@ Page({
               }
             })
           }
-
         }
       })
-
     }
   },
   // 排队返现充值
@@ -312,12 +308,13 @@ Page({
   },
   // 买单币充值
   mdbcz() {
+
     if (!this.data.usermoney) {
       wx.showToast({
         title: '请输入金额',
         icon: 'none'
       })
-    } else {
+    } 	else {
       wx.showToast({
         title: '正在提交',
         icon: 'none',
@@ -342,6 +339,7 @@ Page({
                 pay_mode: 9
               },
               success: (e) => {
+
                 wx.requestPayment({
                   timeStamp: e.timeStamp,
                   nonceStr: e.nonceStr,
@@ -349,6 +347,7 @@ Page({
                   signType: e.signType,
                   paySign: e.paySign,
                   success: (wer) => {
+										
                     app.request.post({
                       url: "pay/edit_pay_bill",
                       data: {
@@ -495,7 +494,7 @@ Page({
         title: '请输入金额',
         icon: 'none'
       })
-    } else if (Number(this.data.usermoney) >= Number(this.data.zongyue)) {
+    } else if (Number(this.data.usermoney) > Number(this.data.zongyue)) {
       wx.showToast({
         title: '您没有这么多钱',
         icon: 'none',
@@ -503,12 +502,8 @@ Page({
         mask: true
       })
     } else {
-      wx.showToast({
-        title: '正在提交',
-        icon: 'none',
-        duration: 2000,
-        mask: true
-      })
+			wx.showLoading
+			console.log(this.data.business_id)
       app.request.post({
         url: "cash/cash",
         data: {
@@ -550,11 +545,18 @@ Page({
   },
   // hdcz
   hdcz() {
+		console.log(this.data.usermoney)
+		console.log(this.data.opmymoney)
     if (!this.data.usermoney) {
       wx.showToast({
         title: '请输入金额',
       })
-    } else {
+		} else if (this.data.opmymoney - this.data.usermoney > 0 ) {
+			wx.showToast({
+				title: '不满足活动条件',
+				icon: 'none'
+			})
+		} else {
 
       wx.showModal({
         title: '提醒',

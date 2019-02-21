@@ -29,6 +29,9 @@ Page({
 
 		wx.redirectTo({
 			url: '/pages/personal/business/business?myshop_id=' + e.currentTarget.dataset.id,
+			success:(res)=>{
+				wx.setStorageSync('change_my_shop_id', e.currentTarget.dataset.id)
+			}
 		})
 
 	},

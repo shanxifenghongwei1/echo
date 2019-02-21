@@ -4,7 +4,7 @@
     <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
     <view class='site2 name-site-onlode global_middle_font'>
       <text>总收益</text>
-      <text style='margin-left:300rpx;color:#ed4444'>{{turnover}}</text> </view>
+      <text style='margin-left:300rpx;color:#ed4444'>{{turnover}} 元</text> </view>
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
   </navigator>
 
@@ -14,17 +14,19 @@
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
   </navigator>
 
-<view wx:if='{{istrue}}'>
-  <view>
-    <view wx:for='{{data_list}}' wx:key='index' class='global_middle_font' style='width:94%;padding:3%;display:flex;justify-content:space-around;border-bottom:1rpx solid #eee;'>
-      <view>{{item.date}}</view>
-      <view>{{item.money}}</view>
+  <view wx:if='{{istrue}}'>
+    <view>
+      <view wx:for='{{data_list}}' wx:key='index' class='global_middle_font' style='width:94%;padding:3%;display:flex;justify-content:space-around;border-bottom:1rpx solid #eee;'>
+        <view>{{item.date}}</view>
+        <view>{{item.money}} 元</view>
+      </view>
     </view>
-  </view>
 
-	<view class='global_middle_font' style='width:94%;padding:3%;display:flex;justify-content:space-around;border-bottom:1rpx solid #eee;'>
-	<picker mode='date' value='{{date}}' bindchange='querytime'> {{date}} </picker>
-	<view> {{turnovermoney}} </view>
-	</view>
-</view>
+    <view class='global_middle_font' style='width:94%;padding:3%;display:flex;justify-content:space-around;border-bottom:1rpx solid #eee;'>
+      <picker mode='date' value='{{date}}' bindchange='querytime'> {{date}} </picker>
+    
+    </view>
+
+			<view class='global_middle_font' style='width:94%;padding:3%;display:flex;justify-content:space-around;border-bottom:1rpx solid #eee;'>  <view> {{turnovermoney}} 元</view> </view>
+  </view>
 </view>

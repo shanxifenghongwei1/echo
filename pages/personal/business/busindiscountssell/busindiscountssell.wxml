@@ -21,13 +21,13 @@
   <!-- 优惠券数量 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>优惠券数量：</view>
-    <input name='card_number' class=' global_middle_font one-module-input' value='{{goods.goods_brief}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+    <input name='card_number' type='number' class=' global_middle_font one-module-input' value='{{goods.goods_brief}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
 
   <!-- 优惠金额 -->
   <view class='one-module' wx:if='{{mode==19 || mode==16}}'>
     <view class=' global_middle_font one-module-text'>优惠金额：</view>
-    <input name='reduce_money' class=' global_middle_font one-module-input' value='{{goods.shop_price}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+    <input name='reduce_money' type='number' class=' global_middle_font one-module-input' value='{{goods.shop_price}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
  <!-- 产品券 -->
   <view class='one-module' wx:if='{{mode == 17 }}'>
@@ -78,7 +78,7 @@
 	  <!-- 不出售地区 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>不出售地区:</view>
-	 <picker  bindchange="bindRegionChange" mode='region' value="{{region}}" custom-item="{{customItem}}" custom-item="{{customItems}}" name="address" range-key='goods_name' range="{{goods}}" style='text-align:center;' class='global_middle_font'>
+	 <picker  bindchange="bindRegionChange" mode='region' value="{{region}}" custom-item="{{customItem}}" custom-item="{{customItems}}" name="address"   style='text-align:center;' class='global_middle_font'>
 		{{region[0]}}---{{region[1]}}---{{region[2]}}
 		</picker>		
   </view>
@@ -95,7 +95,7 @@
 			  <!-- 出售数量 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>出售数量:</view>
-    <input name='sale_number' class=' global_middle_font one-module-input' value='{{goods.goods_number}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+    <input name='sale_number' style='number' class=' global_middle_font one-module-input' value='{{goods.goods_number}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
 	</view>`
   <!-- 提交 	-->

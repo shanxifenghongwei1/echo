@@ -1,6 +1,5 @@
 // pages/personal/business/businessactiveadd/businessactiveadd.js
-const app = getApp()
-
+const app = getApp();
 var timestamp = Date.parse(new Date());
 var date = new Date(timestamp);
 //获取年份  
@@ -10,17 +9,15 @@ var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth(
 //获取当日日期 
 var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
 
-
 Page({
-
   /**
    * 页面的初始数据
    */
 	data: {
 		page: 1,
 		really: false,
-		date: Y + '-' + M + '-' + D,
-		time: Y + '-' + M + '-' + D,
+		date: 'Y + ' - ' + M + ' -' + D',
+		time: '结束时间',
 		valurl: '不赠送',
 		card_id: 0,
 	},
@@ -120,7 +117,6 @@ Page({
 			url:'activity/getActivityInfo',
 			data:{ac_id:this.data.ac_id},
 			success:(e)=>{
-
 				let zx =  this.data.virtuall
 				zx.forEach((k,v)=>{
 					if (k.card_id == e.activity.virtual_id){

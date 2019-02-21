@@ -1,16 +1,22 @@
-<view>
-    <view class="header">
-        <view class="headersun">
-            <input type="text" class="headerL" placeholder="请输入商品" bindinput="shousuo" />
-            <view class="headerR" bindtap="ss">
-                <image class="headerRTP" src="../../image/sousu.png" />
-                  
-            </view>
-        </view>
-        <view bindtap="neirong" wx:for="{{goodsList}}" class="xia" wx:if='{{isShow==true}}' wx:key="goodsId">
-            <view>
-                <text>{{item.goods}}</text>
-            </view>
-        </view>
-    </view>
+<view class='any'>
+  <view >
+		<view></view>
+    <input></input>
+    <view>搜索</view>
+  </view>
+
+  <view>
+    <view>商品</view>
+    <view>店铺</view>
+  </view>
+
+
+
+
+
+
+
+
+
+
 </view>

@@ -23,3 +23,8 @@
 	margin-top:20rpx;
 	margin-bottom: 80rpx;
 }
+
+.iconfont {
+	font-size:13px;
+
+}

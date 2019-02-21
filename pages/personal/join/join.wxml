@@ -54,11 +54,11 @@
         <text>电话</text>
         <input type='number' name="phone" bindinput='bindPhone'  placeholder='请输入电话号码' placeholder-class="uf_input"></input>
       </view>
-      <view class=" flex_about global_middle_font ">
+      <!-- <view class=" flex_about global_middle_font ">
         <text>验证码</text>
         <input  name="code"  type='number' placeholder='请输入验证码' placeholder-class="uf_input"></input>
         <button class="code_btn global_small_font global_bg_color_red {{codeStatus==1?'code_active':''}}" bindtap='codeBtn'>{{codeText}}</button>
-      </view>
+      </view> -->
 
       <view class='but'>
         <!-- 提交按钮 -->

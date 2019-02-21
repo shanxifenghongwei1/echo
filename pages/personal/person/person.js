@@ -11,7 +11,7 @@ Page({
   },
 // 电话号码
   makePhoneCall: function(e) {
-    app.utils.makePhoneCall("87654321000" + e.currentTarget.dataset.phone);
+    app.utils.makePhoneCall("02867876665" + e.currentTarget.dataset.phone);
   },
 	
 	blancked(){
@@ -55,9 +55,19 @@ Page({
       success: (e) => {
         this.setData({
           user_money: e.user_money,
-					business:e.is_merchant,
-					myshop_id:e.myshop_id
+					// business:e.is_merchant,
         })
+				let change_shop_id = wx.getStorageSync('change_my_shop_id')
+
+				if (change_shop_id){
+					this.setData({
+						myshop_id: change_shop_id
+					})
+				}else{
+					this.setData({
+						myshop_id: e.myshop_id[0].id
+					})
+				}
       }
     })
 
@@ -85,24 +95,10 @@ Page({
 		})
     app.setNavigationBarTitle("个人中心");
    
-		this.adsinit();
+	
 		app.dengluzt();
   },
 
-adsinit(){
-	app.request.post({
-		url: "user/nobleaddress",
-		data: {
-			words: '海底捞',
-		},
-		success: (sss) => {
-			console.log(sss)
-			var shop_data = sss.sort_shop;
-			this.setData({
-				shop_data: shop_data
-			})
-		}
-	})
-}
+
 	
 })

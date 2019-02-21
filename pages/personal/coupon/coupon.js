@@ -96,14 +96,31 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
+		
+
 
   },
-
+	inits() {
+		app.request.post({
+			url: "virtual/getMyCardList",
+			isLoading: true,
+			data: {
+				page: ++this.data.page
+			},
+			success: (e) => {
+				if (e.state == 1) {
+					this.setData({
+						vi_list: this.data.vi_list.concat(e.virtual),
+					})
+				}
+			}
+		})
+	},
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+		this.inits()
   },
 
   /**
