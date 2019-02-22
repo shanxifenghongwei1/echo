@@ -1,6 +1,6 @@
 <!-- 全部背景 -->
 <view class='any'>
-   <view class='order'>
+  <view class='order'>
     <view wx:for="{{order}}" wx:key='orderKey' class='order-son {{cid==item.type_id?"active":""}}' data-id='{{item.type_id}}' bindtap='addorderid'>{{item.text}}</view>
   </view>
 
@@ -10,9 +10,9 @@
   <view wx:for='{{my_active}}' wx:key='index' class='queue' wx:if='{{cid == 7}}'>
     <view class='list line-border-bottm'>
       <view class='user-list line-inline global_middle_font'>排队返现</view>
-      <view class='user-list1 line-inline global_middle_font'>{{item.shop_name}} > </view>
+      <view class='user-list1 line-inline global_middle_font'>店铺：{{item.shop_name}} > </view>
     </view>
-    <view  class='list1 flex_about'>
+    <view class='list1 flex_about'>
       <view class='list1-have global_small_font'>{{item.title}}
         <view class='global_small_font line-inline'></view>
       </view>
@@ -21,7 +21,7 @@
       </view>
     </view>
 
-		 <!-- <view  class='list1 flex_about'>
+    <!-- <view  class='list1 flex_about'>
       <view class='list1-have global_small_font'>开始时间
         <view class='global_small_font line-inline'>{{item.start_time}}</view>
       </view>
@@ -29,28 +29,33 @@
         <view class='global_small_font line-inline'>{{item.now_time}}</view>
       </view>
     </view> -->
-		 <view  class='list1 flex_about'>
+    <view class='list1 flex_about'>
       <view class='list1-have global_small_font'>我的位置
         <view class='global_small_font line-inline'>{{item.position}}</view>
       </view>
 
-			 <view style='margin-left:40rpx;' class='list1-have global_small_font'>已到账:
+      <view style='margin-left:40rpx;' class='list1-have global_small_font'>已到账:
         <view class='global_small_font line-inline'>{{item.money}}</view>
       </view>
-			 <view style='margin-left:40rpx;' class='list1-have global_small_font'>未到账:
+      <view style='margin-left:40rpx;' class='list1-have global_small_font'>未到账:
         <view class='global_small_font line-inline'>{{item.total_money-item.money}}</view>
       </view>
     </view>
   </view>
 
 
-<!-- ---- -->
-	<view wx:for='{{my_active}}' wx:key='index'  wx:if='{{cid == 4}}' class='queue'>
+  <!-- --充值活动-- -->
+  <view wx:for='{{my_active}}' wx:key='index' wx:if='{{cid == 4}}' class='queue' style='height:430rpx;'>
     <view class='list line-border-bottm'>
-      <view class='user-list line-inline global_middle_font'>买单币充值</view>
-      <view class='user-list1 line-inline global_middle_font'>{{item.shop_name}} > </view>
+      <view class='user-list line-inline global_middle_font'>买单币活动充值</view>
+      <view class='user-list1 line-inline global_middle_font'>店铺：{{item.shop_name}} > </view>
     </view>
-    <view  class='list1 flex_about'>
+    <view class='list1 flex_about'>
+      <view class='list1-have global_small_font'>活动名称
+        <view class='global_small_font line-inline'>{{item.ac_name}}</view>
+      </view>
+    </view>
+    <view class='list1 flex_about'>
       <view class='list1-have global_small_font'>充值买单币
         <view class='global_small_font line-inline'>{{item.money}}</view>
       </view>
@@ -58,46 +63,77 @@
         <view class='global_small_font line-inline'>{{item.give_money}}</view>
       </view>
     </view>
-		 <view  class='list1 flex_about'>
-      <view class='list1-have global_small_font'>余额：
-        <view class='global_small_font line-inline'>{{item.card_money}}</view>
+    <view wx:if='{{item.card_number>0}}' class='list1 flex_about'>
+      <view class='list1-have global_small_font'>赠送优惠券
+        <view class='global_small_font line-inline'>{{item.card_name}}</view>
       </view>
-      <view class='list1-wit have global_small_font'>充值时间：
+      <view class='list1-wit have global_small_font'>赠送数量
+        <view class='global_small_font line-inline'>{{item.card_number}}</view>
+      </view>
+    </view>
+    <view class='list1 flex_about'>
+
+      <view class='list1-have global_small_font'>充值时间
         <view class='global_small_font line-inline'>{{item.time}}</view>
       </view>
     </view>
-		 <view  class='list1 flex_about'>
-      <view class='list1-have global_small_font'>充值内容
-        <view class='global_small_font line-inline'>{{item.content}}</view>
-      </view> 
-    </view>
+
   </view>
-  <!-- 会员充值 -->
 
-      
-      <!-- 去消费 -->
-      <!-- <view class='member-bottom-right'>
-        <view class='member-bottom-right1 global_small_font'>去消费</view>
-      </view> -->
 
-    
 
-  
 
-  <!-- 购物返现 -->
-  <view class='shopping' wx:if='{{cid == 1}}'>
+
+
+
+
+
+  <!-- 支付活动 -->
+  <view class='shopping' wx:if='{{cid == 1}}' wx:for='{{my_active}}' wx:key='index'>
     <view class='line-border-bottm list'>
-      <view class='user-list line-inline global_middle_font'>购物返现</view>
-      <view bindtap='exchange' data-shopid='{{9}}' class='user-list1 line-inline global_middle_font'>萌萌商店 > </view>
+      <view class='user-list line-inline global_middle_font'>活动支付</view>
+      <view bindtap='exchange' data-shopid='{{9}}' class='user-list1 line-inline global_middle_font'>店铺：{{item.shop_name}} > </view>
     </view>
-    <view class='list3 padding-all line-border-bottm'>
-      <view class='global_middle_font line-inline'>购物满{{listM}}</view>
-      <view class='global_middle_font line-inline'>送{{listN}}元</view>
-      <view class='global_middle_font line-inline'>+</view>
-      <view class='global_middle_font line-inline'>{{listS}}</view>
-      <view class='global_middle_font line-inline'>+</view>
-      <view class='global_middle_font line-inline'>本店优惠券</view>
+    <view class='list1 flex_about'>
+      <view class='list1-have global_small_font'>活动名称
+        <view class='global_small_font line-inline'>{{item.ac_title}}</view>
+      </view>
+    </view>
+    <view class='list1 flex_about'>
+      <view class='list1-have global_small_font'>订单编号
+        <view class='global_small_font line-inline'>{{item.order_sn}}</view>
+      </view>
     </view>
 
+    <view class='list1 flex_about'>
+      <view class='list1-have global_small_font'>订单金额
+        <view class='global_small_font line-inline'>{{item.order_money}}</view>
+      </view>
+      <view class='list1-wit have global_small_font'>支付金额
+        <view class='global_small_font line-inline'>{{item.pay_money}}</view>
+      </view>
+    </view>
+    <view class='list1 flex_about' wx:if='{{item.card_number>0}}'>
+      <view class='list1-have global_small_font'>赠送优惠券
+        <view class='global_small_font line-inline'>{{item.card_name}}</view>
+      </view>
+      <view class='list1-wit have global_small_font'>赠送数量
+        <view class='global_small_font line-inline'>{{item.card_number}}</view>
+      </view>
+    </view>
+    <view class='list1 flex_about' wx:if='{{item.discount_id>0}}'>
+      <view class='list1-have global_small_font'>使用优惠券
+        <view class='global_small_font line-inline'>{{item.use_card_name}}</view>
+      </view>
+      <view class='list1-wit have global_small_font'>优惠金额
+        <view class='global_small_font line-inline'>{{item.reduce_money}}</view>
+      </view>
+    </view>
+
+    <view class='list1 flex_about'>
+      <view class='list1-have global_small_font'>下单时间
+        <view class='global_small_font line-inline'>{{item.time}}</view>
+      </view>
+    </view>
   </view>
 </view>

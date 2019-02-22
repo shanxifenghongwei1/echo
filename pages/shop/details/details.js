@@ -22,6 +22,7 @@ Page({
 		console.log(options)
 		if(options.shopId){
 			wx.setStorageSync('share', 3)
+			wx.setStorageSync('shares', options.shop_id)
 			app.globalData.shopId = options.shopId
 		}
     this.options = options;

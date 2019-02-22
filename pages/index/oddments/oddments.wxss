@@ -13,6 +13,11 @@
   display: flex;
   justify-content: space-between;
   text-align: center;
+
+}
+
+#cences{
+	position: relative;
 }
 
 .nohavegoods{

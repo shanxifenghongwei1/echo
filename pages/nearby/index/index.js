@@ -97,7 +97,7 @@ Page({
     });
     this.getgoodsList();
     app.dengluzt()
-
+		this.init();
 
   },
   onReady() {
@@ -142,38 +142,56 @@ Page({
   onShow: function() {
     this.addbanner();
     this.addbanners();
-    var that = this
-    this.init();
-    setTimeout(() => {
-      wx.getSetting({
-        success: (res) => {
-          if (!res.authSetting['scope.userLocation']) {
-						that.setData({
-              istrues: true
-            })
-					}else{
-            that.setData({
-              istrues: false
-            })
-            wx.getLocation({
-              type: 'wgs84',
-              success: (e) => {
-                that.jingwei = e;
-                that.setData({
-                  jwdu: e
-                })
-                // 拿着经纬度去发请求后台了
-                that.getdizhi(e);
-                //  第一页的数据
-                // that.ruset();
-                //  分页的数据
-              }
-            });
-          }
+    wx.getSetting({
+      success: (res) => {
+        if (!res.authSetting['scope.userLocation']) {
+          this.ifnogetadress()
+        }else{
+          this.setData({
+						istrues: false
+					})
+					// this.getdizhi();
         }
-      })
-    }, 100)
+      }
+    })
+    
+
   },
+
+
+ifnogetadress(){
+  var that = this
+  setTimeout(() => {
+    wx.getSetting({
+      success: (res) => {
+        if (!res.authSetting['scope.userLocation']) {
+          that.setData({
+            istrues: true
+          })
+        }else{
+          that.setData({
+            istrues: false
+          })
+          wx.getLocation({
+            type: 'wgs84',
+            success: (e) => {
+              that.jingwei = e;
+              that.setData({
+                jwdu: e
+              })
+              // 拿着经纬度去发请求后台了
+              that.getdizhi(e);
+              //  第一页的数据
+              that.ruset();
+              //  分页的数据
+							that.init()
+            }
+          });
+        }
+      }
+    })
+  }, 100)
+},
 
   osd() {
 
@@ -196,7 +214,7 @@ Page({
               // 拿着经纬度去发请求后台了
               that.getdizhi(e);
               //  第一页的数据
-              // that.ruset();
+              that.ruset();
               //  分页的数据
             }
           });

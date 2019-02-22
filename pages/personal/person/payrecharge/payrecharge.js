@@ -46,15 +46,16 @@ Page({
         key: this.data.cid
       },
       success: (e) => {
+       
         if (e.state == 1) {
           this.setData({
             money_list: e.desc,
             page: e.page
           })
-        } else if(e.state == 2){
-					this.setData({
-						money_list: []
-					})
+        } else {
+          this.setData({
+            money_list:[]
+          })
         }
 
 
@@ -97,7 +98,7 @@ Page({
   },
   message() {
     app.request.post({
-      url: "user/mybill",
+      url: "bill/getAllBill",
       data: {
         page: ++this.data.page,
         key: this.data.cid
@@ -139,11 +140,40 @@ Page({
       }
     })
   },
+
+
+  initii(cid) {
+    app.request.post({
+      url: "bill/getAllBill",
+      isLoading: true,
+      data: {
+        page: ++this.data.page,
+        key: this.data.cid
+      },
+      success: (e) => {
+
+        if (e.state == 1) {
+          this.setData({
+            money_list: this.data.money_list.concat(e.desc),
+            page: e.page
+          })
+        } else {
+          app.showtost(e.msg);
+          this.setData({
+            page:1
+          })
+        }
+
+
+      }
+    })
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    // this.message()
+    this.initii()
+    
   },
 
   /**

@@ -11,7 +11,7 @@ Page({
   },
 // 电话号码
   makePhoneCall: function(e) {
-    app.utils.makePhoneCall("02867876665" + e.currentTarget.dataset.phone);
+    app.utils.makePhoneCall("02867876665");
   },
 	
 	blancked(){
@@ -38,6 +38,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+	oanduan(){
+		app.showtost('该功能在开发中，敬请期待')
+	},
   onShow: function() {
     let usermane = wx.getStorageSync('user_info')
     this.setData({

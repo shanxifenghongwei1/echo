@@ -44,7 +44,7 @@
 <!-- 店铺订单 -->
   <view wx:if='{{item.order_mode==1}}' class='flex_about padding-all commdity' data-shop_id='{{item.shop_id}}' bindtap='runshop'>
         <view class='commdity-pic'>
-          <image src='{{item.shop_img}}' mode="widthFix"></image>
+          <image src='{{item.shop_img}}' style='width:100%;height:150rpx;'></image>
         </view>
         <view class=' global_middle_font commdity-particulars'>
           <view class='flex_about shop-money'>

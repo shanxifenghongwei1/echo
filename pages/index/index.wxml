@@ -116,6 +116,7 @@
     <view class='product_module' id="list1">
       <navigator id='ones' wx:if="{{shopObj!=null&&shopObj.hot_goods.length>0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.hot_goods}}" wx:key="dataListKey" class="di_item">
         <image src="{{item.goods_thumb}}" style='width:300rpx;height:300rpx;'></image>
+				<view style='position:absolute;right:26rpx;top:7rpx;padding:0 5rpx;background:red;color:#fff;' class='global_middle_font global_color_red'> {{item.is_promote == 1 ? "促销" : ""}}</view>
         <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
         <view class='dl_detailed global_small_font flex_about'>
           <text class='global_middle_font global_color_red'>￥{{item.shop_price}}</text>
@@ -135,6 +136,7 @@
     <view class='product_module' id="list1">
       <navigator id="ones" style='border:0.5rpx solid #eee;' wx:if="{{goods1!=null&&goods1.length>0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for="{{goods1}}" wx:key="index" class="di_item">
         <image src="{{item.goods_thumb}}" style='width:300rpx;height:300rpx;'></image>
+				<view style='position:absolute;right:26rpx;top:7rpx;padding:0 5rpx;background:red;color:#fff;' class='global_middle_font global_color_red'> {{item.is_promote == 1 ? "促销" : ""}}</view>
         <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
         <view class='dl_detailed global_small_font flex_about'>
           <text class='global_middle_font global_color_red'>￥{{item.shop_price}}</text>

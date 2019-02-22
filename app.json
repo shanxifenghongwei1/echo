@@ -50,7 +50,8 @@
 		"pages/personal/purchase/purchase",
 		"pages/personal/recompose/recompose",
 		"pages/personal/putaway/putaway",
-		"pages/nearby/search/search"
+		"pages/nearby/search/search",
+		"pages/personal/person/userwaitmoney/userwaitmoney"
 	],
 	"window": {
 		"backgroundTextStyle": "light",

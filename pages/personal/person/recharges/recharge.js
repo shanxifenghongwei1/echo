@@ -21,7 +21,7 @@ Page({
       }
     ],
     hidden: true,
-    money: '20%',
+    money: '',
     pay_mode: 9,
     background: 0
   },
@@ -77,8 +77,8 @@ Page({
     if (Number(e.detail.value) >= 1) {
       this.setData({
         usermoney: e.detail.value,
-        money: Number(e.detail.value) * 20 / 100 + '元',
-        mones: Number(e.detail.value) * 10 / 100 + '元',
+        money: Number(e.detail.value) * 6 / 100 + '元',
+        mones: Number(e.detail.value) * 2 / 100 + '元',
       })
     } else {
       wx.showToast({

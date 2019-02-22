@@ -57,7 +57,11 @@ Page({
 					})
 				}
 				if(e.state==2){
-					app.showtost(e.msg)
+          app.showtost(e.msg);
+          this.setData({
+            page: 1,
+						my_active: []
+          })
 				}
       }
     })
@@ -77,7 +81,10 @@ Page({
 					})
 				}
 				if (e.state == 2) {
-					app.showtost(e.msg)
+					app.showtost(e.msg);
+          this.setData({
+            page: 1
+          })
 				}
 			}
 		})

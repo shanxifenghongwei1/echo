@@ -28,11 +28,11 @@
       </view>
     </view>
     <view wx:if='{{payforid==4}}' style='margin-bottom:30rpx;' class='global_large_font line-inline'>
-      个人所得提现收取20%手续费
+      个人所得提现收取6%手续费
       <text class='line-inline' style='height:100%;color:#ed4444'>{{money}}</text>
     </view>
 	 <view wx:if='{{payforid==7}}' style='margin-bottom:30rpx;' class='global_large_font line-inline'>
-      商户提现收取10%手续费
+      商户提现收取2%手续费
       <text class='line-inline' style='height:100%;color:#ed4444'>{{mones}}</text>
     </view>
     <view wx:if='{{payforid==4 || payforid==7}}' class='global_large_font'>银行卡选择</view>
@@ -40,7 +40,7 @@
     <view style='position:relative;' data-id='{{index}}' data-bank_id='{{item.id}}' bindtap='checked_bank' class='one-bancard' wx:for='{{bank_list}}' wx:if='{{payforid == 4 || payforid == 7}}' wx:key='index'>
       <view class='one-bancard-top'>
         <view class='one-bancard-top-left'>
-          <image src='/images/test/pic5.jpg' class='one-bancard-top-left-image'></image>
+          <image src='/images/test/pic7.jpg' class='one-bancard-top-left-image'></image>
         </view>
         <view class='one-bancard-top-right'>
           <view class='one-bancard-top-right-title global_middle_font font-color line-inline'>{{item.type}}</view>

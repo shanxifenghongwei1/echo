@@ -4,7 +4,7 @@
   <view class='one-bancard'wx:for='{{mymoneycard}}' wx:key='index'>
     <view class='one-bancard-top'>
       <view class='one-bancard-top-left'>
-        <image src='/images/test/pic5.jpg' class='one-bancard-top-left-image'></image>
+        <image src='/images/test/pic7.jpg' class='one-bancard-top-left-image'></image>
       </view>
       <view class='one-bancard-top-right'>
         <view class='one-bancard-top-right-title global_middle_font font-color line-inline'>{{item.type}}</view>

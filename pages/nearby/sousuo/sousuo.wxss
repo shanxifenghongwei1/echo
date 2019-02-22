@@ -1,4 +1,93 @@
+@import "/pages/nearby/index/index.wxss";
+
 .any{
 	width: 100%;
+}
+
+.trytext{
+	width: 100%;
+	text-align: center;
+}
+
+#oness{
+	position: relative;
+}
+
+.search-head{
+	width: 94%;
+	padding: 3%;
+	display: flex;
+	justify-content: space-between;
+	background: #eee;
+}
+
+.search-body{
+	height: 60rpx;
+	width: 94%;
+	padding: 3%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.search-his{
+	width: 94%;
+	padding: 3%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.search-buttons{
+	line-height: 56rpx;
+	width: 13%;
+	text-align: center;
+	border-radius: 28rpx;
+	background: #ff7b00;
+	color: #fff;
+}
+
+.search-input{
+	width: 84%;
+	border: 1rpx solid #eee;
+	border-radius: 28rpx;
+	height: 56rpx;
+	background: #fff;
+	padding-left:20rpx;
+}
+
+
+.search-body{
+	width: 94%;
+	padding: 2%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.search-list{
+	width: 47%;
+	text-align: center;
+	line-height: 50rpx;
 	
+}
+
+.search-zooid{
+	height:auto;
+	background: #eee;
+	color: black;
+	padding: 2%;
+	text-align: center;
+	border-radius: 15rpx;
+	margin-left:2%;
+	margin-right:2%;
+	width:120rpx;
+}
+
+.search-ending{
+	width: 94%;
+	padding: 3%;
+	/* float: left; */
+	/* display: block; */
+	display: flex; 
+	flex-wrap:wrap;
+	align-items:center;
+	justify-content:flex-start;
 }
