@@ -8,6 +8,7 @@ Page({
    */
   data: {
     cid: 2,
+		discu:false,
     order: [{
       text: '已完成',
       type_id: 1
@@ -26,6 +27,52 @@ Page({
 
     page: 1
   },
+// 申请退款
+	sqtk(e){
+		console.log(e)
+		this.setData({
+			discu:true,
+			orders_id:e.currentTarget.dataset.id
+		})
+	},
+	// 输入的内容
+	textar(e) {
+		this.setData({
+			textera: e.detail.value
+		})
+	},
+// 提交申请
+	adddiscuss(e){
+
+		app.request.post({
+			url: 'refund/refund',
+			data:{ 
+				order_id: this.data.orders_id,
+				reason: this.data.textera
+			},
+			success:(res)=>{
+				app.showtost(res.msg)
+				if(res.state == 1 ){
+					this.setData({
+						discu: false
+					})
+				}
+			}
+		})
+	},
+	// 关闭打开回复框
+	discuss(e) {
+
+		if (this.data.discu == true) {
+			this.setData({
+				discu: false,
+			})
+		} else {
+			this.setData({
+				discu: true,
+			})
+		}
+	},
   // 商品删除的函数
   consolea(e) {
     let order_id = e.currentTarget.dataset.order_id

@@ -27,8 +27,8 @@
       <view class='info_content'>
         <view class="info_title global_middle_font global_multiLine_ellipsis">
           <view class='global_middle_font'>{{shopObj.shop_name}}</view>
-          <view class='global_middle_font'>
-            {{shopObj.cat_name}}
+          <view class='global_small_font global_single_ellipsis '>
+           营业时间：{{shopObj.business_start_hours}}~{{shopObj.business_end_hours}} <text wx:if="{{shopObj.business_hours_re != 0 }}">（{{shopObj.business_hours_re}}）</text>	
           </view>
 
         </view>
@@ -182,7 +182,10 @@
 			</view>
         <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
         <view class='dl_detailed global_small_font flex_about'>
-          <text class='global_middle_font global_color_red'>￥{{item.shop_price}}</text>
+          <text wx:if='{{item.is_promote != 1}}' class='global_middle_font global_color_red'>￥{{item.shop_price}} </text>
+
+
+					          <text wx:if='{{item.is_promote == 1}}' class='global_middle_font global_color_red'>￥{{item.promote_price}}  <text style='text-decoration:line-through;'>原价:{{item.shop_price}} </text> </text>
         </view>
         <view wx:if='{{item.goods_number == 0}}' class='nohavegoods'>
           <image src='/images/production/nohaveeee.png' class='nohave-img'></image>
@@ -200,7 +203,10 @@
 				<view style='position:absolute;right:26rpx;top:7rpx;padding:0 5rpx;background:red;color:#fff;' class='global_middle_font global_color_red'> {{item.is_promote == 1 ? "促销" : ""}}</view>
         <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
         <view class='dl_detailed global_small_font flex_about'>
-          <text class='global_middle_font global_color_red'>￥{{item.shop_price}}</text>
+                 <text wx:if='{{item.is_promote != 1}}' class='global_middle_font global_color_red'>￥{{item.shop_price}} </text>
+
+
+					          <text wx:if='{{item.is_promote == 1}}' class='global_middle_font global_color_red'>￥{{item.promote_price}}  <text style='text-decoration:line-through;'>原价:{{item.shop_price}} </text> </text>
           <!--   <text class='global_middle_font global_color_red'>{{item.goumai}}</text>人购买-->
         </view>
 

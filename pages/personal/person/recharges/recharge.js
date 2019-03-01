@@ -502,8 +502,7 @@ Page({
         mask: true
       })
     } else {
-			wx.showLoading
-			console.log(this.data.business_id)
+
       app.request.post({
         url: "cash/cash",
         data: {

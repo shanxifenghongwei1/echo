@@ -6,11 +6,20 @@
 
 
 <view class='record'>
-  <view class='my'>我的买单币</view>
+  <view class='my'> </view>
   <view class='money'>{{mymonet}}</view>
 </view>
 
+<view class='bill'>
+	<view class='global_middle_font'>店铺</view>
+	<view class='global_middle_font'>折扣</view>
+	<view class='global_middle_font'>余额</view>
+</view>
+
 <view class='bill' wx:for='{{list}}'>
-  <view class='global_middle_font'>{{item.shop_name}}</view>
-  <view class='global_middle_font'>{{item.card_money}}</view>
+  <view class='global_middle_font bill-list-one'>{{item.shop_name}}</view>
+
+	<view wx:if='{{item.discount > 0}}' class='bill-list-two global_middle_font'>会员{{item.discount}}折</view>
+
+  <view class='global_middle_font bill-list-three'>{{item.card_money}}</view>
 </view>

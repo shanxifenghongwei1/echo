@@ -1,11 +1,63 @@
 <!-- 提现页面	 -->
-<view>
+<view class='wait-big-box'>
 
-  <view>
+  <view class='wait-small-box'>
 
-    <view>提现页面</view>
+    <view class='wait-small-box-one' bindtap='text'>
+      <view class='wait-small-box-one-top global_middle_font'>到账银行卡</view>
+      <view style='color:#0b4082;' class='wait-small-box-one-bottom global_middle_font'> {{type}}（ {{numbers}} ）</view>
+    </view>
+
+    <view class='wait-small-box-two'>
+      <view class='stop-div'></view>
+      <view class='global_small_font '>提现金额</view>
+      <view class='stop-div'></view>
+      <view class='flex_about font-wait-small-box-two'>
+        <text>￥</text>
+        <input type='digit' maxlength='8' class='wait-small-box-two-input' bindinput='inputtap' value='{{values}}'></input>
+      </view>
+      <view class='stop-div'></view>
+					<!-- 没输入钱的时候 -->
+					<view wx:if='{{inputtext == 0}}' class='global_small_font'>当前零钱余额{{zongyue}}元，
+						<text style='color:#0b4082;' bindtap='any_go'>全部提现</text>
+					</view>
+					<!-- 输入钱 小于 总余额  的时候 -->
+					<view wx:if='{{zongyue >= inputtext && inputtext != 0}}' class='global_small_font'> 额外扣除{{ usertext}} 的服务费 (费率{{cash_ratio}}%) </view>
+					
+					<!-- 输入钱 大于 总余额  的时候 -->
+					<view wx:if='{{zongyue < inputtext}}' style='color:red' class='global_small_font'> 输入金额超过余额</view>
+
+      <view class='stop-div'></view>
+    </view>
+    <view class='stop-div'></view>
+    <button type='primary' disabled='{{inputtext != 0 && zongyue >= inputtext ?  false :true  }}' bindtap='submits' class='global_large_font wait-small-box-bottom'>提现</button>
 
   </view>
 
+
+</view>
+
+<view class='suspension' wx:if='{{istrue}}'>
+  <view class='upbox' bindtap='text'></view>
+  <view class='suspension-box'>
+
+    <view class='suspension-box-text global_large_font'>选择到账银行卡</view>
+
+
+    <scroll-view class='suspension-box-scroll' scroll-y>
+
+      <view class='suspension-box-ul' wx:for='{{blankCard}}' wx:key='index' data-cid='{{item.id}}' data-type='{{item.type}}' data-numbers='{{item.number}}' bindtap='setcid'>
+        <view class='suspension-box-li'>
+          <view class='suspension-box-li-left global_small_font'>{{item.type}}({{item.number}}) </view>
+          <view class='suspension-box-li-left-bottom'></view>
+        </view>
+        <view class='suspension-box-li-right {{item.id == cid ? "active" : "" }} '> </view>
+      </view>
+
+
+    </scroll-view>
+
+
+  </view>
 
 </view>

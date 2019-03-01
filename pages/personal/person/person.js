@@ -31,7 +31,7 @@ Page({
 			})
 		}else{
 			wx.navigateTo({
-				url: '/pages/personal/person/recharges/recharge?payforid=4&zongyue='+ this.data.user_money,
+				url: '/pages/personal/person/userwaitmoney/userwaitmoney?payforid=4&zongyue='+ this.data.user_money,
 			})
 		}
 	},

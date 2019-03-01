@@ -70,10 +70,24 @@
         <view></view>
         <view class='flex_about'>
           <navigator wx:if='{{item.pay_type==2&&cid!==3}}' bindtap='storygoodslist' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>去支付</navigator>
-					          <view wx:if='{{item.pay_type==2&&cid!==3}}' bindtap='removeorderlist' data-index='{{index}}' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>取消</view>
+					 <view wx:if='{{item.pay_type==2&&cid!==3}}' bindtap='removeorderlist' data-index='{{index}}' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>取消</view>
           <navigator wx:if='{{ item.pay_type==1 && item.comment_status == 0 }}' class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator>
+					<view bindtap='sqtk' data-id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor' style='width:120rpx;' wx:if='{{item.is_refund == 0 && cid==1}}'>申请退款</view>
         </view>
       </view>
     </view>
+  </view>
+</view>
+
+<view class='discuss-input-box-1' wx:if='{{discu}}'>
+  <view class='discuss-div'>
+    <view class='discuss-title global_large_font'>回复</view>
+    <textarea maxlength='70' auto-focus='true' class='global_middle_font discuss-input' placeholder='请输入回复内容' bindinput='textar'></textarea>
+
+    <view class='ensure'>
+      <view class='ensure-ok global_large_font' bindtap='adddiscuss'>提交</view>
+      <view class=' ensure-ok global_large_font' bindtap='discuss'>取消</view>
+    </view>
+    <view class='flexaes global_middle_font' bindtap='discuss'>×</view>
   </view>
 </view>

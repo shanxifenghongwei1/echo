@@ -118,7 +118,6 @@ this.setData({
   },
   /*店铺id */
   addOrder(e) {
-		console.log(e)
 		wx.navigateTo({
 			url: '/pages/scattered/pay/pay?shop_id=' + this.data.shop_id + '&card_id=' + e.currentTarget.dataset.card_id +'&order_type=1'+'&shop_image='+e.currentTarget.dataset.shop_image + '&shop_name='+ e.currentTarget.dataset.shop_name +'&act_name=' + e.currentTarget.dataset.act_name
 		})

@@ -271,3 +271,11 @@ padding-top:3%;
     text-align: center;
     margin-top: 15px;
 }
+
+.nohave-exchange{
+	width: 94%;
+	line-height: 30rpx;
+	padding: 3%;
+	border-bottom: 1rpx solid #eee;
+	margin-bottom: 20rpx;
+}

@@ -53,32 +53,20 @@ Page({
     })
   },
   addbanner() {
-    app.request.post({
-      url: "ad/index",
-      data: {
-        position_id: 2
-      },
-      success: (e) => {
+		app.request.post({
+			url: "ad/getAd",
+			success: (e) => {
+				this.setData({
+					banner: e.banner,
+					left: e.left,
+					right_bottom: e.right_bottom,
+					right_top: e.right_top,
+				})
+			}
+		})
 
-        this.setData({
-          imgUrls: e
-        })
-      }
-    })
   },
-  addbanners() {
-    app.request.post({
-      url: "ad/index",
-      data: {
-        position_id: 1
-      },
-      success: (e) => {
-        this.setData({
-          smallbanner: e
-        })
-      }
-    })
-  },
+ 
   // 搜索栏
   jump() {
 		wx.navigateTo({
@@ -141,7 +129,7 @@ Page({
   },
   onShow: function() {
     this.addbanner();
-    this.addbanners();
+ 
     wx.getSetting({
       success: (res) => {
         if (!res.authSetting['scope.userLocation']) {
@@ -340,5 +328,11 @@ ifnogetadress(){
   },
   onReachBottom: function() {
     this.scrolltolower();
-  }
+  },
+	/**
+	* 页面相关事件处理函数--监听用户下拉动作
+	*/
+	onPullDownRefresh: function () {
+			this.ruset()
+	},
 })

@@ -33,7 +33,7 @@ any {
 .record {
   width: 100%;
   height: 190rpx;
-  background: blue;
+  background: #ebc03f;
 }
 
 .my {
@@ -63,4 +63,19 @@ any {
   justify-content: space-between;
   line-height: 80rpx;
   margin-top: 10rpx;
+}
+
+
+.bill-list-one{
+	width: 40%;
+}
+
+.bill-list-two{
+	text-align: center;
+	width: 20%;
+}
+
+.bill-list-three{
+	text-align: right;
+	width: 40%;
 }

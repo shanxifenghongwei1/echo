@@ -142,13 +142,13 @@
           </view>
         </view>
       </navigator>
-      <navigator url='/pages/personal/bandcard/addbandcard/addbandcard?shop_id={{myshop_id}}' class="bodyRB">
+      <navigator url='/pages/personal/business/moneyback/moneyback?shop_id={{myshop_id}}' class="bodyRB">
         <view class="bodyLTsun">
           <view class="bodyLTsunS8">
             <view class="mdsz iconfont icon-yinhangqia"></view>
           </view>
           <view class="bodyLTsunX">
-            <text>银行卡</text>
+            <text>退款</text>
           </view>
         </view>
       </navigator>

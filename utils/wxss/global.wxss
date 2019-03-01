@@ -253,6 +253,11 @@ color: #666;
   width: 96%;
 }
 
+.wait-small-box-two-input{
+	height: 100rpx;
+	width:90%;
+}
+
 
 
 

@@ -1,3 +1,5 @@
+
+
 <scroll-view style='height:{{scrollHeight}}rpx;' scroll-top="0" bindscrolltolower="scrolltolower" scroll-with-animation scroll-y class='page_module global_bg_color'>
   <!-- 首页图标 -->
   <navigator wx:if='{{share == 2 || share == 3 }}' url='/pages/index/index' class='shouye'>
@@ -17,7 +19,7 @@
     </view>
   </view>
   <swiper indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="height:{{swiperHeight}}rpx;">
-    <block wx:for="{{imgUrls}}" wx:key="imgUrlsKey">
+    <block wx:for="{{banner}}" wx:key="imgUrlsKey">
       <swiper-item>
         <image src="{{item.ad_img}}" class="slide-image" mode='widthFix' data-img='{{item.ad_url}}' bindload="imageLoad" />
       </swiper-item>
@@ -25,20 +27,23 @@
   </swiper>
   <view class=' flex_about marketing'>
     <view class='marketing-border'>
-      <image src='/images/test/pic2.jpg' mode='widthFix'></image>
+      <image src='{{left.ad_img}}' mode='widthFix'></image>
     </view>
     <view>
       <view>
-        <image src='/images/test/pic3.jpg' mode='widthFix'></image>
+        <image src='{{right_top.ad_img}}' mode='widthFix'></image>
       </view>
-      <view class='flex_about marketing2'>
+			 <view>
+        <image src='{{right_bottom.ad_img}}' mode='widthFix'></image>
+      </view>
+      <!-- <view class='flex_about marketing2'>
         <view class='marketing-border'>
           <image src='/images/test/pic4.jpg' mode='widthFix'></image>
         </view>
         <view>
           <image src='/images/test/pic5.jpg' mode='widthFix'></image>
         </view>
-      </view>
+      </view> -->
     </view>
   </view>
 
@@ -96,3 +101,4 @@
 		</view>
 	</view>
 </view>
+

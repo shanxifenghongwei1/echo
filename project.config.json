@@ -38,7 +38,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 30,
+			"current": 32,
 			"list": [
 				{
 					"id": -1,
@@ -238,6 +238,13 @@
 					"id": -1,
 					"name": "搜索",
 					"pathName": "pages/nearby/sousuo/sousuo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 32,
+					"name": "提现",
+					"pathName": "pages/personal/person/userwaitmoney/userwaitmoney",
 					"query": "",
 					"scene": null
 				}

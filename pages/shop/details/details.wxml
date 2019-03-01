@@ -93,7 +93,7 @@
 
   <view class='flex_about business_operation  bp_position'>
     <view>￥{{goodsObj.shop_price}}</view>
-    <view wx:if='{{goodsObj.is_promote == 1}}' class='global_middle_font' style='margin-left:50rpx;'> 促销截止日期： <text style='font-size:22rpx;'> {{goodsObj.promote_end_date}}</text></view>
+    <view wx:if='{{goodsObj.is_promote == 1}}' class='global_middle_font'> 促销截止日期： <text style='font-size:22rpx;'> {{goodsObj.promote_end_date}}</text></view>
     <view bindtap="buyClick" class='global_middle_font global_bg_color_red'>立即购买 </view>
   </view>
   <!-- <view style="display:{{buyStatus>0?'block':'none'}}" class='global_postion_module'>

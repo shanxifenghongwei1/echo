@@ -2,7 +2,6 @@
 
 <view class='page_module global_middle_font global_bg_color'>
   <view class='padding-all pay-info'>
-
     <!-- 订单类型 -->
     <view class='flex_about  line-border-bottom shop-goods'>
       <view>
@@ -19,7 +18,6 @@
       </view>
       <view class=' global_single_ellipsis'>{{shop_name}}</view>
     </view>
-
     <!-- 支付金额输入框 -->
     <view wx:if='{{order_type==1}}' class='flex_about money'>
       <text>支付金额</text>
@@ -36,7 +34,7 @@
       <view style='display:flex;align-items: center;justify-content:space-between' class='money'>
         <text style='width:35%;'>应付：{{payformoney}}</text>
         <text wx:if='{{ischecked}}' style='width:29%;text-align:center;'> 优惠:{{reduce_money}}</text>
-        <view style='width:35%;;height:80rpx;text-align:left;line-height:80rpx;' class='money_input'> 实付：{{ischecked==true?payformoney-reduce_money:payformoney}}</view>
+        <view style='width:35%;;height:80rpx;text-align:left;line-height:80rpx;' class='money_input'> 实付：{{userCanLook}}</view>
       </view>
     </view>
     <!-- 商品订单菜单 -->
@@ -52,22 +50,10 @@
             <view class="global_color_red">￥{{goods_price}}</view>
             <view></view>
             <view class='shuliang'>数量：{{goods_number}}
-              <!--<button bindtap='oncladd' class='global_middle_font addandjian'>+</button> <input class=' addandjian' placeholder='{{goods_number}}'></input>  <button bindtap='onclfadd' class='global_middle_font addandjian'>-</button>-->
             </view>
           </view>
         </view>
-
       </view>
-
-      <!-- 优惠 +  ... -->
-      <!-- <view class=''>
-        <view class="flex_about global_small_font padding-all details-bar" data-buyStatus="1">
-          <view>优惠</view>
-          <view>{{ticket.card_name}}</view>
-          <view class='iconfont icon-sandian1 global_large_font' bindtap='buyherd'></view>
-        </view>
-      </view> -->
-
       <!-- 支付金额 -->
       <view class='integration line-border-bottom money'>
         <view class='flex_about switch_module'>
@@ -78,66 +64,25 @@
 
 
       <!-- 优惠券 -->
-      <view style='display:flex;align-items: center;justify-content:space-between' class='money'>
+      <view  wx:if='{{uservirtual.length !==0 && dis_text.length <= 0}}' style='display:flex;align-items: center;justify-content:space-between' class='money' bindtap='runjumpthis'>
         <text>优惠券</text>
         <text style='width:50%'>{{youhuitext}}</text>
-        <view bindtap='runjumpthis' style='width:20%;;height:80rpx;text-align:right;line-height:80rpx;' class='iconfont icon-sandian1 money_input'></view>
+        <view style='width:20%;;height:80rpx;text-align:right;line-height:80rpx;' class='iconfont icon-sandian1 money_input'></view>
       </view>
       <!-- 支付金额 -->
       <view style='display:flex;align-items: center;justify-content:space-between' class='money'>
         <text style='width:30%;'>应付：{{goods_price}}</text>
         <text wx:if='{{ischecked}}' style='width:40%;text-align:center;'> 优惠{{reduce_money}}</text>
-        <view style='width:30%;;height:80rpx;text-align:right;line-height:80rpx;' class='money_input'> 实付：{{ischecked==true?a_pa_money:goods_price}}</view>
+        <view style='width:30%;;height:80rpx;text-align:right;line-height:80rpx;' class='money_input'> 实付：{{userCansee}}</view>
+				
       </view>
 
     </view>
-
 
   </view>
 
-
-
-
-  <!-- 用户协议 -->
+  
   <view class='newline'></view>
-
-  <!-- <radio-group class="padding-all  radio-group" bindchange="radioChange">
-    <view class='flex_about line-border-bottom '>
-      <view class="flex_about global_middle_font play_icon ">
-        <view class='iconfont icon-weixinzhifu'>
-        </view>
-        微信支付</view>
-      <view>
-        <radio value="1" checked="true" />
-      </view>
-    </view>
-    <view class='flex_about line-border-bottom '>
-      <view class="flex_about global_middle_font play_icon ">
-        <view class=' iconfont icon-qian'>
-        </view>
-        买单币支付</view>
-      <view>
-        <text>可用买单币12.25  </text>
-        <radio value="2" />
-      </view>
-    </view>
-    <view class='flex_about line-border-bottom switch_module integration-money '>
-      <view class=''>使用积分抵扣</view>
-      <switch bindchange="switch1Change" />
-    </view>
-    
-    <view wx:if="{{boolIntegration}}" class=' line-border-bottom integration-info'>积分使用：万里通是中国平安集团成员之一，是中国首家通用积分平台，您共有
-      <text class='global_color_red'>25</text>积分</view>
-    <view wx:if="{{boolIntegration}}" class=' line-border-bottom flex_about  money  integration-money'>
-      <text>全场积分:</text>
-      <input type="number" placeholder-class="money_input" maxlength="10" placeholder='请输入积分'></input>
-    </view>
-    <view wx:if="{{boolIntegration}}" class='flex_about'>
-      <text class='im_integration'>积分抵扣:<text class='global_color_red'>25</text></text>实际需支付:
-      <text class='global_color_red'>￥120</text>
-    </view>
-  </radio-group>
-  <view class='newline'></view>-->
   <!-- 选择支付方式 -->
   <view class='flex_about money paymessage-choose'>
     <radio-group style='width:100%;' bindchange="radioChange" class="group">
@@ -152,14 +97,17 @@
       </view>
     </radio-group>
   </view>
-  <!-- 阅读并同意 -->
-  <view class='padding-all integration  pay_btn'>
+  <!-- 阅读并同意用户协议 -->
 
+	<view class='global_middle_font' style='width:94%;line-height:60rpx;padding-left:3%;background:#fff;' wx:if='{{order_type==2 && iloveyou != 3}}'> 本次支付将获得{{integralUS}}积分 </view>
+
+	<view class='global_middle_font' style='width:94%;line-height:60rpx;padding-left:3%;background:#fff;' wx:if='{{order_type==1 && iloveyou != 3}}'> 本次支付将获得{{integralS}}积分 </view>
+
+  <view class='padding-all integration  pay_btn'>
     <checkbox-group class='flex_about' bindchange="checkboxChange">
-      <checkbox value="1" checked="{{item.checked}}" /> 阅读并同意
+      <checkbox value="1" checked="true" /> 阅读并同意
       <navigator url="/pages/scattered/userAgreement/userAgreement">用户协议 </navigator>
     </checkbox-group>
-
     <!-- 确认支付按钮 -->
     <view wx:if='{{areyouok==1}}'>
       <button wx:if='{{order_type==2}}' class='global_bg_color_red global_middle_font' bindtap='payClick'>
@@ -169,7 +117,7 @@
     </view>
   </view>
 </view>
-
+<!-- 优惠券展示列表 -->
 <view wx:if='{{textcenter}}' class='anyevery'>
   <view class='bottom-in-price'>
     <view class='price-top'>
@@ -177,6 +125,8 @@
       <view class='top-rights' bindtap='closessa'>×</view>
     </view>
     <scroll-view scroll-y class='bottom-in-price-content'>
+
+			<view class='nohave-exchange global_middle_font' bindtap='nohave_exchange'>不选择</view>
 
       <view wx:for='{{uservirtual}}' wx:key='index' bindtap='givemoneytome' data-moneys='{{tools.turnInt(item.reduce_money)}}' data-id="{{item.card_name}}" data-ac='{{item.card_id}}' data-shop='{{item.shop_id}}' class='ticket flex_about'>
         <view class=' global_color_red ticket_money flex_about '>{{tools.turnInt(item.reduce_money)}}

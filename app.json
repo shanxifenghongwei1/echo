@@ -51,6 +51,7 @@
 		"pages/personal/recompose/recompose",
 		"pages/personal/putaway/putaway",
 		"pages/nearby/search/search",
+		"pages/personal/business/moneyback/moneyback",
 		"pages/personal/person/userwaitmoney/userwaitmoney"
 	],
 	"window": {
