@@ -43,7 +43,6 @@ Page({
 	},
 // 提交申请
 	adddiscuss(e){
-
 		app.request.post({
 			url: 'refund/refund',
 			data:{ 
@@ -62,7 +61,6 @@ Page({
 	},
 	// 关闭打开回复框
 	discuss(e) {
-
 		if (this.data.discu == true) {
 			this.setData({
 				discu: false,

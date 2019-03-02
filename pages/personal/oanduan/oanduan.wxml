@@ -1,0 +1,69 @@
+<view class='any-exit' wx:for='{{refund}}'>
+  <!-- 商品订单退款 -->
+  <view wx:if='{{item.order_mode == 2}}'>
+    <view class='head-exit global_middle_font'>
+      <view class='head-exit-left'>{{item.shop_name}}</view>
+      <view wx:if="{{item.is_refund==2}}" class='head-exit-right'> 退款失败 </view>
+      <view wx:if="{{item.is_refund==1}}" class='head-exit-right'> 退款成功 </view>
+      <view wx:if="{{item.is_refund==0}}">
+        <view wx:if="{{item.business_confirm==0}}" class='head-exit-right'> 审核中 </view>
+        <view wx:if="{{item.business_confirm==1}}" class='head-exit-right'> 退款中 </view>
+        <view wx:if="{{item.business_confirm==2}}" class='head-exit-right'> 退款失败 </view>
+      </view>
+    </view>
+    <navigator class='body-exit global_middle_font' url='/pages/personal/oanduantext/oanduantext'>
+      <view class='body-exit-img'>
+        <image src='{{item.goods.goods_thumb}}' style='width:100px;height:100px;'></image>
+      </view>
+      <view class='body-exit-text'>
+				 <view class='shop_name'>商品订单</view>
+        <view class='shop_name'>商品名称：{{item.goods.goods_name}}</view>
+        <view>
+          <view class='shop_price shop_name'>商品价格：{{item.goods.shop_price}}
+            <text wx:if='{{item.goods.promote_price > 0 }}'> (折扣价:{{item.goods.promote_price}})</text>
+          </view>
+        </view>
+        <view class='goods_number_add shop_name'> 订单价格：{{item.order_money}}</view>
+      </view>
+    </navigator>
+    <view class='bottom-exit global_middle_font'>共{{item.goods_number}}件，合计
+      <text>{{item.pay_money}}</text> </view>
+  </view>
+
+
+
+
+  <!-- 商店订单退款 -->
+  <view wx:if='{{item.order_mode == 1}}'>
+    <view class='head-exit global_middle_font'>
+      <view class='head-exit-left'>{{item.shop_name}}</view>
+
+
+
+      <view wx:if="{{item.is_refund==2}}" class='head-exit-right'> 退款失败 </view>
+      <view wx:if="{{item.is_refund==1}}" class='head-exit-right'> 退款成功 </view>
+      <view wx:if="{{item.is_refund==0}}">
+        <view wx:if="{{item.business_confirm==0}}" class='head-exit-right'> 审核中 </view>
+        <view wx:if="{{item.business_confirm==1}}" class='head-exit-right'> 退款中 </view>
+        <view wx:if="{{item.business_confirm==2}}" class='head-exit-right'> 退款失败 </view>
+      </view>
+
+    </view>
+    <view class='body-exit global_middle_font'>
+      <view class='body-exit-img'>
+ 					<image src='{{item.shop_logo}}' style='width:100px;height:100px;'></image>
+      </view>
+      <view class='body-exit-text'>
+        
+        <view>
+				<view class='shop_price shop_name'>店铺订单 </view>
+          <view class='shop_price shop_name'>订单金额：{{item.order_money}} </view>
+					
+        </view>
+        <view class='goods_number_add shop_name' >总价: {{item.pay_money}}</view>
+      </view>
+    </view>
+    <view class='bottom-exit global_middle_font'>共支付{{item.pay_money}}</view>
+  </view>
+
+</view>

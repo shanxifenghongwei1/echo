@@ -1,0 +1,56 @@
+page{
+	background-color: #eee;
+}
+
+.any-exit{
+	width: 100%;
+	margin-bottom: 20rpx;
+}
+
+.head-exit{
+	width: 94%;
+	padding: 3%;
+	background: #fff;
+	border: 1rpx solid #eee;
+
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.head-exit-left{
+	width: 300rpx;
+}
+
+.head-exit-right{
+	width: 120rpx;
+}
+
+.body-exit{
+	width: 94%;
+	padding: 3%;
+	background: #fff;
+
+display: flex;
+align-items: center;
+justify-content:flex-start;
+}
+.body-exit-text{
+	height: 200rpx;
+}
+
+.shop_name{
+	line-height: 50rpx;
+}
+
+.body-exit-img{
+	width: 100px;
+	height: 100px;
+	margin-right:50rpx;
+}
+
+.bottom-exit{
+	width: 94%;
+	padding: 3%;
+	background: #fff;
+}

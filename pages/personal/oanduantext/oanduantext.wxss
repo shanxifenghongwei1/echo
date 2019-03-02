@@ -1,0 +1,73 @@
+/* pages/personal/oanduantext/oanduantext.wxss */
+page{
+	background-color: #eee;
+	width: 100%;
+}
+
+.top-text{
+	width: 94%;
+	padding: 3%;
+	background: #fff;
+	margin-bottom: 20rpx;
+}
+
+.one_list{
+	width: 100%;
+	height: 40rpx;
+
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.text-bottom{
+	width: 94%;
+	padding: 3%;
+	height: 800rpx;
+	background: #fff;
+		position: relative;
+}
+
+.please-text{
+	width: 100%;
+	line-height: 70rpx;
+}
+
+.flow-text{
+	padding-left:50rpx;
+	margin-bottom:-1rpx; 
+	border-left: 6rpx solid #555;
+}
+
+.text-flow{
+	margin-bottom: 30rpx;
+}
+
+.text-pl-te{
+	width: 100%;
+	line-height: 50rpx;
+}
+
+.small-radus{
+	/* width: 30rpx;
+	height: 30rpx; */
+	/* border-radius: 15rpx;
+	background: #655; */
+	position: absolute;
+	left: 0;
+	top:0;
+}
+
+.yuan{
+	width: 30rpx;
+	height: 30rpx; 
+	border-radius: 15rpx;
+	background: #655;
+}
+
+.shu{
+	margin-left:14rpx;
+	width: 1rpx;
+	height: 80rpx;
+	border: 1rpx solid #655;
+}

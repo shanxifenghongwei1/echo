@@ -102,12 +102,12 @@
         <!-- <view class='whit3 global_small_font'>共0单</view> -->
       </navigator>
 
-      <!-- 我的积分 -->
-      <view url='/pages/personal/integral/integral' bindtap='oanduan' class='whit'>
+      <!-- 退款 -->
+      <navigator url='/pages/personal/oanduan/oanduan' class='whit'>
         <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-shouhoutuikuan'></view>
         <view class='whit2 global_middle_font'>退款</view>
         <!-- <view class='whit3 global_small_font'>共0单</view> -->
-      </view>
+      </navigator>
       <!-- 我的买单币 -->
       <view url='/pages/personal/purchase/purchase' class='whit' bindtap='makePhoneCall'>
         <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-dianhua'></view>

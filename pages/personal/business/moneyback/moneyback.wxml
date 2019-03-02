@@ -1,12 +1,52 @@
 <view class='where-any'>
 
-  <view class=''>
-    <view>退款申请消息</view>
-    <view></view>
+  <view style='margin-bottom:20rpx;' wx:for='{{refund}}' wx:key='index'>
+    <view class="my-one-reimburse global_middle_font" bindtap='look_detailed' data-id='{{item.id}}'>
+      <view class='reimburse-left'>{{item.Nickname}}的退款申请</view>
+      <view class="reimburse-right">查看详情</view>
+    </view>
+    <view id='{{cid == item.id ? "" : "active"}}'>
+      <view class="center-cover global_middle_font" hover-class="none" hover-stop-propagation="false">
+        <view class='user-name'>用户名称:{{item.Nickname}}</view>
+        <view class="user-paymoney">支付金额:{{item.pay_money}}</view>
+      </view>
+      <view class="center-cover global_middle_font" hover-class="none" hover-stop-propagation="false">
+        <view class="user-order">订单编号:{{item.order_sn}}</view>
+      </view>
+      <view class="user-quit global_middle_font">退款理由:{{item.reason}}</view>
+      <view class="user-quit global_middle_font">申请时间:{{item.d_time}}</view>
+
+      <view wx:if='{{item.is_refund==0}}'>
+        <view wx:if='{{item.business_confirm==0}}' style="color:red" data-ids='{{item.id}}' bindtap='discuss' class="user-quit global_middle_font">审核</view>
+        <view wx:if='{{item.business_confirm==1}}' class="user-quit global_middle_font">退款状态： 已同意</view>
+        <view wx:if='{{item.business_confirm==2}}' class="user-quit global_middle_font">退款状态：已驳回</view>
+        <view wx:if='{{item.business_confirm!==0}}' class="user-quit global_middle_font">商家回复：{{item.reply}}</view>
+      </view>
+      <view wx:if='{{item.is_refund==1}}'>
+        <view class="user-quit global_middle_font">退款状态：已退款</view>
+        <view class="user-quit global_middle_font">商家回复：{{item.reply}}</view>
+        <view class="user-quit global_middle_font">退款时间：{{item.refund_time}}</view>
+      </view>
+      <view wx:if='{{item.is_refund==2}}'>
+        <view class="user-quit global_middle_font">退款状态：已驳回</view>
+        <view class="user-quit global_middle_font">驳回原因：{{item.reply}}</view>
+      </view>
+
+    </view>
+
   </view>
-
-	<view></view>
-
-
-
 </view>
+
+<!-- 回复的弹窗 -->
+<view class='discuss-input-box-1' wx:if='{{discu}}'>
+  <view class='discuss-div'>
+    <view class='discuss-title global_large_font'>回复</view>
+    <textarea maxlength='70' auto-focus='true' class='global_middle_font discuss-input' placeholder='请输入理由' bindinput='textar'></textarea>
+    <view class='ensure'>
+      <view class='ensure-ok global_large_font' bindtap='adddiscuss'>同意</view>
+      <view class=' ensure-ok global_large_font' bindtap='i_dont_agree'>驳回</view>
+    </view>
+    <view class='flexaes global_middle_font' bindtap='discuss'>×</view>
+  </view>
+</view>
+

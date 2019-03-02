@@ -71,7 +71,7 @@
         <view class='info_content'>
           <view class="info_title global_middle_font global_multiLine">
 
-            <view style='font-weight:bold' class='global_middle_font'>{{item.shop_name}}</view>
+            <view style='font-weight:bold' class='global_middle_font global_single_ellipsis'>{{item.shop_name}}</view>
             <view class='global_middle_font'>{{item.cat_name}}</view>
           </view>
           <view class='ic_info'>

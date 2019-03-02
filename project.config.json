@@ -38,7 +38,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 32,
+			"current": 34,
 			"list": [
 				{
 					"id": -1,
@@ -246,6 +246,19 @@
 					"name": "提现",
 					"pathName": "pages/personal/person/userwaitmoney/userwaitmoney",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "退款",
+					"pathName": "pages/personal/business/moneyback/moneyback",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "退款详情",
+					"pathName": "pages/personal/oanduantext/oanduantext",
 					"scene": null
 				}
 			]

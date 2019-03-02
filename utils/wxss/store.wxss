@@ -5,7 +5,7 @@
 }
 
 .store_info {
-  width: 100%;
+  width: 90%;
   align-items: flex-start;
     position: relative;
 }

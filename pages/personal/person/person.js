@@ -38,9 +38,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-	oanduan(){
-		app.showtost('该功能在开发中，敬请期待')
-	},
+	// oanduan(){
+	// 	app.showtost('该功能在开发中，敬请期待')
+	// },
   onShow: function() {
     let usermane = wx.getStorageSync('user_info')
     this.setData({

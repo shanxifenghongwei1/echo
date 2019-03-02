@@ -52,7 +52,9 @@
 		"pages/personal/putaway/putaway",
 		"pages/nearby/search/search",
 		"pages/personal/business/moneyback/moneyback",
-		"pages/personal/person/userwaitmoney/userwaitmoney"
+		"pages/personal/person/userwaitmoney/userwaitmoney",
+		"pages/personal/oanduan/oanduan",
+		"pages/personal/oanduantext/oanduantext"
 	],
 	"window": {
 		"backgroundTextStyle": "light",

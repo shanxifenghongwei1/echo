@@ -81,11 +81,11 @@
 
 <view class='discuss-input-box-1' wx:if='{{discu}}'>
   <view class='discuss-div'>
-    <view class='discuss-title global_large_font'>回复</view>
-    <textarea maxlength='70' auto-focus='true' class='global_middle_font discuss-input' placeholder='请输入回复内容' bindinput='textar'></textarea>
+    <view class='discuss-title global_large_font'>退款申请</view>
+    <textarea maxlength='70' auto-focus='true' class='global_middle_font discuss-input' placeholder='请输入退款理由' bindinput='textar'></textarea>
 
     <view class='ensure'>
-      <view class='ensure-ok global_large_font' bindtap='adddiscuss'>提交</view>
+      <view class='ensure-ok global_large_font' bindtap='adddiscuss'>申请</view>
       <view class=' ensure-ok global_large_font' bindtap='discuss'>取消</view>
     </view>
     <view class='flexaes global_middle_font' bindtap='discuss'>×</view>

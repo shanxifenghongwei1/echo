@@ -1,0 +1,63 @@
+ <!-- <view class='top-text'>
+商家名称
+  <view class='one_list global_middle_font'>
+    <view class='shop_name'>商家名称</view>
+    <view class='shop_name_text'> 这是个商家名称的预留位置</view>
+  </view>
+ <view class='one_list global_middle_font'>
+    <view class='shop_name global_middle_font'>订单编号</view>
+    <view class='shop_name_text'> 18435170100</view>
+  </view>
+
+	 <view class='one_list global_middle_font'>
+    <view class='shop_name global_middle_font'>退款金额</view>
+    <view class='shop_name_text'> 18.35</view>
+  </view>
+
+	 <view class='one_list global_middle_font'>
+    <view class='shop_name global_middle_font'>退款状态</view>
+    <view class='shop_name_text'> 这是个</view>
+  </view>
+
+</view>
+
+<view class='text-bottom'>
+
+	<view class='global_large_font text-flow' style='color:#555;'>退款流程</view>
+	<view class='flow-text global_middle_font'>
+		<view class='please-text'>申请退款</view>
+		<view class='global_small_font text-pl-te' >您的订单已取消,商家审核通过后将为您退款</view>
+		<view class='global_small_font'>
+			2017-6-28 00:30
+		</view>
+		<view class='small-radus'>
+				<view class='yuan'></view>
+				<view class='shu'></view>
+		</view>
+	</view>
+
+	<view class='flow-text global_middle_font'>
+		<view class='please-text'>审核已通过</view>
+		<view class='global_small_font text-pl-te'>已为您取消订单并退款</view>
+		<view class='global_small_font'>
+			2017-6-28 00:30
+		</view>
+	</view>
+
+	<view class='flow-text global_middle_font'>
+		<view class='please-text'>退款中</view>
+		<view class='global_small_font text-pl-te'>您的退款将于1-7个工作日退还至您的账户</view>
+		<view class='global_small_font'>
+			2017-6-28 00:30
+		</view>
+	</view>
+
+	<view class='flow-text global_middle_font'>
+		<view class='please-text'>退款成功</view>
+		<view class='global_small_font text-pl-te'>￥12.5已经退回到您的账户 </view>
+		<view class='global_small_font'>
+			2017-6-28 00:30
+		</view>
+	</view>
+
+</view>  -->
