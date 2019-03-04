@@ -28,8 +28,8 @@
   <view class=' padding-all '>
     <view class=' flex_about detail-info'>
       <view class=' detial_text '>
-        <view class='global_large_font global_single_ellipsis'>{{goodsObj.goods_name}}</view>
-        <view class='global_small_font global_single_ellipsis'>
+        <view class='global_large_font'>{{goodsObj.goods_name}}</view>
+        <view class='global_small_font'>
           <text> {{goodsObj.goods_brief}}</text>
 
         </view>

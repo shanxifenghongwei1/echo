@@ -1,63 +1,131 @@
- <!-- <view class='top-text'>
-商家名称
+<view class='top-text'>
+  <!-- 商家名称 -->
   <view class='one_list global_middle_font'>
     <view class='shop_name'>商家名称</view>
-    <view class='shop_name_text'> 这是个商家名称的预留位置</view>
+    <view class='shop_name_text global_single_ellipsis'> {{refund.shop_name}} </view>
   </view>
- <view class='one_list global_middle_font'>
+	<!-- 订单编号 -->
+  <view class='one_list global_middle_font'>
     <view class='shop_name global_middle_font'>订单编号</view>
-    <view class='shop_name_text'> 18435170100</view>
+    <view class='shop_name_text'> {{refund.order_sn}}</view>
   </view>
-
-	 <view class='one_list global_middle_font'>
+<!-- 退款金额 -->
+  <view class='one_list global_middle_font'>
     <view class='shop_name global_middle_font'>退款金额</view>
-    <view class='shop_name_text'> 18.35</view>
+    <view class='shop_name_text' style="color:#ed4444"> {{refund.pay_money}}</view>
   </view>
 
-	 <view class='one_list global_middle_font'>
+	<!-- 退款理由 -->
+  <view class='one_list global_middle_font'>
+    <view class='shop_name my_sures global_middle_font'>退款理由</view>
+    <view class='shop_name_text my_sure'> {{refund.reason}}</view>
+  </view>
+<!-- 退款状态 -->
+  <view class='one_list global_middle_font'>
     <view class='shop_name global_middle_font'>退款状态</view>
-    <view class='shop_name_text'> 这是个</view>
+    <view class='shop_name_text'> 
+		      <view wx:if="{{refund.is_refund==2}}" class='head-exit-right'> 退款失败 </view>
+      <view wx:if="{{refund.is_refund==1}}" class='head-exit-right'> 退款成功 </view>
+      <view wx:if="{{refund.is_refund==0}}">
+        <view wx:if="{{refund.business_confirm==0}}" class='head-exit-right'> 审核中 </view>
+        <view wx:if="{{refund.business_confirm==1}}" class='head-exit-right'> 退款中 </view>
+        <view wx:if="{{refund.business_confirm==2}}" class='head-exit-right'> 退款失败 </view>
+      </view>
+		
+		</view>
   </view>
 
 </view>
-
+<!-- 退款流程 -->
 <view class='text-bottom'>
 
-	<view class='global_large_font text-flow' style='color:#555;'>退款流程</view>
-	<view class='flow-text global_middle_font'>
-		<view class='please-text'>申请退款</view>
-		<view class='global_small_font text-pl-te' >您的订单已取消,商家审核通过后将为您退款</view>
-		<view class='global_small_font'>
-			2017-6-28 00:30
-		</view>
-		<view class='small-radus'>
-				<view class='yuan'></view>
-				<view class='shu'></view>
-		</view>
-	</view>
+  <view class='global_large_font text-flow' style='color:#555;'>退款流程</view>
 
-	<view class='flow-text global_middle_font'>
-		<view class='please-text'>审核已通过</view>
-		<view class='global_small_font text-pl-te'>已为您取消订单并退款</view>
-		<view class='global_small_font'>
-			2017-6-28 00:30
-		</view>
-	</view>
+	<!-- 申请退款 -->
+  <view class='flow-text global_middle_font '>
+    <view class='please-text'>申请退款</view>
+    <view class='global_small_font text-pl-te' style="color:#999;">您的订单已取消,商家审核通过后将为您退款</view>
+    <view class='global_small_font' style="color:#999;">
+      {{refund.d_time}}
+    </view>
+    <view class='small-radus'>
+      <view class='yuan {{refund.business_confirm== 0&& refund.is_refund==0 ? "actives" : ""}}' ></view>
+      <view class='shu'  wx:if="{{refund.business_confirm != 0 }}"></view>
+    </view>
+  </view>
 
-	<view class='flow-text global_middle_font'>
-		<view class='please-text'>退款中</view>
-		<view class='global_small_font text-pl-te'>您的退款将于1-7个工作日退还至您的账户</view>
-		<view class='global_small_font'>
-			2017-6-28 00:30
-		</view>
-	</view>
 
-	<view class='flow-text global_middle_font'>
-		<view class='please-text'>退款成功</view>
-		<view class='global_small_font text-pl-te'>￥12.5已经退回到您的账户 </view>
-		<view class='global_small_font'>
-			2017-6-28 00:30
-		</view>
-	</view>
+<!-- 审核未通过 -->
+<view class='flow-text global_middle_font' wx:if="{{refund.business_confirm == 2}}">
+    <view class='please-text'>审核未通过</view>
+    <view class='global_small_font text-pl-te' style="color:#999;">商家回复：{{refund.reply}}</view>
+    <view class='global_small_font' style="color:#999;">
+      {{refund.confirm_time}}
+    </view>
+    <view class='small-radus'>
+      <view class='yuan actives'></view>
+      
+    </view>
 
-</view>  -->
+
+  </view>
+	<!-- 审核已通过 -->
+  <view class='flow-text global_middle_font' wx:if="{{refund.business_confirm == 1}}">
+    <view class='please-text'>审核已通过</view>
+    <view class='global_small_font text-pl-te' style="color:#999;">商家回复：{{refund.reply}}</view>
+    <view class='global_small_font' style="color:#999;">
+      {{refund.confirm_time}}
+    </view>
+    <view class='small-radus'>
+      <view class='yuan {{refund.business_confirm== 1 && refund.is_rtefund==0 ? "actives" : ""}}'></view>
+      <view class='shu' wx:if="{{refund.is_refund!=1 }}"></view>
+    </view>
+
+
+  </view>
+
+<!-- 退款中 -->
+  <view class='flow-text global_middle_font' wx:if="{{refund.business_confirm == 1}}">
+    <view class='please-text'>退款中</view>
+    <view class='global_small_font text-pl-te' style="color:#999;">您的退款将于1-7个工作日退还至您的账户</view>
+    <view class='global_small_font' style="color:#999;">
+       {{refund.confirm_time}}
+    </view>
+
+    <view class='small-radus'>
+      <view class='yuan {{refund.is_refund==0 && refund.business_confirm==1 ? "actives" : " " }}'></view>
+      <view class='shu' wx:if="{{refund.is_refund!=0 }}"></view>
+    </view>
+  </view>
+
+<!-- 退款成功 -->
+  <view class='flow-text global_middle_font' wx:if="{{refund.business_confirm == 1 && refund.is_refund == 1}}">
+    <view class='please-text'>退款成功</view>
+    <view class='global_small_font text-pl-te' style="color:#999;">￥{{refund.pay_money}}已经退回到您的账户 </view>
+    <view class='global_small_font' style="color:#999;">
+      {{refund.refund_time}}
+    </view>
+
+    <view class='small-radus'>
+      <view class='yuan {{refund.business_confirm== 1&& refund.is_refund==1 ? "actives" : ""}}'></view>
+      <!-- <view class='shu'></view> -->
+    </view>
+
+  </view>
+
+<!-- 退款失败 -->
+	<view class='flow-text global_middle_font' wx:if="{{refund.business_confirm == 1 && refund.is_refund == 2}}">
+    <view class='please-text'>退款失败</view>
+    <view class='global_small_font text-pl-te' style="color:#999;">退款失败 </view>
+    <view class='global_small_font' style="color:#999;">
+      {{refund.refund_time}}
+    </view>
+
+    <view class='small-radus'>
+      <view class='yuan actives'></view>
+      <!-- <view class='shu'></view> -->
+    </view>
+
+  </view>
+
+</view>

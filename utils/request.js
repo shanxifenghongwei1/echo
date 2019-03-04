@@ -2,7 +2,7 @@ const app = getApp();
 let host = {
   image: "https://www.sdhcnet.com/", //图片域名
   resources: "https://www.sdhcnet.com/applets/", //静态资源域名
-  request: "https://www.nazhua.com.cn/api/", //请求域名
+  request: "https://www.nazhua.net/api/", //请求域名
 }
 /**
  * 封装ajax的post请求

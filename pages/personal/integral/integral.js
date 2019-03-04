@@ -34,14 +34,14 @@ Page({
   },
   init() {
     app.request.post({
-      url: "user/integral",
+			url: "integral/get_integral",
       isLoading: true,
       success: (e) => {
-
+				console.log(e)
 
         this.setData({
-          more:e.in.integral,
-          money_list: e.in.desc,
+					more: e.inte_desc.integral_sum,
+					money_list: e.inte_desc.desc,
         })
        
       }

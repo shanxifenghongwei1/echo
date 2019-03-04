@@ -24,6 +24,14 @@ Page({
 
   },
 
+// 排队返现活动开启
+	begin(e){
+		console.log(e.currentTarget.dataset.id)
+	},
+	// 排队返现活动暂停
+	suspend(e){
+		console.log(e.currentTarget.dataset.id)
+	},
   // 获取活动
   init() {
     app.request.post({

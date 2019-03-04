@@ -122,7 +122,7 @@ Page({
 				})
 		} else {
 			wx.uploadFile({
-				url: 'https://www.nazhua.com.cn/api/business/upload',
+				url: 'https://www.nazhua.net/api/business/upload',
 				name: 'shop_logo',
 				filePath: path,
 				success: (res) => {

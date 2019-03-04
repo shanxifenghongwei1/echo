@@ -2,6 +2,22 @@
 
 <!-- 总体样式 -->
 <view class='any'>
+  <!-- 商户头像和名字 -->
+  <!-- <view class='bussiness_height'>
+    <view class='bussiness_height-one'>
+      <image class='bussiness_height-one-image'></image>
+    </view>
+    <view class='bussiness_height-two'>
+      <view class='bussiness_height-two-one'></view>
+      <view class='bussiness_height-two-two'></view>
+    </view>
+    <view class='bussiness_height-three'>
+      <view></view>
+      <view></view>
+    </view>
+  </view> -->
+<!-- 30+50+20 -->
+
   <!-- 扫码验证 -->
   <view class='top_business-top'>
     <view class="iconfont icon-xiaoxi"></view>
@@ -78,7 +94,7 @@
           </view>
         </view>
       </navigator>
-      <navigator  bindtap='blancked' class="bodyLB">
+      <navigator bindtap='blancked' class="bodyLB">
         <view class="bodyLTsun">
           <view class="bodyLTsunS2">
             <view class="mdsz iconfont icon-tixian1"></view>

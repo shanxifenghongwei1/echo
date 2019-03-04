@@ -1,4 +1,5 @@
 // pages/personal/oanduantext/oanduantext.js
+const app = getApp();
 Page({
 
 	/**
@@ -12,9 +13,28 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		this.setData({
+			id:options.id
+		})
 	},
 
+	init(){
+		app.request.post({
+			url: 'refund/getRefundInfo',
+			data:{
+				refund_id:this.data.id
+			},
+			success:(res)=>{
+				if(res.state==1){
+					this.setData({
+						refund:res.refund
+					})
+				}else{
+					app.showtost(res.msg)
+				}
+			}
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
@@ -26,7 +46,7 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
+		this.init()
 	},
 
 	/**

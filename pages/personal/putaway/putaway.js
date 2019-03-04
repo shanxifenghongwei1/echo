@@ -237,7 +237,7 @@ danjia(e){
 		} else {
     // 缩略图上传
     wx.uploadFile({
-      url: 'https://www.nazhua.com.cn/api/shopcenter/uploadimg?goods_id=' + this.data.goods.goods_id,
+			url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + this.data.goods.goods_id,
       filePath: this.data.src[0],
       name: 'goods_thumb',
       success: function(res) {
@@ -248,7 +248,7 @@ danjia(e){
     for (var i = 0; i < 3; i++) {
       if (this.data.banner[i] !== this.data.listimg[i]) {
         wx.uploadFile({
-          url: 'https://www.nazhua.com.cn/api/shopcenter/uploadimg?goods_id=' + this.data.goods.goods_id + '&page=' + i,
+					url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + this.data.goods.goods_id + '&page=' + i,
           filePath: this.data.banner[i],
           name: 'goods_img',
           success: function(res) {
@@ -320,7 +320,7 @@ if(e.detail.value.goods_name == ''){
 			success: (e) => {
 				// 添加缩略图
 				wx.uploadFile({
-					url: 'https://www.nazhua.com.cn/api/shopcenter/uploadimg?goods_id='+e.goods_id,
+					url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id='+e.goods_id,
 					filePath: this.data.src[0],
 					name: 'goods_thumb',
 					success: function (res) {
@@ -330,7 +330,7 @@ if(e.detail.value.goods_name == ''){
 				// 添加banner图
 				for (var i = 0; i < 3; i++) {
 					wx.uploadFile({
-						url: 'https://www.nazhua.com.cn/api/shopcenter/uploadimg?goods_id=' + e.goods_id + '&page=' + i,
+						url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + e.goods_id + '&page=' + i,
 						filePath: this.data.banner[i],
 						name: 'goods_img',
 						success: function (res) {

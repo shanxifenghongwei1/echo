@@ -75,11 +75,11 @@
       </navigator>
 
       <!-- 我的积分 -->
-      <view url='/pages/personal/integral/integral' bindtap='oanduan' class='whit'>
+      <navigator url='/pages/personal/integral/integral' bindtap='oanduan' class='whit'>
         <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-integral'></view>
         <view class='whit2 global_middle_font'>我的积分</view>
         <!-- <view class='whit3 global_small_font'>0.00</view> -->
-      </view>
+      </navigator>
       <!-- 我的买单币 -->
       <navigator url='/pages/personal/purchase/purchase'  class='whit'>
         <view style='font-size:60rpx;margin:17rpx 45rpx;' class='whit1 iconfont icon-qianbi'></view>

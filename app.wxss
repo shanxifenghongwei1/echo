@@ -1,2 +1,2 @@
 @import '/utils/wxss/global.wxss';
-   
+/* @import '/utils/wxss/last.wxss'; */

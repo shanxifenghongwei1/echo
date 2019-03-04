@@ -3,29 +3,29 @@
 <view class='any'>
   <!-- 活动添加 -->
   <navigator url='/pages/personal/business/businessactiveadd/businessactiveadd?shop_id={{shop_id}}' class='site'>
-    <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
-    <view class='site2 name-site-onlode global_middle_font'>活动添加</view>
+    <view class='site1 iconfont icon-add_icon' style='font-size:30rpx;'></view>
+    <view class='site2 name-site-onlode global_middle_font font-colors'>活动添加</view>
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
   </navigator>
 
   <!-- 排队返现 -->
   <navigator url='/pages/personal/business/businessactiveawait/businessactiveawait?shop_id={{shop_id}}' class='site'>
-    <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
-    <view class='site2 name-site-onlode global_middle_font'>排队返现</view>
+    <view class='site1 iconfont icon-fanxian' style='font-size:30rpx;'></view>
+    <view class='site2 name-site-onlode global_middle_font font-colors'>排队返现</view>
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
   </navigator>
   <!-- 活动查看 -->
-  <navigator  class='site' bindtap='activ'>
-    <view class='site1 iconfont icon-chanpin'></view>
-    <view class='site2 name-site-onlode global_middle_font'>活动查看</view>
-    <view  class='site3 iconfont {{istrue == true ? "icon-jiantouxia" : "icon-arrow-right-copy"}}' style="font-siez:26rpx"></view>
+  <navigator class='site' bindtap='activ'>
+    <view class='site1 iconfont icon-chakan'></view>
+    <view class='site2 name-site-onlode global_middle_font font-colors'>活动查看</view>
+    <view class='site3 iconfont {{istrue == true ? "icon-jiantouxia" : "icon-arrow-right-copy"}}' style="font-siez:26rpx"></view>
   </navigator>
 
 
   <!-- 活动选择查看 -->
-  <scroll-view scroll-y wx:if='{{istrue}}' lower-threshold='10' bindscrolltolower='addinit' style='width:94%;padding:3%;height:700rpx;'>
+  <scroll-view scroll-y wx:if='{{istrue}}' lower-threshold='10' bindscrolltolower='addinit' style='background:#fff;width:94%;padding:3%;height:700rpx;'>
 
-		<view wx:if='{{activity.length <= 0 }}' class='global_middle_font' style='width:94%;padding:3%;line-height:80rpx;'>无活动，请添加活动</view>
+    <view wx:if='{{activity.length <= 0 }}' class='global_middle_font' style='width:94%;padding:3%;line-height:80rpx;'>无活动，请添加活动</view>
     <view wx:if='{{activity.length > 0 }}' wx:for='{{activity}}' wx:key='index' style='margin-bottom:40rpx;'>
       <view class='ticket flex_about' style='width:99%;border-right:1px solid #d54036;'>
         <view style='font-size:25rpx;' class=' global_color_red ticket_money flex_about'>{{item.ac_type==1?'充值活动':'支付活动'}}
@@ -47,42 +47,43 @@
 
 
   <!-- 排队返现活动查看 -->
-  <navigator class='site' bindtap='runistru'>
-    <view class='site1 iconfont icon-jia' style='font-size:30rpx;'></view>
-    <view class='site2 name-site-onlode global_middle_font'>排队返现活动查看</view>
+  <view class='site' bindtap='runistru'>
+    <view class='site1 iconfont icon-chakan1' style='font-size:30rpx;'></view>
+    <view class='site2 name-site-onlode global_middle_font font-colors'>排队返现活动查看</view>
     <view class='site3 iconfont {{runistrue == true ? "icon-jiantouxia" : "icon-arrow-right-copy"}}' style='font-size:25rpx'></view>
-  </navigator>
+  </view>
 
   <scroll-view scroll-y lower-threshold='0' bindscrolltolower='runactve' wx:if='{{runistrue}}' style='width:94%;padding:3%;height:800rpx;'>
 
     <view wx:for='{{runmoney}}' wx:key='index' class='one-activ'>
       <view class='avtivcenter global_middle_font'>
         <view>
-          <text>活动名称：</text>
-          <text>{{item.name}}</text> </view>
-        <view>
-          <text>参加人数：</text>
-          <text>{{item.total_number}}</text> </view>
+          <!-- <text>活动名称：</text> -->
+          <text class='font-colors' style='font-weight:400;font-size:30rpx;'>{{item.name}}</text>
+        </view>
+        <view class='peopresa'>
+          <text class='iconfont icon-ren'></text>
+          <text style='margin-left:8rpx;'>{{item.total_number}}</text>
+        </view>
       </view>
 
-      <view class='global_middle_font middel'>
-        <text>活动内容：</text>
-        <text>支付满{{tools.turnInt(item.money)}}返{{tools.turnInt(item.return_money)}}</text> </view>
-      <view class='avtivcenter global_middle_font'>
-        <view>
-          <text>返现期数：</text>
-          <text>{{item.periods}}</text> </view>
-        <view>
-          <text>未返现金额：</text>
-          <text>{{item.total_return_money - item.total_already_return_money}}</text> </view>
+      <view class='leftandright global_middle_font middel'>
+        <view>活动内容：</view>
+        <view>支付满{{tools.turnInt(item.money)}}返{{tools.turnInt(item.return_money)}}</view>
       </view>
-
-
+      <view class='avtivcenter global_middle_font leftandright'>
+          <view>返现期数：</view>
+          <view>{{item.periods}}</view> 
+      </view>
+      <view class='avtivcenter global_middle_font leftandright'>
+          <view>未返现金额：</view>
+          <view>{{item.total_return_money - item.total_already_return_money}}</view>  
+      </view>
       <!-- 停止活动 -->
       <view class='move-shop' style='width:100%;'>
-        <view class='global_middle_font' style='width:32%;height:100%;text-align:center;border: 1rpx solid #eee;'>开启活动</view>
-        <view class='global_middle_font' style='width:33%;height:100%;text-align:center;border: 1rpx solid #eee;'>暂停活动</view>
-        <view class='global_middle_font' style='width:33%;height:100%;text-align:center;border: 1rpx solid #eee;'>删除活动</view>
+        <view class='global_middle_font button-view' data-id='{{item.id}}' bindtap='begin'>开启</view>
+				<view style='width:100rpx;'></view>
+        <view class='global_middle_font button-view-one' data-id='{{item.id}}' bindtap='suspend'>暂停</view>
       </view>
 
 
