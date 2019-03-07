@@ -27,10 +27,32 @@ Page({
 // 排队返现活动开启
 	begin(e){
 		console.log(e.currentTarget.dataset.id)
+		app.request.post({
+			url: 'return/editReturnCash',
+			data:{
+				return_id: e.currentTarget.dataset.id,
+				status : 1    //1开启 2关闭
+			},
+			success:(res)=>{
+			
+				app.showtost(res.msg)
+			}
+		})
 	},
 	// 排队返现活动暂停
 	suspend(e){
 		console.log(e.currentTarget.dataset.id)
+		app.request.post({
+			url: 'return/editReturnCash',
+			data: {
+				return_id: e.currentTarget.dataset.id,
+				status: 2    //1开启 2关闭
+			},
+			success: (res) => {
+				console.log(res)
+				app.showtost(res.msg)
+			}
+		})
 	},
   // 获取活动
   init() {
@@ -67,6 +89,12 @@ Page({
       }
     })
   },
+// 活动修改
+	modifier(e){
+		wx.navigateTo({
+			url:'/pages/personal/business/businessactivechang/businessactivechang?shop_id='+ this.data.shop_id + '&ac_id=' + e.currentTarget.dataset.id,
+		})
+	},
 
   // 活动隐藏
   activ() {

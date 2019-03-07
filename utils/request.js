@@ -22,7 +22,6 @@ let requestPost = ajaxJson=> {
   }
   if (ajaxJson.data==undefined){
     ajaxJson.data={};
-   
   }
   ajaxJson.data["user_id"] = wx.getStorageSync('user_id')
   wx.request({

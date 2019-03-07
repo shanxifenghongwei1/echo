@@ -30,7 +30,11 @@
       <view class='stop-div'></view>
     </view>
     <view class='stop-div'></view>
-    <button type='primary' disabled='{{inputtext != 0 && zongyue >= inputtext ?  false :true  }}' bindtap='submits' class='global_large_font wait-small-box-bottom'>提现</button>
+<!-- 
+<button wx:if='{{shanghu}}' type='primary' disabled='{{inputtext != 0 && zongyue >= inputtext ?  false :true  }}' bindtap='shop_submits' class='global_large_font wait-small-box-bottom'>提现</button> -->
+
+    <button  type='primary' disabled='{{inputtext != 0 && zongyue >= inputtext ?  false :true  }}' bindtap='submits' class='global_large_font wait-small-box-bottom'>提现</button>
+
 
   </view>
 

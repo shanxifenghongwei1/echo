@@ -3,34 +3,37 @@
 <!-- 总体样式 -->
 <view class='any'>
   <!-- 商户头像和名字 -->
-  <!-- <view class='bussiness_height'>
+  <view class='bussiness_height'>
     <view class='bussiness_height-one'>
-      <image class='bussiness_height-one-image'></image>
+      <image src='{{anyone_orshop.shop_logo}}' class='bussiness_height-one-image'></image>
     </view>
+
     <view class='bussiness_height-two'>
-      <view class='bussiness_height-two-one'></view>
-      <view class='bussiness_height-two-two'></view>
+      <view class='bussiness_height-two-one global_large_font color-whilt font-sweight global_single_ellipsis'> {{anyone_orshop.shop_name}}</view>
+      <view class='bussiness_height-two-two global_small_font color-whilt'> TEL: <text class='global_small_font color-whilt'>{{anyone_orshop.iphone}}</text></view>
     </view>
+		
     <view class='bussiness_height-three'>
-      <view></view>
-      <view></view>
+      <view class='color-whilt iconfont icon-xiaoxi fon-ssize'></view>
+      <view class='color-whilt iconfont icon-shezhi fon-ssize' bindtap='switcher'></view>
     </view>
-  </view> -->
+  </view>
 <!-- 30+50+20 -->
 
   <!-- 扫码验证 -->
-  <view class='top_business-top'>
+  <!-- <view class='top_business-top'>
     <view class="iconfont icon-xiaoxi"></view>
     <view class="iconfont line-inline icon-saoyisao two-ma" bindtap='qrcode'>
       <view class='line-inline global_middle_font'>二维码</view>
     </view>
-    <view class="iconfont icon-shezhi setactivepartition" bindtap='switcher'> </view>
-  </view>
+    <view class="iconfont icon-shezhi setactivepartition" > </view>
+  </view> -->
 
   <!-- 核销码 -->
   <view class="header">
     <view class="headersun">
-      <input type="number" bindinput='moveid' placeholder="请输入优惠券编号" value='{{hexiao}}' />
+			 <view class="iconfont line-inline icon-saoyisao two-ma fon-ssize socolor-erwima" bindtap='qrcode'></view>
+      <input type="number" style='background:#fff;padding-left:20rpx;margin-left:20rpx;'  bindinput='moveid' placeholder="请输入优惠券编号" value='{{hexiao}}' />
       <view class="headersunR" bindtap='eliminate'>
         <text>去验证</text>
       </view>
@@ -56,18 +59,21 @@
   <!-- 完成订单 -->
   <view class="today">
     <view class="todaySun1">
-      <navigator class='global_middle_font'>今日完成订单</navigator>
+      
       <view class="todaySunR">
-        <text class='global_middle_font global_color_red'>{{dayorder}}</text>
+        <text class='global_middle_font global_color_red font-sweight'>{{dayorder}}</text>
       </view>
+			<view class='global_middle_font'>今日订单(个)</view>
     </view>
     <view class="todaySun2">
+
+		  <view class="todaySun2R">
+        <text class='global_middle_font global_color_red font-sweight'>{{daymoney}}</text>
+      </view>
       <view class="todaySun2L">
-        <text class='global_middle_font'>今日营业额</text>
+        <text class='global_middle_font'>今日营业额(元)</text>
       </view>
-      <view class="todaySun2R">
-        <text class='global_middle_font global_color_red'>￥{{daymoney}}</text>
-      </view>
+    
     </view>
   </view>
   <view class="hentiao"></view>
@@ -77,40 +83,40 @@
     <view class="bodyL">
       <navigator url='/pages/personal/business/productcenter/productcenter?myshop_id={{myshop_id}}' class="bodyLT">
         <view class="bodyLTsun">
-          <view class="bodyLTsunS">
-            <view class="mdsz iconfont icon-chanpin"></view>
-          </view>
+          <!-- <view class="bodyLTsunS"> -->
+            <view style='color:#ed4444;' class="mdsz iconfont icon-chanpin2 big-font-my"></view>
+          <!-- </view> -->
           <view class="bodyLTsunX">
             <text>产品中心</text> </view>
         </view>
       </navigator>
       <navigator url='/pages/personal/business/reviewcenter/reviewcenter?shop_id={{myshop_id}}' class="bodyLZ">
         <view class="bodyLTsun">
-          <view class="bodyLTsunS1">
-            <view class="mdsz iconfont icon-pinglun"></view>
-          </view>
+          <!-- <view class="bodyLTsunS1"> -->
+            <!-- <view class="mdsz iconfont icon-pinglun"></view> -->
+						<view style='color:#12a386' class="mdsz iconfont icon-pinglun big-font-my"></view>
+          <!-- </view> -->
           <view class="bodyLTsunX">
             <text>评论中心</text>
           </view>
         </view>
       </navigator>
-      <navigator bindtap='blancked' class="bodyLB">
+      <view bindtap='blancked' class="bodyLB">
         <view class="bodyLTsun">
-          <view class="bodyLTsunS2">
-            <view class="mdsz iconfont icon-tixian1"></view>
-          </view>
+          <!-- <view class="bodyLTsunS2">
+            <view class="mdsz iconfont icon-tixian1"></view> -->
+						<view style='color:#f0982a;' class="mdsz iconfont icon-tixian big-font-my"></view>
+          <!-- </view> -->
           <view class="bodyLTsunX">
             <text>提现中心</text>
           </view>
         </view>
-      </navigator>
+      </view>
     </view>
     <view class="bodyZ">
       <navigator url='/pages/personal/business/shopordercenter/shopordercenter?shop_id={{myshop_id}}' class="bodyZT">
         <view class="bodyLTsun">
-          <view class="bodyLTsunS3">
-            <view class="mdsz iconfont icon-dingdan"></view>
-          </view>
+            <view style='color:#f39927' class="mdsz iconfont icon-fl-dingdan big-font-my"></view>
           <view class="bodyLTsunX">
             <text>订单中心</text>
           </view>
@@ -118,9 +124,10 @@
       </navigator>
       <navigator url='/pages/personal/business/businessdiscount/businessdiscount?shop_id={{myshop_id}}' class="bodyZZ">
         <view class="bodyLTsun">
-          <view class="bodyLTsunS4">
-            <view class="mdsz iconfont icon-qiaquan"></view>
-          </view>
+          <!-- <view class="bodyLTsunS4">
+            <view class="mdsz iconfont icon-qiaquan"></view> -->
+						<view style='color:#1b8ee1;' class="mdsz iconfont icon-weibiaoti-- big-font-my"></view>
+          <!-- </view> -->
           <view class="bodyLTsunX">
             <text>卡券中心</text>
           </view>
@@ -128,9 +135,11 @@
       </navigator>
       <navigator url='/pages/personal/business/bussinessuseraccount/bussinessuseraccount?shop_id={{myshop_id}}' class="bodyZB">
         <view class="bodyLTsun">
-          <view class="bodyLTsunS5">
-            <view class="mdsz iconfont icon-yonghu"></view>
-          </view>
+          <!-- <view class="bodyLTsunS5"> -->
+					
+            <!-- <view class="mdsz iconfont icon-yonghu"></view> -->
+						<view style='color:#13a487' class="mdsz iconfont icon-zhanghu big-font-my"></view>
+          <!-- </view> -->
           <view class="bodyLTsunX">
             <text>账户中心</text>
           </view>
@@ -140,9 +149,10 @@
     <view class="bodyR">
       <navigator url='/pages/personal/business/businessactive/businessactive?shop_id={{myshop_id}}' class="bodyRT">
         <view class="bodyLTsun">
-          <view class="bodyLTsunS6">
-            <view class="mdsz iconfont icon-huodong"></view>
-          </view>
+          <!-- <view class="bodyLTsunS6"> -->
+           
+						<view style='color:#1b8ee1' class="mdsz iconfont icon-huodong big-font-my"></view>
+          <!-- </view> -->
           <view class="bodyLTsunX">
             <text>活动中心</text>
           </view>
@@ -150,9 +160,10 @@
       </navigator>
       <navigator class="bodyRZ" url='/pages/personal/business/bussinessuservoucher/bussinessuservoucher?shop_id={{myshop_id}}'>
         <view class="bodyLTsun">
-          <view class="bodyLTsunS7">
-            <view class="mdsz iconfont icon-qiandaijinbi"></view>
-          </view>
+          <!-- <view class="bodyLTsunS7">
+            <view class="mdsz iconfont icon-qiandaijinbi"></view> -->
+						<view style='color:#f29826;' class="mdsz iconfont icon-chongzhi2 big-font-my"></view>
+          <!-- </view> -->
           <view class="bodyLTsunX">
             <text>充值中心</text>
           </view>
@@ -160,9 +171,10 @@
       </navigator>
       <navigator url='/pages/personal/business/moneyback/moneyback?shop_id={{myshop_id}}' class="bodyRB">
         <view class="bodyLTsun">
-          <view class="bodyLTsunS8">
-            <view class="mdsz iconfont icon-yinhangqia"></view>
-          </view>
+          <!-- <view class="bodyLTsunS8"> -->
+            <!-- <view class="mdsz iconfont icon-yinhangqia"></view> -->
+						<view style='color:#db524c' class="mdsz iconfont icon-yinhangqia big-font-my"></view>
+          <!-- </view> -->
           <view class="bodyLTsunX">
             <text>退款</text>
           </view>

@@ -28,7 +28,8 @@
         <view class="info_title global_middle_font global_multiLine_ellipsis">
           <view class='global_middle_font'>{{shopObj.shop_name}}</view>
           <view class='global_small_font global_single_ellipsis '>
-           营业时间：{{shopObj.business_start_hours}}~{{shopObj.business_end_hours}} <text wx:if="{{shopObj.business_hours_re != 0 }}">（{{shopObj.business_hours_re}}）</text>	
+            营业时间：{{shopObj.business_start_hours}}~{{shopObj.business_end_hours}}
+            <text wx:if="{{shopObj.business_hours_re != 0 }}">（{{shopObj.business_hours_re}}）</text>
           </view>
 
         </view>
@@ -57,12 +58,19 @@
   </navigator>
 
   <view class="newline"></view>
-  <view class='business_synopsis flex_about'>
-    <view class='global_middle_font '>
-      <view class='iconfont icon-qiyerenzheng global_color_red'></view>店铺简介：</view>
-    <view class='global_middle_font '>{{shopObj.brief}}
-    </view>
+
+<view style='position: relative;'>
+
+  <view class='business_synopsis flex_about' bindtap='displayer'>
+    <view class='global_middle_font'> <view class='iconfont icon-qiyerenzheng global_color_red'></view>店铺简介： </view>
+    <view class='global_middle_font {{areshure == true ? "exceed-font" : ""}}'>{{shopObj.brief}} </view>
   </view>
+
+	<view wx:if='{{ areshure == true && shopObj.brief.length >= 54}}' class='fly-exceed-font iconfont icon-sanjiaodown'></view>
+<view wx:if='{{ areshure == false && shopObj.brief.length >= 54}}' class='fly-exceed-font iconfont icon-xiangshang'></view>
+
+</view>
+
   <view class="newline"></view>
   <view class='flex_about nav_module  global_large_font'>
     <view wx:for-items="{{navArray}}" wx:key="navKey" bindtap='jumpTo' data-id="{{index}}" data-opt="{{item.id}}" class="nav_item {{index==navActive?'nav_active':''}}">{{item.name}}</view>
@@ -176,16 +184,16 @@
 
     <view class='product_module' id="list1">
       <navigator id='ones' style='border:0.5rpx solid #eee;' wx:if="{{shopObj!=null&&shopObj.hot_goods.length > 0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.hot_goods}}" wx:key="dataListKey" class="di_item">
-			<view id="cesces">
-        <image src="{{item.goods_thumb}}" style='width:300rpx;height:300rpx;'>	</image>
-				<view style='position:absolute;right:26rpx;top:7rpx;padding:0 5rpx;background:red;color:#fff;' class='global_middle_font global_color_red'> {{item.is_promote == 1 ? "促销" : ""}}</view>
-			</view>
+        <view id="cesces">
+          <image src="{{item.goods_thumb}}" style='width:300rpx;height:300rpx;'> </image>
+          <view style='position:absolute;right:26rpx;top:7rpx;padding:0 5rpx;background:red;color:#fff;' class='global_middle_font global_color_red'> {{item.is_promote == 1 ? "促销" : ""}}</view>
+        </view>
         <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
         <view class='dl_detailed global_small_font flex_about'>
           <text wx:if='{{item.is_promote != 1}}' class='global_middle_font global_color_red'>￥{{item.shop_price}} </text>
 
 
-					          <text wx:if='{{item.is_promote == 1}}' class='global_middle_font global_color_red'>￥{{item.promote_price}}  <text style='text-decoration:line-through;'>原价:{{item.shop_price}} </text> </text>
+          <text wx:if='{{item.is_promote == 1}}' class='global_middle_font global_color_red'>￥{{item.promote_price}}  <text style='text-decoration:line-through;'>原价:{{item.shop_price}} </text> </text>
         </view>
         <view wx:if='{{item.goods_number == 0}}' class='nohavegoods'>
           <image src='/images/production/nohaveeee.png' class='nohave-img'></image>
@@ -200,13 +208,13 @@
     <view class='product_module' id="list1">
       <navigator id="ones" style='border:0.5rpx solid #eee;' wx:if="{{shopObj!=null&&shopObj.goods.length > 0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.goods}}" wx:key="dataListKey" class="di_item">
         <image src="{{item.goods_thumb}}" style='width:300rpx;height:300rpx;'></image>
-				<view style='position:absolute;right:26rpx;top:7rpx;padding:0 5rpx;background:red;color:#fff;' class='global_middle_font global_color_red'> {{item.is_promote == 1 ? "促销" : ""}}</view>
+        <view style='position:absolute;right:26rpx;top:7rpx;padding:0 5rpx;background:red;color:#fff;' class='global_middle_font global_color_red'> {{item.is_promote == 1 ? "促销" : ""}}</view>
         <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
         <view class='dl_detailed global_small_font flex_about'>
-                 <text wx:if='{{item.is_promote != 1}}' class='global_middle_font global_color_red'>￥{{item.shop_price}} </text>
+          <text wx:if='{{item.is_promote != 1}}' class='global_middle_font global_color_red'>￥{{item.shop_price}} </text>
 
 
-					          <text wx:if='{{item.is_promote == 1}}' class='global_middle_font global_color_red'>￥{{item.promote_price}}  <text style='text-decoration:line-through;'>原价:{{item.shop_price}} </text> </text>
+          <text wx:if='{{item.is_promote == 1}}' class='global_middle_font global_color_red'>￥{{item.promote_price}}  <text style='text-decoration:line-through;'>原价:{{item.shop_price}} </text> </text>
           <!--   <text class='global_middle_font global_color_red'>{{item.goumai}}</text>人购买-->
         </view>
 

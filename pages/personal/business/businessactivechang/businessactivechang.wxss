@@ -1,0 +1,2 @@
+/* pages/personal/business/businessactivechang/businessactivechang.wxss */
+@import "/pages/personal/business/businessactiveawait/businessactiveawait.wxss";

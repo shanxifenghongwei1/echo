@@ -7,7 +7,7 @@
 <!-- 账单详情 -->
   <navigator class='one-sloat-list'  url="/pages/personal/person/rechargedesc/rechargedesc?type={{item.key}}&desc_sn={{item.desc_sn}}" wx:for="{{money_list}}" wx:key='index'>
     <view class='one-sloat-list-left'>
-      <view class='global_large_font one-sloat-list-left-top one-sloat-list-left-font'>{{item.shop_name}}</view>
+      <view class='global_large_font one-sloat-list-left-top one-sloat-list-left-font global_single_ellipsis'>{{item.shop_name}}</view>
       <view class='global_small_font one-sloat-list-left-top' >{{item.type_name}}</view>
       <view class='global_middle_font'> {{item.time}}</view>
     </view>

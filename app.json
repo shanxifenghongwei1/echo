@@ -40,6 +40,7 @@
 		"pages/personal/business/productcenter/productcenter",
 		"pages/personal/business/reviewcenter/reviewcenter",
 		"pages/personal/business/businessactive/businessactive",
+		"pages/personal/business/businessactivechang/businessactivechang",
 		"pages/personal/business/businessdiscount/businessdiscount",
 		"pages/personal/business/businessactiveadd/businessactiveadd",
 		"pages/personal/business/businessactiverechange/businessactiverechange",

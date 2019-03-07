@@ -78,7 +78,7 @@
     </view>
     <view class='small-radus'>
       <view class='yuan {{refund.business_confirm== 1 && refund.is_rtefund==0 ? "actives" : ""}}'></view>
-      <view class='shu' wx:if="{{refund.is_refund!=1 }}"></view>
+      <view class='shu' wx:if="{{ refund.business_confirm == 1 }}"></view>
     </view>
 
 
@@ -94,7 +94,7 @@
 
     <view class='small-radus'>
       <view class='yuan {{refund.is_refund==0 && refund.business_confirm==1 ? "actives" : " " }}'></view>
-      <view class='shu' wx:if="{{refund.is_refund!=0 }}"></view>
+      <view class='shu' wx:if="{{refund.is_refund!=0 && refund.business_confirm == 1}}"></view>
     </view>
   </view>
 

@@ -79,6 +79,14 @@
 	margin-left:2%;
 	margin-right:2%;
 	width:120rpx;
+
+		margin-bottom: 10rpx;
+}
+
+.nohavelocal{
+	width:94%;
+	height: 50rpx;
+	padding: 3%;
 }
 
 .search-ending{
@@ -86,6 +94,8 @@
 	padding: 3%;
 	/* float: left; */
 	/* display: block; */
+
+
 	display: flex; 
 	flex-wrap:wrap;
 	align-items:center;

@@ -63,6 +63,18 @@ page {
   border: 1rpx solid #eee;
 }
 
+.button-view-th {
+  border-radius: 15rpx;
+  background: #06c1ae;
+  color: #fff;
+  margin-top: 30rpx;
+  width: 100rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  border: 1rpx solid #eee;
+}
+
 .move-shop{
 	display: flex;
 	align-items: center;

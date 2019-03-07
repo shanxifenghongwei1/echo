@@ -96,7 +96,7 @@ Page({
       url: "cash/bankList",
       success: (e) => {
         if (this.data.payforid == 4 || this.data.payforid == 7) {
-          if (e.length == 0) {
+          if (e.list.length == 0) {
             wx.redirectTo({
               url: "/pages/personal/bandcard/addbandcard/addbandcard",
               success: function() {
@@ -112,8 +112,8 @@ Page({
             })
           } else {
             this.setData({
-              bank_list: e,
-              bank_id: e[0].id
+              bank_list: e.list,
+              bank_id: e.list[0].id
             })
           }
         }

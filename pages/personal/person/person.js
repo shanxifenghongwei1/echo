@@ -31,7 +31,7 @@ Page({
 			})
 		}else{
 			wx.navigateTo({
-				url: '/pages/personal/person/userwaitmoney/userwaitmoney?payforid=4&zongyue='+ this.data.user_money,
+				url: '/pages/personal/person/userwaitmoney/userwaitmoney?payforid=4&zongyue='+ this.data.user_money 
 			})
 		}
 	},
@@ -77,11 +77,11 @@ Page({
 		app.request.post({
 			url: "cash/bankList",
 			success: (e) => {
-				if (e.length==0) {
+				if (e.list.length==0) {
 						this.setData({
 							aaa:0
 						})
-				}else if(e.length>0){
+				}else if(e.list.length>0){
 					this.setData({
 						aaa:1
 					})

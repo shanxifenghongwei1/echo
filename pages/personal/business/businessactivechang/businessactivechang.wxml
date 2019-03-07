@@ -1,0 +1,45 @@
+<!-- 活动添加页面 -->
+
+<form bindsubmit="addshopproduct">
+
+  <!-- 返现名称 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>返现名称：</view>
+    <input name='name' class=' global_middle_font one-module-input' value='{{active_message.name}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+  <!-- 活动金额 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>活动金额：</view>
+    <input name='money' class=' global_middle_font one-module-input' type='digit' value='{{active_message.money}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+  <!-- 返现金额 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>返现金额：</view>
+    <input name='return_money' class=' global_middle_font one-module-input' type='digit' value='{{active_message.return_money}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+  <!--期数 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>期数：</view>
+    <input name='periods' class=' global_middle_font one-module-input' type='number' value='{{active_message.periods}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+  <!-- 拿出金额 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>拿出金额：</view>
+    <input name='take_money' class=' global_middle_font one-module-input' type='digit' value='{{active_message.take_money}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+
+  <!-- 人数 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>人数</view>
+    <input name='number' class=' global_middle_font one-module-input' type='number' value='{{active_message.number}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+
+  <!-- 介绍 -->
+  <view class='one-module'>
+    <view class=' global_middle_font one-module-text'>介绍：</view>
+    <input name='brief' class=' global_middle_font one-module-input' value='{{active_message.brief}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
+  </view>
+  <!-- 提交 	-->
+  <button style='width:100%;height:80rpx;margin-top:10rpx;' type='primary' form-type="submit">确认修改</button>
+  <view style='width:90%;height:80rpx;'></view>
+</form>

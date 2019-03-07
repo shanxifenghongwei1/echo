@@ -2,7 +2,7 @@
 
   <view class='search-head global_middle_font'>
     <!-- <view class='sezrch-back iconfont icon-fanhui'></view> -->
-    <input class='search-input' bindinput='search' value='{{userinput}}'></input>
+    <input class='search-input' confirm-type='search' type='text' bindconfirm='idonno'	 bindinput='search' value='{{userinput}}'></input>
     <view class='search-buttons' bindtap='gosearch'>搜索</view>
   </view>
 
@@ -14,6 +14,8 @@
     <view class='search-isos'>历史搜索</view>
     <view class='iconfont icon-shanchu' bindtap='deletes'></view>
   </view>
+
+	<view wx:if='{{content && istrue}}' class='nohavelocal global_middle_font'> 无历史搜索记录  </view>
 
   <view wx:if='{{istrue}}' class='search-ending global_middle_font'>
     <view class='search-zooid global_single_ellipsis'  wx:for='{{searchList}}' wx:key='index' data-id='{{item}}' bindtap='cesrch'>
@@ -36,7 +38,7 @@
         <view class='info_content'>
           <view class="info_title global_middle_font global_multiLine">
 
-            <view style='font-weight:bold' class='global_middle_font'>{{item.shop_name}}</view>
+            <view style='font-weight:bold'  class='global_single_ellipsis global_middle_font'>{{item.shop_name}}</view>
             <view class='global_middle_font'>{{item.cat_name}}</view>
           </view>
           <view class='ic_info'>
@@ -84,7 +86,7 @@
           <view class="info_title global_middle_font global_multiLine">
 
             <view style='font-weight:bold' class='global_middle_font'>{{item.goods_name}}</view>
-            <view class='global_middle_font'>{{item.goods_brief}}</view>
+            <view class='global_small_font global_multiLine_ellipsis'>{{item.goods_brief}}</view>
           </view>
           <view class='ic_info'>
             <text class="global_middle_font global_color_red"><text class='iconfont icon-huaduo'></text></text>

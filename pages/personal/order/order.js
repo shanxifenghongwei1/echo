@@ -94,7 +94,9 @@ Page({
               if (res.state == 1) {
                 app.showtost(res.msg)
                 let a = that.data.shop
+								console.log(a)
 								a.splice(index,1)
+								console.log(a)
                 that.setData({
                   shop: a
                 })
@@ -110,50 +112,66 @@ Page({
 
   addorderid: function(e) {
     this.setData({
-      cid: e.currentTarget.dataset.id
+      cid: e.currentTarget.dataset.id,
+			page:1
     })
     this.init();
   },
   // 取消订单
   removeorderlist(e) {
-    let order_id = e.currentTarget.dataset.order_id
-    let index = e.currentTarget.dataset.index
-    app.request.post({
-      url: "order/cancel_order",
-      isLoading: true,
-      data: {
-        order_id: order_id, //"订单Id",
-      },
-      success: (res) => {
-        if (res.state == 1) {
-          app.showtost('取消成功')
-          let a = this.data.shop
-          a.splice(index, 1)
-          this.setData({
-            shop: a
-          })
-        } else if (res.state == 2) {
-          app.showtost('取消失败')
-        }
-      }
-    })
+		let order_id = e.currentTarget.dataset.order_id
+		let index = e.currentTarget.dataset.index
+		console.log(index)
+		
+		wx.showModal({
+			title: '提示',
+			content: '是否取消该订单？',
+			success:(ass)=>{
+				if (ass.confirm) {
+					wx.showLoading({
+						title: '正在取消',
+						mask: true
+					})
+					app.request.post({
+						url: "order/cancel_order",
+						isLoading: true,
+						data: {
+							order_id: order_id, //"订单Id",
+						},
+						success: (res) => {
+							wx.hideLoading()
+							if (res.state == 1) {
+								app.showtost('取消成功')
+								let a = this.data.shop
+								console.log(a)
+								a.splice(index, 1)
+								this.setData({
+									shop: a
+								})
+							} else if (res.state == 2) {
+								app.showtost(res.msg)
+							}
+						}
+					})
+
+
+				}
+			}
+		})
+
+   
+	
+    
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     app.setNavigationBarTitle("我的订单");
-	console.log(options)
-
-	
-
-
-
   },
   storygoodslist(e) {
     this.setData({
       order_id: e.currentTarget.dataset.order_id,
-			
     })
 
     var that = this
@@ -239,7 +257,7 @@ Page({
       success: (e) => {
         this.setData({
           shop: e.order,
-          page: 0
+          page: 1
         })
       }
     })

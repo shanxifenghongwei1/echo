@@ -10,28 +10,28 @@
   <!-- 活动金额 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>活动金额：</view>
-    <input name='money' class=' global_middle_font one-module-input' placeholder='活动金额' placeholder-style='font-size:28rpx;color:#666;'> </input>
+    <input name='money' class=' global_middle_font one-module-input' type='digit' placeholder='活动金额' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
   <!-- 返现金额 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>返现金额：</view>
-    <input name='return_money' class=' global_middle_font one-module-input' placeholder='返现金额' placeholder-style='font-size:28rpx;color:#666;'> </input>
+    <input name='return_money' class=' global_middle_font one-module-input' type='digit' placeholder='返现金额' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
   <!--期数 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>期数：</view>
-    <input name='periods' class=' global_middle_font one-module-input' placeholder='期数' placeholder-style='font-size:28rpx;color:#666;'> </input>
+    <input name='periods' class=' global_middle_font one-module-input' type='number' placeholder='期数' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
   <!-- 拿出金额 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>拿出金额：</view>
-    <input name='take_money' class=' global_middle_font one-module-input' placeholder='拿出金额' placeholder-style='font-size:28rpx;color:#666;'> </input>
+    <input name='take_money' class=' global_middle_font one-module-input' type='digit' placeholder='拿出金额' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
 
   <!-- 人数 -->
   <view class='one-module'>
     <view class=' global_middle_font one-module-text'>人数</view>
-    <input name='number' class=' global_middle_font one-module-input' placeholder='人数' placeholder-style='font-size:28rpx;color:#666;'> </input>
+    <input name='number' class=' global_middle_font one-module-input' type='number' placeholder='人数' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
 
   <!-- 介绍 -->

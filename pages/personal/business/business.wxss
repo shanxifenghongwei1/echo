@@ -1,3 +1,5 @@
+@import '/utils/wxss/last.wxss';
+
 .top_business-top{
 	width: 94%;
 	padding: 3%;
@@ -10,7 +12,6 @@
 .setactivepartition{
 	/* width: 80rpx; */
 	height: 100%;
-
 }
 
 page{
@@ -219,12 +220,16 @@ display: flex;
 
 /* 扫码验证 */
 .header{
-    width: 100%;
+    width: 94%;
     height: 70rpx;
-    background-color: #fff;
+		background: #fccfcc;
+		padding:3%;
+		margin-top:30rpx;
+		margin-bottom:30rpx;
+    /* background-color: #fff; */
     display: flex;
-    justify-content: space-between;
-		margin-top: 0.5rpx;
+    justify-content: space-around;
+		/* margin-top: 0.5rpx; */
 }
 .headerL{
     width: 50rpx;
@@ -239,14 +244,16 @@ display: flex;
 .headersun{
     width:92%;
     height: 50rpx;
+
+
 		border: #eee;
     margin: auto;
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
 }
 
 .headersun input{
-    font-size: 30rpx;
+    font-size: 25rpx;
     width: 450rpx;
     height: 100%;
 		border-radius: 25rpx;
@@ -257,7 +264,8 @@ display: flex;
     width: 120rpx;
     height: 50rpx;
     border-radius: 25rpx;
-    background-color: rgb(238, 64, 65);
+    /* background-color: rgb(238, 64, 65); */
+		background-image: linear-gradient(45deg, #fbae82, #ed4444);
     margin-left: 35rpx;
     display: flex;
     justify-content: center;
@@ -409,9 +417,10 @@ display: flex;
 .bodyLT{
     width: 100%;
     height: 33%;
-    /* background-color: aquamarine; */
+    background-color: #fff;
     border-bottom:1px solid gainsboro; 
     display: flex;  
+
 }
 .bodyLZ{
     width: 100%;
@@ -430,7 +439,7 @@ display: flex;
 .bodyZT{
     width: 100%;
     height: 33%;
-    /* background-color: aquamarine; */
+    background-color: #fff;
     border-bottom:1px solid gainsboro;
     display: flex;
 }
@@ -471,7 +480,7 @@ display: flex;
 }
 
 .bodyLTsun{
-    width: 90rpx;
+    /* width: 90rpx; */
     height: 135rpx;
     /* background-color: cornflowerblue; */
     margin: auto;
@@ -479,7 +488,9 @@ display: flex;
     text-align: center;
 }
 .bodyLTsunX{
-    margin-top: 15rpx;
+    margin-top: 22rpx;
+		font-size: 28rpx;
+		color: #1a1a1a;
 }
 .bodyLTsunS{
     margin: auto;
@@ -565,14 +576,76 @@ display: flex;
     align-items: center;
 }
 .mdsz{
-    width: 50rpx;
-    height: 50rpx;
+    /* width: 50rpx;
+    height: 50rpx; */
     margin: auto;
 		color: #fff;
 }
 
+/* ---------- */
 .bussiness_height{
 	width: 100%;
 	height: 180rpx;
 	background: #ed4444;
+
+	display: flex;
+	justify-items: center;
+	justify-content: flex-start;
 }
+
+.bussiness_height-one-image{
+	width: 150rpx;
+	height: 150rpx;
+
+	border-radius: 75rpx;
+
+	position: relative;
+	left: 17%;
+	top:9%;
+}
+
+.bussiness_height-one{
+	width: 30%;
+	height: 100%;
+
+	position: relative
+}
+
+.bussiness_height-two{
+	width: 169px;
+	height: 100%;
+}
+
+.bussiness_height-three{
+	width: 20%;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.bussiness_height-two-one{
+	margin-top: 37rpx;
+}
+
+.color-whilt{
+	color: #fff;
+}
+
+.font-sweight{
+	font-weight:600;
+}
+
+.fon-ssize{
+	font-size: 45rpx;
+}
+
+.socolor-erwima{
+	color: #ed4444;
+}
+
+.big-font-my{
+	font-size: 60rpx;
+}
+

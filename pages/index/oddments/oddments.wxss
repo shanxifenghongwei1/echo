@@ -1,6 +1,7 @@
 /* pages/index/oddments/oddments.wxss */
 @import '/utils/wxss/store.wxss';
 @import '/utils/wxss/voucher.wxss';
+/* @import '/utils/wxss/last.wxss'; */
 
 .header_top {
   position: absolute;
@@ -13,7 +14,6 @@
   display: flex;
   justify-content: space-between;
   text-align: center;
-
 }
 
 #cences{
@@ -100,6 +100,7 @@
 }
 
 .business_synopsis {
+	
   align-items: flex-start;
   padding: 2.5% 2%;
 }
@@ -225,3 +226,18 @@
   display: block;
 }
 /*  */
+.fly-exceed-font{
+	position: absolute;
+	right: 14rpx;
+	bottom: 6rpx;
+	/* background: red; */
+	/* width: 80rpx; */
+	/* height: 80rpx; */
+}
+
+.exceed-font{
+	  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+}

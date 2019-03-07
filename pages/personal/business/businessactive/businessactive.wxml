@@ -15,11 +15,11 @@
     <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
   </navigator>
   <!-- 活动查看 -->
-  <navigator class='site' bindtap='activ'>
+  <view class='site' bindtap='activ'>
     <view class='site1 iconfont icon-chakan'></view>
     <view class='site2 name-site-onlode global_middle_font font-colors'>活动查看</view>
     <view class='site3 iconfont {{istrue == true ? "icon-jiantouxia" : "icon-arrow-right-copy"}}' style="font-siez:26rpx"></view>
-  </navigator>
+  </view>
 
 
   <!-- 活动选择查看 -->
@@ -83,10 +83,10 @@
       <view class='move-shop' style='width:100%;'>
         <view class='global_middle_font button-view' data-id='{{item.id}}' bindtap='begin'>开启</view>
 				<view style='width:100rpx;'></view>
+					<view class='global_middle_font button-view-th' data-id='{{item.id}}' bindtap='modifier'>修改</view>
+					<view style='width:100rpx;'></view>
         <view class='global_middle_font button-view-one' data-id='{{item.id}}' bindtap='suspend'>暂停</view>
       </view>
-
-
 
 
     </view>

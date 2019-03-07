@@ -12,7 +12,7 @@
     <view class='my-order' wx:for="{{shop}}" wx:key='index'>
       <!-- 店家名字+支付状态 -->
       <view class='shop' bindlongtap='consolea' data-index='{{index}}' data-order_id='{{item.order_id}}'>
-        <view class=' global_middle_font shop-name'>{{item.shop_name}}
+        <view class=' global_middle_font shop-name global_single_ellipsis '>{{item.shop_name}}
         </view>
         <view class='state global_middle_font' wx:if='{{item.order_mode==2}}'>商品订单</view>
          <view class='state global_middle_font' wx:if='{{item.order_mode==1}}'>店铺订单</view>
@@ -24,7 +24,7 @@
         </view>
         <view class=' global_middle_font commdity-particulars'>
           <view class='flex_about shop-money'>
-            <view class=''>{{item.goods_name}}</view>
+            <view class='global_single_ellipsis'>{{item.goods_name}}</view>
             <view></view>
             <view class='global_color_red global_large_font'> ¥{{item.goods_price}}</view>
           </view>
@@ -48,7 +48,7 @@
         </view>
         <view class=' global_middle_font commdity-particulars'>
           <view class='flex_about shop-money'>
-            <view class=''>{{item.shop_name}}</view>
+            <view class='global_single_ellipsis'>{{item.shop_name}}</view>
             <view></view>
             <!-- <view class='global_color_red global_large_font'> ¥{{item.order_money}}</view> -->
           </view>

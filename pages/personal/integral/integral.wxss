@@ -49,13 +49,13 @@ page{
 
 .one-sloat-list-left{
   height: 98%;
-  width: 48%;
+  width: 67%;
   /* border: 1rpx solid black; */
 }
 
 .one-sloat-list-right{
   height: 98%;
-  width: 48%;
+  width: 30%;
   /* border: 1rpx solid black; */
   text-align: right;
 }

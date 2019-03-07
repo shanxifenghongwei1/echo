@@ -300,7 +300,7 @@ ifnogetadress(){
         let list = e.sort_shop
 
         if (list.length > 0) {
-          list = list.concat(this.data.dataList);
+					list = this.data.dataList.concat(list);
         } else {
           list = e.sort_shop;
         }

@@ -77,7 +77,8 @@ Page({
 				this.setData({
 					myshop_id: myshop_id,
 					daymoney: e.daymoney,
-					dayorder: e.dayorder
+					dayorder: e.dayorder,
+					anyone_orshop:e
 				})
 			}
 		})
@@ -101,10 +102,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+		
 		app.setNavigationBarTitle("商户中心");
 		let myshop_id = options.myshop_id
 		this.setData({
-			myshop_id: myshop_id
+			myshop_id: myshop_id,
 		})
 		this.init(myshop_id);
 		// this.showneworder();
@@ -141,9 +143,28 @@ Page({
 	// 		}
 	// 	})
 	// },
+	initses(){
+		app.request.post({
+			url:'cash/bankList',
+			data:{
+				bussiness_id:this.data.myshop_id
+			},
+			success:(res)=>{
+					if(res.list.length > 0){
+						this.setData({
+							aaa:1
+						})
+					}else{
+						this.setData({
+							aaa:0
+						})
+					}
+			}
+		})
+	},
+
 
 	blancked() {
-		
 		if (this.data.aaa == 0) {
 			wx.navigateTo({
 				url: "/pages/personal/bandcard/addbandcard/addbandcard",
@@ -159,15 +180,15 @@ Page({
 				}
 			})
 		} else {
-
 			app.request.post({
 				url:'business/getBusinessMoney',
 				data:{
 					shop_id:this.data.myshop_id
 				},
-				success:(res)=>{
+				success: (res) => {
+			
 			wx.navigateTo({
-				url: '/pages/personal/person/recharges/recharge?payforid=7&zongyue=' + res.cash_money + '&business_id=' + this.data.myshop_id,
+				url: '/pages/personal/person/userwaitmoney/userwaitmoney?zongyue=' + res.cash_money + '&business_id=' + this.data.myshop_id,
 			})
 				}
 			})
@@ -184,7 +205,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+		this.initses();
   },
 
   /**

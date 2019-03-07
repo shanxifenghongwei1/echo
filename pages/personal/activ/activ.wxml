@@ -38,7 +38,7 @@
         <view class='global_small_font line-inline'>{{item.money}}</view>
       </view>
       <view style='margin-left:40rpx;' class='list1-have global_small_font'>未到账:
-        <view class='global_small_font line-inline'>{{item.total_money-item.money}}</view>
+        <view class='global_small_font line-inline'>{{item.no_money}}</view>
       </view>
     </view>
   </view>

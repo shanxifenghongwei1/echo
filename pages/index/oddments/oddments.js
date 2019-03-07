@@ -20,6 +20,7 @@ Page({
       id: "list2"
     }],
     ticketArray: [],
+		areshure:true,
     toView: '',
     shopObj: {},
     scrollHeight: 0,
@@ -33,6 +34,21 @@ Page({
 this.setData({
 	whereid:e.currentTarget.dataset.id
 })
+	},
+
+// 简介的显示
+	displayer(){
+		if (this.data.areshure == true){
+			this.setData({
+				areshure: false
+			})
+		}else{
+			this.setData({
+				areshure: true
+			})
+		}
+	
+	
 	},
 
 	showCommentImage(e){

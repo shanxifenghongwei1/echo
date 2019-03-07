@@ -29,6 +29,7 @@ Page({
     cid: 1,
 		page:1,
     istrue: true,
+		dataList:[],
     userinput: ''
   },
 
@@ -37,6 +38,13 @@ Page({
    */
   onShow() {
     this.getsearchList();
+		let crr = wx.getStorageSync('storyList_shop')
+		console.log(crr)
+		if (crr.length <= 0) {
+			this.setData({
+				content: true
+			})
+		}
   },
   onLoad: function(options) {
 
@@ -59,8 +67,98 @@ Page({
     }
   },
 
+idonno(e){
+
+console.log('点击开始')
+
+	this.setData({
+		istrue: false
+	})
+	let storyList_shop = wx.getStorageSync('storyList_shop')
+	if (this.data.cid == 2) {
+		app.request.post({
+			url: 'user/nobleaddress',
+			isLoading: true,
+			data: {
+				shop_name: e.detail.value,
+				page: this.data.page
+			},
+			success: (res) => {
+				console.log('请求了接口')
+				if (res.msg == 1) {
+					this.setData({
+						dataList: res.sort_shop,
+						searchList: e.detail.value
+					})
+					if (storyList_shop instanceof Array) {
+						if (storyList_shop.length >= 10) {
+							storyList_shop.unshift(e.detail.value)
+							storyList_shop.pop()
+							wx.setStorageSync('storyList_shop', storyList_shop)
+						} else {
+							storyList_shop.push(e.detail.value)
+							wx.setStorageSync('storyList_shop', storyList_shop)
+						}
+					} else {
+						let array = []
+						array.push(e.detail.value)
+						let story = wx.setStorageSync('storyList_shop', array)
+					}
+
+				} else {
+					this.setData({
+						trytext: '无相关店铺',
+						dataList: []
+					})
+				}
+
+			}
+		})
+	} else if (this.data.cid == 1) {
+		app.request.post({
+			url: 'merchant/selegoods',
+			isLoading: true,
+			data: {
+				goods_name: e.detail.value,
+				page: this.data.page
+			},
+			success: (res) => {
+
+				if (res.msg == 1) {
+					this.setData({
+						sele_goods: res.sele_goods,
+						searchList: e.detail.value
+					})
+					// 王历史里面存
+					if (storyList_shop instanceof Array) {
+						if (storyList_shop.length >= 10) {
+							storyList_shop.unshift(e.detail.value)
+							storyList_shop.pop()
+							wx.setStorageSync('storyList_shop', storyList_shop)
+						} else {
+							storyList_shop.push(e.detail.value)
+							wx.setStorageSync('storyList_shop', storyList_shop)
+						}
+					} else {
+						let array = []
+						array.push(e.detail.value)
+						let story = wx.setStorageSync('storyList_shop', array)
+					}
+
+				} else {
+					this.setData({
+						trytext: '无相关产品',
+						sele_goods: []
+					})
+				}
+
+			}
+		})
+	}
+},
   // 点击搜索
-  gosearch() {
+  gosearch(e) {
+
 		this.setData({
 			istrue:false
 		})
@@ -253,9 +351,10 @@ goods_pages(){
 },
 // 删除历史
 	deletes(){
-		wx.setStorageSync("storyList_shop", '无')
+		wx.setStorageSync("storyList_shop", [])
 		this.setData({
-			searchList:['无']
+			searchList:[],
+			content:true
 		})
 	},
   /**
