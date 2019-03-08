@@ -1,4 +1,4 @@
-<!-- 引用wxs -->
+ <!-- 引用wxs -->
 <wxs src="../../../utils/tools.wxs" module="tools" />
 
 <!-- 全局滑动 -->
@@ -11,7 +11,7 @@
   <swiper wx:if="{{shopObj!=null&&shopObj.shop_img.length>0}}" indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="height:300rpx;">
     <block wx:for-items="{{shopObj.shop_img}}" wx:key="imageUrl">
       <swiper-item>
-        <image style='width:850rpx;height:350rpx;' src="{{item}}" class="slide-image" mode='widthFix' bindload="imageLoad" />
+        <image style='width:850rpx;height:350rpx;' src="{{item}}" class="slide-image"  bindload="imageLoad" />
       </swiper-item>
     </block>
   </swiper>

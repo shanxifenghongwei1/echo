@@ -41,7 +41,7 @@
 <view class='discuss-input-box-1' wx:if='{{discu}}'>
   <view class='discuss-div'>
     <view class='discuss-title global_large_font'>回复</view>
-    <textarea maxlength='70' auto-focus='true' class='global_middle_font discuss-input' placeholder='请输入理由' bindinput='textar'></textarea>
+    <textarea maxlength='70' auto-focus='true' class='global_middle_font discuss-input'  bindinput='textar'></textarea>
     <view class='ensure'>
       <view class='ensure-ok global_large_font' bindtap='adddiscuss'>同意</view>
       <view class=' ensure-ok global_large_font' bindtap='i_dont_agree'>驳回</view>

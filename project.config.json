@@ -38,7 +38,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 35,
+			"current": 30,
 			"list": [
 				{
 					"id": -1,
@@ -231,7 +231,7 @@
 					"id": 30,
 					"name": "6666666666666",
 					"pathName": "pages/index/index",
-					"query": "shopId=133",
+					"query": "shopId=154",
 					"scene": 1007
 				},
 				{
@@ -266,6 +266,7 @@
 					"id": -1,
 					"name": "商家活动中心",
 					"pathName": "pages/personal/business/businessactive/businessactive",
+					"query": "",
 					"scene": null
 				}
 			]

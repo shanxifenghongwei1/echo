@@ -22,6 +22,10 @@ Page({
 		if(options.shopId){
 			wx.setStorageSync('share', 3)
 			wx.setStorageSync('shares', options.shop_id)
+			console.log('这是app里面的数据')
+			console.log(app.globalData.shopId)
+			console.log('这是shopId')
+			console.log(options.shop_id)
 			app.globalData.shopId = options.shopId
 		}
     this.options = options;
@@ -57,6 +61,7 @@ Page({
         goods_id: options.goods_id
       },
       success: (e) => {
+				console.log(e)
         let ticketArray = [];
         Array.from(e.youhui).filter(p => {
           if (e.shop_price >= p.card_money) {
@@ -75,7 +80,8 @@ Page({
           ticketArray: ticketArray,
           ticket: ticketArray[0],
           typeCollection: e.collection_type,
-					usertext: ccc
+					usertext: ccc,
+					shop_id:e.id
         })
 			
       }
@@ -113,6 +119,10 @@ Page({
    * 商品购买
    */
   buyClick() {
+		wx.showLoading({
+			title: '下单中...',
+			mask:true
+		})
     app.request.post({
       url: "order/index",
       data: {
@@ -123,6 +133,7 @@ Page({
         order_type: app.status.orderType.goods
       },
       success: (e) => { 
+				wx.hideLoading();
       if(e.state==1){
 				wx.redirectTo({
 					url: '/pages/scattered/pay/pay?order_type=2&order_id=' + e.order_id + "&shop_image=" + e.shop.shop_thumb + '&shop_name=' + e.shop.shop_name + '&goods_image=' + e.goods.goods_thumb + '&goods_name=' + e.goods.goods_name + '&goods_price=' + e.goods.goods_price + '&goods_number=' + e.goods.goods_number + '&goods_keywords=' + e.goods.keywords + '&order_money=' + e.goods.order_money +'&virtual='+e.virtual + '&shop_id=' + e.shop.shop_id
@@ -241,7 +252,7 @@ Page({
   onShareAppMessage: function() {
     return {
       title: this.data.goodsObj.goods_name,
-      path: '/pages/shop/details/details?goods_id=' + this.data.goodsObj.goods_id + '&shopId=' + this.data.shop_id,
+			path: '/pages/shop/details/details?goods_id=' + this.data.goodsObj.goods_id + '&shop_id=' + this.data.goodsObj.id,
       imageUrl: this.data.goodsObj.goods_thumb
     }
   },

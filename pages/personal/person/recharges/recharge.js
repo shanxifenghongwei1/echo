@@ -420,7 +420,9 @@ Page({
     }
   },
   // yecz
-  xjcz() {
+  xjcz(pop) {
+
+		console.log(pop)
     if (!this.data.usermoney) {
       wx.showToast({
         title: '请输入金额',
@@ -449,7 +451,8 @@ Page({
               app.request.post({
                 url: "activity/valire_money",
                 data: {
-                  desc_sn: e.desc_sn
+                  desc_sn: e.desc_sn,
+									formid: pop.detail.formId
                 },
                 success: (e) => {
                   wx.switchTab({

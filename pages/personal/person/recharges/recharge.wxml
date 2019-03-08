@@ -1,5 +1,5 @@
 <view class='any'>
-
+<form bindsubmit="xjcz" report-submit='true'>
   <view class="body">
     <view wx:if='{{payforid==3}}' class='global_large_font top_body'>买单币充值</view>
     <view wx:if='{{payforid==2}}' class='global_large_font top_body'>余额充值</view>
@@ -67,7 +67,7 @@
       </view>
     <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==1}}' bindtap='zhifcz'>提交</button>
     <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==3}}' bindtap='mdbcz'>买单币充值</button>
-    <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==2}}' bindtap='xjcz'>充值</button>
+    <button type='primary' form-type="submit" class='recharge global_middle_font' wx:if='{{payforid==2}}' bindtap=''>充值</button>
 
     <button type='primary'  class='recharge global_middle_font' wx:if='{{payforid==4 && hidden == false}}' bindtap='xjtx'>提现</button>
 		<button type='primary' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class='recharge global_middle_font' wx:if='{{payforid==4 && hidden == true}}'>提现</button>
@@ -77,4 +77,7 @@
 		 <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==5}}' bindtap='hdcz'>活动充值</button>
 		 <button type='primary' class='recharge global_middle_font' wx:if='{{payforid==6}}' bindtap='paiduicz'>返现支付</button>
   </view>
+
+</form>
+
 </view>

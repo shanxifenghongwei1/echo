@@ -4,6 +4,10 @@
     background: #eee;
 }
 
+page{
+	background: #eee;
+}
+
 .my-one-reimburse{
     width: 94%;
     padding: 3%;

@@ -57,9 +57,11 @@
 	line-height: 67rpx;
 }
 .paymessage-choose{
+	overflow: hidden;
+	padding-top: 10rpx;
 	background: #fff;
 	width: 100%;
-	height: 300rpx;
+	height: 100rpx;
 }
 
 .shuliang{
@@ -121,6 +123,12 @@ padding:3% 0%;
   width: 40%;
 }
 
+.wantflex{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .play_icon .iconfont {
   font-size: 40rpx;
   margin-right: 1%;
@@ -147,8 +155,6 @@ padding:3% 0%;
 }
 .radio-group>.integration-money{
 padding: 0%;
-
-
 }
 .money input, .money_input {
   text-align: left;

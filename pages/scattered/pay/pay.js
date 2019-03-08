@@ -98,7 +98,7 @@ Page({
    */
   onLoad: function(options) {
     app.setNavigationBarTitle("支付");
-		
+		console.log(options)
     if (!options.card_id) {
       this.setData({
         card_id: 0
@@ -251,7 +251,8 @@ meedUserSee(price){
 		success:(res)=>{
 			this.setData({
 				userCansee:res.price,
-				integralUS: res.integral
+				integralUS: res.integral,
+				qwert:res.dis
 			})
 		}
 	})
@@ -298,9 +299,10 @@ shop_user_look(){
     })
   },
   // 商家支付
-  shangjiapay() {
-    if (this.data.payformoney) {
-			
+  shangjiapay(pop) {
+if(this.data.payformoney < 1){
+	app.showtost('最少支付一元')
+}else if (this.data.payformoney) {
       app.request.post({
         url: "pay/Wx_Shop_pay",
         isLoading: true,
@@ -365,6 +367,7 @@ shop_user_look(){
               url: "pay/editOrderStatus",
               isLoading: true,
               data: {
+								formid: pop.detail.formId,
                 order_id: e.order_id, //"订单Id",
                 pay_mode: e.pay_mode,
 								virtual_id: this.data.virtual
@@ -520,6 +523,7 @@ shop_user_look(){
 				if(res.dis){
 					this.setData({
 						dis: res.dis,
+						qwert: res.dis.dis_number
 					})
 				}else {
 					this.setData({

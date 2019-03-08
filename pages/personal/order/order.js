@@ -59,6 +59,41 @@ Page({
 			}
 		})
 	},
+	// 确认收货
+	qrshuo(e){
+		wx.showModal({
+			title: '提示',
+			content: '是否确认收货？',
+			success:(req)=>{
+				if (req.confirm) {
+					app.request.post({
+						url: 'order/confirmReceipt',
+						data: {
+							order_id: e.currentTarget.dataset.id
+						},
+						success: (res) => {
+							if (res.state == 1) {
+								let a = this.data.shop
+								let b = a.forEach((k, v) => {
+									if (k.order_id == e.currentTarget.dataset.id) {
+										k.is_receipt = 1
+									}
+								})
+								this.setData({
+									shop: a
+								})
+
+							}
+							app.showtost(res.msg)
+						}
+					})
+				}
+			}
+		})
+		
+
+	},
+
 	// 关闭打开回复框
 	discuss(e) {
 		if (this.data.discu == true) {

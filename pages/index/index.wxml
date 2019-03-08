@@ -6,21 +6,17 @@
     <button open-type="share"></button>
     <view class='iconfont icon-fenxiang2'></view>
   </view>
-  <swiper wx:if="{{shopObj!=null&&shopObj.shop_img.length>0}}" indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="height:{{swiperHeight}}rpx;">
+  <swiper wx:if="{{shopObj!=null&&shopObj.shop_img.length>0}}" indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="width:425px;height:175px;">
     <block wx:for-items="{{shopObj.shop_img}}" wx:key="imageUrl">
       <swiper-item>
-        <image src="{{item}}" class="slide-image" mode='widthFix' bindload="imageLoad" />
+        <image src="{{item}}" class="slide-image" style="width:425px;height:175px;" bindload="imageLoad" />
       </swiper-item>
     </block>
   </swiper>
   <view class='store_module flex_about'>
     <view class='store_info flex_about'>
-      <view class='info_img_icon'>
-        <image src='{{app.host.resources}}/grounding.png' mode='widthFix'></image>
-        <text class='global_small_font flex_about'>{{shopObj.cat_name}}</text>
-      </view>
       <view class='info_img'>
-        <image src='{{shopObj.shop_logo}}' mode='widthFix'></image>
+        <image src='{{shopObj.shop_logo}}' style="width:100px;height:100px;"></image>
       </view>
       <view class='info_content'>
         <view class="info_title global_middle_font global_multiLine_ellipsis">{{shopObj.shop_name}}</view>
@@ -35,7 +31,7 @@
         </view>
       </view>
     </view>
-    <view class='iconfont icon-dianhua store_phone' bindtap='makePhoneCall' data-phone="{{shopObj.iphone}}">
+    <view class='iconfont icon-dianhua store_phone' style='color:#fff;' bindtap='makePhoneCall' data-phone="{{shopObj.iphone}}">
     </view>
   </view>
   <view class="newline"></view>
