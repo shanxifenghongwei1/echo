@@ -7,7 +7,7 @@ Page({
    */
   data: {
     istrue: false,
-    inputtext: 0.0,
+    inputtext: '',
     able: false
   },
 
@@ -15,7 +15,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
     if (options.business_id) {
       this.setData({
         business_id: options.business_id,
@@ -69,41 +68,27 @@ Page({
   // 全部提现
   any_go() {
     this.setData({
-      values: Number(this.data.zongyue),
+			inputtext: (Number(this.data.zongyue) - this.data.zongyue * 3 / 100).toFixed(2),
       usertext: (Number(this.data.zongyue) * this.data.cash_ratio / 100).toFixed(2),
-      inputtext: this.data.zongyue
     })
   },
   // 输入的内容
   inputtap(e) {
-    let obj = e.detail
-    this.only_num(obj)
-    this.setData({
-      inputtext: Number(obj.value),
-      usertext: (Number(obj.value) * this.data.cash_ratio / 100).toFixed(2)
-    })
+		e.detail.value = e.detail.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+		e.detail.value = e.detail.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3');
+		if (e.detail.value.indexOf(".") < 0 && e.detail.value != "") {
+			e.detail.value = parseFloat(e.detail.value);
+		} else if (e.detail.value.indexOf(".") == 0) {
+			e.detail.value = e.detail.value.replace(/[^$#$]/g, "0.");
+			e.detail.value = e.detail.value.replace(/\.{2,}/g, ".");
+		}
+		this.setData({
+			inputtext: e.detail.value,
+			usertext: (Number(e.detail.value) * this.data.cash_ratio / 100).toFixed(2)
+		})
 
   },
-  only_num(obj) {　　 //得到第一个字符是否为负号
-    　　
-    var num = obj.value.charAt(0);　　 //先把非数字的都替换掉，除了数字和.
-    　　
-    obj.value = obj.value.replace(/[^\d\.]/g, '');　　 //必须保证第一个为数字而不是.
-    　　
-    obj.value = obj.value.replace(/^\./g, '');　　 //保证只有出现一个.而没有多个.
-    　　
-    obj.value = obj.value.replace(/\.{2,}/g, '.');　　 //保证.只出现一次，而不能出现两次以上
-    　　
-    obj.value = obj.value.replace('.', '$#$').replace(/\./g, '').replace('$#$', '.');　　 //如果第一位是负号，则允许添加
-    　　
-    if (num == '-') {　　　　
-      obj.value = '-' + obj.value;　　
-    }
 
-    return obj
-
-    　　
-  },
   /**
    * 生命周期函数--监听页面隐藏
    */

@@ -80,6 +80,11 @@ Page({
 					dayorder: e.dayorder,
 					anyone_orshop:e
 				})
+				if(e.msg && e.msg == 3){
+					wx.navigateBack({
+						delta: 1,
+					})
+				}
 			}
 		})
 // 广告

@@ -18,11 +18,30 @@ page {
   width: 12%;
 }
 
+.back-image-s{
+	display: flex;
+	/* align-items: center; */
+	justify-content: flex-start;
+	width: 94%;
+	height: 170rpx;
+	padding: 3%;
+	background: url('http://www.nazhua.net/upload/backgroun.png') no-repeat center center;
+	background-size:100% 100%;
+}
+
 .middel {
   width: 100%;
   line-height: 70rpx;
   border-top: 1rpx solid #eee;
   border-bottom: 1rpx solid #eee;
+}
+
+.top_images-youhui{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	/* align-items: center; */
+	justify-content: flex-start;
 }
 
 .one-activ {

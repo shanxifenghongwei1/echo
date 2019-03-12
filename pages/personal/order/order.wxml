@@ -4,6 +4,9 @@
   <view class='order'>
     <view wx:for="{{order}}" wx:key='orderKey' class='order-son {{cid==item.type_id?"active":""}}' data-id='{{item.type_id}}' bindtap='addorderid'>{{item.text}}</view>
   </view>
+
+	 <view class='newline'></view>
+	  <view class='newline'></view>
   <view class='newline'></view>
 
 
@@ -80,7 +83,7 @@
 					<view bindtap='qrshuo' data-id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor' style='width:120rpx;' wx:if='{{cid==1 && item.is_receipt != 1}}'>确认收货</view>
 
           <navigator wx:if='{{ item.pay_type==1 && item.comment_status == 0 && cid == 4 }}' class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator>
-					<view bindtap='sqtk' data-id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor' style='width:120rpx;' wx:if='{{item.is_refund == 0 && cid==1}}'>申请退款</view>
+					<view bindtap='sqtk' data-id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor' style='width:120rpx;' wx:if='{{item.is_refund ==0 && cid==1 && item.is_receipt != 1}}'>申请退款</view>
         </view>
       </view>
 

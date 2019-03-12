@@ -4,6 +4,11 @@
   <view class='order order-pay'>
     <view wx:for="{{order}}" wx:key='orderKey' class='order-son {{cid==item.type_id?"active":""}}' data-id='{{item.type_id}}' bindtap='addorderid'>{{item.text}}</view>
   </view>
+
+	 <view class='newline'></view>
+	  <view class='newline'></view>
+  <view class='newline'></view>
+
 <!-- 账单详情 -->
   <navigator class='one-sloat-list'  url="/pages/personal/person/rechargedesc/rechargedesc?type={{item.key}}&desc_sn={{item.desc_sn}}" wx:for="{{money_list}}" wx:key='index'>
     <view class='one-sloat-list-left'>

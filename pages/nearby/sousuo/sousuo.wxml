@@ -2,7 +2,7 @@
 
   <view class='search-head global_middle_font'>
     <!-- <view class='sezrch-back iconfont icon-fanhui'></view> -->
-    <input class='search-input' confirm-type='search' type='text' bindconfirm='idonno'	 bindinput='search' value='{{userinput}}'></input>
+    <input class='search-input' focus='true' confirm-type='search' type='text' bindconfirm='idonno'	 bindinput='search' value='{{userinput}}'></input>
     <view class='search-buttons' bindtap='gosearch'>搜索</view>
   </view>
 

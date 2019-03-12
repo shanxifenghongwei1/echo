@@ -1,3 +1,7 @@
 <view>
- 支付协议
+ 
+
+<rich-text nodes='{{html.text}}'></rich-text>
+
+ 
 </view>

@@ -58,7 +58,8 @@ Page({
       success: (e) => {
         this.setData({
           user_money: e.user_money,
-					// business:e.is_merchant,
+					shifoushangjia:e.is_merchant,
+					myshop_id: e.myshop_id
         })
 				let change_shop_id = wx.getStorageSync('change_my_shop_id')
 

@@ -16,7 +16,7 @@ Page({
     card_id: 0,
 		userCanLook:0,
 		textcenter:false,
-		payformoney:0,
+		// payformoney:0,
 		youhuitext:'',
     radioItems: [{
         name: '微信支付',
@@ -33,6 +33,31 @@ Page({
       }
     ]
   },
+	//商品 数量加
+	add_number(){
+		this.setData({
+			goods_number: ++this.data.goods_number ,
+			sure_pay: (this.data.goods_price * this.data.goods_number).toFixed(2)
+		})
+		this.meedUserSee()
+	},
+	// 商品数量
+	goods_number(e){
+		this.setData({
+			goods_number:e.detail.value,
+			
+		})
+	},
+// 商品数量减少
+	subtract_number(){
+		if(this.data.goods_number >= 2){
+				this.setData({
+					goods_number:this.data.goods_number - 1,
+					sure_pay: (this.data.goods_price * this.data.goods_number).toFixed(2)
+				})
+		}
+		this.meedUserSee()
+	},
   // 选择支付方式
   radioChange: function(e) {
     var checked = e.detail.value
@@ -150,7 +175,7 @@ Page({
 	getuservirtual(){
 		app.request.post({
 			url: "virtual/getMyVirtualList",
-			isLoading: true,
+			// isLoading: true,
 			data: {
 				shop_id: this.data.shop_id,
 				money: Number(this.data.payformoney),
@@ -191,7 +216,7 @@ Page({
 	getusershopvirtual() {
 		app.request.post({
 			url: "virtual/getMyVirtualList",
-			isLoading: true,
+			// isLoading: true,
 			data: {
 				shop_id: this.data.shop_id,
 				money: Number(this.data.a_pa_money),
@@ -218,6 +243,16 @@ Page({
 	},
 	// 输入框输入多少钱？
   shurumoney(e) {
+
+		e.detail.value = e.detail.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+		e.detail.value = e.detail.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3');
+		if (e.detail.value.indexOf(".") < 0 && e.detail.value != "") {
+			e.detail.value = parseFloat(e.detail.value);
+		} else if (e.detail.value.indexOf(".") == 0) {
+			e.detail.value = e.detail.value.replace(/[^$#$]/g, "0.");
+			e.detail.value = e.detail.value.replace(/\.{2,}/g, ".");
+		}
+
     if (Number(e.detail.value) < Number(this.data.act_name)) {
       wx.showToast({
         title: '该活动充值最少充值' + this.data.act_name + '元',
@@ -244,7 +279,7 @@ meedUserSee(price){
 	app.request.post({
 		url: 'pay/calcu_price',
 		data:{
-			price:this.data.goods_price,
+			price:this.data.goods_price * this.data.goods_number,
 			type: this.data.iloveyou,
 			business_id:this.data.shop_id
 		},
@@ -252,7 +287,8 @@ meedUserSee(price){
 			this.setData({
 				userCansee:res.price,
 				integralUS: res.integral,
-				qwert:res.dis
+				qwert:res.dis,
+				sure_pay: (this.data.goods_price * this.data.goods_number).toFixed(2)
 			})
 		}
 	})
@@ -293,7 +329,8 @@ shop_user_look(){
       success: (res) => {
         this.setData({
           pay_bill: res.pay_bill,
-          user_money: res.user_money
+          user_money: res.user_money,
+					
         })
       }
     })
@@ -418,7 +455,7 @@ if(this.data.payformoney < 1){
           data: {
 						discount_id:that.data.dis.id,
             order_id: that.data.order_id, //"订单Id",
-            order_number: 1, //"订单数量",
+            order_number: that.data.goods_number, //"订单数量",
 						order_money: that.data.userCansee, //"支付的金额",
 						virtual_id: that.data.virtual,
             order_type: that.data.order_type,

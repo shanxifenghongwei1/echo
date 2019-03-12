@@ -58,12 +58,7 @@
       <view class='iconfont icon-arrow-right-copy global_large_font'></view>
     </navigator>
   </view>
-  <view wx:if="{{ticketArray.length>0}}" class="newline"></view>
-  <view wx:if="{{ticketArray.length>0}}" class="flex_about global_small_font padding-all details-bar" bindtap='buyDailog' data-buyStatus="1">
-    <view>优惠</view>
-    <view>{{ticket.card_name}}</view>
-    <view class='iconfont icon-sandian1 global_large_font'></view>
-  </view>
+
   <view wx:if="{{goodsObj!=null&&goodsObj.goods_image_detail.length>0}}" class='business_detail_image'>
     <image wx:for="{{goodsObj.goods_image_detail}}" src="{{item}}" mode='widthFix'></image>
   </view>

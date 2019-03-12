@@ -14,7 +14,7 @@
       <view class='stop-div'></view>
       <view class='flex_about font-wait-small-box-two'>
         <text>￥</text>
-        <input type='digit' maxlength='8' class='wait-small-box-two-input' bindinput='inputtap' value='{{values}}'></input>
+        <input type='digit' maxlength='8' class='wait-small-box-two-input' bindinput='inputtap' value='{{inputtext}}'></input>
       </view>
       <view class='stop-div'></view>
 					<!-- 没输入钱的时候 -->

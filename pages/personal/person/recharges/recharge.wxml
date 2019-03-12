@@ -24,7 +24,7 @@
       <view class="buttomB flex_about">
 
         <text class='global_large_font moneytttt'>￥</text>
-        <input type="digit" focus='{true}' maxlength='8' bindinput='moneyinthis'></input>
+        <input type="digit" focus='{true}' maxlength='8' value='{{usermoney}}' bindinput='moneyinthis'></input>
       </view>
     </view>
     <view wx:if='{{payforid==4}}' style='margin-bottom:30rpx;' class='global_large_font line-inline'>

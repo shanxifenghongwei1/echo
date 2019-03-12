@@ -1,5 +1,8 @@
 {
   "usingComponents": {
     "prompt": "/apackage/prompt/prompt"
-  }
+  },
+		"backgroundColor": "#ed4444",
+		"backgroundTextStyle": "light",
+		"enablePullDownRefresh": true
 }

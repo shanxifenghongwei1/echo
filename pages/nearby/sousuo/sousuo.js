@@ -60,17 +60,18 @@ Page({
       return;
     }
     if (e.detail.value.length == 0) {
-      this.setData({
-        istrue: true
-      })
+			let arr = wx.getStorageSync('storyList_shop')
+			this.setData({
+				istrue: true,
+				searchList: this.uniq(arr),
+				dataList:[],
+				sele_goods:[]
+			})
       return;
     }
   },
 
 idonno(e){
-
-console.log('点击开始')
-
 	this.setData({
 		istrue: false
 	})
@@ -256,19 +257,30 @@ console.log('点击开始')
 // 展示历史
   getsearchList() {
     let arr = wx.getStorageSync('storyList_shop')
-    var hash = [];
-		for (var i = 0; i < arr.length; i++) {
-			if (arr.indexOf(arr[i]) == i) {
-				hash.push(arr[i]);
-			}
-		}
-    
-    this.setData({
-      searchList: hash
-    })
+    // var hash = [];
+		// for (var i = 0; i < arr.length; i++) {
+		// 	if (arr.indexOf(arr[i]) == i) {
+		// 		hash.push(arr[i]);
+		// 	}
+		// }
+		console.log(arr)
+		this.setData({
+			searchList: this.uniq(arr)
+		})	
+		console.log(this.uniq(arr))
+
 
   },
-
+	 uniq(array){
+		array.sort();
+		var temp = [array[0]];
+		for(var i = 1; i<array.length; i++){
+	if (array[i] !== temp[temp.length - 1]) {
+		temp.push(array[i]);
+	}
+}
+return temp;
+},
   // 点击历史
   cesrch(e) {
 		this.setData({

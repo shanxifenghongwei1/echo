@@ -5,7 +5,7 @@
     <view class='site2 name-site-onlode global_middle_font'>
       <text>总收益</text>
       <text style='margin-left:300rpx;color:#ed4444'>{{turnover}} 元</text> </view>
-    <view class='site3 iconfont icon-arrow-right-copy' style='font-size:25rpx'></view>
+    <view class='site3 ' style='font-size:25rpx'></view>
   </navigator>
 
   <navigator url='#' class='site' bindtap='istrues'>

@@ -41,7 +41,17 @@
         <view bindtap='removeac' data-index='{{index}}' class='global_middle_font' style='width:50%;height:100%;text-align:center;border: 1rpx solid #eee;'>删除活动</view>
       </view>
     </view>
+    <!-- <view class='back-image-s'>
 
+      <view style='color:#fff;width:70%;height:70%;' class=''>
+        <view class='top_images-youhui'>
+          <view style='font-size:66rpx;width:100px;text-align:center;'>100000 </view>
+          <view style='color:#ff395e;margin-top:11px;margin-left:44px;font-size:13px'>满 <text> 100000 </text> 元使用</view>
+        </view>
+      </view>
+
+      <view></view>
+    </view> -->
   </scroll-view>
 
 
@@ -72,19 +82,19 @@
         <view>支付满{{tools.turnInt(item.money)}}返{{tools.turnInt(item.return_money)}}</view>
       </view>
       <view class='avtivcenter global_middle_font leftandright'>
-          <view>返现期数：</view>
-          <view>{{item.periods}}</view> 
+        <view>返现期数：</view>
+        <view>{{item.periods}}</view>
       </view>
       <view class='avtivcenter global_middle_font leftandright'>
-          <view>未返现金额：</view>
-          <view>{{item.total_return_money - item.total_already_return_money}}</view>  
+        <view>未返现金额：</view>
+        <view>{{item.total_return_money - item.total_already_return_money}}</view>
       </view>
       <!-- 停止活动 -->
       <view class='move-shop' style='width:100%;'>
         <view class='global_middle_font button-view' data-id='{{item.id}}' bindtap='begin'>开启</view>
-				<view style='width:100rpx;'></view>
-					<view class='global_middle_font button-view-th' data-id='{{item.id}}' bindtap='modifier'>修改</view>
-					<view style='width:100rpx;'></view>
+        <view style='width:100rpx;'></view>
+        <view class='global_middle_font button-view-th' data-id='{{item.id}}' bindtap='modifier'>修改</view>
+        <view style='width:100rpx;'></view>
         <view class='global_middle_font button-view-one' data-id='{{item.id}}' bindtap='suspend'>暂停</view>
       </view>
 

@@ -21,7 +21,7 @@
     <!-- 支付金额输入框 -->
     <view wx:if='{{order_type==1}}' class='flex_about money'>
       <text>支付金额</text>
-      <input type="digit" focus="true" bindinput='shurumoney' maxlength='8' placeholder='请输入金额' placeholder-class="money_input" maxlength="10"></input>
+      <input type="digit" focus="true" bindinput='shurumoney' maxlength='8' placeholder='请输入金额' placeholder-class="money_input" value='{{payformoney}}' maxlength="10"></input>
     </view>
     <view wx:if='{{order_type==1}}'>
       <!-- 优惠券 -->
@@ -49,7 +49,12 @@
           <view class='flex_about'>
             <view class="global_color_red">￥{{goods_price}}</view>
             <view></view>
-            <view class='shuliang'>数量：{{goods_number}}
+
+            <view class='shuliang'>
+              <view>数量：</view>
+              <view bindtap='subtract_number' class='subtract'>-</view>
+              <input bindinput='goods_number'  disabled='true' value='{{goods_number}}'></input>
+              <view class='subtract' bindtap='add_number'>+</view>
             </view>
           </view>
         </view>
@@ -58,7 +63,7 @@
       <view class='integration line-border-bottom money'>
         <view class='flex_about switch_module'>
           <view>支付金额</view>
-          <view class="global_color_red">￥{{goods_price}}</view>
+          <view class="global_color_red">￥{{sure_pay}}</view>
         </view>
       </view>
 
@@ -71,7 +76,7 @@
       </view>
       <!-- 支付金额 -->
       <view style='display:flex;align-items: center;justify-content:space-between' class='money'>
-        <text style='width:30%;'>应付：{{goods_price}}</text>
+        <text style='width:30%;'>应付：{{sure_pay}}</text>
         <text wx:if='{{ischecked}}' style='width:40%;text-align:center;'> 优惠{{reduce_money}}</text>
         <view style='width:30%;;height:80rpx;text-align:right;line-height:80rpx;' class='money_input'> 实付：{{userCansee}}</view>
 
@@ -101,10 +106,10 @@
   <view class='global_middle_font' style='width:94%;line-height:60rpx;padding-left:3%;background:#fff;' wx:if='{{order_type==2 && iloveyou != 3}}'> 本次支付将获得{{integralUS}}积分 </view>
 
   <view class='global_middle_font' style='width:94%;line-height:60rpx;padding-left:3%;background:#fff;' wx:if='{{order_type==1 && iloveyou != 3}}'> 本次支付将获得{{integralS}}积分 </view>
-<!-- 您是本店会员，享受{{dis}}折优惠 -->
-	 <view class='global_middle_font' style='width:94%;line-height:60rpx;padding-left:3%;background:#fff;' wx:if='{{order_type==1 && iloveyou == 3 && qwert > 0 }}' > 您是本店会员，享受{{qwert}}折优惠 </view>
+  <!-- 您是本店会员，享受{{dis}}折优惠 -->
+  <view class='global_middle_font' style='width:94%;line-height:60rpx;padding-left:3%;background:#fff;' wx:if='{{order_type==1 && iloveyou == 3 && qwert > 0 }}'> 您是本店会员，享受{{qwert}}折优惠 </view>
 
-	 <view class='global_middle_font' style='width:94%;line-height:60rpx;padding-left:3%;background:#fff;' wx:if='{{order_type==2 && iloveyou == 3 && qwert > 0 }}' > 您是本店会员，享受{{qwert}}折优惠 </view>
+  <view class='global_middle_font' style='width:94%;line-height:60rpx;padding-left:3%;background:#fff;' wx:if='{{order_type==2 && iloveyou == 3 && qwert > 0 }}'> 您是本店会员，享受{{qwert}}折优惠 </view>
 
   <view class='padding-all integration  pay_btn'>
     <checkbox-group class='flex_about' bindchange="checkboxChange">
@@ -117,7 +122,7 @@
         确定支付
       </button>
       <form bindsubmit="shangjiapay" report-submit='true'>
-        <button wx:if='{{order_type==1}}' form-type="submit" class='global_bg_color_red global_middle_font' >商铺支付</button>
+        <button wx:if='{{order_type==1}}' form-type="submit" class='global_bg_color_red global_middle_font'>商铺支付</button>
       </form>
     </view>
   </view>

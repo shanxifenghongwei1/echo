@@ -27,7 +27,8 @@ Page({
 
   addorderid: function(e) {
     this.setData({
-      cid: e.currentTarget.dataset.id
+      cid: e.currentTarget.dataset.id,
+			page:1
     })
     this.init();
   },
@@ -159,9 +160,6 @@ Page({
           })
         } else {
           app.showtost(e.msg);
-          this.setData({
-            page:1
-          })
         }
 
 

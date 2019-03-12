@@ -66,8 +66,26 @@
 
 .shuliang{
 	display: flex;
+	align-items: center;
+	justify-content: flex-start;
 	line-height: 67rpx;
 }
+
+.shuliang input {
+	width: 67rpx;
+	height: 67rpx;
+}
+
+.subtract{
+	width: 50rpx;
+	height: 50rpx;
+	line-height: 50rpx;
+	border: 1rpx solid #eee;
+	text-align: center;
+	margin-right: 8rpx;
+}
+
+
 .pay-info,.radio-group {
   background-color: #fff;
 }

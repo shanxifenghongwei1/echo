@@ -11,14 +11,17 @@
       <view class='flex_about'>
         <view class="global_middle_font">{{item.d_time}}</view>
         <view></view>
-        <view class='global_color_red'>
-           <text wx:if='{{lovelist.length>0}}'>￥</text>   {{item.goods_price}}
+
+        <view class='dl_detailed global_small_font flex_about'>
+          <text wx:if='{{item.is_promote != 1}}' class='global_middle_font global_color_red'>￥{{item.goods_price}} </text>
+
+          <text wx:if='{{item.is_promote == 1}}' class='global_middle_font global_color_red'>￥{{item.promote_price}}  <text style='text-decoration:line-through;'>原价:{{item.goods_price}} </text> </text>
         </view>
+
+        <!-- <view class='global_color_red'>
+           <text wx:if='{{lovelist.length>0}}'>￥</text>   {{item.goods_price}}
+        </view> -->
       </view>
     </view>
   </view>
 </view>
-
-
-
-

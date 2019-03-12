@@ -59,6 +59,7 @@ Page({
 				this.setData({
 					banner: e.banner,
 					left: e.left,
+					promests:e.is_show,
 					right_bottom: e.right_bottom,
 					right_top: e.right_top,
 				})
@@ -128,6 +129,7 @@ Page({
 
   },
   onShow: function() {
+	
     this.addbanner();
  
     wx.getSetting({
@@ -221,12 +223,13 @@ ifnogetadress(){
   getdizhi(latlon) {
     app.request.post({
       url: "user/getaddress",
+			
       data: {
         lat: latlon.latitude,
         lng: latlon.longitude,
+				
       },
       success: (e) => {
-
         this.setData({
           areaText: e.address
         })
@@ -268,6 +271,12 @@ ifnogetadress(){
       swiperHeight: app.utils.imageCalculate(e)
     })
   },
+
+// 下拉刷新
+	bindscrolltouppers(){
+	wx.startPullDownRefresh()
+	},
+
   // 商品分页
   scrolltolower() {
     app.request.post({
@@ -326,6 +335,7 @@ ifnogetadress(){
       console.log('已经有了')
     }
   },
+	// 上啦触底
   onReachBottom: function() {
     this.scrolltolower();
   },
@@ -333,6 +343,25 @@ ifnogetadress(){
 	* 页面相关事件处理函数--监听用户下拉动作
 	*/
 	onPullDownRefresh: function () {
-			this.ruset()
+		wx.showNavigationBarLoading()
+		app.request.post({
+			url: "user/nobleaddress",
+			isLoading: true,
+			data: {
+				page: 1,
+				lat: this.data.jwdu.latitude,
+				lng: this.data.jwdu.longitude,
+				keywords: this.data.navActive,
+				is_refresh_class: 1
+			},
+			success: (e) => {
+				this.setData({
+					dataList: e.sort_shop,
+					page:1
+				})
+				wx.hideNavigationBarLoading()
+				wx.stopPullDownRefresh()
+			}
+		})
 	},
 })

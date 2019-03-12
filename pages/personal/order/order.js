@@ -286,7 +286,7 @@ Page({
       url: "order/orderList",
       isLoading: true,
       data: {
-        page: this.data.page,
+        page: 1,
         order_type: this.data.cid
       },
       success: (e) => {

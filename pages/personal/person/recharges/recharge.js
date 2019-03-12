@@ -74,21 +74,22 @@ Page({
   },
 
   moneyinthis(e) {
-    if (Number(e.detail.value) >= 1) {
+		e.detail.value = e.detail.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+		e.detail.value = e.detail.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3');
+		if (e.detail.value.indexOf(".") < 0 && e.detail.value != "") {
+			e.detail.value = parseFloat(e.detail.value);
+		} else if (e.detail.value.indexOf(".") == 0) {
+			e.detail.value = e.detail.value.replace(/[^$#$]/g, "0.");
+			e.detail.value = e.detail.value.replace(/\.{2,}/g, ".");
+		}
+
+
       this.setData({
         usermoney: e.detail.value,
         money: Number(e.detail.value) * 6 / 100 + '元',
         mones: Number(e.detail.value) * 2 / 100 + '元',
       })
-    } else {
-      wx.showToast({
-        title: '最少输入1元哦',
-        icon: 'none'
-      })
-      this.setData({
-        usermoney: e.detail.value
-      })
-    }
+ 
   },
   //我的银行卡
   mybanklist() {
@@ -124,7 +125,10 @@ Page({
 
   // 支付充值
   zhifcz() {
-    if (!this.data.usermoney) {
+		
+		if (this.data.usermoney < 1){
+		app.showtost('最少输入一元哦')
+		}else if (!this.data.usermoney) {
       wx.showToast({
         title: '请输入金额',
         icon: 'none'
@@ -215,7 +219,9 @@ Page({
   },
   // 排队返现充值
   paiduicz() {
-    if (!this.data.usermoney) {
+		if (this.data.usermoney < 1) {
+			app.showtost('最少输入一元哦')
+		}else if (!this.data.usermoney) {
       wx.showToast({
         title: '请输入金额',
         icon: 'none'
@@ -308,8 +314,9 @@ Page({
   },
   // 买单币充值
   mdbcz() {
-
-    if (!this.data.usermoney) {
+		if (this.data.usermoney < 1) {
+			app.showtost('最少输入一元哦')
+		} else if (!this.data.usermoney) {
       wx.showToast({
         title: '请输入金额',
         icon: 'none'
@@ -421,9 +428,9 @@ Page({
   },
   // yecz
   xjcz(pop) {
-
-		console.log(pop)
-    if (!this.data.usermoney) {
+		if (this.data.usermoney < 1) {
+			app.showtost('最少输入一元哦')
+		} else if (!this.data.usermoney) {
       wx.showToast({
         title: '请输入金额',
         icon: 'none'
@@ -492,7 +499,10 @@ Page({
   },
   // yetx
   xjtx() {
-    if (!this.data.usermoney) {
+
+		if (this.data.usermoney < 1) {
+		app.showtost('最少输入一元哦')
+		} else if (!this.data.usermoney) {
       wx.showToast({
         title: '请输入金额',
         icon: 'none'
@@ -547,9 +557,9 @@ Page({
   },
   // hdcz
   hdcz() {
-		console.log(this.data.usermoney)
-		console.log(this.data.opmymoney)
-    if (!this.data.usermoney) {
+		if (this.data.usermoney < 1) {
+			app.showtost('最少输入一元哦')
+		} else if (!this.data.usermoney) {
       wx.showToast({
         title: '请输入金额',
       })

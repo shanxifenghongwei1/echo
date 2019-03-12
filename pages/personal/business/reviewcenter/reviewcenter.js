@@ -157,7 +157,7 @@ Page({
     app.request.post({
       url: "comment/getCommentList",
       data: {
-        shop_id: this.data.myshop_id,
+        shop_id: this.data.shop_id,
       },
       success: (e) => {
         this.setData({

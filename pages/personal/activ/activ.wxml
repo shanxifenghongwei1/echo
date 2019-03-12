@@ -7,7 +7,7 @@
 
 
   <!-- 排队返现 -->
-  <view wx:for='{{my_active}}' wx:key='index' class='queue' wx:if='{{cid == 7}}'>
+  <view wx:for='{{my_active}}' wx:key='index' class='queue' wx:if='{{cid == 7}}' data-id='{{item.shop_id}}' bindtap='goshop'>
     <view class='list line-border-bottm'>
       <view class='user-list line-inline global_middle_font'>排队返现</view>
       <view class='user-list1 line-inline global_middle_font'>店铺：{{item.shop_name}} > </view>
@@ -45,7 +45,7 @@
 
 
   <!-- --充值活动-- -->
-  <view wx:for='{{my_active}}' wx:key='index' wx:if='{{cid == 4}}' class='queue' style='height:430rpx;'>
+  <view wx:for='{{my_active}}' wx:key='index' wx:if='{{cid == 4}}' class='queue' style='height:430rpx;' data-id='{{item.business_id}}' bindtap='goshop'>
     <view class='list line-border-bottm'>
       <view class='user-list line-inline global_middle_font'>买单币活动充值</view>
       <view class='user-list1 line-inline global_middle_font'>店铺：{{item.shop_name}} > </view>
@@ -89,7 +89,7 @@
 
 
   <!-- 支付活动 -->
-  <view class='shopping' wx:if='{{cid == 1}}' wx:for='{{my_active}}' wx:key='index'>
+  <view class='shopping' wx:if='{{cid == 1}}' wx:for='{{my_active}}' wx:key='index' data-id='{{item.business_id}}' bindtap='goshop'>
     <view class='line-border-bottm list'>
       <view class='user-list line-inline global_middle_font'>活动支付</view>
       <view bindtap='exchange' data-shopid='{{9}}' class='user-list1 line-inline global_middle_font'>店铺：{{item.shop_name}} > </view>
