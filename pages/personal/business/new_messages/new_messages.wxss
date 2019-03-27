@@ -1,0 +1,31 @@
+/* pages/personal/business/new_messages/new_messages.wxss */
+.one-list-new_message{
+	line-height: 55rpx;
+	/* width: 100%; */
+	/* border: 1rpx solid #eee; */
+	background: #fff;
+	margin-bottom:20rpx;
+	width: 94%;
+	padding:1% 3%;
+}
+
+page{
+	background: #eee;
+}
+
+.any{
+
+}
+
+
+
+.one-list-new_message-1{
+	/* line-height: 50rpx; */
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.one-list-new_message-2{
+
+}

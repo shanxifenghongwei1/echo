@@ -1,0 +1,19 @@
+/* apackage/starts/start.wxss */
+.star-image{
+  position: absolute;
+  top: 10rpx;
+  width: 60rpx;
+  height: 60rpx;
+  src: "/images/test/normal.png";
+}
+.item{
+  position: absolute;
+  top: 10rpx;
+  width: 30rpx;
+  height: 60rpx;
+}
+
+.global_middle_font{
+	font-size: 40rpx;
+  color: #666;
+}

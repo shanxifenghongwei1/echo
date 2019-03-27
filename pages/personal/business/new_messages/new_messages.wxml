@@ -1,0 +1,44 @@
+<view class='any'>
+
+  <view wx:for='{{looklist}}' wx:key='index'>
+    <!-- 退款 -->
+    <navigator url="/pages/personal/business/moneyback/moneyback?shop_id={{shop_id}}" class='global_middle_font one-list-new_message' wx:if='{{item.state == 3}}'>
+
+      <view class='one-list-new_message-1'>
+        <view> 退款 <text class='global_small_font'>￥{{item.money}}</text>  </view>
+        <view class='global_small_font'> {{item.time}}</view>
+      </view>
+
+      <view class=''>
+        {{item.user_name}}发起了退款申请 
+      </view>
+    </navigator>
+    <!-- 订单 -->
+    <navigator url="/pages/personal/business/shopordercenter/shopordercenter?shop_id={{shop_id}}" class='global_middle_font one-list-new_message' wx:if='{{item.state == 1}}'> 
+      <view class='one-list-new_message-1'>
+        <view> 新订单 <text class='global_small_font'>￥{{item.money}}</text>  </view>
+        <view class='global_small_font'> {{item.time}}</view>
+      </view>
+			<view>{{item.user_name}}在您店铺消费</view>  	
+    </navigator>
+    <!-- 充值 -->
+    <navigator url='/pages/personal/business/bussinessuservoucher/bussinessuservoucher?shop_id={{shop_id}}' class='global_middle_font one-list-new_message' wx:if='{{item.state == 2}}'> 
+   <view class='one-list-new_message-1'>
+        <view> 充值 <text class='global_small_font'>￥{{item.money}}</text>  </view>
+        <view class='global_small_font'> {{item.time}}</view>
+      </view>
+			<view>{{item.user_name}}在您店铺充值</view>  	
+
+
+    </navigator>
+    <!-- 评论	 -->
+    <navigator url='/pages/personal/business/reviewcenter/reviewcenter?shop_id={{shop_id}}' class='global_middle_font one-list-new_message' wx:if='{{item.state == 4}}'> 
+      <view class='one-list-new_message-1'>
+        <view> 评论 </view>
+        <view class='global_small_font'>{{item.time}}</view>
+      </view>
+			<view>{{item.user_name}}评论了您的店铺</view>
+    </navigator>
+
+  </view>
+</view>

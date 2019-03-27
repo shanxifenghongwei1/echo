@@ -1,0 +1,22 @@
+
+<!--index.wxml-->
+<!-- <view class=''></view> -->
+<block wx:for="{{stars}}">
+  <image class="star-image" style="left: {{item*60}}rpx" src="{{key > item ?(key-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+    <view class="item" style="left:0rpx" data-key="{{item+0.5}}" bindtap="selectLeft"></view>
+    <view class="item" style="left:30rpx" data-key="{{item+1}}" bindtap="selectRight"></view>
+  </image>
+</block>
+<view style=' position: absolute;left:360rpx;top:8rpx;'>
+       <view class='global_middle_font' wx:if="{{key==0}}"> </view>
+			 <view class='global_middle_font' wx:if="{{key==0.5}}"> 差评</view>
+        <view class='global_middle_font' wx:if="{{key==1}}">差评</view>
+				<view class='global_middle_font' wx:if="{{key==1.5}}"> 差评</view>
+        <view class='global_middle_font' wx:if="{{key==2}}">差评</view>
+				<view class='global_middle_font' wx:if="{{key==2.5}}"> 一般</view>
+        <view class='global_middle_font' wx:if="{{key==3}}">一般</view>
+				 <view class='global_middle_font' wx:if="{{key==3.5}}">一般</view>
+        <view class='global_middle_font' wx:if="{{key==4}}">一般</view>
+				<view class='global_middle_font' wx:if="{{key==4.5}}">满意</view>
+        <view class='global_middle_font' wx:if="{{key==5}}">非常满意</view>
+</view>
