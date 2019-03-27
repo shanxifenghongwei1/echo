@@ -51,13 +51,13 @@
 
 
     <!-- 产品类型 -->
-    <view class='module-three global_middle_font'>
+    <!-- <view class='module-three global_middle_font'>
       <picker bindchange="bindPickerChange" value="type_index" data-id='{{idd}}' range-key='cat_name' range="{{type_array}}">
         <view class="picker" name='cat_id'>
           产品类型：{{type_array[type_index].cat_name}}
         </view>
       </picker>
-    </view>
+    </view> -->
 
     <!-- 产品条件 -->
     <!-- <view class='one-module module-one-checkbox'>

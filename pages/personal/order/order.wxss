@@ -143,8 +143,7 @@ margin-top:7%;
   text-align: center;
   width: 100rpx;
   border-radius: 10rpx;
-  margin-left: 10%;
-
+  margin-left: 4%;
 }
 
 /* ------ */
@@ -173,6 +172,7 @@ margin-top:7%;
 }
 
 .discuss-input-box-1 {
+	overflow: hidden;
   position: fixed;
   top: 0;
   left: 0%;
@@ -185,6 +185,7 @@ margin-top:7%;
 }
 
 .discuss-div {
+	overflow: hidden;
   width: 90%;
   height: 50%;
   background: #fff;

@@ -1,12 +1,11 @@
-const app = getApp();
 
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
- 
     userInfo: {},
   },
 // 电话号码

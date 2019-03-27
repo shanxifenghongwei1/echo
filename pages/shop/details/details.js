@@ -12,7 +12,7 @@ Page({
     typeCollection: 0,
     goodsObj: null, //商品详细信息 
     scrollHeight: 0, //页面可用高度
-    topNav: "goodsComment" //锚点Id
+		topNav: "goodsSlide" //锚点Id
   },
   /**
    * 生命周期函数--监听页面加载
@@ -31,6 +31,13 @@ Page({
     this.options = options;
     this.init(options);
   },
+// 返回刚刚点店铺
+	goback_to_navigat(){
+		wx.navigateBack({
+			delta: 1,
+		})
+	},
+
   onShow() {
     this.comment = this.selectComponent("#comment");
     this.comment.setData({

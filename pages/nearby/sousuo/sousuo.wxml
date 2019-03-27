@@ -2,31 +2,56 @@
 
   <view class='search-head global_middle_font'>
     <!-- <view class='sezrch-back iconfont icon-fanhui'></view> -->
-    <input class='search-input' focus='true' confirm-type='search' type='text' bindconfirm='idonno'	 bindinput='search' value='{{userinput}}'></input>
+    <input class='search-input' focus='true' confirm-type='search' type='text' bindconfirm='idonno' bindinput='search' value='{{userinput}}'></input>
     <view class='search-buttons' bindtap='gosearch'>搜索</view>
   </view>
 
+  <!-- 商品和店铺 -->
   <view class='search-body global_large_font'>
-    <view wx:for='{{sea_list}}' wx:key='index' bindtap='barter' data-id='{{item.id}}' style='border-bottom:1rpx solid {{cid == item.id ? "#ff7b00" : ""}};' class='search-list'> <text style='color: {{cid == item.id ? "#ff7b00" : ""}};'>{{item.text}}</text></view>
+    <view wx:for='{{sea_list}}' wx:key='index' bindtap='barter' data-id='{{item.id}}' style='border-bottom:1rpx solid {{cid == item.id ? "#ff7b00" : ""}};' class='search-list'>
+      <text style='color: {{cid == item.id ? "#ff7b00" : ""}};'>{{item.text}}</text>
+    </view>
   </view>
 
+  <!-- 历史搜索的开始 -->
   <view wx:if='{{istrue}}' class='search-his global_middle_font'>
     <view class='search-isos'>历史搜索</view>
     <view class='iconfont icon-shanchu' bindtap='deletes'></view>
   </view>
 
-	<view wx:if='{{content && istrue}}' class='nohavelocal global_middle_font'> 无历史搜索记录  </view>
+  <view wx:if='{{content && istrue}}' class='nohavelocal global_middle_font'> 无历史搜索记录 </view>
 
+  <!-- 展示历史搜索记录 -->
   <view wx:if='{{istrue}}' class='search-ending global_middle_font'>
-    <view class='search-zooid global_single_ellipsis'  wx:for='{{searchList}}' wx:key='index' data-id='{{item}}' bindtap='cesrch'>
+    <view class='search-zooid global_single_ellipsis' wx:for='{{searchList}}' wx:key='index' data-id='{{item}}' bindtap='cesrch'>
       {{item}}
     </view>
   </view>
 
-<view wx:if='{{cid == 2 && !istrue}}'>   
-<view class='trytext global_middle_font' wx:if='{{cid == 2 && !istrue && dataList.length == 0}}'>{{trytext}}</view>
-<!-- 商店 -->
-<view  wx:for="{{dataList}}" wx:key="dataListKey" class='store_module flex_about'>
+  <!-- 搜素发现展示 -->
+  <view wx:if='{{istrue}}' class='search-his global_middle_font'>
+    <view class='search-isos'>搜索发现</view>
+    <view class=''></view>
+  </view>
+
+  <view wx:if='{{istrue}}' class='search-ending global_middle_font'>
+	<!-- 商品 -->
+    <navigator wx:if='{{item.type == 2}}' url='/pages/shop/details/details?goods_id={{item.return_id}}' class='search-zooid-a global_single_ellipsis' wx:for='{{selere}}' wx:key='index'>
+      {{item.re_name}}
+    </navigator>
+<!-- 商家 -->
+    <navigator wx:if='{{item.type == 1}}' url='/pages/index/oddments/oddments?shop_id={{item.return_id}}' class='search-zooid-a global_single_ellipsis' wx:for='{{selere}}' wx:key='index'>
+      {{item.re_name}}
+    </navigator>
+  </view>
+
+  <!-- 无相关产品 -->
+  <view wx:if='{{cid == 2 && !istrue}}'>
+    <view class='trytext global_middle_font' wx:if='{{cid == 2 && !istrue && dataList.length == 0}}'>{{trytext}}</view>
+
+
+    <!-- 商店 -->
+    <view wx:for="{{dataList}}" wx:key="dataListKey" class='store_module flex_about'>
       <navigator url='/pages/index/oddments/oddments?shop_id={{item.id}}&juli={{item.juli}}&hot={{item.hot}}' data-id="{{item.id}}" class='store_info flex_about'>
         <!-- <view class='info_img_icon'>
           <image src='{{app.host.resources}}/grounding.png' mode='widthFix'></image>
@@ -38,7 +63,7 @@
         <view class='info_content'>
           <view class="info_title global_middle_font global_multiLine">
 
-            <view style='font-weight:bold'  class='global_single_ellipsis global_middle_font'>{{item.shop_name}}</view>
+            <view style='font-weight:bold' class='global_single_ellipsis global_middle_font'>{{item.shop_name}}</view>
             <view class='global_middle_font'>{{item.cat_name}}</view>
           </view>
           <view class='ic_info'>
@@ -54,25 +79,15 @@
       </view>
     </view>
 
- </view>
+  </view>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-<!-- 商品 -->
-<view wx:if='{{cid == 1 && !istrue}}'>   
-<view class='trytext global_middle_font' wx:if='{{cid == 1 && sele_goods.length == 0 && !istrue}}'>{{trytext}}</view>
-<view  wx:for="{{sele_goods}}" wx:key="dataListKey" class='store_module flex_about'>
+  <!-- 商品 -->
+  <view wx:if='{{cid == 1 && !istrue}}'>
+    <view class='trytext global_middle_font' wx:if='{{cid == 1 && sele_goods.length == 0 && !istrue}}'>{{trytext}}</view>
+    <view wx:for="{{sele_goods}}" wx:key="dataListKey" class='store_module flex_about'>
       <navigator url='/pages/shop/details/details?goods_id={{item.goods_id}}' data-id="{{item.goods_id}}" class='store_info flex_about'>
         <!-- <view class='info_img_icon'>
           <image src='{{app.host.resources}}/grounding.png' mode='widthFix'></image>
@@ -80,7 +95,7 @@
         </view> -->
         <view id='oness' class='info_img'>
           <image style='width:100px;height:100px;' src='{{item.goods_thumb}}'></image>
-					<view style='position:absolute;right:0rpx;top:0rpx;padding:0 5rpx;background:red;color:#fff;' class='global_middle_font global_color_red'> {{item.is_promote == 1 ? "促销" : ""}}</view>
+          <view style='position:absolute;right:0rpx;top:0rpx;padding:0 5rpx;background:red;color:#fff;' class='global_middle_font global_color_red'> {{item.is_promote == 1 ? "促销" : ""}}</view>
         </view>
         <view class='info_content'>
           <view class="info_title global_middle_font global_multiLine">
@@ -103,6 +118,6 @@
 
 
 
-</view>
+  </view>
 
 </view>

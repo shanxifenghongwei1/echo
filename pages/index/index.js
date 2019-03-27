@@ -43,6 +43,7 @@ Page({
     if (scene == 'undefined'){
       console.log('啥也没穿')
     } else if (scene.length > 1){
+			console.log(scene)
       this.setData({
         scene: scene
       })

@@ -1,20 +1,40 @@
 .any {
   padding: 3%;
   width: 94%;
-  height: 100vh;
-  background: #ed4444;
+  /* height: 100vh; */
+ 
 }
+
+page{
+ background: #ed4444;
+}
+
+
+.form-view-button::after {
+  border: none;
+}
+
+
+.form-view-button{
+	background-color: #fff;
+	border-radius:0;
+	padding-left: 0;
+	padding-right: 0;
+	margin-bottom:20rpx;
+	text-align: left;
+}
+
 
 .bigmoster{
 	border-radius: 5rpx;
 	overflow: hidden;
 	color: #fff;
 	background: #fff;
-	padding: 4%;
+	padding-left: 4%;
 	width: 92%;
-	height: 20rpx;
-	margin-bottom:20rpx;
-	line-height: 20rpx;
+	height: 82rpx;
+	/* margin-bottom:20rpx; */
+	line-height: 79rpx;
 }
 
 .bigmoster12{

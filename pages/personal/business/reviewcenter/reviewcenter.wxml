@@ -62,7 +62,7 @@
         <image src='{{item.goods_thumb}}' style='width:80rpx;height:80rpx;'></image>
       </view>
       <view style='margin-left:40rpx;'>
-        <text class='global_middle_font' style='color:{{cid == item.goods_id ? "red" : "blue" }}'>{{item.goods_name}}</text>
+        <text class='global_middle_font global_single_ellipsis' style='color:{{cid == item.goods_id ? "red" : "blue" }}'>{{item.goods_name}}</text>
       </view>
       <view class='iconfont icon-arrow-right-copy'></view>
     </view>
@@ -111,7 +111,7 @@
 <view class='discuss-input-box-1' wx:if='{{discu}}'>
   <view class='discuss-div'>
     <view class='discuss-title global_large_font'>回复</view>
-    <textarea maxlength='70' class='global_middle_font discuss-input' placeholder='请输入回复内容' bindinput='textar'></textarea>
+    <textarea maxlength='70' class='global_middle_font discuss-input' value='感谢您的评论!' bindinput='textar'></textarea>
 
     <view class='ensure'>
       <view class='ensure-ok global_large_font' bindtap='adddiscuss'>提交</view>

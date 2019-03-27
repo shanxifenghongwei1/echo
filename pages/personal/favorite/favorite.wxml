@@ -1,7 +1,7 @@
 <!-- 我的收藏页面 -->
-<view wx:if='{{lovelist.length==0}}' class='global_middle_font bottom-border-1'>您当前没有收藏商品</view>
+
 <view class='about' wx:for='{{lovelist}}' wx:key='index' data-id='{{item.d_time}}'>
-  <view class='flex_about goods-detail line-border-bottom' data-goods_id='{{item.goods_id}}' bindtap='runingoods'>
+  <view  class='flex_about goods-detail line-border-bottom' data-goods_id='{{item.goods_id}}' bindtap='runingoods'>
     <view class="slide-image">
       <image src='{{item.goods_thumb}}' style='width:100%;height:130rpx;'></image>
     </view>
@@ -24,4 +24,5 @@
       </view>
     </view>
   </view>
+	<view wx:if='{{lovelist.length==0}}' class='global_middle_font bottom-border-1'>您当前没有收藏商品</view>
 </view>

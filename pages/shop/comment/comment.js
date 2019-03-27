@@ -6,8 +6,10 @@ Page({
    */
   data: {
     imageArray: [],
+		scoresa: 5,
     score: {
       "goods": 0,
+			
       "service": 0,
       "environment": 0,
     },
@@ -25,8 +27,17 @@ Page({
     this.init(order_id)
   },
   onShow: function() {
-
+		this.starts = this.selectComponent("#starts");
+		this.setData({
+			startsesa: this.starts
+		})
   },
+	show_key(){
+		this.setData({
+			scoresa: this.data.startsesa.data.key
+		})
+		console.log(this.data.startsesa.data.key)
+	},
   // 请求页面数据
   init(order_id) {
     app.request.post({
@@ -115,10 +126,8 @@ Page({
 	if(this.data.commentText.length < 6 ){
 		app.showtost('最少评论6个字哦')
 	}else{
-
     var that = this
     var user_img = this.data.imageArray
- 
     var ass = '';
     var i = 0
 		if (user_img[i] ) {
@@ -127,6 +136,8 @@ Page({
 				icon: 'success',
 				mask: 'true'
 			})
+
+			// 第一张图上传
 			wx.uploadFile({
 				url: 'https://www.nazhua.net/api/comment/upload',
 				filePath: this.data.imageArray[i][0],
@@ -134,6 +145,7 @@ Page({
 				success: (res) => {
 					i++
 					ass += res.data + ','
+					// 第二张图上传
 					if (i < this.data.imageArray.length) {
 						wx.uploadFile({
 							url: 'https://www.nazhua.net/api/comment/upload',
@@ -142,6 +154,7 @@ Page({
 							success: (res) => {
 								i++
 								ass += res.data + ','
+								// 第三章图上传
 								if (i < this.data.imageArray.length) {
 									console.log('图片' + i + '上传完成')
 									wx.uploadFile({
@@ -151,8 +164,8 @@ Page({
 										success: (res) => {
 											i++
 											ass += res.data + ','
+											// 判断上传三张图后上传文字
 											if (i <= this.data.imageArray.length) {
-
 												console.log('图片' + i + '上传完成')
 												app.request.post({
 													url: "comment/index",
@@ -160,18 +173,27 @@ Page({
 													data: {
 														order_id: that.data.order_id,
 														content: that.data.commentText,
+														score: this.data.scoresa,
 														user_img: ass,
 														is_anonymous: that.data.is_anonymous
 													},
-													success: (e) => {
-														wx.showToast({
-															title: '评论成功',
-															icon: 'success',
-															mask: 'true'
-														})
-														wx.switchTab({
-															url: '/pages/personal/order/order',
-														})
+													success: (lol) => {
+														if (lol.state == 1) {
+															wx.switchTab({
+																url: '/pages/personal/order/order',
+															})
+															setTimeout(() => {
+																wx.showToast({
+																	title: lol.msg,
+																	icon: 'success',
+																	mask: 'true',
+																	duration: 1500
+																})
+															}, 500)
+
+														} else {
+															app.showtost(lol.msg)
+														}
 													}
 												})
 
@@ -184,17 +206,26 @@ Page({
 														order_id: that.data.order_id,
 														content: that.data.commentText,
 														is_anonymous: that.data.is_anonymous,
+														score: this.data.scoresa,
 														user_img: ass
 													},
-													success: (e) => {
-														wx.showToast({
-															title: '评论成功',
-															icon: 'success',
-															mask: 'true'
-														})
-														wx.switchTab({
-															url: '/pages/personal/order/order',
-														})
+													success: (lol) => {
+														if (lol.state == 1) {
+															wx.switchTab({
+																url: '/pages/personal/order/order',
+															})
+															setTimeout(() => {
+																wx.showToast({
+																	title: lol.msg,
+																	icon: 'success',
+																	mask: 'true',
+																	duration: 1500
+																})
+															}, 500)
+
+														} else {
+															app.showtost(lol.msg)
+														}
 													}
 												})
 
@@ -211,17 +242,26 @@ Page({
 											order_id: that.data.order_id,
 											content: that.data.commentText,
 											is_anonymous: that.data.is_anonymous,
+											score: this.data.scoresa,
 											user_img: ass
 										},
-										success: (e) => {
-											wx.showToast({
-												title: '评论成功',
-												icon: 'success',
-												mask: 'true'
-											})
-											wx.switchTab({
-												url: '/pages/personal/order/order',
-											})
+										success: (lol) => {
+											if (lol.state == 1) {
+												wx.switchTab({
+													url: '/pages/personal/order/order',
+												})
+												setTimeout(() => {
+													wx.showToast({
+														title: lol.msg,
+														icon: 'success',
+														mask: 'true',
+														duration: 1500
+													})
+												}, 500)
+
+											} else {
+												app.showtost(lol.msg)
+											}
 										}
 									})
 
@@ -238,17 +278,26 @@ Page({
 								order_id: that.data.order_id,
 								content: that.data.commentText,
 								is_anonymous: that.data.is_anonymous,
+								score: this.data.scoresa,
 								user_img: ass
 							},
-							success: (e) => {
-								wx.showToast({
-									title: '评论成功',
-									icon: 'success',
-									mask: 'true'
-								})
-								wx.switchTab({
-									url: '/pages/personal/order/order',
-								})
+							success: (lol) => {
+								if (lol.state == 1) {
+									wx.switchTab({
+										url: '/pages/personal/order/order',
+									})
+									setTimeout(() => {
+										wx.showToast({
+											title: lol.msg,
+											icon: 'success',
+											mask: 'true',
+											duration: 1500
+										})
+									}, 500)
+
+								} else {
+									app.showtost(lol.msg)
+								}
 							}
 						})
 					}
@@ -262,17 +311,23 @@ Page({
 					order_id: that.data.order_id,
 					content: that.data.commentText,
 					is_anonymous: that.data.is_anonymous,
+					score: this.data.scoresa,
 					user_img: ''
 				},
-				success: (e) => {
-					wx.showToast({
-						title: '评论成功',
-						icon: 'success',
-						mask: 'true'
-					})
-					wx.switchTab({
-						url: '/pages/personal/order/order',
-					})
+				success: (lol) => {
+if(lol.state == 1){
+					wx.navigateBack({ url:'?cid=1' })
+					setTimeout(() => {
+						wx.showToast({
+							title: lol.msg,
+							icon: 'success',
+							mask: 'true',
+							duration:1500
+						})},500)
+
+}else{
+	app.showtost(lol.msg)
+}
 				}
 			})
 		 }

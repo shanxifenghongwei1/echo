@@ -20,9 +20,14 @@ Page({
       url: "collection/collectList",
       isLoading: true,
       success: (e) => {
-        this.setData({
-          lovelist:e
-        })
+				if(e.state == 1){
+					this.setData({
+						lovelist: e.collection
+					})
+				}else{
+					lovelist:[]
+				}
+
       }
     });
   },

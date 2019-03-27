@@ -4,13 +4,15 @@
     <view wx:for="{{order}}" wx:key='orderKey' class='order-son {{cid==item.type_id?"active":""}}' data-id='{{item.type_id}}' bindtap='addorderid'>{{item.text}}</view>
   </view>
 
-
+	 <view class='newline'></view>
+	  <view class='newline'></view>
+  <view class='newline'></view>
 
   <!-- 排队返现 -->
   <view wx:for='{{my_active}}' wx:key='index' class='queue' wx:if='{{cid == 7}}' data-id='{{item.shop_id}}' bindtap='goshop'>
     <view class='list line-border-bottm'>
       <view class='user-list line-inline global_middle_font'>排队返现</view>
-      <view class='user-list1 line-inline global_middle_font'>店铺：{{item.shop_name}} > </view>
+      <view class='user-list1 line-inline global_middle_font global_single_ellipsis'>店铺：{{item.shop_name}} > </view>
     </view>
     <view class='list1 flex_about'>
       <view class='list1-have global_small_font'>{{item.title}}

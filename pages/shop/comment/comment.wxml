@@ -10,10 +10,10 @@
 <!-- 商品评论模块 -->
   <view class='flex_about padding-all commodity-comment' wx:if='{{order_mode==2}}'>
     <view class='shop-image'>
-      <image src='{{goods.goods_thumb}}' style='width:100%;height:150rpx'></image>
+      <image src='{{goods.goods_thumb}}'  style='width:100%;height:150rpx'></image>
     </view>
     <view>
-      <view class='global_middle_font global_multiLine_ellipsis commodity-title '> {{goods.goods_name}} </view>
+      <view class='global_middle_font global_multiLine_ellipsis commodity-title global_single_ellipsis'> {{goods.goods_name}} </view>
       <view>
         <text wx:for="{{5}}" wx:key='index' data-index="{{item}}" data-key="goods" bindtap='commentScore' class="iconfont icon-wujiaoxing-copy {{score.goods>=index+1?'global_color_red':''}}"></text>
       </view>
@@ -29,9 +29,9 @@
           <checkbox value="2"  />
         </checkbox-group>匿名发表
       </view>
-      <text wx:if="{{commentText.length<10}}">加油，还差{{10-commentText.length}}个字</text>
+      <!-- <text wx:if="{{commentText.length<10}}">加油，还差{{10-commentText.length}}个字</text>
       <text wx:if="{{commentText.length>=10&&commentText.length<15}}">在加{{15-commentText.length}}个字，有机会赢取<text class="global_color_red">100</text>积分</text>
-      <text wx:if="{{commentText.length>=15}}">真厉害，已经评论了{{commentText.length}}个字</text>
+      <text wx:if="{{commentText.length>=15}}">真厉害，已经评论了{{commentText.length}}个字</text> -->
     </view>
   </view>
   <view class='newline '></view>
@@ -43,22 +43,22 @@
       </view>
     </view>
     <view class='upload-image' wx:if="{{imageArray.length - 3 < 0}}" bindtap='uploadImage'>
-      <view class='iconfont icon-tupianshangchuan '></view>
+      <view class='iconfont icontupianshangchuan '></view>
       <view class='global_middle_font'>上传图片</view>
     </view>
   </view>
-  <!-- <view class='newline'></view> -->
-  <!-- <view class=" padding-all overall-module">
+  <view class='newline'></view>
+   <view class=" padding-all overall-module">
     <view class='flex_about  overall-title'>
       <view class='global_large_font'>整体评价</view>
       <view></view>
       <view class='global_small_font'>满意请五星好评</view>
     </view>
     <view class='comment-overall'>
-      <view class='flex_about'>
-        <view class='global_large_font'>服务</view>
+      <!-- <view class='flex_about'>
+        <view class='global_large_font'></view>
         <view>
-          <text wx:for="{{5}}" wx:key='index' data-index="{{item}}" data-key="service" bindtap='commentScore' class="iconfont icon-wujiaoxing-copy {{score.service>=index+1?'global_color_red':''}}"></text>
+          <text wx:for="{{5}}" wx:key='index' data-index="{{item}}" data-key="service" bindtap='commentScore' class="iconfont iconwujiaoxing-copy {{score.service>=index+1?'global_color_red':''}}" style='margin-left:2'></text>
         </view>
         <view class='global_middle_font' wx:if="{{score.service==0}}"></view>
         <view class='global_middle_font' wx:if="{{score.service==1}}">差评</view>
@@ -66,11 +66,15 @@
         <view class='global_middle_font' wx:if="{{score.service==3}}">一般</view>
         <view class='global_middle_font' wx:if="{{score.service==4}}">一般</view>
         <view class='global_middle_font' wx:if="{{score.service==5}}">满意</view>
-      </view>
-      <view class='flex_about'>
+      </view> -->
+
+			<view style='position: relative'>
+				<starts id="starts" bindtap='show_key'></starts>
+			</view>
+      <!-- <view class='flex_about'>
         <view class='global_large_font'>环境</view>
         <view>
-          <text wx:for="{{5}}" wx:key='index' data-index="{{item}}" data-key="environment" bindtap='commentScore' class="iconfont icon-wujiaoxing-copy {{score.environment>=index+1?'global_color_red':''}}"></text>
+          <text wx:for="{{5}}" wx:key='index' data-index="{{item}}" data-key="environment" bindtap='commentScore' class="iconfont iconwujiaoxing-copy {{score.environment>=index+1?'global_color_red':''}}"></text>
         </view>
         <view class='global_middle_font' wx:if="{{score.environment==0}}"></view>
         <view class='global_middle_font' wx:if="{{score.environment==1}}">差评</view>
@@ -78,7 +82,7 @@
         <view class='global_middle_font' wx:if="{{score.environment==3}}">一般</view>
         <view class='global_middle_font' wx:if="{{score.environment==4}}">一般</view>
         <view class='global_middle_font' wx:if="{{score.environment==5}}">满意</view>
-      </view>
+      </view> -->
     </view>
-  </view> -->
+  </view> 
 </view>

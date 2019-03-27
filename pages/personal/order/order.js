@@ -203,6 +203,15 @@ Page({
    */
   onLoad: function(options) {
     app.setNavigationBarTitle("我的订单");
+		console.log('这是options的数据')
+		console.log(options)
+		// if(options.cid){
+		// 	this.setData({
+				
+		// 	})
+		// 	this.init()
+		// }
+		
   },
   storygoodslist(e) {
     this.setData({
@@ -274,14 +283,15 @@ Page({
 			this.setData({
 				cid: states
 			})
+			wx.setStorageSync('states', 999)
 		}
-
+		this.init();
     app.dengluzt()
-    this.init();
+    
 
   },
 
-  init(cid) {
+  init() {
     app.request.post({
       url: "order/orderList",
       isLoading: true,

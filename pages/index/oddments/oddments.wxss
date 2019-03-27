@@ -16,10 +16,241 @@
   text-align: center;
 }
 
+.form-view-button::after {
+  border: none;
+}
+
+.form-view-button{
+	 background-color: #fff;
+	  border-radius:0;
+		padding-left: 0;
+		padding-right: 0;
+		line-height: 48rpx;
+		margin-bottom: 30rpx;
+}
+
+
 #cences{
 	position: relative;
 }
+/* ----这是一个活动的css------- */
 
+.img_back_huodong{
+	width: 94%;
+	height: 130rpx;
+	padding: 3%;
+	background: url('http://www.nazhua.net/upload/huodongquan.png') no-repeat center center;
+	background-size:100% 100%;
+
+
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+
+.img_back_huodong-1{
+	text-align: center;
+	width: 27%;
+	height: 100%;
+}
+
+.color-big-font-size{
+	line-height: 65px;
+	font-weight: 600;
+	font-size: 56rpx;
+	color: #fe374e;
+}
+
+.center_img_back_fot{
+	margin-top:25rpx;
+	text-align: center;
+	font-size: 30rpx;
+	color: #fe374e;
+}
+
+.want-margin-top{
+	margin-top:46rpx;
+}
+
+.center_img_back_fot_time{
+	text-align: center;
+	font-size: 27rpx;
+	color: #646464;
+}
+
+.img_back_huodong-2{
+	width: 50%;
+	height: 100%;
+	/* line-height: 30rpx; */
+}
+
+.img_back_huodong-3{
+	background: #fe374c;
+	color: white;
+	font-weight: 600;
+	border-radius: 30rpx;
+	font-size: 34rpx;
+	text-align: center;
+	line-height: 58rpx;
+	width: 19%;
+	height: 45%;
+}
+/* ----这是一个活动的结束css------- */
+
+/* 这是新页面用到的css */
+.new_shop_store_module{
+  width: 90%;
+  margin: 0 5%;
+	height: 250rpx;
+  background:#fff;
+
+  border:1px solid #eee;
+  
+  border-radius: 15rpx;
+  position: absolute;
+  z-index: 30;
+  top:265rpx;
+  left: 0rpx;
+  /* opacity:0.6; */
+}
+
+.swiper_new_go_user{
+  height:350rpx;width:100%;
+  position: relative;
+}
+
+.new_shop_name_user{
+  margin: 60rpx auto 10rpx;
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: bold;
+  /* margin-top: 30rpx */
+}
+
+.new_one_list_in_shopname{
+  text-align: center;
+  margin: 66rpx auto 0;
+
+}
+
+.new_shop_header{
+position: absolute;
+top: 157rpx;
+left: 286rpx;
+/* margin: 0 auto; */
+border-radius: 80rpx;
+z-index: 50;
+
+width: 160rpx;
+height: 160rpx;
+  /* background: #ed4444; */
+}
+
+/* 小星星 */
+.new_positio_pin{
+	position: absolute;
+	left: 112px;
+	top:56rpx;
+}
+
+
+
+.star-image{
+  position: absolute;
+  top: 123rpx;
+  width: 40rpx;
+  height: 40rpx;
+  src: "/images/test/normal.png";
+}
+.item{
+  position: absolute;
+  top: 10rpx;
+  width: 5rpx;  
+  height: 60rpx;
+}
+
+/* 小星星结束 */
+
+
+.new_fly_text{
+  position: absolute;
+  left: 366rpx;
+  top: 124rpx;
+}
+
+.new_address_box{
+  width: 98%;
+  padding: 3% 1%;
+  height: 90rpx;
+  background: #fff;
+}
+
+.new_address_one{
+  color:#05c2ac;
+  /* line-height: 90rpx; */
+  text-align: center;
+
+  width: 10%;
+  height: 100%;
+  /* background: blueviolet; */
+}
+
+.new_address_two{
+  /* padding: 2%; */
+  line-height: 45rpx;
+  width: 75%;
+  height: 100%;
+  font-size: 35rpx;
+  padding-right: 2%;
+  font-weight: 599;
+  border-right:1rpx solid #999;
+  /* background: yellowgreen; */
+}
+
+.new_address_three{
+  text-align: center;
+  line-height: 90rpx;
+  width: 15%;
+  height: 100%;
+  color: #ed4544;
+}
+
+.new_shopping_image{
+  width: 100%;
+  height: 356rpx;
+  border-radius: 20rpx;
+}
+
+.new_shopping_image_box{
+  width: 94%;
+  height: 356rpx;
+  padding: 3% 3% 1%;
+  border-radius: 20rpx;
+}
+
+.new_shopping_content_box{
+  height: 170rpx;
+  
+  width:89%;
+  padding:1% 3% 1% 8%;
+  background: #fff;
+}
+
+.new_shopping_content_box_name{
+  font-size: 34rpx;
+  /* width: 90%; */
+  color:#333;
+  margin: 1% 0%;
+  font-weight: bold;
+}
+
+.new_shopping_content_box_brief{
+  margin: 1% 0%;
+}
+
+
+/* 这是新页面结束的css */
 .nohavegoods{
 	width: 100%;height: 100%;
 	position: absolute;
@@ -28,8 +259,9 @@
 }
 
 .nohave-img{
+	margin-top:50rpx;
 	width:95%;
-	height: 100%;
+	height: 47%;
 }
 
 #ones{
@@ -73,6 +305,7 @@
 
 .ic_info view {
   width: 120rpx;
+	height: 50rpx;
   color: #fff;
   text-align: center;
   border-radius: 10rpx;
@@ -83,6 +316,7 @@
   line-height: 80rpx;
   height: 80rpx;
 }
+
 
 .business_Area>view:first-child {
   width: 92%;
@@ -224,12 +458,13 @@
 .slide-image {
   width: 100%;
   display: block;
+  
 }
 /*  */
 .fly-exceed-font{
 	position: absolute;
-	right: 14rpx;
-	bottom: 6rpx;
+	right: 15rpx;
+	bottom: 20rpx;
 	/* background: red; */
 	/* width: 80rpx; */
 	/* height: 80rpx; */

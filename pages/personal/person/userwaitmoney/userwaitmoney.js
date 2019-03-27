@@ -115,6 +115,7 @@ Page({
 
       app.request.post({
         url: "cash/cash",
+				isLoading:true,
         data: {
           cash_money: this.data.inputtext,
           bank_id: this.data.cid,

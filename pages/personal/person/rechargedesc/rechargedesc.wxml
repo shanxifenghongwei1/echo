@@ -67,6 +67,7 @@
   <view class='onegoodslistondetal global_middle_font'>类型:{{es.type_name}}</view>
   <view class='onegoodslistondetal global_middle_font'>商家名称:{{es.shop_name}}</view>
   <view class='onegoodslistondetal global_middle_font'>订单编号:{{es.desc_sn}}</view>
+	 <view  class='onegoodslistondetal global_middle_font'>订单金额:{{es.order_money}}</view>
   <view wx:if="{{es.iphone!==''}}" class='onegoodslistondetal global_middle_font'>商家电话:{{es.iphone}}</view>
   <view wx:if="{{es.iphone==''}}" class='onegoodslistondetal global_middle_font'>商家电话:该商家还没设置电话</view>
   <!--商品支付-->
@@ -78,8 +79,15 @@
 <view wx:if="{{es.virtual!==''}}">
 
  <view class='onegoodslistondetal global_middle_font'>优惠券名称:{{es.virtual.name}}</view>
-  <view  class='onegoodslistondetal global_middle_font'>订单金额:{{es.virtual.order_money}}</view>
+ 
 <view  class='onegoodslistondetal global_middle_font'>优惠金额:{{es.virtual.reduce_money}}</view>
+</view>
+
+<view wx:if="{{es.pay_activity!==''}}">
+
+ <view class='onegoodslistondetal global_middle_font'>活动名称:{{es.pay_activity.ac_name}}</view>
+ 
+<view  class='onegoodslistondetal global_middle_font'>优惠金额:{{es.pay_activity.give_money}}</view>
 </view>
 
 <view  class='onegoodslistondetal global_middle_font'>支付金额:{{es.money}}</view>

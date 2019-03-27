@@ -11,6 +11,15 @@
   background-color: #fff;
 }
 
+.any-back-wh-r{
+	background: #fff;
+	overflow: hidden;
+}
+
+page{
+	background: #eee;
+}
+
 .commit_title {
   font-size: 36rpx;
   color: #333;
@@ -80,6 +89,7 @@
 
 .detial_text {
   width: 85%;
+	height: 120rpx;
   padding: 4% 0% 3%;
 }
 

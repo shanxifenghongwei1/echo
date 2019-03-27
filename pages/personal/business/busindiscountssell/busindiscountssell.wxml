@@ -20,7 +20,7 @@
 
   <!-- 优惠券数量 -->
   <view class='one-module'>
-    <view class=' global_middle_font one-module-text'>优惠券数量：</view>
+    <view class=' global_middle_font one-module-text'>优惠券总数量：</view>
     <input name='card_number' type='number' class=' global_middle_font one-module-input' value='{{goods.goods_brief}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
 
@@ -94,7 +94,7 @@
   </view>
 			  <!-- 出售数量 -->
   <view class='one-module'>
-    <view class=' global_middle_font one-module-text'>出售数量:</view>
+    <view class=' global_middle_font one-module-text'>单次购买数量:</view>
     <input name='sale_number' type='number' class=' global_middle_font one-module-input' value='{{goods.goods_number}}' placeholder-style='font-size:28rpx;color:#666;'> </input>
   </view>
 	</view>`

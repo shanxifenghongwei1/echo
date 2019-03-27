@@ -1,12 +1,10 @@
-
-
 <view class='any'>
   <view class='order'>
     <view wx:for="{{order}}" wx:key='orderKey' class='order-son {{cid==item.type_id?"active":""}}' data-id='{{item.type_id}}' bindtap='addorderid'>{{item.text}}</view>
   </view>
 
-	 <view class='newline'></view>
-	  <view class='newline'></view>
+  <view class='newline'></view>
+  <view class='newline'></view>
   <view class='newline'></view>
 
 
@@ -18,10 +16,10 @@
         <view class=' global_middle_font shop-name global_single_ellipsis '>{{item.shop_name}}
         </view>
         <view class='state global_middle_font' wx:if='{{item.order_mode==2}}'>商品订单</view>
-         <view class='state global_middle_font' wx:if='{{item.order_mode==1}}'>店铺订单</view>
+        <view class='state global_middle_font' wx:if='{{item.order_mode==1}}'>店铺订单</view>
       </view>
-<!-- 商品订单 -->
-      <view  wx:if='{{item.order_mode==2}}' class='flex_about padding-all commdity' data-goods_id='{{item.goods_id}}' bindtap='runjump'>
+      <!-- 商品订单 -->
+      <view wx:if='{{item.order_mode==2}}' class='flex_about padding-all commdity' data-goods_id='{{item.goods_id}}' bindtap='runjump'>
         <view class='commdity-pic'>
           <image src='{{item.goods_img}}' style='width:100%;height:150rpx;'></image>
         </view>
@@ -39,13 +37,13 @@
           <view class='flex_about shop-money'>
             <view>总计</view>
             <view></view>
-            <view class='global_color_red global_large_font'> ¥{{item.order_money}}</view>
+            <view class='global_color_red global_large_font'> ¥{{item.pay_money}}</view>
           </view>
           <view class='shop-number'></view>
         </view>
       </view>
-<!-- 店铺订单 -->
-  <view wx:if='{{item.order_mode==1}}' class='flex_about padding-all commdity' data-shop_id='{{item.shop_id}}' bindtap='runshop'>
+      <!-- 店铺订单 -->
+      <view wx:if='{{item.order_mode==1}}' class='flex_about padding-all commdity' data-shop_id='{{item.shop_id}}' bindtap='runshop'>
         <view class='commdity-pic'>
           <image src='{{item.shop_img}}' style='width:100%;height:150rpx;'></image>
         </view>
@@ -63,31 +61,40 @@
           <view class='flex_about shop-money'>
             <view>总计</view>
             <view></view>
-            <view class='global_color_red global_large_font'> ¥{{item.order_money}}</view>
+            <view class='global_color_red global_large_font'> ¥{{item.pay_money}}</view>
           </view>
           <view class='shop-number'></view>
         </view>
       </view>
 
-<view>
+      <view>
 
-      <view class=' flex_about padding-all time'>
-        <view class='global_small_font this-time'>时间:{{item.order_time}}</view>
-        <view></view>
-        <view class='flex_about'>
-          <navigator wx:if='{{item.pay_type==2&&cid!==3}}' bindtap='storygoodslist' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>去支付</navigator>
-					 <view wx:if='{{item.pay_type==2&&cid!==3}}' bindtap='removeorderlist' data-index='{{index}}' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>取消</view>
-					  
-						<view wx:if='{{cid == 3}}' bindtap='consolea' data-index='{{index}}' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor'>删除</view>
+        <view class=' flex_about padding-all time'>
+          <view class='global_small_font this-time'>时间:{{item.order_time}}</view>
+          
+          <view class='flex_about'>
+            <view wx:if='{{cid==1}}' class='flex_about'>
+              <view bindtap='qrshuo' data-id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor' style='width:84px;' wx:if='{{item.is_receipt != 1}}'>确认收货</view>
 
-					<view bindtap='qrshuo' data-id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor' style='width:120rpx;' wx:if='{{cid==1 && item.is_receipt != 1}}'>确认收货</view>
+              <view bindtap='sqtk' data-id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor' style='width:84px;' wx:if='{{item.is_refund ==0 && item.is_receipt != 1}}'>申请退款</view>
+            </view>
 
-          <navigator wx:if='{{ item.pay_type==1 && item.comment_status == 0 && cid == 4 }}' class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator>
-					<view bindtap='sqtk' data-id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor' style='width:120rpx;' wx:if='{{item.is_refund ==0 && cid==1 && item.is_receipt != 1}}'>申请退款</view>
+            <view wx:if='{{cid==2}}' class='flex_about'>
+              <navigator wx:if='{{item.pay_type==2}}' bindtap='storygoodslist' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>去支付</navigator>
+              <view wx:if='{{item.pay_type==2}}' bindtap='removeorderlist' data-index='{{index}}' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor '>取消</view>
+            </view>
+
+            <view wx:if='{{cid==3}}' class='flex_about'>
+              <view bindtap='consolea' data-index='{{index}}' data-order_id='{{item.order_id}}' class='global_bg_color_red global_middle_font payfor'>删除</view>
+            </view>
+
+            <view wx:if='{{cid==4}}' class='flex_about'>
+              <navigator wx:if='{{ item.pay_type==1 && item.comment_status == 0 }}' class='global_bg_color_red global_middle_font payfor ' url='/pages/shop/comment/comment?order_id={{item.order_id}}' bindtap='addComment'>评论</navigator>
+            </view>
+          </view>
         </view>
-      </view>
 
-</view>
+      </view>
 
     </view>
   </view>
@@ -96,7 +103,7 @@
 <view class='discuss-input-box-1' wx:if='{{discu}}'>
   <view class='discuss-div'>
     <view class='discuss-title global_large_font'>退款申请</view>
-    <textarea maxlength='70' auto-focus='true' class='global_middle_font discuss-input' bindinput='textar'></textarea>
+    <textarea maxlength='70' fixed='true' auto-focus='true' placeholder='请输入退款理由' class='global_middle_font discuss-input' bindinput='textar'></textarea>
 
     <view class='ensure'>
       <view class='ensure-ok global_large_font' bindtap='adddiscuss'>申请</view>

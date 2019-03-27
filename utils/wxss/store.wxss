@@ -1,5 +1,7 @@
 
 .store_module {
+/* position: relative; */
+
   background-color: #fff;
   padding: 2.5% 2%;
 }

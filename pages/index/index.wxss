@@ -1,6 +1,7 @@
 @import '/utils/wxss/store.wxss';
 @import '/utils/wxss/voucher.wxss';
 @import '/apackage/comment/comment.wxss';
+@import '/pages/index/oddments/oddments.wxss';
 
 .header_top {
   position: absolute;

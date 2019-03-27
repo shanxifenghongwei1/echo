@@ -8,10 +8,11 @@ Page({
 	data: {
 	
 	},
-	run() {
+	run(e) {
 		wx.switchTab({
 			url: '/pages/personal/person/person',
 		})
+		this.popseare(e)
 	},
 	/**
 	 * 生命周期函数--监听页面加载
@@ -58,6 +59,24 @@ Page({
 
 	},
 // 
+	popseare(e) {
+
+		console.log(e)
+		console.log('我动了！')
+		let formId = e.detail.formId;
+		// 忽略开发者工具里边的formId
+		// if ( formId !== 'the formId is a mock one') {
+		app.request.post({
+			url: 'send/getFormId',
+			data: {
+				form_id: formId
+			},
+			success: (res) => {
+				console.log(res)
+			}
+		})
+		// }
+	},
 //  
 init(asd){
 	app.request.post({

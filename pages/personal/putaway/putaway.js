@@ -10,9 +10,9 @@ Page({
     type_index: 0,
     mmm: [],
     type_id: 0,
-		idd:2			,
+    idd: 2,
     src: '',
-		is_hot:1,
+    is_hot: 1,
     banner: [],
     items: [{
         name: 'USA',
@@ -33,24 +33,24 @@ Page({
       },
 
     ],
-		itemsa: [{
-			id: '1',
-			value: '是',
-			checked: 'true'
-		},
-		{
-			id: '2',
-			value: '否'
-		},
-		],
+    itemsa: [{
+        id: '1',
+        value: '是',
+        checked: 'true'
+      },
+      {
+        id: '2',
+        value: '否'
+      },
+    ],
 
   },
-	// 是否热销
-	radioChange(e) {
-		this.setData({
-			like: e.detail.value
-		})
-	},
+  // 是否热销
+  radioChange(e) {
+    this.setData({
+      like: e.detail.value
+    })
+  },
   // 选择产品类型
   bindPickerChange: function(e) {
     console.log(e)
@@ -71,11 +71,11 @@ Page({
   checkboxChange: function(e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
   },
-danjia(e){
-	this.setData({
-		danjia:e.detail.value
-	})
-},
+  danjia(e) {
+    this.setData({
+      danjia: e.detail.value
+    })
+  },
   // 修改商家logo图
   user: function() {
     wx.chooseImage({
@@ -146,24 +146,24 @@ danjia(e){
   onLoad: function(options) {
     if (options.type == 1) {
       this.init(options.goods_id);
-			this.setData({
-				gotype:options.type
-			})
+      this.setData({
+        gotype: options.type
+      })
     }
-		this.setData({
-			myshop_id: options.myshop_id
-		})
-		// 拿到列表
-		app.request.post({
-			url: "Shopcenter/getcat",
-			isLoading: true,
-			success: (res) => {
-				console.log(res)
-				this.setData({
-					type_array: res.tree
-				})
-			}
-		})
+    this.setData({
+      myshop_id: options.myshop_id
+    })
+    // 拿到列表
+    app.request.post({
+      url: "Shopcenter/getcat",
+      isLoading: true,
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          type_array: res.tree
+        })
+      }
+    })
   },
   // 拿到商品数据
   init(a) {
@@ -180,103 +180,173 @@ danjia(e){
           listimg: e.goods_img,
           src: e.goods_thumb,
           idd: e.cat_id,
-					// like:e.is_hot
+          // like:e.is_hot
         })
-				if(e.is_hot == 1){
-					this.setData({
-						itemsa: [{
-							id: '1',
-							value: '是',
-							checked: 'true'
-						},
-						{
-							id: '2',
-							value: '否'
-						},
-						],
-					})
-				}else if(e.is_hot == 2){
-					this.setData({
-						itemsa: [{
-							id: '1',
-							value: '是',
-						},
-						{
-							id: '2',
-							value: '否',
-							checked: 'true'
-						},
-						],
-					})
-				}
+        if (e.is_hot == 1) {
+          this.setData({
+            itemsa: [{
+                id: '1',
+                value: '是',
+                checked: 'true'
+              },
+              {
+                id: '2',
+                value: '否'
+              },
+            ],
+          })
+        } else if (e.is_hot == 2) {
+          this.setData({
+            itemsa: [{
+                id: '1',
+                value: '是',
+              },
+              {
+                id: '2',
+                value: '否',
+                checked: 'true'
+              },
+            ],
+          })
+        }
       }
     })
   },
   // 提交修改
   change(e) {
-    // 商品属性
-		let shop_price = e.detail.value.shop_price.split('')
-		if (e.detail.value.goods_name == '') {
-			app.showtost('请输入产品名称')
-		} else if (e.detail.value.keywords == '') {
-			app.showtost('请输入产品关键词')
-		} else if (e.detail.value.goods_brief == '') {
-			app.showtost('请输入产品简介')
-		} else if (e.detail.value.shop_price == '') {
-			app.showtost('请输入产品单价')
-		}
-		else if (e.detail.value.goods_number == '') {
-			app.showtost('请输入产品数量')
-		}
-		else if (e.detail.value.goods_desc == '') {
-			app.showtost('请输入产品详情')
-		} else if (this.data.src == '') {
-			app.showtost('请上传产品缩略图')
-		} else if (this.data.banner.length <= 0) {
-			app.showtost('请上传产品详情图')
-		} else {
-    // 缩略图上传
-    wx.uploadFile({
-			url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + this.data.goods.goods_id,
-      filePath: this.data.src[0],
-      name: 'goods_thumb',
-      success: function(res) {
-        // app.showtost('缩略图上传成功')
-      }
+    this.setData({
+      llllll: e.detail.value
     })
-    // 轮播图上传=
-    for (var i = 0; i < 3; i++) {
-      if (this.data.banner[i] !== this.data.listimg[i]) {
-        wx.uploadFile({
-					url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + this.data.goods.goods_id + '&page=' + i,
-          filePath: this.data.banner[i],
-          name: 'goods_img',
-          success: function(res) {
+    // 商品属性
+    let shop_price = e.detail.value.shop_price.split('')
+    if (e.detail.value.goods_name == '') {
+      app.showtost('请输入产品名称')
+    } else if (e.detail.value.keywords == '') {
+      app.showtost('请输入产品关键词')
+    } else if (e.detail.value.goods_brief == '') {
+      app.showtost('请输入产品简介')
+		} else if (e.detail.value.goods_brief.length >= 51) {
+			app.showtost('产品简介最多50个字')
+		}
+		 else if (e.detail.value.shop_price == '') {
+      app.showtost('请输入产品单价')
+    } else if (e.detail.value.goods_number == '') {
+      app.showtost('请输入产品数量')
+    } else if (e.detail.value.goods_desc == '') {
+      app.showtost('请输入产品详情')
+    } else if (this.data.src == '') {
+      app.showtost('请上传产品缩略图')
+    } else if (this.data.banner.length <= 0) {
+      app.showtost('请上传产品详情图')
+    } else {
+      // 缩略图上传
+      app.upload_img({
+        url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + this.data.goods.goods_id,
+        path: this.data.src[0],
+        name: 'goods_thumb',
+        success: (res) => {
 
+        }
+      })
+      // 轮播图上传=
+      let i = 0
+      if (this.data.banner[i] !== this.data.listimg[i]) {
+        app.upload_img({
+          url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + this.data.goods.goods_id + '&page=' + i,
+          path: this.data.banner[i],
+          name: 'goods_img',
+          success: (res) => {
+            // ----
+            if (res.statusCode == 200) {
+              i++
+              if (this.data.banner[i] !== this.data.listimg[i]) {
+                app.upload_img({
+                  url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + this.data.goods.goods_id + '&page=' + i,
+                  path: this.data.banner[i],
+                  name: 'goods_img',
+                  success: (res) => {
+                    if (res.statusCode == 200) {
+                      i++
+                      // --
+                      if (this.data.banner[i] !== this.data.listimg[i]) {
+                        app.upload_img({
+                          url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + this.data.goods.goods_id + '&page=' + i,
+                          path: this.data.banner[i],
+                          name: 'goods_img',
+                          success: (res) => {
+                            if (res.statusCode == 200) {
+                              i++
+                              // --
+                              if (this.data.banner[i] !== this.data.listimg[i]) {
+                                app.upload_img({
+                                  url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + this.data.goods.goods_id + '&page=' + i,
+                                  path: this.data.banner[i],
+                                  name: 'goods_img',
+                                  success: (res) => {
+                                    if (res.statusCode == 200) {
+                                      console.log('第三张图片完成')
+                                    }
+                                  }
+                                })
+
+                              }
+                              // --
+                            }
+                          }
+                        })
+                      }
+                      // --
+
+
+                    }
+                  }
+                })
+
+
+
+                // -----
+              } else {
+                console.log('第一张图片上传失败')
+              }
+            }
           }
         })
       }
+
+      this.textgo()
+
+      // wx.uploadFile({
+      // 	url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + this.data.goods.goods_id + '&page=' + i,
+      // 	filePath: this.data.banner[i],
+      // 	name: 'goods_img',
+      // 	success: function (res) {
+
+      // 	}
+      // })
+
+      // 上传文字
+
+
     }
-    // 上传文字
+  },
+  textgo() {
     app.request.post({
       url: "Shopcenter/editgoods",
       isLoading: true,
       data: {
-        shop_edit: e.detail.value
+        shop_edit: this.data.llllll
       },
       success: (e) => {
-				wx.navigateBack({
-					success:()=>{
-						setTimeout(()=>{
-							app.showtost('修改成功')
-						},500)
-					}
-				})
-        
+        wx.navigateBack({
+          success: () => {
+            setTimeout(() => {
+              app.showtost('修改成功')
+            }, 500)
+          }
+        })
+
       }
     })
-
-		}
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -284,69 +354,100 @@ danjia(e){
   onReady: function() {
 
   },
-	// 添加商品
-	addshopproduct(e){
-		// 商品属性
-		e.detail.value.cat_id = this.data.idd
-		let goods_number = e.detail.value.goods_number.split('')
-		let shop_price = e.detail.value.shop_price.split('')
-if(e.detail.value.goods_name == ''){
-	app.showtost('请输入产品名称')
-} else if (e.detail.value.keywords == ''){
-	app.showtost('请输入产品关键词')
-} else if (e.detail.value.goods_brief == '') {
-	app.showtost('请输入产品简介')
-} else if (e.detail.value.shop_price == '') {
-	app.showtost('请输入产品单价')
-} 
- else if (e.detail.value.goods_number == '') {
-	app.showtost('请输入产品数量')
-}
- else if (e.detail.value.goods_desc == '') {
-	app.showtost('请输入产品详情')
-} else if (this.data.src == '' ) {
-	app.showtost('请上传产品缩略图')
-} else if (this.data.banner.length <= 0 ) {
-	app.showtost('请上传产品详情图')
-}else {
+  // 添加商品
+  addshopproduct(e) {
 
-// 发送文件
-		app.request.post({
-			url: "shopcenter/addgoods",
-			isLoading: true,
-			data: {
-				shop_add:e.detail.value
-			},
-			success: (e) => {
-				// 添加缩略图
-				wx.uploadFile({
-					url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id='+e.goods_id,
-					filePath: this.data.src[0],
-					name: 'goods_thumb',
-					success: function (res) {
-						// app.showtost('缩略图上传成功')
-					}
-				})
-				// 添加banner图
-				for (var i = 0; i < 3; i++) {
-					wx.uploadFile({
-						url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + e.goods_id + '&page=' + i,
-						filePath: this.data.banner[i],
-						name: 'goods_img',
-						success: function (res) {
-							// app.showtost('第' + i + '张图片上传成功')
+    // 商品属性
+    // e.detail.value.cat_id = this.data.idd
+    let goods_number = e.detail.value.goods_number.split('')
+    let shop_price = e.detail.value.shop_price.split('')
+    if (e.detail.value.goods_name == '') {
+      app.showtost('请输入产品名称')
+    } else if (e.detail.value.keywords == '') {
+      app.showtost('请输入产品关键词')
+    } else if (e.detail.value.goods_brief == '') {
+      app.showtost('请输入产品简介')
+		} else if (e.detail.value.goods_brief.length >= 51) {
+			app.showtost('产品简介最多50个字')
+		}
+		 else if (e.detail.value.shop_price == '') {
+      app.showtost('请输入产品单价')
+    } else if (e.detail.value.goods_number == '') {
+      app.showtost('请输入产品数量')
+    } else if (e.detail.value.goods_desc == '') {
+      app.showtost('请输入产品详情')
+    } else if (this.data.src == '') {
+      app.showtost('请上传产品缩略图')
+    } else if (this.data.banner.length <= 0) {
+      app.showtost('请上传产品详情图')
+    } else {
+
+      // 发送文件
+      app.request.post({
+        url: "shopcenter/addgoods",
+        isLoading: true,
+        data: {
+          shop_add: e.detail.value
+        },
+        success: (e) => {
+          // 添加缩略图
+          wx.uploadFile({
+            url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + e.goods_id,
+            filePath: this.data.src[0],
+            name: 'goods_thumb',
+            success: function(res) {
+              // app.showtost('缩略图上传成功')
+            }
+          })
+          // 添加banner图
+          // let i = 0
+          // let data = {
+          //   url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + e.goods_id + '&page=' + i,
+          //   path: this.data.banner[i],
+          //   name: 'goods_img',
+          //   success: (res) => {
+					// 		app.upload_img(data)
+          //   }
+          // }
+						
+
+
+         let data = {
+            url: 'https://www.nazhua.net/api/shopcenter/uploadimg' ,
+					  n_url: '?goods_id= ' + e.goods_id + '&page=',
+            name: 'goods_img',
+					 	banner: this.data.banner,
+						 i:0,
+						success:(res)=>{
+						
 						}
-					})
-				}
-				wx.navigateBack({
-					success:()=>{
-						setTimeout(()=>{app.showtost('保存成功')},1000)
-					}
-				})
-			}
-		})
-}
-	},
+          }
+					app.upload_imgs(data)
+         
+          // ----
+
+          // for (var i = 0; i < 3; i++) {
+          //   wx.uploadFile({
+          //     url: 'https://www.nazhua.net/api/shopcenter/uploadimg?goods_id=' + e.goods_id + '&page=' + i,
+          //     filePath: this.data.banner[i],
+          //     name: 'goods_img',
+          //     success: function(res) {
+          //       // app.showtost('第' + i + '张图片上传成功')
+          //     }
+          //   })
+          // }
+
+          wx.navigateBack({
+            success: () => {
+              setTimeout(() => {
+                app.showtost('保存成功')
+              }, 1000)
+            }
+          })
+        }
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面显示
    */

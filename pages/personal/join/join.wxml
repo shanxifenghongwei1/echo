@@ -14,7 +14,7 @@
     </view>
   </view>
   <view class='newline'></view>
-  <form bindsubmit="userFrom">
+  <form bindsubmit="userFrom" report-submit='true'>
     <view class="userFrom">
       <radio-group class="global_middle_font flex_about" bindchange="radioChange" wx:if="{{userFrom.classification>1}}">
         <view class="flex_about global_middle_font uf_area">

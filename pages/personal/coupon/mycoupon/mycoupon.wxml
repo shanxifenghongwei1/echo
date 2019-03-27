@@ -1,8 +1,15 @@
 <view class='any'>
-<view bindtap='run' class='bigmoster'>
+
+   <form bindsubmit="run" report-submit="true" class="form-view" >
+     <button form-type="submit" class="form-view-button ">
+
+<view class='bigmoster'>
 		<text class='global_middle_font iconfont icon-fanhui'></text>
 		<text class='global_middle_font bigmoster12'>返回个人中心</text>
 </view>
+			</button>
+	</form>     
+
 
 
   <view class='onecoupon'>

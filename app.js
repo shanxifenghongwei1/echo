@@ -80,6 +80,40 @@ App({
 				}
 		})
 	},
+// 多图上传
+	upload_img(data){
+		wx.uploadFile({
+			url: data.url,
+			filePath: data.path,
+			name: data.name,
+			success: (res) => {
+				res = data.success(res)
+			}
+		})
+	},
+// 多图上传
+  upload_imgs(data){
+		var i = data.i ? data.i : 0;
+		var url = data.n_url ? data.url+data.n_url + i : data.url;
+		wx.uploadFile({
+			url:url,
+			filePath: data.banner[i],
+			name: data.name,
+			success: (res) => {
+				if (res.statusCode == 200 && i < data.banner.length ) {
+					data.i = i+1;
+					res = data.success(res)
+					this.upload_imgs(data);
+				} else {
+					console.log('完成')
+				}
+			}
+		})
+	},
+
+
+
+
 	showtost(title){
 		wx.showToast({
 			title: title,

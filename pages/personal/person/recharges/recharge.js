@@ -562,6 +562,7 @@ Page({
 		} else if (!this.data.usermoney) {
       wx.showToast({
         title: '请输入金额',
+				icon:'none'
       })
 		} else if (this.data.opmymoney - this.data.usermoney > 0 ) {
 			wx.showToast({

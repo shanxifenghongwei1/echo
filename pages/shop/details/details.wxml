@@ -13,25 +13,22 @@
       <view class="iconfont icon-fenxiang2  {{scrollStatus==1?'bg_top':''}}"></view>
     </view>
   </view>
-  <view class='slide-image' id="goodsSlide">
-    <!-- <image wx:for='{{goodsObj.goods_img}}' src="{{item}}" class="slide-image" style='height:350rpx' bindload="imageLoad" /> -->
-    <!-- ----- -->
-    <swiper indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="height:300rpx;">
+  <view class='slide-image' id="goodsSlide" style="height:300rpx;width:100%;">
+    <swiper indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="height:300rpx;width:100%;">
       <block wx:for="{{goodsObj.goods_img}}" wx:key="imageUrl">
         <swiper-item>
-          <image src="{{item}}" class="slide-image" mode='widthFix' bindload="imageLoad" />
+          <image src="{{item}}" class="slide-image" style="height:300rpx;width:100%;"  lazy-load='true' mode='scaleToFill'  bindload="imageLoad" />
         </swiper-item>
       </block>
     </swiper>
     <!--  -->
   </view>
-  <view class=' padding-all '>
+  <view class=' padding-all any-back-wh-r'>
     <view class=' flex_about detail-info'>
       <view class=' detial_text '>
-        <view class='global_large_font'>{{goodsObj.goods_name}}</view>
+        <view class='global_middle_font global_single_ellipsis'>{{goodsObj.goods_name}}</view>
         <view class='global_small_font'>
-          <text> {{goodsObj.goods_brief}}</text>
-
+          <text class='global_multiLine_ellipsis'> {{goodsObj.goods_brief}}</text>
         </view>
       </view>
       <view class='detail-collection' bindtap='editCollection'>
@@ -43,9 +40,9 @@
     </view>
   </view>
   <view class="newline"></view>
-  <view class='padding-all detail-area'>
+  <view class='padding-all detail-area any-back-wh-r'>
     <view class='flex_about  line-border-bottom detail-address'>
-      <view class=' global_single_ellipsis da-address'>
+      <view class=' global_single_ellipsis da-address' bindtap='goback_to_navigat'>
         <view class='global_large_font global_single_ellipsis'>{{goodsObj.shop_name}}</view>
         <view class='global_middle_font global_single_ellipsis'>{{goodsObj.address}}</view>
       </view>
@@ -65,9 +62,9 @@
 
   <view class="newline"></view>
   <!-- 商品简介 -->
-  <view class='business_operation padding-all global_middle_font'>
+  <view class='business_operation padding-all global_middle_font any-back-wh-r'>
     <view wx:if="{{goodsObj!=null&&goodsObj.goods_desc_img.length>0}}">
-      <!-- <image wx:for='{{goodsObj.goods_desc_img}}' style='width:100%;height:1000rpx;' mode='widthFix' src='{{item}}'></image> -->
+
     </view>
 
     <rich-text class='imgsasa' nodes="{{usertext.text}}"></rich-text>
@@ -76,12 +73,15 @@
   <view class="newline"></view>
   <!-- 评论组件 -->
 
-  <view class='padding-all' id="goodsComment">
-    <view wx:if='{{isture}}' class='global_large_font flex_about commit_title'>
+<view hidden='{{!isture}}'>
+  <view class='padding-all any-back-wh-r' id="goodsComment">
+    <view class='global_large_font flex_about commit_title'>
       <view class='iconfont icon-pinglun2'></view>评论
     </view>
     <comment id="comment"></comment>
   </view>
+</view>
+
   <view class="newline"></view>
   <view class="newline"></view>
   <view class="newline"></view>

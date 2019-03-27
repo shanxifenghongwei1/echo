@@ -229,10 +229,11 @@
 				},
 				{
 					"id": 30,
-					"name": "6666666666666",
-					"pathName": "pages/index/index",
-					"query": "shopId=154",
-					"scene": 1007
+					"name": "商家详情页面",
+					"pathName": "pages/index/oddments/oddments",
+					"query": "shop_id=141",
+					"scene": 1020,
+					"referrerInfo": {}
 				},
 				{
 					"id": -1,
@@ -266,6 +267,13 @@
 					"id": -1,
 					"name": "商家活动中心",
 					"pathName": "pages/personal/business/businessactive/businessactive",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新消息",
+					"pathName": "pages/personal/business/new_messages/new_messages",
 					"query": "",
 					"scene": null
 				}

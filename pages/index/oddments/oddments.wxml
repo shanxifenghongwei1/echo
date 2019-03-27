@@ -1,28 +1,62 @@
- <!-- 引用wxs -->
+<!-- 引用wxs -->
 <wxs src="../../../utils/tools.wxs" module="tools" />
 
 <!-- 全局滑动 -->
 <scroll-view style='height:{{scrollHeight}}rpx;' scroll-top="0" scroll-into-view="{{toView}}" bindscrolltolower="scrolltolower" scroll-with-animation scroll-y class='page_module '>
+<!-- 分享（新旧公用） -->
   <view class='header_top'>
     <view></view>
     <button open-type="share"></button>
-    <view class='iconfont icon-fenxiang2'></view>
+    <view class='iconfont iconfenxiang'></view>
   </view>
-  <swiper wx:if="{{shopObj!=null&&shopObj.shop_img.length>0}}" indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" style="height:300rpx;">
+
+<!-- banner图 (公用) -->
+  <swiper class="swiper_new_go_user" indicator-dots="true" autoplay="true" indicator-color="#fff" indicator-active-color="#ed4040" interval="3000" duration="500" >
     <block wx:for-items="{{shopObj.shop_img}}" wx:key="imageUrl">
-      <swiper-item>
-        <image style='width:850rpx;height:350rpx;' src="{{item}}" class="slide-image"  bindload="imageLoad" />
+      <swiper-item style="height:350rpx;width:100%;">
+        <image mode='scaleToFill' style='width:100%;height:350rpx;' lazy-load='true' src="{{item}}" class="slide-image" bindload="imageLoad" />
       </swiper-item>
     </block>
   </swiper>
-  <view class='store_module flex_about'>
+<!-- 店铺基本介绍  新版本 -->
+<view class='new_shop_store_module'>
+
+	<view class="new_shop_name_user global_single_ellipsis">{{shopObj.shop_name}}</view>
+	<view class="">
+            <block wx:for="{{stars}}" wx:key='index' wx:for-item="score">
+            <image wx:if='{{one_starts > score}}' class="star-image" style="margin-left:65px;left: {{score*40}}rpx" src="{{one_starts >= score ?(one_starts-score>1?selectedSrc: one_starts-score >= 0.5?halfSrc:normalSrc) : normalSrc}}">
+            </image>
+            <image wx:if='{{one_starts-1 == score}}' class="star-image" style="margin-left:65px;left: {{score*40}}rpx" src="{{selectedSrc}}">
+            </image>
+            <image wx:if='{{one_starts-1 < score}}' class="star-image" style="margin-left:65px;left: {{score*40}}rpx" src="{{normalSrc}}">
+            </image>
+          </block>
+  </view>
+  <view wx:if='{{one_starts}}' class="new_fly_text global_middle_font" hover-class="none" hover-stop-propagation="false">
+    评分：{{one_starts}}分
+  </view>
+
+
+	<view class="global_middle_font new_one_list_in_shopname" wx:if='{{shopObj.business_start_hours && shopObj.business_end_hours}}'>营业时间	{{shopObj.business_start_hours}}~{{shopObj.business_end_hours}}
+ <text wx:if="{{shopObj.business_hours_re != 0 }}">（{{shopObj.business_hours_re}}）</text>
+
+  </view>
+
+</view>
+
+<!-- 商家头像 -->
+<view class="new_shop_header" hover-class="none" hover-stop-propagation="false">
+    <image style="width:160rpx;height:160rpx;border-radius: 80rpx;" class="" src="{{shopObj.shop_logo}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+</view>
+
+
+<!-- 店铺基本介绍 旧版本 -->
+  <!-- <view class='store_module flex_about'>
     <view class='store_info flex_about'>
       <view class='info_img_icon'>
-        <!-- <image src='{{app.host.resources}}/grounding.png' mode='widthFix'></image> -->
-        <!-- <text class='global_small_font flex_about'>{{shopObj.cat_name}}</text> -->
       </view>
       <view class='info_img'>
-        <image src='{{shopObj.shop_logo}}' style='width:100px;height:100px;'></image>
+        <image src='{{shopObj.shop_logo}}' lazy-load='true' mode='scaleToFill' style='width:100px;height:100px;'></image>
       </view>
       <view class='info_content'>
         <view class="info_title global_middle_font global_multiLine_ellipsis">
@@ -39,40 +73,85 @@
         </view>
         <view class='ic_info flex_about'>
           <text class="global_middle_font">总订单数:{{shopObj.order_form}}</text>
-          <view bindtap='addmoney' data-id="{{shop_id}}" data-ac='0' class='global_middle_font global_bg_color_red'>充值</view>
-          <view bindtap='addOrder' data-shop_name='{{shopObj.shop_name}}' data-card_id='{{shopObj.card_id}}' data-shop_image='{{shopObj.shop_logo}}' data-id="0" class='global_middle_font global_bg_color_red'>去付款</view>
+          <form bindsubmit="addmoney" class="form-view" data-id="{{shop_id}}" report-submit="true" data-ac='0'>
+            <button form-type="submit" class="form-view-button ">
+              <view bindtap='' class='global_middle_font global_bg_color_red'>充值</view>
+            </button>
+          </form>
 
+          <form bindsubmit="addOrder" report-submit="true" class="form-view" data-shop_name='{{shopObj.shop_name}}' data-card_id='{{shopObj.card_id}}' data-shop_image='{{shopObj.shop_logo}}' data-id="0">
+            <button form-type="submit" class="form-view-button ">
+              <view class='global_middle_font global_bg_color_red'>去付款</view>
+            </button>
+          </form>
         </view>
       </view>
     </view>
     <view class='iconfont icon-dianhua store_phone' bindtap='makePhoneCall' data-phone="{{shopObj.iphone}}">
     </view>
-  </view>
-  <view class="newline"></view>
+  </view> -->
 
-  <navigator url='/pages/index/oddments/map/map?shop_id={{shop_id}}' class='flex_about business_Area'>
-    <view class=' global_middle_font  global_single_ellipsis '>
-      <view class='iconfont icon-tubiao201 global_color_red icon_ad'></view> 店铺地址：{{shopObj.address}}</view>
-    <view></view>
-    <view class='iconfont icon-arrow-right-copy'></view>
-  </navigator>
 
-  <view class="newline"></view>
 
-<view style='position: relative;'>
+<view style="background:#fff" class="newline"></view>
+<view style="background:#fff" class="newline"></view>
+<view style="background:#fff" class="newline"></view>
+<view style="background:#fff" class="newline"></view>
+<view style="background:#fff" class="newline"></view>
+<view style="background:#fff" class="newline"></view>
 
-  <view class='business_synopsis flex_about' bindtap='displayer'>
-    <view class='global_middle_font'> <view class='iconfont icon-qiyerenzheng global_color_red'></view>店铺简介： </view>
-    <view class='global_middle_font {{areshure == true ? "exceed-font" : ""}}'>{{shopObj.brief}} </view>
-  </view>
+<!-- 新店铺地址 -->
 
-	<view wx:if='{{ areshure == true && shopObj.brief.length >= 54}}' class='fly-exceed-font iconfont icon-sanjiaodown'></view>
-<view wx:if='{{ areshure == false && shopObj.brief.length >= 54}}' class='fly-exceed-font iconfont icon-xiangshang'></view>
-
+<view class="flex_about new_address_box" hover-class="none" hover-stop-propagation="false">
+    <view bindtap='try_go_map' class="new_address_one iconfont iconweizhinew" hover-class="none" hover-stop-propagation="false">  
+    </view>
+    <view bindtap='try_go_map' class="new_address_two global_multiLine_ellipsis">
+      {{shopObj.address}}
+    </view>
+    <view bindtap='makePhoneCall' data-phone="{{shopObj.iphone}}" class="new_address_three iconfont icondianhua1" hover-class="none" hover-stop-propagation="false">     
+    </view>
 </view>
 
-  <view class="newline"></view>
-  <view class='flex_about nav_module  global_large_font'>
+<view class="newline"></view>
+
+<!-- 旧店铺地址 -->
+  <!-- <view bindtap='try_go_map' class='flex_about business_Area'>
+    <view class=' global_middle_font  global_single_ellipsis '>
+      <view class='iconfont icon-tubiao201 global_color_red icon_ad'></view> 店铺地址：{{shopObj.address}}</view>
+    
+    <view class='iconfont icon-arrow-right-copy'></view>
+  </view> -->
+
+ 
+<!-- 新店铺简介 -->
+<view style='position: relative;'>
+    <view class='business_synopsis flex_about' bindtap='displayer'>
+      <view class='global_middle_font'>
+        <view class='iconfont iconqiyejianjie global_color_red'></view> <text style="color:#ed4444;"> 店铺简介：</text>  </view>
+      <view class='global_middle_font global_single_ellipsis {{areshure == true ? "exceed-font" : ""}}'>{{shopObj.brief}} </view>
+    </view>
+
+    <!-- <view bindtap='displayer' wx:if='{{ areshure == true && shopObj.brief.length >= 54}}' class='fly-exceed-font'></view> -->
+    <!-- <view bindtap='displayer' wx:if='{{ areshure == false && shopObj.brief.length >= 54}}' class='fly-exceed-font iconfont iconxiangxiakanyikan'></view> -->
+
+  </view>
+
+<view class="newline"></view>
+<!-- 旧店铺简介 -->
+  <!-- <view style='position: relative;'>
+    <view class='business_synopsis flex_about' bindtap='displayer'>
+      <view class='global_middle_font'>
+        <view class='iconfont icon-qiyerenzheng global_color_red'></view>店铺简介： </view>
+      <view class='global_middle_font {{areshure == true ? "exceed-font" : ""}}'>{{shopObj.brief}} </view>
+    </view>
+
+    <view wx:if='{{ areshure == true && shopObj.brief.length >= 54}}' class='fly-exceed-font iconfont icon-sanjiaodown'></view>
+    <view wx:if='{{ areshure == false && shopObj.brief.length >= 54}}' class='fly-exceed-font iconfont icon-xiangshang'></view>
+
+  </view> -->
+
+  <!-- <view class="newline"></view> -->
+  <view class='flex_about nav_module global_large_font'>
     <view wx:for-items="{{navArray}}" wx:key="navKey" bindtap='jumpTo' data-id="{{index}}" data-opt="{{item.id}}" class="nav_item {{index==navActive?'nav_active':''}}">{{item.name}}</view>
   </view>
   <view class='ticket_product_commit'>
@@ -109,11 +188,32 @@
     </view> -->
     <!-- 支付活动	 -->
     <view wx:if="{{shopObj!=null&&shopObj.pay_ac.length !== 0}}">
-      <view class='global_large_font flex_about commit_title'>
-        <view class='global_middle_font'></view>支付活动
+      <view class='global_large_font flex_about commit_title' style="font-weight: bold;">
+        <view class='global_middle_font iconfont iconhuodong11' style='color:#05c0ad;margin-right:20rpx;font-size:40rpx'></view>支付活动
       </view>
 
-      <view wx:for='{{shopObj.pay_ac}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.pay_ac.length > 0}}" bindtap='givemoneytome' data-id="{{item.ac_tontent}}" data-ac='{{item.ac_id}}' data-shop='{{item.shop_id}}' class='ticket flex_about'>
+      <form bindsubmit="givemoneytome" report-submit="true" wx:for='{{shopObj.pay_ac}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.pay_ac.length > 0}}" data-id="{{item.ac_tontent}}" data-ac='{{item.ac_id}}' data-shop='{{item.shop_id}}' class='form-view'>
+        <button form-type="submit" class="form-view-button ">
+          <view class="img_back_huodong">
+            <view class='img_back_huodong-1 color-big-font-size'>{{item.give_money}}</view>
+            <view class='img_back_huodong-2'>
+              <view class='center_img_back_fot'>
+                <text class='line-inline'>支付满</text>
+                <view class=' line-inline global_color_red'>{{item.money}}</view>
+                <text class=' line-inline'>送</text>
+                <view class=' line-inline global_color_red'>{{item.give_money}}</view>
+              </view>
+              <view class='center_img_back_fot_time'>结束时间：{{item.ac_etime}} </view>
+            </view>
+            <view class='img_back_huodong-3'> 去支付 </view>
+          </view>
+        </button>
+
+      </form>
+
+
+
+      <!-- <view wx:for='{{shopObj.pay_ac}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.pay_ac.length > 0}}" bindtap='givemoneytome' data-id="{{item.ac_tontent}}" data-ac='{{item.ac_id}}' data-shop='{{item.shop_id}}' class='ticket flex_about'>
         <view class=' global_color_red ticket_money flex_about '>{{item.give_money}}
           <text class='global_small_font global_color_red'>元</text>
         </view>
@@ -128,14 +228,42 @@
           <view class='iconfont icon-hongbaojuchi-copy'></view>
           <view class='flex_about payment1'>去支付</view>
         </view>
-      </view>
+      </view> -->
     </view>
     <!-- 充值活动模块 -->
     <view id='list0' wx:if="{{shopObj!=null&&shopObj.shop_ac.length !== 0}}">
-      <view class='global_large_font flex_about commit_title'>
-        <view class='global_middle_font'></view>充值活动
+      <view class='global_large_font flex_about commit_title' style="font-weight: bold;">
+          <view class='global_middle_font iconfont iconhuodong11' style='color:#05c0ad;margin-right:20rpx;font-size:40rpx'></view>充值活动
       </view>
-      <view wx:for='{{shopObj.shop_ac}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.shop_ac.length > 0}}" bindtap='givemoneytohe' data-id="{{item.ac_tontent}}" data-money="{{item.money}}" data-ac='{{item.ac_id}}' data-shop='{{item.shop_id}}' class='ticket flex_about'>
+
+
+
+
+
+      <form bindsubmit="givemoneytohe" report-submit="true" wx:for='{{shopObj.shop_ac}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.shop_ac.length > 0}}" data-id="{{item.ac_tontent}}" data-money="{{item.money}}" data-ac='{{item.ac_id}}' data-shop='{{item.shop_id}}'
+        class='form-view'>
+        <button form-type="submit" class="form-view-button">
+          <view class="img_back_huodong">
+            <view class='img_back_huodong-1 color-big-font-size'>{{item.give_money}}</view>
+            <view class='img_back_huodong-2'>
+              <view class='center_img_back_fot'>
+                <text class=' line-inline'>充值满</text>
+                <view class=' line-inline global_color_red'>{{item.money}}</view>
+                <text class=' line-inline'>赠</text>
+                <view class=' line-inline global_color_red'>{{item.give_money}}</view>
+                <view wx:if='{{!item.ac_title==""}}' class='global_middle_font'>{{item.title}}</view>
+
+              </view>
+              <view class='center_img_back_fot_time'>结束时间：{{item.ac_etime}} </view>
+            </view>
+            <view class='img_back_huodong-3'> 去充值 </view>
+          </view>
+        </button>
+      </form>
+
+
+
+      <!-- <view wx:for='{{shopObj.shop_ac}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.shop_ac.length > 0}}" bindtap='givemoneytohe' data-id="{{item.ac_tontent}}" data-money="{{item.money}}" data-ac='{{item.ac_id}}' data-shop='{{item.shop_id}}' class='ticket flex_about'>
         <view class=' global_color_red ticket_money flex_about '>{{item.give_money}}
           <text class='global_small_font global_color_red'>元</text>
         </view>
@@ -150,15 +278,43 @@
           <view class='iconfont icon-hongbaojuchi-copy'></view>
           <view class='flex_about payment1'>去充值</view>
         </view>
-      </view>
+      </view> -->
+
+
+
     </view>
     <!--排队返现活动-->
     <view id="list0" wx:if="{{shopObj!=null&&shopObj.return.length !== 0}}">
-      <view class='global_large_font flex_about commit_title'>
-        <view class='global_middle_font'></view>排队返现活动
+      <view class='global_large_font flex_about commit_title' style="font-weight: bold;">
+          <view class='global_middle_font iconfont iconhuodong11' style='color:#05c0ad;margin-right:20rpx;font-size:40rpx'></view>排队返现活动
       </view>
 
-      <view wx:for='{{shopObj.return}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.return.length > 0}}" bindtap='returncash' data-id="{{item.brief}}" data-ac='{{item.id}}' data-shop='{{item.shop_id}}' class='ticket flex_about'>
+
+
+      <form bindsubmit="returncash" report-submit="true" wx:for='{{shopObj.return}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.return.length > 0}}" data-id="{{item.brief}}" data-ac='{{item.id}}' data-shop='{{item.shop_id}}' class='form-view'>
+        <button form-type="submit" class="form-view-button">
+          <view class="img_back_huodong">
+            <view class='img_back_huodong-1 color-big-font-size'>{{tools.turnInt(item.return_money)}}</view>
+            <view class='img_back_huodong-2'>
+              <view class='center_img_back_fot want-margin-top'>
+                <text class=' line-inline'>支付满</text>
+                <view class=' line-inline global_color_red'>{{tools.turnInt(item.money)}}</view>
+                <text class=' line-inline'>返</text>
+                <view class=' line-inline global_color_red'>{{tools.turnInt(item.return_money)}}</view>
+                <view wx:if='{{!item.ac_title==""}}' class='global_middle_font'>{{item.title}}</view>
+
+              </view>
+              <!-- <view class='center_img_back_fot_time'> </view> -->
+            </view>
+            <view class='img_back_huodong-3'> 去充值 </view>
+          </view>
+        </button>
+      </form>
+
+    </view>
+
+
+    <!-- <view wx:for='{{shopObj.return}}' wx:key='index' wx:if="{{shopObj!=null&&shopObj.return.length > 0}}" bindtap='returncash' data-id="{{item.brief}}" data-ac='{{item.id}}' data-shop='{{item.shop_id}}' class='ticket flex_about'>
         <view class=' global_color_red ticket_money flex_about '>{{tools.turnInt(item.return_money)}}
 
         </view>
@@ -173,103 +329,125 @@
           <view class='iconfont icon-hongbaojuchi-copy'></view>
           <view class='flex_about payment1'>去支付</view>
         </view>
-      </view>
-    </view>
+      </view>-->
+  </view>
 
 
-    <!-- 热门商品模块 -->
-    <view wx:if="{{shopObj!=null&&shopObj.hot_goods.length > 0}}" class='global_large_font flex_about commit_title'>
-      <view class='iconfont icon-remenhuodong-copy-copy'></view>热门商品
-    </view>
+  <!-- 热门商品模块 -->
+  <!-- <view wx:if="{{shopObj!=null&&shopObj.hot_goods.length > 0}}" class='global_large_font flex_about commit_title'>
+      <view class='global_middle_font iconfont iconhuodong11' style='color:#05c0ad;margin-right:20rpx;font-size:40rpx'></view>热门商品
+  </view>
 
-    <view class='product_module' id="list1">
-      <navigator id='ones' style='border:0.5rpx solid #eee;' wx:if="{{shopObj!=null&&shopObj.hot_goods.length > 0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.hot_goods}}" wx:key="dataListKey" class="di_item">
-        <view id="cesces">
-          <image src="{{item.goods_thumb}}" style='width:300rpx;height:300rpx;'> </image>
-          <view style='position:absolute;right:26rpx;top:7rpx;padding:0 5rpx;background:red;color:#fff;' class='global_middle_font global_color_red'> {{item.is_promote == 1 ? "促销" : ""}}</view>
-        </view>
-        <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
-        <view class='dl_detailed global_small_font flex_about'>
-          <text wx:if='{{item.is_promote != 1}}' class='global_middle_font global_color_red'>￥{{item.shop_price}} </text>
-
-
-          <text wx:if='{{item.is_promote == 1}}' class='global_middle_font global_color_red'>￥{{item.promote_price}}  <text style='text-decoration:line-through;'>原价:{{item.shop_price}} </text> </text>
-        </view>
-        <view wx:if='{{item.goods_number == 0}}' class='nohavegoods'>
-          <image src='/images/production/nohaveeee.png' class='nohave-img'></image>
-        </view>
-      </navigator>
-    </view>
-
-    <!-- 普通商品模块 -->
-    <view wx:if="{{shopObj!=null&&shopObj.goods.length > 0}}" class='global_large_font flex_about commit_title'>
-      <view class=''></view>全部商品
-    </view>
-    <view class='product_module' id="list1">
-      <navigator id="ones" style='border:0.5rpx solid #eee;' wx:if="{{shopObj!=null&&shopObj.goods.length > 0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.goods}}" wx:key="dataListKey" class="di_item">
-        <image src="{{item.goods_thumb}}" style='width:300rpx;height:300rpx;'></image>
+  <view class='product_module' id="list1">
+    <navigator id='ones' style='border:0.5rpx solid #eee;' wx:if="{{shopObj!=null&&shopObj.hot_goods.length > 0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.hot_goods}}" wx:key="dataListKey" class="di_item">
+      <view id="cesces">
+        <image src="{{item.goods_thumb}}" lazy-load='true' mode='scaleToFill' style='width:300rpx;height:300rpx;'> </image>
         <view style='position:absolute;right:26rpx;top:7rpx;padding:0 5rpx;background:red;color:#fff;' class='global_middle_font global_color_red'> {{item.is_promote == 1 ? "促销" : ""}}</view>
-        <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
-        <view class='dl_detailed global_small_font flex_about'>
-          <text wx:if='{{item.is_promote != 1}}' class='global_middle_font global_color_red'>￥{{item.shop_price}} </text>
-
-
-          <text wx:if='{{item.is_promote == 1}}' class='global_middle_font global_color_red'>￥{{item.promote_price}}  <text style='text-decoration:line-through;'>原价:{{item.shop_price}} </text> </text>
-          <!--   <text class='global_middle_font global_color_red'>{{item.goumai}}</text>人购买-->
-        </view>
-
-        <view wx:if='{{item.goods_number == 0}}' class='nohavegoods'>
-          <image src='/images/production/nohaveeee.png' class='nohave-img'></image>
-        </view>
-      </navigator>
-
-
-    </view>
-    <!-- 等待加载的组件 -->
-    <!-- ----------开头---------------- -->
-    <view wx:if='{{commentArrar.length > 0 }}' class='global_large_font flex_about commit_title'>
-      <view id="list2" class='iconfont icon-pinglun2'></view>评论
-    </view>
-    <view wx:if='{{type==shop_id}}' class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit' wx:key="index">
-      <!-- 评论的用户头像图片 -->
-      <view class='commit_avatar'>
-        <image src='{{item.Head_portrait}}' mode='widthFix'></image>
       </view>
-      <!-- 评论的用户名字 -->
-      <view>
-        <view class='commit_text'>
-          <view class='flex_about global_large_font commit_name_date'>
-            <view>{{item.nickname}}</view>
-            <view></view>
-            <!-- 评论时间 -->
-            <view class='global_small_font'>
-              {{item.msg_date}}
-            </view>
-          </view>
-          <!-- 评论内容 -->
+      <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
+      <view class='dl_detailed global_small_font flex_about'>
+        <text wx:if='{{item.is_promote != 1}}' class='global_middle_font global_color_red'>￥{{item.shop_price}} </text>
+
+        <text wx:if='{{item.is_promote == 1}}' class='global_middle_font global_color_red'>￥{{item.promote_price}}  <text style='text-decoration:line-through;'>原价:{{item.shop_price}} </text> </text>
+      </view>
+      <view wx:if='{{item.goods_number == 0}}' class='nohavegoods'>
+        <image src='/images/production/nohaveeee.png' mode='scaleToFill' lazy-load='true' class='nohave-img'></image>
+      </view>
+    </navigator>
+  </view> -->
+
+<!-- 新普通商品模块 -->
+<view wx:if="{{shopObj!=null&&shopObj.goods.length > 0}}"  class='global_large_font flex_about commit_title' style="font-weight: bold;margin-left:20rpx;">
+      <view class='global_middle_font iconfont iconwodechanpinku' style='color:#fc8b01;margin-right:20rpx;font-size:40rpx'></view>全部商品
+  </view>
+
+<navigator id='ones' wx:if="{{shopObj!=null&&shopObj.goods.length > 0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.goods}}" wx:key="dataListKey" class="" hover-class="none" hover-stop-propagation="false">
+   <view class="new_shopping_image_box" hover-class="none" hover-stop-propagation="false">
+     <image class="new_shopping_image" src="{{item.goods_thumb}}" lazy-load="true" binderror="" bindload=""></image>
+   </view>
+
+   <view class="new_shopping_content_box" hover-class="none" hover-stop-propagation="false">
+     <view class="new_shopping_content_box_name global_single_ellipsis">{{item.goods_name}}</view>
+     <view class="new_shopping_content_box_brief global_single_ellipsis global_middle_font">{{item.goods_brief}}</view>
+      <view class='dl_detailed global_small_font flex_about'>
+        <text wx:if='{{item.is_promote != 1}}' class='global_middle_font global_color_red'>￥{{item.shop_price}} </text>
+        <text wx:if='{{item.is_promote == 1}}' class='global_middle_font global_color_red'>￥{{item.promote_price}}  <text style='text-decoration:line-through;color:#666;'>原价:￥{{item.shop_price}} </text> </text>
+      </view>
+      <view wx:if='{{item.goods_number == 0}}' class='nohavegoods'>
+        <image src='/images/production/nohaveeee.png' mode='scaleToFill' lazy-load='true' class='nohave-img'></image>
+      </view>
+   </view>
+<view class="newline"></view>
+</navigator>
+
+
+
+  <!-- 老普通商品模块 -->
+  <!-- <view wx:if="{{shopObj!=null&&shopObj.goods.length > 0}}" class='global_large_font flex_about commit_title' style="font-weight: bold;margin-left:20rpx;">
+      <view class='global_middle_font iconfont iconwodechanpinku' style='color:#fc8b01;margin-right:20rpx;font-size:40rpx'></view>全部商品
+  </view>
+  <view class='product_module' id="list1">
+    <navigator id="ones" style='border:0.5rpx solid #eee;' wx:if="{{shopObj!=null&&shopObj.goods.length > 0}}" url="/pages/shop/details/details?goods_id={{item.goods_id}}" wx:for-items="{{shopObj.goods}}" wx:key="dataListKey" class="di_item">
+      <image src="{{item.goods_thumb}}" mode='scaleToFill' lazy-load='true' style='width:300rpx;height:300rpx;'></image>
+      <view style='position:absolute;right:26rpx;top:7rpx;padding:0 5rpx;background:red;color:#fff;' class='global_middle_font global_color_red'> {{item.is_promote == 1 ? "促销" : ""}}</view>
+      <view class='dl_title global_multiLine_ellipsis global_middle_font'>{{item.goods_name}}</view>
+      <view class='dl_detailed global_small_font flex_about'>
+        <text wx:if='{{item.is_promote != 1}}' class='global_middle_font global_color_red'>￥{{item.shop_price}} </text>
+        <text wx:if='{{item.is_promote == 1}}' class='global_middle_font global_color_red'>￥{{item.promote_price}}  <text style='text-decoration:line-through;'>原价:{{item.shop_price}} </text> </text>
+      </view>
+
+      <view wx:if='{{item.goods_number == 0}}' class='nohavegoods'>
+        <image src='/images/production/nohaveeee.png' mode='scaleToFill' lazy-load='true' class='nohave-img'></image>
+      </view>
+    </navigator>
+  </view> -->
+  <!-- 等待加载的组件 -->
+  <!-- ----------开头---------------- -->
+   <view wx:if='{{commentArrar.length > 0 }}'  class='global_large_font flex_about commit_title' style="font-weight: bold;margin-left:20rpx;">
+      <view class='global_middle_font iconfont iconwodechanpinku' style='color:#ec4444;margin-right:20rpx;font-size:40rpx'></view>全部商品
+  </view>
+<view style='width:94%;padding:3%;' class="" hover-class="none" hover-stop-propagation="false">
+
+  <view wx:if='{{type==shop_id}}' class='flex_about commit' wx:for="{{commentArrar}}" data-id='{{index}}' bindtap='wherecommit' wx:key="index">
+    <!-- 评论的用户头像图片 -->
+    <view class='commit_avatar'>
+      <image src='{{item.Head_portrait}}' lazy-load='true' mode='widthFix'></image>
+    </view>
+    <!-- 评论的用户名字 -->
+    <view>
+      <view class='commit_text'>
+        <view class='flex_about global_large_font commit_name_date'>
+          <view>{{item.nickname}}</view>
+          <view></view>
+          <!-- 评论时间 -->
           <view class='global_small_font'>
-            {{item.msg_desc}}
+            {{item.msg_date}}
           </view>
         </view>
-        <!-- 评论图片 -->
-        <view class='comment_min_image'>
-          <view>
-            <image bindtap='showCommentImage' data-id='{{index}}' wx:for="{{item.msg_img}}" style='width:30%;height:150rpx;' wx:key="index" src="{{item}}"></image>
-          </view>
-        </view>
-
-        <view class='discuss'>
-          <view wx:if='{{ item.reply != null }}' class='global_middle_font' style='color:blue'>商家回复：</view>
-          <view class='global_middle_font dis-desc-shop'>{{item.reply.desc}}</view>
+        <!-- 评论内容 -->
+        <view class='global_small_font'>
+          {{item.msg_desc}}
         </view>
       </view>
-    </view>
+      <!-- 评论图片 -->
+      <view class='comment_min_image'>
+        <view>
+          <image bindtap='showCommentImage' data-id='{{index}}' lazy-load='true' mode='scaleToFill' wx:for="{{item.msg_img}}" style='width:30%;height:150rpx;' wx:key="index" src="{{item}}"></image>
+        </view>
+      </view>
 
-    <!-- <view class='prompt'>
+      <view class='discuss'>
+        <view wx:if='{{ item.reply != null }}' class='global_middle_font' style='color:blue'>商家回复：</view>
+        <view class='global_middle_font dis-desc-shop'>{{item.reply.desc}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+  <!-- <view class='prompt'>
       <prompt id="prompt"></prompt>
     </view> -->
 
-  </view>
+  <!-- </view> -->
   <!-- --结尾- -->
   <!-- <comment id="comment"></comment> -->
 </scroll-view>

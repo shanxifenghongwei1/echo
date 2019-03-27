@@ -10,7 +10,7 @@ Component({
   },
   created(){
    this.prompt = this.selectComponent("#prompt");
-    this.page=0;
+   this.page=0;
    this.prompt.funPrompt({
      "type": "init"
    });
@@ -49,7 +49,7 @@ Component({
               that.prompt.funPrompt({
                 "type": "dataFinish"
               });
-            },2000)
+            },100)
           }
           if (e.comment.length == 0) {
             let type = "";
@@ -94,7 +94,7 @@ Component({
 							that.prompt.funPrompt({
 								"type": "dataFinish"
 							});
-						}, 2000)
+						}, 100)
 					}
 					if (e.comment.length == 0) {
 						let type = "";

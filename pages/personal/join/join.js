@@ -38,6 +38,24 @@ Page({
 			userInfo:opt
 		})
 	},
+
+// 拿到你的form_id
+	popseare(e) {
+		console.log(e)
+		console.log('我动了！')
+		let formId = e.detail.formId;
+		app.request.post({
+			url: 'send/getFormId',
+			data: {
+				form_id: formId
+			},
+			success: (res) => {
+				console.log(res)
+			}
+		})
+	},
+
+
   addactive: function(even) {
     let shop_personal = even.target.dataset.id;
     if (even.target.dataset.id == 3) {
@@ -45,7 +63,6 @@ Page({
     } else if (even.target.dataset.id == 1) {
       shop_personal = 3;
     }
-
     this.setData({
       "userFrom.classification": even.target.dataset.id,
       "userFrom.shop_personal": shop_personal
@@ -105,6 +122,7 @@ Page({
     })
   },
   userFrom(e) {
+		this.popseare(e)
     this.data.userFrom.name = e.detail.value.name;
     this.data.userFrom.phone = e.detail.value.phone;
     this.data.userFrom.address = e.detail.value.address;

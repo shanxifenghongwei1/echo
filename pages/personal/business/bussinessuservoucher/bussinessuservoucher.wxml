@@ -7,5 +7,5 @@
 
 <view class='bill' wx:for='{{recharge}}' wx:key='index'>
   <view class='global_middle_font'>{{ item.Nickname}}</view>
-  <view class='global_middle_font'>{{ tools.turnInt(item.card_money) }}</view>
+  <view class='global_middle_font'>{{ item.card_money }}</view>
 </view>

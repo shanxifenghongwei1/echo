@@ -131,6 +131,10 @@
         <text>优惠券出售数量:</text>
         <text class='m-margin-left-busin'>{{virtual[x].sale_number}}</text>
       </view>
+			      <view class='global_middle_font cone-cump-2'>
+        <text>优惠券数量:</text>
+        <text class='m-margin-left-busin'>{{virtual[x].card_number}}</text>
+      </view>
       <view class='global_middle_font cone-cump-2'>
         <text>优惠券过期时间:</text>
         <text class='m-margin-left-busin'>{{virtual[x].end_date}}</text>

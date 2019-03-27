@@ -146,7 +146,6 @@ Page({
 	// 提交
 	addshopproduct(e){
 	
-
 		console.log(e.detail.value)
 		let con = e.detail.value
 		con.virtual_id = this.data.card_id
@@ -174,9 +173,9 @@ Page({
 					if (res.state == 1) {
 						wx.navigateBack({
 							success: () => {
-								setTimeout(() => {
+								// setTimeout(() => {
 									app.showtost(res.msg)
-								})
+								// },300)
 							}
 						})
 					}else{

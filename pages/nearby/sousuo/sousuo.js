@@ -39,7 +39,7 @@ Page({
   onShow() {
     this.getsearchList();
 		let crr = wx.getStorageSync('storyList_shop')
-		console.log(crr)
+	
 		if (crr.length <= 0) {
 			this.setData({
 				content: true
@@ -47,7 +47,7 @@ Page({
 		}
   },
   onLoad: function(options) {
-
+		this.getdiscover();
   },
   search: function(e) {
     this.setData({
@@ -85,7 +85,6 @@ idonno(e){
 				page: this.data.page
 			},
 			success: (res) => {
-				console.log('请求了接口')
 				if (res.msg == 1) {
 					this.setData({
 						dataList: res.sort_shop,
@@ -105,7 +104,6 @@ idonno(e){
 						array.push(e.detail.value)
 						let story = wx.setStorageSync('storyList_shop', array)
 					}
-
 				} else {
 					this.setData({
 						trytext: '无相关店铺',
@@ -157,6 +155,21 @@ idonno(e){
 		})
 	}
 },
+
+// 搜索发现的数据请求
+	getdiscover(){
+		app.request.post({
+			url:'ad/get_selere',
+			success:(res)=>{
+				this.setData({
+					selere: res.selere
+				})
+			}
+		})
+	},
+
+
+
   // 点击搜索
   gosearch(e) {
 
@@ -234,7 +247,7 @@ idonno(e){
 						}
 
           } else {
-            console.log('sads')
+           
             this.setData({
               trytext: '无相关产品',
               sele_goods: []
@@ -257,29 +270,21 @@ idonno(e){
 // 展示历史
   getsearchList() {
     let arr = wx.getStorageSync('storyList_shop')
-    // var hash = [];
-		// for (var i = 0; i < arr.length; i++) {
-		// 	if (arr.indexOf(arr[i]) == i) {
-		// 		hash.push(arr[i]);
-		// 	}
-		// }
-		console.log(arr)
+	
 		this.setData({
 			searchList: this.uniq(arr)
 		})	
-		console.log(this.uniq(arr))
-
-
+	
   },
 	 uniq(array){
-		array.sort();
-		var temp = [array[0]];
-		for(var i = 1; i<array.length; i++){
-	if (array[i] !== temp[temp.length - 1]) {
-		temp.push(array[i]);
-	}
-}
-return temp;
+			 var temp = []; //一个新的临时数组
+			 for (var i = 0; i < array.length; i++) {
+				 if (temp.indexOf(array[i]) == -1) {
+					 temp.push(array[i]);
+				 }
+			 }
+			 return temp;		
+
 },
   // 点击历史
   cesrch(e) {

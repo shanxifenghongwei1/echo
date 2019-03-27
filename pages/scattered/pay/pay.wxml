@@ -25,7 +25,7 @@
     </view>
     <view wx:if='{{order_type==1}}'>
       <!-- 优惠券 -->
-      <view wx:if='{{uservirtual.length !==0}}' style='display:flex;align-items: center;justify-content:space-between' class='money'>
+      <view  style='display:flex;align-items: center;justify-content:space-between' class='money'>
         <text>优惠券</text>
         <text style='width:50%'>{{youhuitext}}</text>
         <view bindtap='runjumpthis' style='width:20%;;height:80rpx;text-align:right;line-height:80rpx;' class='iconfont icon-sandian1 money_input'></view>
@@ -69,7 +69,7 @@
 
 
       <!-- 优惠券 -->
-      <view wx:if='{{uservirtual.length !==0 && dis_text.length <= 0}}' style='display:flex;align-items: center;justify-content:space-between' class='money' bindtap='runjumpthis'>
+      <view wx:if='{{uservirtual.length !==0}}' style='display:flex;align-items: center;justify-content:space-between' class='money' bindtap='runjumpthis'>
         <text>优惠券</text>
         <text style='width:50%'>{{youhuitext}}</text>
         <view style='width:20%;;height:80rpx;text-align:right;line-height:80rpx;' class='iconfont icon-sandian1 money_input'></view>
@@ -118,12 +118,22 @@
     </checkbox-group>
     <!-- 确认支付按钮 -->
     <view wx:if='{{areyouok==1}}'>
-      <button wx:if='{{order_type==2}}' class='global_bg_color_red global_middle_font' bindtap='payClick'>
+
+<form wx:if='{{order_type==2 && hidden == false}}' bindsubmit="payClick" report-submit='true'>
+      <button  form-type="submit"  class='global_bg_color_red global_middle_font' >
         确定支付
       </button>
-      <form bindsubmit="shangjiapay" report-submit='true'>
-        <button wx:if='{{order_type==1}}' form-type="submit" class='global_bg_color_red global_middle_font'>商铺支付</button>
+  </form>
+	
+	      <button wx:if='{{order_type==2 && hidden == true}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class='global_bg_color_red global_middle_font'>
+        确定支付
+      </button>
+      <form bindsubmit="shangjiapay" wx:if='{{order_type==1 && hidden==false}}' report-submit='true'>
+        <button  form-type="submit" class='global_bg_color_red global_middle_font'>商铺支付</button>
       </form>
+
+<button wx:if='{{order_type==1  && hidden == true}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"  class='global_bg_color_red global_middle_font'>商铺支付</button>
+
     </view>
   </view>
 </view>

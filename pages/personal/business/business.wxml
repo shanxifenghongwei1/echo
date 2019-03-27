@@ -10,11 +10,14 @@
 
     <view class='bussiness_height-two'>
       <view class='bussiness_height-two-one global_large_font color-whilt font-sweight global_single_ellipsis'> {{anyone_orshop.shop_name}}</view>
+
       <view class='bussiness_height-two-two global_small_font color-whilt'> TEL: <text class='global_small_font color-whilt'>{{anyone_orshop.iphone}}</text></view>
     </view>
 		
     <view class='bussiness_height-three'>
-      <view class='color-whilt iconfont icon-xiaoxi fon-ssize'></view>
+      <view class='color-whilt iconfont icon-xiaoxi fon-ssize class-position' bindtap='new_messages'>
+				<view wx:if='{{messages_this.count > 0}}' class='position-children'>{{messages_this.count}} </view>
+			</view>
       <view class='color-whilt iconfont icon-shezhi fon-ssize' bindtap='switcher'></view>
     </view>
   </view>

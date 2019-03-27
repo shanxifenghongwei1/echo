@@ -40,6 +40,23 @@ Page({
           wx.getUserInfo({
             success: (e) => {
               if (res.code) {
+// console.log(res)
+// console.log('这是获取到的用户code')
+
+// wx.request({
+// 	url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx04816cefac2d5cf2&secret=SECRET&js_code=JSCODE&grant_type=authorization_code',
+// 	data:{},
+// 	method:'GET',
+// 	success:(base)=>{
+// 		console.log('拿到了')
+// 		console.log(base)
+// 	}
+// })
+
+
+
+
+
                 // 发起网络请求
                 wx.showLoading({
                   title: '正在登陆',

@@ -41,6 +41,30 @@ Page({
     }
   })
   },
+// 点击消息那一快
+	new_messages(){
+		wx.navigateTo({
+			url: '/pages/personal/business/new_messages/new_messages?shop_id=' +this.data.myshop_id
+		})
+	},
+// 消息提醒
+addmode(){
+	app.request.post({
+		url: 'shopcenter/getstatemsg_count',
+		data:{
+			business_id:this.data.myshop_id
+			},
+			success:(res)=>{
+				this.setData({
+					messages_this:res
+				})
+			}
+	})
+
+},
+
+
+
 	moveid(e){
 		this.setData({
 			hexiao:e.detail.value
@@ -210,6 +234,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+		this.addmode()
 		this.initses();
   },
 

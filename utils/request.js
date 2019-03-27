@@ -18,6 +18,7 @@ let requestPost = ajaxJson=> {
   if (ajaxJson.isLoading) { //为ture 显示loading
     wx.showLoading({
       title: '加载中',
+			mask:true
     })
   }
   if (ajaxJson.data==undefined){

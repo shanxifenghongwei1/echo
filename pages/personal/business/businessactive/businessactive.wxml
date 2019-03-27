@@ -26,7 +26,31 @@
   <scroll-view scroll-y wx:if='{{istrue}}' lower-threshold='10' bindscrolltolower='addinit' style='background:#fff;width:94%;padding:3%;height:700rpx;'>
 
     <view wx:if='{{activity.length <= 0 }}' class='global_middle_font' style='width:94%;padding:3%;line-height:80rpx;'>无活动，请添加活动</view>
+
+
+
+
+
     <view wx:if='{{activity.length > 0 }}' wx:for='{{activity}}' wx:key='index' style='margin-bottom:40rpx;'>
+      <view class="img_back_huodong">
+        <view style='font-size:32rpx;' class='img_back_huodong-1 color-big-font-size'>{{item.ac_type==1?'充值活动':'支付活动'}}</view>
+        <view class='img_back_huodong-2'>
+          <view class='center_img_back_fot'>
+            <text class='line-inline'>支付满</text>
+            <view class=' line-inline global_color_red'>{{item.money}}</view>
+            <text class=' line-inline'>送</text>
+            <view class=' line-inline global_color_red'>{{item.give_money}}</view>
+
+          </view>
+          <view class='center_img_back_fot_time'>结束时间：{{item.ac_etime}} </view>
+        </view>
+        <!-- <view class='img_back_huodong-3'> 去支付 </view> -->
+      </view>
+   
+
+
+
+    <!-- <view wx:if='{{activity.length > 0 }}' wx:for='{{activity}}' wx:key='index' style='margin-bottom:40rpx;'>
       <view class='ticket flex_about' style='width:99%;border-right:1px solid #d54036;'>
         <view style='font-size:25rpx;' class=' global_color_red ticket_money flex_about'>{{item.ac_type==1?'充值活动':'支付活动'}}
         </view>
@@ -34,13 +58,17 @@
           <view class='global_middle_font global_color_red'>{{item.ac_title}}</view>
           <view class='global_middle_font global_color_red'>{{item.ac_etime}}过期</view>
         </view>
-      </view>
+      </view> -->
       <!-- 删除，修改模块 -->
       <view class='move-shop' style='width:100%;'>
         <navigator url='/pages/personal/business/businessactiverechange/businessactiverechange?ac_id={{item.ac_id}}&shop_id={{shop_id}}' class='global_middle_font' style='width:49%;height:100%;text-align:center;border: 1rpx solid #eee;'>修改活动</navigator>
         <view bindtap='removeac' data-index='{{index}}' class='global_middle_font' style='width:50%;height:100%;text-align:center;border: 1rpx solid #eee;'>删除活动</view>
       </view>
-    </view>
+
+			 </view>
+
+
+    <!-- </view> -->
     <!-- <view class='back-image-s'>
 
       <view style='color:#fff;width:70%;height:70%;' class=''>
